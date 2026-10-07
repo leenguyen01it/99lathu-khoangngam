@@ -1,0 +1,10 @@
+node_modules
+.next
+.env
+prisma/*.db
+prisma/*.db-journal
+tsconfig.tsbuildinfo
+next-env.d.ts
+.chrome-social-render
+.idea
+audio

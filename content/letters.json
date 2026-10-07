@@ -1,0 +1,912 @@
+{
+  "letters": [
+    {
+      "id": "lon-len-01",
+      "theme": "lon-len",
+      "form": "dinh-nghia",
+      "tone": "om",
+      "rank": 3,
+      "pin": 1,
+      "text": "Lớn lên không phải là hết khóc. Lớn lên là khóc xong vẫn nhớ đặt báo thức cho ngày mai. Là biết buồn thì cứ buồn, nhưng cơm vẫn phải ăn, quần áo vẫn phải phơi. Nghe thì có vẻ khô khan, nhưng thật ra đó là một kiểu dịu dàng: bạn không bỏ mặc mình, kể cả vào những hôm tệ nhất.",
+      "n": 1
+    },
+    {
+      "id": "khong-lay-long-01",
+      "theme": "khong-lay-long",
+      "form": "hai-ve",
+      "tone": "om",
+      "rank": 3,
+      "pin": 2,
+      "text": "Bạn nghĩ về một câu chê suốt ba ngày. Người nói câu đó đã quên nó sau ba phút, giờ có khi đang lo chuyện tối nay ăn gì. Ai cũng bận với cuộc đời của họ nhiều hơn bạn tưởng. Thế nên đừng để một câu nói ở trọ trong đầu mình lâu hơn nó đáng được ở. Nghe xem có gì đúng thì giữ lại, phần còn lại cho nó dọn đi.",
+      "n": 2
+    },
+    {
+      "id": "ban-than-01",
+      "theme": "ban-than",
+      "form": "so-sanh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Điện thoại còn năm phần trăm pin, bạn cuống lên đi tìm sạc. Bạn còn năm phần trăm sức, bạn pha thêm một ly cà phê rồi làm tiếp. Lạ thật, mình chăm cái máy kỹ hơn chăm mình. Tối nay thử đối xử với bản thân như với cái điện thoại: thấy báo pin yếu thì cắm sạc, không tranh thủ thêm, không mắng nó sao hết pin nhanh thế.",
+      "n": 3,
+      "pin": 3
+    },
+    {
+      "id": "co-gang-02",
+      "theme": "co-gang",
+      "form": "diep",
+      "tone": "om",
+      "rank": 3,
+      "pin": 4,
+      "text": "Cố gắng không phải lúc nào cũng là làm thêm giờ. Có hôm, cố gắng là dậy đúng giờ dù đêm qua khóc. Có hôm, cố gắng là vẫn nấu cho mình một bữa cơm tử tế. Có hôm, cố gắng chỉ là không bỏ cuộc, thế thôi. Đừng chỉ đếm những ngày bạn làm được nhiều. Hôm nào bạn còn ở đây và còn muốn thử tiếp, hôm đó đều được tính.",
+      "n": 4
+    },
+    {
+      "id": "tinh-yeu-01",
+      "theme": "tinh-yeu",
+      "form": "dinh-nghia",
+      "tone": "om",
+      "rank": 3,
+      "pin": 5,
+      "text": "Người thương bạn không nhất thiết nói được những câu hay. Có khi chỉ là người nhớ bạn không ăn hành, và lặng lẽ nhặt hết ra trước khi đẩy tô phở sang. Là người nhắn về tới nhà chưa, dù biết bạn đã lớn. Tình yêu trong phim thì ồn ào. Tình yêu ngoài đời thường rất nhỏ, và nằm ở những việc không ai kể lại.",
+      "n": 5
+    },
+    {
+      "id": "tuoi-tre-01",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "pin": 6,
+      "text": "Hai mươi mấy tuổi: lương chưa cao, phòng trọ chưa rộng, chưa biết mình giỏi cái gì, và hay giật mình vì thấy bạn bè đi nhanh quá. Ai đi qua tuổi này cũng từng như vậy, kể cả những người bây giờ trông rất ổn. Họ chỉ không đăng những năm đó lên mạng thôi. Bạn không đi chậm đâu. Bạn đang ở đúng đoạn này của con đường.",
+      "n": 6
+    },
+    {
+      "id": "ban-than-02",
+      "theme": "ban-than",
+      "form": "tu-hua",
+      "tone": "om",
+      "rank": 3,
+      "pin": 7,
+      "text": "Mình không cần thành một người khác. Mình chỉ cần thành mình, bản ngủ đủ hơn một chút, nói thật hơn một chút, và bớt xin lỗi vì những chuyện không phải lỗi của mình. Mình sẽ thôi chờ tới lúc gầy hơn, giỏi hơn, giàu hơn rồi mới cho phép mình vui. Mình của hôm nay, với đúng những gì đang có, cũng đáng được đối xử tử tế rồi.",
+      "n": 7
+    },
+    {
+      "id": "ban-be-04",
+      "theme": "ban-be",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "pin": 8,
+      "text": "Bạn thân là người thấy bạn đăng một tấm ảnh rất vui, rồi nhắn riêng: dạo này ổn không đó? Là người nghe bạn kể một chuyện tới lần thứ tư mà vẫn nghe. Là người ngồi im cạnh bạn được mà không ai thấy ngượng. Người như vậy cả đời gặp không nhiều. Nếu bạn có một người, hôm nay cho họ biết đi.",
+      "n": 8
+    },
+    {
+      "id": "khong-lay-long-02",
+      "theme": "khong-lay-long",
+      "form": "con-so",
+      "tone": "om",
+      "rank": 3,
+      "pin": 9,
+      "text": "Trong mười người, kiểu gì cũng có một người không ưa bạn, dù bạn chẳng làm gì họ. Có thể vì giọng nói của bạn, vì bạn giống một người họ ghét, hoặc chẳng vì gì cả. Bạn có thể dành cả năm để cố đổi ý người đó. Hoặc dành cả năm ấy cho chín người còn lại, những người vốn đã sẵn lòng quý bạn. Mình chọn cách thứ hai.",
+      "n": 9
+    },
+    {
+      "id": "tinh-yeu-03",
+      "theme": "tinh-yeu",
+      "form": "hai-ve",
+      "tone": "om",
+      "rank": 3,
+      "pin": 10,
+      "text": "Đi đám cưới về, lại có người hỏi bao giờ tới lượt. Bạn cười trừ, nhưng trên đường về thấy hơi chạnh lòng. Mình nói điều này: chưa có ai không có nghĩa là bạn thiếu gì đó. Có người gặp đúng người năm hai mươi hai, có người năm ba mươi lăm. Không ai trễ cả, vì chuyện này vốn không có giờ tàu chạy.",
+      "n": 10
+    },
+    {
+      "id": "co-gang-01",
+      "theme": "co-gang",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "pin": 11,
+      "text": "Tối qua bạn về muộn, ăn vội gói mì rồi vẫn mở máy làm thêm một chút. Không ai nhìn thấy, không ai chấm điểm buổi tối đó. Nhưng mình tin những buổi tối như vậy không mất đi đâu cả. Chúng lặng lẽ cộng lại từng chút một, giống tiền lẻ bỏ ống heo. Rồi sẽ tới một ngày bạn đập ống ra và nói: may mà hồi đó mình không bỏ.",
+      "n": 11
+    },
+    {
+      "id": "lon-len-02",
+      "theme": "lon-len",
+      "form": "hai-ve",
+      "tone": "om",
+      "rank": 3,
+      "pin": 12,
+      "text": "Hồi nhỏ, buồn là phải có người dỗ. Lớn rồi, buồn thì tự pha cho mình một ly nước ấm, tự đắp chăn, tự nói thôi ngủ đi mai tính. Không phải vì chẳng còn ai thương bạn, mà vì bạn đã học được cách thương mình trước. Và học được điều đó rồi thì khi có người tới dỗ, bạn nhận vì vui, không còn vì thiếu.",
+      "n": 12
+    },
+    {
+      "id": "uoc-mo-01",
+      "theme": "uoc-mo",
+      "form": "dinh-nghia",
+      "tone": "om",
+      "rank": 3,
+      "pin": 13,
+      "text": "Ước mơ không cần to, chỉ cần là của bạn. Mở một quán nhỏ, đưa mẹ đi biển lần đầu, viết xong một cuốn sách chưa chắc có ai đọc. Người khác nghe có thể thấy bình thường, và họ không cần phải thấy khác. Cái nào khiến bạn muốn dậy sớm hơn một chút, chịu khó hơn một chút, thì cái đó đáng để giữ.",
+      "n": 13
+    },
+    {
+      "id": "ngay-mai-01",
+      "theme": "ngay-mai",
+      "form": "loi-chuc",
+      "tone": "om",
+      "rank": 3,
+      "pin": 14,
+      "text": "Mong ngày mai của bạn có một điều nhỏ dễ chịu: đèn xanh suốt một đoạn đường, ly cà phê pha vừa miệng, một tin nhắn làm bạn bật cười giữa giờ làm. Không cần chuyện gì lớn. Những ngày đáng nhớ thường được làm từ mấy thứ nhỏ như vậy. Và nếu ngày mai chưa có, thì mong bạn tự tạo cho mình một điều.",
+      "n": 14
+    },
+    {
+      "id": "tinh-yeu-02",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Bạn vẫn giữ đoạn tin nhắn cũ, thỉnh thoảng kéo lên đọc lại, rồi tự trách sao mình yếu đuối thế. Không sao đâu. Thương thật thì quên chậm, đó không phải là yếu. Đừng ép mình xoá khi chưa sẵn sàng. Rồi tới một hôm bạn nhận ra lâu lắm rồi mình chưa mở nó, và hôm đó đến mà bạn không hề hay.",
+      "n": 15
+    },
+    {
+      "id": "khong-lay-long-04",
+      "theme": "khong-lay-long",
+      "form": "dinh-nghia",
+      "tone": "om",
+      "rank": 2,
+      "text": "Nói không với một lời nhờ không phải là nói không với người nhờ. Bạn vẫn quý họ, chỉ là hôm nay bạn không còn sức. Người thật lòng quý bạn sẽ hiểu chuyện đó. Còn người chỉ quý bạn khi bạn luôn gật đầu, thì thứ họ quý là sự tiện lợi. Mất một mối quan hệ như vậy buồn thật, nhưng không phải là mất mát.",
+      "n": 16
+    },
+    {
+      "id": "tuoi-tre-03",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Cuối tháng, tài khoản còn đúng số tiền đủ ăn mì tới ngày lương. Bạn tính từng bữa và thấy tủi. Mình nói thật: gần như ai cũng có một quãng như vậy, và sau này nó thành chuyện kể rất vui. Thiếu tiền lúc trẻ không nói gì về giá trị của bạn. Nó chỉ nói rằng bạn đang ở đoạn đầu. Đoạn đầu thì ai cũng chật.",
+      "n": 17
+    },
+    {
+      "id": "tinh-yeu-11",
+      "theme": "tinh-yeu",
+      "form": "loi-chuc",
+      "tone": "om",
+      "rank": 3,
+      "text": "Mong bạn gặp được một người mà ở cạnh họ bạn không phải gồng. Không phải trang điểm cả cho tính cách, không phải nghĩ ba lần trước khi nhắn một câu. Một người thấy bạn lúc xấu nhất, cáu nhất, vụng nhất mà vẫn ngồi đó. Và trong lúc người ấy chưa tới, mong bạn tập làm người như vậy cho chính mình trước.",
+      "n": 18
+    },
+    {
+      "id": "ban-than-03",
+      "theme": "ban-than",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Sáng nay bạn tắt báo thức ba lần rồi mới dậy, và việc đầu tiên bạn làm là tự trách mình lười. Thử nghĩ lại xem: một người ngủ lúc một giờ sáng vì còn việc, dậy lúc sáu rưỡi, thì đó là thiếu ngủ chứ không phải lười. Bạn hay gọi nhầm những thứ mình đang thiếu thành những thứ mình kém. Hôm nay gọi lại cho đúng tên nhé.",
+      "n": 19
+    },
+    {
+      "id": "tuoi-tre-02",
+      "theme": "tuoi-tre",
+      "form": "meo",
+      "tone": "om",
+      "rank": 2,
+      "text": "Một việc nhỏ cho tuổi này: mỗi tháng thử một thứ chưa từng làm. Một món ăn lạ, một con đường khác để về nhà, một buổi học thử môn gì đó. Không cần giỏi, không cần theo tới cùng. Bạn chỉ đang đi dạo quanh để biết mình thích gì. Tuổi trẻ không dài, nhưng đủ rộng nếu bạn chịu đi lệch khỏi lối quen.",
+      "n": 20
+    },
+    {
+      "id": "co-gang-06",
+      "theme": "co-gang",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Bạn nộp hồ sơ năm chỗ, bốn chỗ không trả lời, một chỗ gửi thư từ chối rất lịch sự. Tối đó bạn ngồi nhìn trần nhà và nghĩ chắc mình không đủ giỏi. Mình không nghĩ vậy. Bị từ chối chỉ có nghĩa là chỗ đó chưa phải chỗ của bạn, vào lúc này. Người ta không từ chối con người bạn, người ta từ chối một tờ giấy. Mai sửa lại tờ giấy, rồi gửi chỗ thứ sáu.",
+      "n": 21
+    },
+    {
+      "id": "tinh-yeu-04",
+      "theme": "tinh-yeu",
+      "form": "so-sanh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Yêu một người không thương mình giống đứng chờ xe buýt ở một con đường không có tuyến nào chạy qua. Bạn chờ rất kiên nhẫn, rất thật lòng, và bạn không sai ở chỗ nào cả. Chỉ là đứng sai chỗ. Đi sang con đường khác không phải là bỏ cuộc. Đó là cho mình cơ hội được một chuyến xe dừng lại.",
+      "n": 22
+    },
+    {
+      "id": "lon-len-03",
+      "theme": "lon-len",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Lần đầu tự thay cái bóng đèn hỏng, tự đi làm lại thẻ ngân hàng, tự đưa mình đi khám lúc nửa đêm. Không ai chụp ảnh những lúc đó, cũng chẳng ai khen. Nhưng đó là những ngày bạn lớn lên nhiều nhất. Lớn lên hiếm khi tới trong một dịp trọng đại. Nó tới vào một chiều thứ Ba bình thường, khi bạn nhận ra việc này giờ mình tự làm được.",
+      "n": 23
+    },
+    {
+      "id": "co-gang-03",
+      "theme": "co-gang",
+      "form": "so-sanh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Cơm không chín nhanh hơn vì bạn mở nắp nồi liên tục. Có những thứ cần đủ lửa và đủ thời gian, và việc của bạn là đừng rút điện giữa chừng. Bạn đã làm phần của mình rồi: vo gạo, đong nước, bấm nút. Phần còn lại là chờ. Chưa thấy kết quả không có nghĩa là không có gì đang xảy ra bên trong.",
+      "n": 24
+    },
+    {
+      "id": "khong-lay-long-05",
+      "theme": "khong-lay-long",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Về quê, cả họ lần lượt hỏi: lương bao nhiêu, bao giờ cưới, sao chưa mua nhà. Bạn trả lời xong thì thấy mình bé lại. Thật ra phần lớn người hỏi không có ý xấu, họ chỉ không biết hỏi gì khác. Bạn không nợ ai một câu trả lời đầy đủ. Một nụ cười và câu dạ con vẫn ổn ạ là đủ. Cuộc đời bạn không phải bài kiểm tra để người khác chấm.",
+      "n": 25
+    },
+    {
+      "id": "tuoi-tre-04",
+      "theme": "tuoi-tre",
+      "form": "hai-ve",
+      "tone": "day",
+      "rank": 2,
+      "text": "Bạn sợ chọn sai: sai ngành, sai việc, sai thành phố. Sợ tới mức đứng yên. Nhưng ở tuổi này, chọn sai rồi đổi vẫn rẻ hơn nhiều so với không chọn gì. Đi sai đường thì ít nhất bạn biết thêm một con đường không dành cho mình. Đứng yên thì năm sau bạn vẫn ở đúng chỗ này, với đúng nỗi sợ này, chỉ già thêm một tuổi.",
+      "n": 26
+    },
+    {
+      "id": "ban-than-04",
+      "theme": "ban-than",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn lướt mạng và thấy ai cũng đang ở đâu đó đẹp hơn, ăn món gì đó ngon hơn, yêu ai đó tuyệt hơn. Rồi bạn nhìn lại căn phòng của mình và thấy nó chật. Nhớ giúp mình một điều: người ta đăng mười giây đẹp nhất của một tuần. Bạn đang so cả tuần của mình, gồm cả lúc rửa chén và lúc buồn, với mười giây đó. So vậy thì ai cũng thua.",
+      "n": 27
+    },
+    {
+      "id": "khong-lay-long-06",
+      "theme": "khong-lay-long",
+      "form": "so-sanh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Cố làm vừa lòng tất cả mọi người giống nấu một nồi canh cho hai chục người ăn. Người chê mặn, người chê nhạt, người không ăn được cay. Nêm theo hết thì cuối cùng nồi canh không còn vị gì. Cứ nấu đúng vị của bạn. Sẽ có người không hợp, và cũng sẽ có người ăn một lần rồi nhớ mãi.",
+      "n": 28
+    },
+    {
+      "id": "ban-than-05",
+      "theme": "ban-than",
+      "form": "dinh-nghia",
+      "tone": "om",
+      "rank": 2,
+      "text": "Tự tin không phải là tin mình sẽ làm đúng. Tự tin là biết rằng lỡ có làm sai thì mình vẫn ổn, vẫn sửa được, và vẫn là mình. Người tự tin không phải người không run. Họ run y như bạn, chỉ là họ đã quen với việc vừa run vừa làm. Lần tới thấy tay mình lạnh trước một việc khó, cứ để nó lạnh. Rồi làm.",
+      "n": 29
+    },
+    {
+      "id": "khong-lay-long-03",
+      "theme": "khong-lay-long",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "pin": 30,
+      "text": "Đồng nghiệp nhờ thêm một việc lúc bạn đang ngập đầu. Miệng bạn nói được ạ trước khi đầu kịp nghĩ. Tối đó bạn ngồi làm tới khuya và giận chính mình. Lần sau, thử một câu rất ngắn: để mình xem lịch rồi báo lại nhé. Bạn không từ chối ai cả. Bạn chỉ cho mình mười phút để hỏi: mình có muốn, và có đủ sức không?",
+      "n": 30
+    },
+    {
+      "id": "lon-len-04",
+      "theme": "lon-len",
+      "form": "dinh-nghia",
+      "tone": "om",
+      "rank": 2,
+      "text": "Có những chuyện không cần hiểu cho ra lẽ mới bỏ xuống được. Vì sao người ta đổi thay, vì sao hồi đó mình không nói khác đi: nhiều câu hỏi không có đáp án, và bạn không cần đáp án để đi tiếp. Buông không phải là quên, cũng không phải là thua. Buông là thôi cầm một thứ đã làm tay mình mỏi quá lâu.",
+      "n": 31
+    },
+    {
+      "id": "tinh-yeu-05",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Hai người cãi nhau vì một chuyện rất nhỏ: ai quên mua nước mắm, ai trả lời tin nhắn cộc lốc. Thật ra ít khi là vì nước mắm. Thường là vì một người đang mệt và muốn được hỏi han, mà không biết nói ra thế nào. Lần tới sắp cãi nhau, thử hỏi trước một câu: hôm nay của bạn thế nào? Nhiều trận cãi nhau dừng lại ngay ở câu đó.",
+      "n": 32
+    },
+    {
+      "id": "tuoi-tre-05",
+      "theme": "tuoi-tre",
+      "form": "dinh-nghia",
+      "tone": "om",
+      "rank": 2,
+      "text": "Lãng phí tuổi trẻ không phải là đi chơi, ngủ nướng hay yêu sai người. Mấy chuyện đó đều dạy bạn một điều gì đó. Lãng phí là sống mấy năm liền theo ý người khác rồi không nhớ nổi mình thích gì. Thế nên thỉnh thoảng hãy hỏi lại: việc này mình làm vì muốn, hay vì ai cũng làm? Trả lời thật là được, chưa cần đổi gì ngay.",
+      "n": 33
+    },
+    {
+      "id": "ban-be-01",
+      "theme": "ban-be",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Có người bạn cả năm không nhắn, vậy mà gặp lại vẫn ngồi nói chuyện tới lúc quán dọn ghế. Không ai trách ai sao lâu không liên lạc, vì cả hai đều hiểu người kia cũng đang bận sống. Tình bạn kiểu đó không cần tưới mỗi ngày. Nhưng hôm nay, nếu chợt nhớ tới họ, thì nhắn một câu đi. Chỉ cần: tự nhiên nhớ mày.",
+      "n": 34
+    },
+    {
+      "id": "tinh-yeu-06",
+      "theme": "tinh-yeu",
+      "form": "dinh-nghia",
+      "tone": "om",
+      "rank": 2,
+      "text": "Ở một mình không phải lúc nào cũng là cô đơn. Có những tối bạn nấu món mình thích, mở bài nhạc cũ, tự cười vì một đoạn phim. Đó là ở một mình mà đủ đầy. Cô đơn thật sự là ngồi cạnh một người mà vẫn thấy không ai hiểu mình. Thế nên đừng vội tìm ai đó chỉ để lấp một chỗ trống. Chỗ trống ấy, bạn đang tự lấp khá tốt.",
+      "n": 35
+    },
+    {
+      "id": "khong-lay-long-07",
+      "theme": "khong-lay-long",
+      "form": "tu-hua",
+      "tone": "om",
+      "rank": 2,
+      "text": "Mình sẽ thôi xin lỗi khi mình không có lỗi. Mình sẽ thôi cười trước những câu đùa làm mình khó chịu. Mình sẽ nói mình không thích khi mình không thích, bằng giọng bình thường, không cần gắt. Có thể vài người sẽ thấy mình khó tính hơn trước. Cũng được. Mình thà là người khó tính mà thật, còn hơn dễ chịu mà mệt.",
+      "n": 36
+    },
+    {
+      "id": "co-gang-04",
+      "theme": "co-gang",
+      "form": "meo",
+      "tone": "day",
+      "rank": 2,
+      "text": "Động lực giống sóng điện thoại trong thang máy: lúc có lúc không, đừng trông vào nó. Thứ đưa bạn đi xa là một việc nhỏ làm đều, kể cả hôm không có hứng. Hôm có hứng thì làm nhiều. Hôm không có hứng thì làm mười phút. Mười phút vẫn hơn số không, và quan trọng hơn, nó giữ cho ngày mai bạn không phải bắt đầu lại từ đầu.",
+      "n": 37
+    },
+    {
+      "id": "tinh-yeu-09",
+      "theme": "tinh-yeu",
+      "form": "diep",
+      "tone": "om",
+      "rank": 2,
+      "text": "Chia tay xong, bạn sẽ phải học lại vài thứ. Học ăn một mình ở quán quen mà không thấy trống. Học đi qua con đường đó mà không quay đầu nhìn. Học kể chuyện vui trong ngày cho một người khác, hoặc cho chính mình. Mấy bài này không ai học nhanh được, nên đừng chấm điểm mình. Cứ mỗi ngày một ít, rồi sẽ thuộc.",
+      "n": 38
+    },
+    {
+      "id": "ban-than-06",
+      "theme": "ban-than",
+      "form": "meo",
+      "tone": "om",
+      "rank": 2,
+      "text": "Một việc nhỏ cho hôm nay: nấu cho mình một bữa như thể đang nấu cho khách. Không cần cầu kỳ, chỉ cần một cái đĩa đẹp, ngồi vào bàn, không vừa ăn vừa xem điện thoại. Bạn vẫn dọn mâm tử tế khi nhà có người tới chơi. Hôm nay vị khách là bạn. Ai chăm mình chu đáo được thì sẽ không phải chờ người khác tới chăm.",
+      "n": 39
+    },
+    {
+      "id": "tuoi-tre-06",
+      "theme": "tuoi-tre",
+      "form": "con-so",
+      "tone": "day",
+      "rank": 2,
+      "text": "Thử mở phần thống kê trong điện thoại xem hôm qua bạn dùng nó mấy tiếng. Nếu là năm tiếng một ngày thì một năm bạn có hơn bảy mươi ngày trọn vẹn nhìn vào màn hình. Mình không bảo bạn bỏ, mình cũng dùng mà. Chỉ là thử lấy lại ba mươi phút mỗi ngày trong số đó, cho một thứ bạn vẫn nói là không có thời gian.",
+      "n": 40
+    },
+    {
+      "id": "lon-len-05",
+      "theme": "lon-len",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Tới một tuổi nào đó, bạn nhận ra bố mẹ cũng là lần đầu làm bố mẹ. Họ cũng từng lúng túng, cũng từng sợ, cũng đoán mò y như bạn bây giờ. Nhận ra điều đó không xoá được những lần họ sai. Nhưng nó làm lòng mình nhẹ đi một chút. Lần tới gọi về, thử hỏi một câu khác với ăn cơm chưa: hồi bằng tuổi con, bố mẹ đang lo chuyện gì?",
+      "n": 41
+    },
+    {
+      "id": "tinh-yeu-07",
+      "theme": "tinh-yeu",
+      "form": "hai-ve",
+      "tone": "day",
+      "rank": 2,
+      "text": "Người thật lòng muốn gặp bạn sẽ không để bạn phải đoán. Họ có thể bận, nhưng họ sẽ nói: tuần này mình bận, thứ Bảy được không? Còn người để bạn ngồi phân tích từng dấu chấm trong tin nhắn thì câu trả lời thường đã nằm sẵn ở đó rồi. Bạn xứng đáng với một người làm bạn yên tâm, không phải một người làm bạn giỏi suy luận.",
+      "n": 42
+    },
+    {
+      "id": "tuoi-tre-07",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Căn phòng trọ đầu tiên của bạn: cái quạt kêu, bức tường nghe rõ từng tiếng nhà bên, cái bếp từ một lò. Bạn tự nấu nồi cơm đầu tiên hơi nhão và ăn hết. Sau này có ở căn nhà rộng tới đâu, bạn cũng sẽ nhớ căn phòng đó. Vì đó là nơi lần đầu tiên bạn tự lo được cho mình, và thấy mình cũng làm được.",
+      "n": 43
+    },
+    {
+      "id": "khong-lay-long-08",
+      "theme": "khong-lay-long",
+      "form": "hai-ve",
+      "tone": "day",
+      "rank": 2,
+      "text": "Người ta bàn tán về bạn bằng những gì họ biết, mà họ thì biết rất ít. Họ thấy bạn nghỉ việc, không thấy những đêm bạn mất ngủ trước đó. Họ thấy bạn chia tay, không thấy bạn đã cố bao lâu. Bạn không cần đi giải thích cho từng người. Ai muốn hiểu thì sẽ hỏi. Ai chỉ muốn nói thì giải thích bao nhiêu cũng không vừa.",
+      "n": 44
+    },
+    {
+      "id": "tinh-yeu-10",
+      "theme": "tinh-yeu",
+      "form": "con-so",
+      "tone": "om",
+      "rank": 2,
+      "text": "Người ta hay hỏi mất bao lâu thì hết buồn sau một cuộc tình. Không có con số nào đúng cho mọi người. Có chuyện yêu ba tháng mà buồn một năm, có chuyện yêu ba năm mà nhẹ lòng sau một mùa. Đừng lấy lịch của người khác ra đo mình. Bạn không buồn lâu quá đâu. Bạn buồn vừa bằng những gì bạn đã bỏ vào.",
+      "n": 45
+    },
+    {
+      "id": "ban-be-02",
+      "theme": "ban-be",
+      "form": "dinh-nghia",
+      "tone": "om",
+      "rank": 2,
+      "text": "Không phải người bạn nào cũng đi với mình hết con đường. Có người chỉ đi chung một đoạn: mấy năm đại học, một chỗ làm cũ, một khu trọ. Rồi mỗi người rẽ một hướng, không ai làm gì sai. Đoạn đó vui là đủ để biết ơn rồi, không cần phải buồn vì nó không dài hơn. Bạn bè cũ không mất đi, họ nằm lại trong con người bạn bây giờ.",
+      "n": 46
+    },
+    {
+      "id": "co-gang-05",
+      "theme": "co-gang",
+      "form": "con-so",
+      "tone": "day",
+      "rank": 2,
+      "text": "Mỗi ngày đọc mười trang sách thì một năm bạn đọc được hơn ba nghìn sáu trăm trang, chừng mười hai cuốn. Mỗi ngày để dành hai mươi nghìn thì cuối năm có hơn bảy triệu. Những con số lớn hầu như đều được làm từ những con số rất nhỏ, lặp lại rất nhiều lần. Việc bạn đang làm hôm nay trông bé xíu. Cứ để nó bé, miễn là mai bạn làm tiếp.",
+      "n": 47
+    },
+    {
+      "id": "tinh-yeu-12",
+      "theme": "tinh-yeu",
+      "form": "meo",
+      "tone": "om",
+      "rank": 2,
+      "text": "Một việc nhỏ cho người đang yêu: hôm nay nói ra một điều bạn vẫn nghĩ là người kia tự biết. Cảm ơn vì hôm qua chờ mình. Mình thích cách bạn kể chuyện. Mình thấy bạn dạo này cố nhiều lắm. Những câu tưởng không cần nói lại là những câu người ta nhớ lâu nhất. Tình cảm ít khi hao đi vì thiếu chuyện lớn, nó hao đi vì thiếu những câu như vậy.",
+      "n": 48
+    },
+    {
+      "id": "ban-than-10",
+      "theme": "ban-than",
+      "form": "con-so",
+      "tone": "om",
+      "rank": 1,
+      "text": "Một ngày có khoảng mười sáu tiếng thức. Chỉ cần mười lăm phút trong đó là của riêng bạn, không cho công việc, không cho ai khác, không cho điện thoại. Mười lăm phút đi bộ, tưới cây, hay ngồi không. Nghe thì ít, nhưng một năm là hơn chín mươi tiếng bạn dành cho chính mình. Nhiều người cả năm không có nổi chín tiếng như vậy.",
+      "n": 49
+    },
+    {
+      "id": "tinh-yeu-08",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "pin": 50,
+      "text": "Thích một người mà không nói cũng là một kiểu thương rất đẹp. Bạn nhớ họ uống cà phê ít đường, nhớ hôm nào họ mặc cái áo xanh, vui cả buổi vì được họ chào trước. Chuyện này có thể chẳng đi tới đâu. Nhưng nó cho bạn biết trái tim mình vẫn còn rung lên được vì một người. Điều đó, tự nó đã là tin tốt.",
+      "n": 50
+    },
+    {
+      "id": "tuoi-tre-08",
+      "theme": "tuoi-tre",
+      "form": "so-sanh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Tuổi hai mươi giống buổi sáng đi chợ: hàng nào cũng muốn ghé, thứ gì cũng muốn thử, mà tiền trong túi thì có hạn. Bạn sẽ mua nhầm vài món, trả hớ vài lần. Không sao, ai đi chợ lần đầu cũng vậy. Tới lúc quen, bạn sẽ biết mình cần gì và đi thẳng tới đúng hàng. Còn bây giờ, cứ thong thả dạo cho hết một vòng đã.",
+      "n": 51
+    },
+    {
+      "id": "khong-lay-long-09",
+      "theme": "khong-lay-long",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn viết xong một dòng trạng thái, đọc lại ba lần, rồi xoá vì sợ người ta nghĩ này nghĩ kia. Thử nhớ lại xem: lần gần nhất bạn ngồi phán xét kỹ một bài đăng của người khác là khi nào? Hầu như không có. Mọi người lướt qua rất nhanh. Cái khán đài mà bạn tưởng đang nhìn mình chằm chằm, thật ra phần lớn ghế để trống.",
+      "n": 52
+    },
+    {
+      "id": "ban-than-07",
+      "theme": "ban-than",
+      "form": "diep",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn được phép chưa biết mình muốn gì. Bạn được phép đổi ý về một việc đã chọn. Bạn được phép nghỉ một hôm mà không phải giải thích với ai. Bạn được phép không giỏi một thứ mà ai cũng giỏi. Không cần ai ký giấy cho những điều này cả. Mình chỉ viết ra, phòng khi lâu rồi chưa có ai nói với bạn.",
+      "n": 53
+    },
+    {
+      "id": "tinh-yeu-13",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn tình cờ thấy người cũ đăng ảnh với một người mới, trông họ vui. Ngực bạn thắt lại một cái, dù tưởng mình đã ổn từ lâu. Chuyện đó bình thường thôi, không có nghĩa là bạn còn yêu hay chưa bước tiếp. Nó chỉ có nghĩa là đoạn đường đó từng có thật. Thở một hơi, tắt màn hình, và nhớ rằng bạn cũng đang trên đường tới niềm vui của riêng mình.",
+      "n": 54
+    },
+    {
+      "id": "co-gang-07",
+      "theme": "co-gang",
+      "form": "dinh-nghia",
+      "tone": "om",
+      "rank": 2,
+      "text": "Kiên trì không phải là nghiến răng chịu đựng mãi một thứ làm mình khổ. Kiên trì là vẫn quay lại với điều mình quý, sau mỗi lần nản. Nản là chuyện bình thường, ai làm việc gì lâu cũng nản. Khác nhau ở chỗ có người nản xong thì nghỉ một hôm rồi làm tiếp, có người nản xong thì thôi luôn. Bạn cứ nghỉ một hôm đi. Rồi quay lại.",
+      "n": 55
+    },
+    {
+      "id": "uoc-mo-02",
+      "theme": "uoc-mo",
+      "form": "so-sanh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn chưa bỏ ước mơ đâu. Bạn chỉ đang cất nó trong ngăn kéo vì dạo này bận sống: tiền nhà, công việc, những thứ phải lo trước. Chuyện đó không có gì đáng xấu hổ. Chỉ là thỉnh thoảng mở ngăn kéo ra nhìn một cái, cho nó biết bạn còn nhớ. Và nếu được, mỗi tuần làm cho nó một việc rất nhỏ, để nó khỏi phủ bụi.",
+      "n": 56
+    },
+    {
+      "id": "khong-lay-long-13",
+      "theme": "khong-lay-long",
+      "form": "canh",
+      "tone": "day",
+      "rank": 1,
+      "text": "Bạn nghe được có người nói không hay về mình sau lưng. Tức thật, và bạn có quyền tức. Nhưng trước khi đi tìm họ hỏi cho ra lẽ, thử cân xem: người này quan trọng với bạn tới đâu? Nếu là người thân, hãy nói chuyện thẳng. Nếu chỉ là người quen biết sơ, thì ý kiến của họ về bạn cũng sơ như vậy, không đáng một buổi tối của bạn.",
+      "n": 57
+    },
+    {
+      "id": "tuoi-tre-15",
+      "theme": "tuoi-tre",
+      "form": "dinh-nghia",
+      "tone": "om",
+      "rank": 1,
+      "text": "Thất bại ở tuổi này phần lớn là học phí. Trượt một kỳ thi, hỏng một dự án, mất một khoản tiền vì tin nhầm người. Đau thật, nhưng đó là những bài học rẻ nhất bạn có thể mua, vì bây giờ bạn còn ít thứ để mất và còn nhiều thời gian để làm lại. Đừng hỏi sao mình xui thế. Thử hỏi: lần này mình mua được bài gì?",
+      "n": 58
+    },
+    {
+      "id": "lon-len-06",
+      "theme": "lon-len",
+      "form": "hai-ve",
+      "tone": "day",
+      "rank": 2,
+      "text": "Hồi nhỏ, có chuyện gì cũng có người để đổ: tại cô giáo, tại bạn, tại trời mưa. Lớn rồi mới thấy, đổ được cho ai thì chuyện vẫn nằm đó chờ mình. Nhận phần của mình không có nghĩa là nhận hết lỗi. Chỉ là nói: phần này của mình, mình sẽ sửa. Nói được câu đó, bạn sẽ thấy mình mạnh hơn hẳn lúc đi tìm người để trách.",
+      "n": 59
+    },
+    {
+      "id": "tinh-yeu-20",
+      "theme": "tinh-yeu",
+      "form": "meo",
+      "tone": "om",
+      "rank": 1,
+      "text": "Mười hai giờ đêm, bạn gõ một tin nhắn dài cho người cũ rồi dừng tay ở nút gửi. Trước khi bấm, thử để nó qua một đêm. Sáng mai đọc lại, nếu vẫn muốn gửi thì gửi. Phần lớn những tin nhắn lúc nửa đêm là nỗi nhớ đang nói, không phải bạn. Và nỗi nhớ thì thường dịu đi nhiều khi trời sáng.",
+      "n": 60
+    },
+    {
+      "id": "ban-than-08",
+      "theme": "ban-than",
+      "form": "hai-ve",
+      "tone": "day",
+      "rank": 2,
+      "text": "Thử nghe lại cách bạn nói với chính mình sau một lần làm hỏng việc. Nếu một người bạn thân làm hỏng y như vậy, bạn có nói với họ bằng giọng đó không? Chắc là không. Bạn sẽ bảo: không sao, ai cũng có lúc. Vậy thì lần tới, trước khi mắng mình, thử dừng một nhịp và nói với mình câu bạn sẽ nói với người bạn đó.",
+      "n": 61
+    },
+    {
+      "id": "tinh-yeu-22",
+      "theme": "tinh-yeu",
+      "form": "con-so",
+      "tone": "om",
+      "rank": 1,
+      "text": "Một ngày có một nghìn bốn trăm bốn mươi phút. Người bận tới đâu cũng tìm ra được một phút để nhắn: hôm nay bận quá, tối gọi nhé. Vậy nên chuyện không nằm ở thời gian. Người ta dành thời gian cho thứ họ thấy quan trọng. Câu này không để bạn trách ai, chỉ để bạn thôi tự hỏi mình đã làm gì sai.",
+      "n": 62
+    },
+    {
+      "id": "tuoi-tre-09",
+      "theme": "tuoi-tre",
+      "form": "hai-ve",
+      "tone": "day",
+      "rank": 2,
+      "text": "Lúc trẻ, mình tiêu sức khoẻ như tiêu tiền của người khác: thức tới ba giờ, bỏ bữa sáng, ngồi tám tiếng không đứng dậy. Cơ thể không đòi nợ ngay, nó ghi sổ. Bạn không cần tập nặng hay ăn kiêng gì cả. Chỉ cần ba việc rất chán: ngủ trước mười hai giờ, uống đủ nước, đi bộ một chút. Mấy việc chán này về sau đáng tiền lắm.",
+      "n": 63
+    },
+    {
+      "id": "khong-lay-long-10",
+      "theme": "khong-lay-long",
+      "form": "meo",
+      "tone": "om",
+      "rank": 2,
+      "text": "Một việc nhỏ để tập: hôm nay chọn quán ăn theo ý mình. Khi ai đó hỏi ăn gì, đừng nói gì cũng được. Nói tên một món bạn thật sự muốn. Nghe thì chuyện vặt, nhưng người quen nhường thường bắt đầu quên mất mình thích gì từ chính những chuyện vặt như vậy. Tập nói ra ý mình ở bữa trưa, rồi sẽ nói được ở những chuyện lớn hơn.",
+      "n": 64
+    },
+    {
+      "id": "co-gang-08",
+      "theme": "co-gang",
+      "form": "tu-hua",
+      "tone": "om",
+      "rank": 2,
+      "text": "Mình hứa với mình: hôm nay làm chậm cũng được, làm dở cũng được, miễn là có làm. Mình sẽ không chờ tới lúc sẵn sàng, vì mình biết cái lúc đó ít khi tự tới. Mình sẽ không so bước đầu của mình với bước thứ một trăm của người khác. Và tối nay, dù kết quả thế nào, mình sẽ nói với mình một câu: hôm nay mình đã thử.",
+      "n": 65
+    },
+    {
+      "id": "tinh-yeu-15",
+      "theme": "tinh-yeu",
+      "form": "so-sanh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Yêu lâu thì hết hồi hộp, nhiều người coi đó là hết yêu. Mình nghĩ khác. Cơm nhà không làm ai trầm trồ như một bữa ở nhà hàng, nhưng đó là thứ nuôi bạn lớn. Tình cảm đi qua giai đoạn hồi hộp sẽ tới giai đoạn yên tâm: biết có người chờ cửa, biết ốm thì có người mua cháo. Đừng vội gọi sự yên tâm là nhàm chán.",
+      "n": 66
+    },
+    {
+      "id": "ban-than-09",
+      "theme": "ban-than",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Sáng nay bạn soi gương và chỉ nhìn thấy cái mụn mới mọc, quầng mắt, chỗ tóc không vào nếp. Người khác nhìn bạn thì thấy thứ khác hẳn: cách bạn cười, cách bạn nhớ tên họ, cách bạn giữ cửa thang máy. Không ai nhìn bạn kỹ và khắt khe bằng bạn đâu. Hôm nay ra đường, thử nhìn mình bằng mắt của một người quý bạn.",
+      "n": 67
+    },
+    {
+      "id": "ban-be-03",
+      "theme": "ban-be",
+      "form": "hai-ve",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn để ý thấy lần nào cũng là mình nhắn trước, mình rủ trước, mình nhớ sinh nhật trước. Rồi bạn tự hỏi hay là người ta không cần mình. Có thể họ chỉ là kiểu người vụng giữ liên lạc, chứ không phải không quý. Cũng có thể mối quan hệ này đã lệch. Cách biết đơn giản thôi: thử nói thật là bạn cũng muốn được rủ. Người bạn thật sự sẽ nhớ câu đó.",
+      "n": 68
+    },
+    {
+      "id": "tuoi-tre-10",
+      "theme": "tuoi-tre",
+      "form": "tu-hua",
+      "tone": "om",
+      "rank": 2,
+      "text": "Mình sẽ thôi lấy tuổi ra doạ mình. Hai lăm chưa có gì, ba mươi chưa tới đâu: mấy câu đó không giúp mình đi nhanh hơn, chỉ làm mình run chân. Mình sẽ đi theo nhịp của mình. Có năm đi nhanh, có năm chỉ giữ được cho khỏi lùi. Năm nào mình vẫn còn tử tế và còn muốn học thêm, năm đó mình không phí.",
+      "n": 69
+    },
+    {
+      "id": "lon-len-07",
+      "theme": "lon-len",
+      "form": "so-sanh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Lớn lên giống đi một đôi giày mới. Mấy tuần đầu nó cứa gót, phồng chân, bạn chỉ muốn quay về đôi dép cũ. Rồi một hôm bạn đi cả ngày mà quên mất mình đang mang nó. Những trách nhiệm đang làm bạn đau lúc này cũng vậy. Không phải vì bạn yếu, chỉ là giày còn mới. Đi thêm một thời gian nữa, nó sẽ vừa chân.",
+      "n": 70
+    },
+    {
+      "id": "khong-lay-long-11",
+      "theme": "khong-lay-long",
+      "form": "dinh-nghia",
+      "tone": "om",
+      "rank": 2,
+      "text": "Tử tế và dễ dãi nhìn bên ngoài khá giống nhau, nhưng khác ở gốc. Tử tế là giúp vì mình muốn. Dễ dãi là giúp vì mình sợ: sợ bị ghét, sợ mất lòng, sợ không khí khó xử. Giúp vì muốn thì xong việc thấy vui. Giúp vì sợ thì xong việc thấy ấm ức. Lần tới sắp gật đầu, thử hỏi nhanh: mình đang muốn, hay đang sợ?",
+      "n": 71
+    },
+    {
+      "id": "tinh-yeu-14",
+      "theme": "tinh-yeu",
+      "form": "hai-ve",
+      "tone": "day",
+      "rank": 2,
+      "text": "Thương ai đó nhiều tới đâu cũng đừng thương tới mức phải xin. Xin một tin nhắn, xin một buổi hẹn, xin được coi trọng. Tình cảm mà một bên phải xin thì bên đó sẽ nhỏ dần đi, cho tới lúc không còn nhận ra mình. Bạn có thể nhường, có thể chờ, có thể tha thứ. Nhưng hãy giữ lại cho mình cái lưng thẳng.",
+      "n": 72
+    },
+    {
+      "id": "tuoi-tre-11",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Mẹ gọi, hỏi dạo này sao rồi. Bạn nói con ổn, công việc tốt, ăn uống đầy đủ. Cúp máy xong bạn ngồi im một lúc, vì hôm nay thật ra không ổn lắm. Nói dối kiểu đó là thương, mình hiểu. Nhưng lần tới thử kể thật một chuyện nhỏ thôi: hôm nay con hơi mệt. Bố mẹ không cần bạn giỏi. Họ cần được biết bạn thật sự thế nào.",
+      "n": 73
+    },
+    {
+      "id": "ngay-mai-02",
+      "theme": "ngay-mai",
+      "form": "hai-ve",
+      "tone": "om",
+      "rank": 3,
+      "text": "Hôm nay chưa ổn cũng được. Có những ngày chỉ cần đi cho hết là đã giỏi rồi. Tắt đèn, đặt điện thoại xa một chút, và nhớ giúp mình: ngày mai vẫn tới, và nó chưa có gì hỏng cả. Chưa có cuộc họp nào dở, chưa có câu nào lỡ lời. Một ngày còn nguyên, đang chờ bạn.",
+      "n": 74
+    },
+    {
+      "id": "tinh-yeu-16",
+      "theme": "tinh-yeu",
+      "form": "tu-hua",
+      "tone": "om",
+      "rank": 2,
+      "text": "Mình sẽ không yêu ai chỉ vì sợ một mình. Mình sẽ không ở lại một nơi làm mình nhỏ đi, chỉ vì đã lỡ ở lâu. Mình sẽ thương người ta thật lòng, nhưng không lấy lòng thương đó ra làm lý do bỏ quên mình. Và nếu có phải rời đi, mình sẽ rời đi tử tế, để sau này nhớ lại không phải cúi mặt.",
+      "n": 75
+    },
+    {
+      "id": "co-gang-09",
+      "theme": "co-gang",
+      "form": "hai-ve",
+      "tone": "day",
+      "rank": 2,
+      "text": "Có hai kiểu mệt. Mệt vì làm quá nhiều thì cần nghỉ. Mệt vì cứ lần lữa mãi một việc chưa dám bắt đầu thì nghỉ bao nhiêu cũng không hết, vì thứ làm bạn mệt là nỗi lo chứ không phải công việc. Nếu hôm nay bạn mệt kiểu thứ hai, thử làm việc đó đúng năm phút thôi. Thường thì năm phút đầu là phần khó nhất.",
+      "n": 76
+    },
+    {
+      "id": "ban-than-11",
+      "theme": "ban-than",
+      "form": "loi-chuc",
+      "tone": "om",
+      "rank": 2,
+      "text": "Mong bạn thích con người mà bạn đang trở thành. Không cần phải hoàn hảo, chỉ cần mỗi tối nhìn lại và thấy hôm nay mình có tử tế, với người khác và với cả mình. Mong bạn bớt coi mình là một dự án phải sửa cho xong. Bạn không phải bản nháp của một ai đó tốt hơn. Bạn là bản đang dùng, và đang dùng được.",
+      "n": 77
+    },
+    {
+      "id": "uoc-mo-03",
+      "theme": "uoc-mo",
+      "form": "hai-ve",
+      "tone": "day",
+      "rank": 2,
+      "text": "Ước mơ và mơ mộng khác nhau ở đúng một chỗ: có việc làm hôm nay hay không. Muốn mở quán thì tuần này đi hỏi giá thuê một mặt bằng. Muốn viết sách thì tối nay viết nửa trang. Việc đầu tiên bao giờ cũng nhỏ tới mức hơi buồn cười. Nhưng làm xong nó, ước mơ của bạn thôi là chuyện để kể, và bắt đầu thành chuyện đang làm.",
+      "n": 78
+    },
+    {
+      "id": "khong-lay-long-12",
+      "theme": "khong-lay-long",
+      "form": "diep",
+      "tone": "om",
+      "rank": 2,
+      "text": "Không phải lời khuyên nào bạn cũng phải nghe. Không phải cuộc gọi nào bạn cũng phải bắt máy ngay. Không phải câu hỏi nào bạn cũng phải trả lời thật chi tiết. Không phải ai buồn bạn cũng phải là người đi dỗ. Bạn có giới hạn, như mọi người. Biết giới hạn của mình không làm bạn ích kỷ. Nó giúp bạn tốt với người khác được lâu hơn.",
+      "n": 79
+    },
+    {
+      "id": "tinh-yeu-17",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Yêu xa là thuộc lòng giờ giấc của một thành phố khác. Là ăn tối trước màn hình, kể cho nhau nghe hôm nay trời bên này mưa. Người ngoài hay bảo yêu xa khổ lắm. Cũng khổ thật. Nhưng hai người đã chọn nói chuyện với nhau mỗi ngày dù không ai bắt, và việc đó nói lên nhiều điều hơn là khoảng cách.",
+      "n": 80
+    },
+    {
+      "id": "tuoi-tre-12",
+      "theme": "tuoi-tre",
+      "form": "diep",
+      "tone": "om",
+      "rank": 2,
+      "text": "Còn trẻ nghĩa là còn được phép vụng. Vụng trong buổi phỏng vấn đầu tiên. Vụng trong lần đầu nói lời xin lỗi cho đàng hoàng. Vụng khi tập tiêu tiền, tập yêu, tập sống một mình. Không ai sinh ra đã khéo mấy chuyện này. Người bạn thấy khéo bây giờ chỉ là người đã vụng xong trước bạn vài năm.",
+      "n": 81
+    },
+    {
+      "id": "khong-lay-long-14",
+      "theme": "khong-lay-long",
+      "form": "so-sanh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Lòng tốt giống một cái bình nước. Bạn rót cho người này một ít, người kia một ít, ai xin cũng rót. Tới lúc bình cạn, bạn vẫn cố nghiêng nó thêm lần nữa và tự trách sao mình không còn gì để cho. Không ai rót được từ một cái bình rỗng. Lo cho mình trước không phải là bớt tốt đi, mà là đổ nước vào bình.",
+      "n": 82
+    },
+    {
+      "id": "lon-len-08",
+      "theme": "lon-len",
+      "form": "diep",
+      "tone": "om",
+      "rank": 2,
+      "text": "Lớn rồi mới biết im lặng cũng là một câu trả lời. Lớn rồi mới biết không phải ai hỏi thăm cũng là quan tâm. Lớn rồi mới biết người ở lại lúc mình khó khăn ít hơn mình tưởng, nhưng quý hơn mình tưởng. Những bài học này không dễ chịu. Nhưng nhờ chúng mà bạn biết để dành lòng tốt của mình cho đúng người.",
+      "n": 83
+    },
+    {
+      "id": "co-gang-10",
+      "theme": "co-gang",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn bè cùng lứa có người đã lên chức, có người đã mua nhà, còn bạn vẫn đang loay hoay. Nhìn vậy dễ tưởng mình đứng yên. Nhưng thử nhớ lại bạn của ba năm trước xem: những việc hồi đó làm bạn mất ngủ, giờ bạn làm xong trong một buổi sáng. Bạn không đứng yên. Bạn chỉ đang đi trên một con đường không có ai đứng bên vỗ tay.",
+      "n": 84
+    },
+    {
+      "id": "tinh-yeu-24",
+      "theme": "tinh-yeu",
+      "form": "loi-chuc",
+      "tone": "om",
+      "rank": 2,
+      "text": "Mong trong đời bạn có ít nhất một lần được thương đúng cách. Được nhớ sinh nhật mà không cần nhắc. Được nghe hết câu mà không bị ngắt lời. Được là mình mà không phải xin lỗi vì điều đó. Và nếu chuyện ấy chưa tới, mong bạn đừng vì chờ lâu mà hạ thấp điều mình xứng đáng.",
+      "n": 85
+    },
+    {
+      "id": "tuoi-tre-13",
+      "theme": "tuoi-tre",
+      "form": "meo",
+      "tone": "day",
+      "rank": 2,
+      "text": "Một thói quen nhỏ đáng tập từ bây giờ: ngày nhận lương, chuyển ngay một khoản sang tài khoản khác trước khi tiêu, dù chỉ vài trăm nghìn. Ít cũng được, quan trọng là đều. Khoản đó không làm bạn giàu. Nó cho bạn một thứ quý hơn: lúc cần rời một công việc làm mình kiệt sức, bạn có quyền nói nghỉ.",
+      "n": 86
+    },
+    {
+      "id": "ban-be-05",
+      "theme": "ban-be",
+      "form": "loi-chuc",
+      "tone": "om",
+      "rank": 2,
+      "text": "Mong bạn có một người bạn để gọi lúc hai giờ sáng. Không phải để họ giải quyết giúp chuyện gì, chỉ để bên kia có tiếng nói: ừ, kể tao nghe. Và mong bạn đừng ngại gọi. Người quý mình không thấy phiền đâu. Họ chỉ buồn khi biết bạn đã chịu một mình mà không nói.",
+      "n": 87
+    },
+    {
+      "id": "tinh-yeu-19",
+      "theme": "tinh-yeu",
+      "form": "hai-ve",
+      "tone": "om",
+      "rank": 2,
+      "text": "Chuyện không thành, người ta hay đi tìm xem ai sai. Nhiều khi không ai sai cả. Hai người tốt vẫn có thể không dành cho nhau, như hai bài hát hay nhưng không cùng tông. Bạn không cần biến người cũ thành kẻ xấu để bước tiếp, cũng không cần nhận hết lỗi về mình. Chỉ cần nói: tụi mình đã thử, và đã thương nhau thật.",
+      "n": 88
+    },
+    {
+      "id": "khong-lay-long-15",
+      "theme": "khong-lay-long",
+      "form": "loi-chuc",
+      "tone": "om",
+      "rank": 2,
+      "text": "Mong bạn có đủ can đảm để bị một vài người hiểu lầm. Mong bạn vẫn ngủ ngon vào cái đêm vừa từ chối ai đó. Mong bạn nhận ra mình không cần phải dễ thương với tất cả mới là người tốt. Và mong quanh bạn có vài người, không cần nhiều, mà ở cạnh họ bạn không phải cân nhắc từng lời.",
+      "n": 89
+    },
+    {
+      "id": "tuoi-tre-14",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Người ta hay hỏi đam mê của bạn là gì, như thể ai cũng phải có sẵn một câu trả lời. Bạn chưa có, và bạn thấy mình kém. Thật ra rất ít người biết từ sớm. Đa số tìm ra bằng cách làm thử một việc, thấy hơi thích, làm tiếp, rồi giỏi dần và thích hẳn. Đam mê ít khi tới như sét đánh. Nó thường tới như quen một người bạn.",
+      "n": 90
+    },
+    {
+      "id": "ngay-mai-03",
+      "theme": "ngay-mai",
+      "form": "dinh-nghia",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bắt đầu lại không phải là quay về số không. Lần này bạn mang theo mọi thứ đã học được từ lần trước: biết chỗ nào dễ ngã, biết mình hay nản lúc nào, biết ai là người ở lại. Người bắt đầu lần thứ hai đi vững hơn người bắt đầu lần đầu rất nhiều. Bạn không làm lại từ đầu. Bạn làm lại từ kinh nghiệm.",
+      "n": 91
+    },
+    {
+      "id": "tinh-yeu-21",
+      "theme": "tinh-yeu",
+      "form": "diep",
+      "tone": "om",
+      "rank": 2,
+      "text": "Có người đến để dạy bạn cách yêu. Có người đến để dạy bạn cách rời đi. Có người đến chỉ để bạn biết mình xứng đáng được đối xử tốt tới mức nào. Không cuộc gặp nào là phí cả, kể cả cuộc gặp kết thúc bằng nước mắt. Bạn mang theo tất cả những bài học đó tới gặp người sau cùng, và nhờ vậy mà thương họ khéo hơn.",
+      "n": 92
+    },
+    {
+      "id": "co-gang-11",
+      "theme": "co-gang",
+      "form": "loi-chuc",
+      "tone": "om",
+      "rank": 2,
+      "text": "Mong bạn có đủ sức cho những việc phải làm hôm nay, và đủ nhẹ lòng để bỏ lại những việc chưa làm kịp. Mong có ai đó nhận ra bạn đã cố, dù chỉ bằng một câu cảm ơn ngắn. Còn nếu hôm nay không ai nhận ra thì có mình đây. Mình thấy mà. Bạn đã cố nhiều hơn những gì bạn tự cho là đủ.",
+      "n": 93
+    },
+    {
+      "id": "uoc-mo-04",
+      "theme": "uoc-mo",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Hồi nhỏ có người hỏi lớn lên con muốn làm gì, và bạn trả lời ngay không cần nghĩ. Giờ ai hỏi câu đó, bạn ngập ngừng. Không phải vì bạn hết mơ, mà vì bạn đã biết mọi thứ khó tới đâu. Nhưng đứa trẻ trả lời rất nhanh ngày đó vẫn còn trong bạn. Thử hỏi nó xem: nếu không sợ gì, bây giờ mình muốn làm gì?",
+      "n": 94
+    },
+    {
+      "id": "lon-len-09",
+      "theme": "lon-len",
+      "form": "loi-chuc",
+      "tone": "om",
+      "rank": 2,
+      "text": "Mong bạn lớn lên mà không cứng lại. Vẫn còn cười vì một chuyện ngớ ngẩn, vẫn dừng xe nhìn một con mèo, vẫn tin được người khác sau vài lần bị phụ lòng. Người ta hay bảo trưởng thành là bớt mơ mộng đi. Mình nghĩ trưởng thành là biết tự lo cho mình, để còn giữ được phần mơ mộng ấy lâu hơn.",
+      "n": 95
+    },
+    {
+      "id": "tinh-yeu-23",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Sau một lần đau, bạn sợ bắt đầu lại. Ai tốt với bạn một chút, bạn cũng lùi một bước, sợ rồi lại như lần trước. Cẩn thận thì không sai. Nhưng đừng bắt người mới trả nợ cho người cũ. Người này chưa làm gì bạn cả. Cho họ, và cho cả mình, một cơ hội được bắt đầu từ trang trắng.",
+      "n": 96
+    },
+    {
+      "id": "tuoi-tre-16",
+      "theme": "tuoi-tre",
+      "form": "loi-chuc",
+      "tone": "om",
+      "rank": 2,
+      "text": "Mong tuổi trẻ của bạn có đủ cả hai thứ: vài lần liều và vài người để về. Mong bạn đi được tới những nơi mình tò mò, làm thử những việc mình sợ, và mỗi lần vấp vẫn có một chỗ để ngồi xuống thở. Sau này nhìn lại, mong bạn không nói giá như, mà nói: hồi đó mình cũng dám phết.",
+      "n": 97
+    },
+    {
+      "id": "tinh-yeu-18",
+      "theme": "tinh-yeu",
+      "form": "dinh-nghia",
+      "tone": "om",
+      "rank": 2,
+      "text": "Hợp nhau không phải là giống nhau mọi thứ. Một người thích ra ngoài, một người thích ở nhà, vẫn hợp được. Hợp nhau là khi khác nhau mà không ai phải thắng. Là cãi xong vẫn hỏi ăn gì chưa. Là người này mệt thì người kia tự biết nói ít lại. Nếu bạn đang có một người như vậy, hôm nay nhớ cảm ơn họ một câu.",
+      "n": 98
+    },
+    {
+      "id": "ngay-mai-04",
+      "theme": "ngay-mai",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "pin": 99,
+      "text": "Đây là lá thư cuối. Chín mươi chín ngày trước bạn mở lá đầu tiên, và từ đó tới giờ chắc đã có ngày vui, ngày tệ, ngày chẳng nhớ nổi. Bạn đã đi qua tất cả. Mình không biết ngày mai của bạn thế nào, nhưng mình biết người sẽ bước vào ngày mai ấy đã quen với việc tự đứng dậy. Cảm ơn bạn đã ghé mỗi ngày. Giờ thì đi sống tiếp nhé.",
+      "n": 99
+    }
+  ]
+}

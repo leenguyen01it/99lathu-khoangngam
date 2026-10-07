@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2560" height="1440" viewBox="0 0 2560 1440">
+  <title>Ảnh bìa YouTube — Khoảng Ngẫm</title>
+  <desc>Chữ và logo nằm trong vùng an toàn trung tâm 1544 × 423 px.</desc>
+  <defs>
+    <style>
+      @font-face { font-family: 'Source Serif 4'; src: url('../nfc-card/fonts/source-serif-4-medium.ttf'); font-weight: 500; }
+      @font-face { font-family: 'Source Serif 4'; src: url('../nfc-card/fonts/source-serif-4-italic.ttf'); font-style: italic; }
+      @font-face { font-family: 'Great Vibes'; src: url('../nfc-card/fonts/wordmark/greatvibes.ttf'); }
+    </style>
+    <radialGradient id="night" cx="50%" cy="48%" r="77%">
+      <stop stop-color="#31564b"/>
+      <stop offset=".48" stop-color="#1d3b37"/>
+      <stop offset="1" stop-color="#102725"/>
+    </radialGradient>
+    <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+      <stop stop-color="#ecc98a" stop-opacity=".17"/>
+      <stop offset="1" stop-color="#ecc98a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f8e5bc"/><stop offset=".53" stop-color="#ecc98a"/><stop offset="1" stop-color="#bb955c"/>
+    </linearGradient>
+    <pattern id="grain" width="180" height="180" patternUnits="userSpaceOnUse">
+      <circle cx="8" cy="11" r="1" fill="#f7f0e2" opacity=".055"/><circle cx="115" cy="75" r="1.2" fill="#f7f0e2" opacity=".045"/><circle cx="53" cy="139" r=".9" fill="#f7f0e2" opacity=".055"/>
+    </pattern>
+  </defs>
+  <rect width="2560" height="1440" fill="url(#night)"/>
+  <ellipse cx="1280" cy="690" rx="930" ry="640" fill="url(#halo)"/>
+  <rect width="2560" height="1440" fill="url(#grain)"/>
+
+  <!-- Những đường cong và lá thư ở vùng chỉ hiện trên màn hình rộng. -->
+  <g fill="none" stroke="#bcd3bd" opacity=".13" stroke-width="2">
+    <path d="M-120 1000C270 750 400 340 805 172"/>
+    <path d="M-70 1080C360 795 460 425 865 255"/>
+    <path d="M2680 425C2250 615 2200 1060 1760 1240"/>
+    <path d="M2640 350C2200 520 2100 935 1720 1135"/>
+    <path d="M690 1440C830 1230 980 1180 1170 1135"/>
+    <path d="M1870 0C1680 235 1550 285 1450 300"/>
+  </g>
+  <g fill="none" stroke="#ecc98a" stroke-width="2.5" opacity=".28">
+    <g transform="translate(290 570) rotate(-14)"><rect x="0" y="0" width="310" height="210" rx="7"/><path d="M0 8L155 125 310 8M0 205L120 100M310 205L190 100"/></g>
+    <g transform="translate(2020 700) rotate(12)"><rect x="0" y="0" width="300" height="206" rx="7"/><path d="M0 8L150 122 300 8M0 200L117 100M300 200L183 100"/></g>
+  </g>
+  <g fill="#ecc98a" opacity=".5">
+    <circle cx="385" cy="312" r="3"/><circle cx="610" cy="1110" r="2.4"/><circle cx="2115" cy="315" r="3"/><circle cx="2270" cy="1110" r="2.5"/>
+    <circle cx="1775" cy="230" r="2"/><circle cx="850" cy="1210" r="2"/>
+  </g>
+
+  <!-- Nội dung chính: trong vùng x=508–2052, y=509–931. -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M1240 585A40 40 0 0 1 1320 585M1195 585H1365" stroke="url(#gold)" stroke-width="3.5"/>
+    <path d="M1230 602H1330M1247 617H1313" stroke="#bcd3bd" stroke-width="2.5"/>
+    <g stroke="url(#gold)" stroke-width="2.5">
+      <path d="M1280 529v-15M1254 534l-7-14M1306 534l7-14M1234 548l-11-10M1326 548l11-10"/>
+    </g>
+  </g>
+  <text x="1280" y="696" text-anchor="middle" fill="#ecc98a" font-family="Great Vibes, Georgia, serif" font-size="78">Khoảng Ngẫm</text>
+  <text x="1280" y="797" text-anchor="middle" fill="#f7f0e2" font-family="Source Serif 4, Georgia, serif" font-size="78" font-weight="500" letter-spacing="1">99 ngày thương mình</text>
+  <path d="M1010 836H1160M1400 836H1550" stroke="#ecc98a" stroke-width="1.5" opacity=".62"/>
+  <path d="M1280 831l5 5-5 5-5-5z" fill="#ecc98a" opacity=".8"/>
+  <text x="1280" y="899" text-anchor="middle" fill="#bcd3bd" font-family="Source Serif 4, Georgia, serif" font-style="italic" font-size="38">Mỗi ngày một lá thư.</text>
+</svg>

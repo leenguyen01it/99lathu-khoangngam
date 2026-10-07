@@ -1,0 +1,511 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  background: #16302f;
+  color: #f7f0e2;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full bg-gold px-5 py-2.5 text-[15px] font-semibold text-ink transition hover:brightness-105 disabled:opacity-60;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-full border border-sage/40 px-5 py-2.5 text-[15px] font-medium text-paper transition hover:border-sage;
+  }
+  .field {
+    @apply w-full rounded-xl border border-sage/30 bg-ink/40 px-4 py-3 text-[15px] text-paper placeholder:text-sage/50 focus:border-gold focus:outline-none;
+  }
+}
+
+@keyframes letter-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.letter-in {
+  animation: letter-in 0.6s ease-out both;
+}
+
+/* ---------------------------------------------------------------
+   Phong thư mở ra khi vào trang (khoảng 1,9 giây, CSS thuần).
+   Lớp phủ tự mờ đi khi xong, nên trang vẫn dùng được cả khi không có JS.
+   --------------------------------------------------------------- */
+.envelope-overlay {
+  animation: envelope-overlay-out 0.45s ease-in 1.45s forwards;
+}
+
+.envelope {
+  position: relative;
+  width: 220px;
+  height: 150px;
+  perspective: 700px;
+}
+
+.envelope--opening {
+  animation: envelope-in 0.35s ease-out both;
+}
+
+.envelope__back,
+.envelope__front,
+.envelope__flap,
+.envelope__sheet {
+  position: absolute;
+  inset: 0;
+}
+
+.envelope__back {
+  border-radius: 10px;
+  background: #e6dcc6;
+  z-index: 1;
+}
+
+.envelope__sheet {
+  inset: 10px 14px 14px;
+  border-radius: 6px;
+  background: #fffaf0;
+  box-shadow: 0 2px 8px rgb(22 48 47 / 0.18);
+  z-index: 2;
+}
+
+.envelope--opening .envelope__sheet {
+  animation: envelope-sheet-up 0.5s ease-out 0.95s both;
+}
+
+/* Thân trước: hai mép gấp chéo lên, tạo hình chữ V ở giữa */
+.envelope__front {
+  border-radius: 0 0 10px 10px;
+  background: #f7f0e2;
+  clip-path: polygon(0 0, 50% 52%, 100% 0, 100% 100%, 0 100%);
+  z-index: 3;
+}
+
+.envelope__flap {
+  background: #efe5cf;
+  clip-path: polygon(0 0, 100% 0, 50% 58%);
+  transform-origin: top center;
+  z-index: 4;
+}
+
+.envelope--opening .envelope__flap {
+  animation: envelope-flap-open 0.5s ease-in-out 0.5s both;
+}
+
+.envelope__seal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 38px;
+  height: 38px;
+  margin: -19px 0 0 -19px;
+  border-radius: 9999px;
+  background: #ecc98a;
+  box-shadow:
+    0 0 0 3px rgb(236 201 138 / 0.35),
+    inset 0 0 0 5px rgb(22 48 47 / 0.12);
+  z-index: 5;
+}
+
+.envelope--opening .envelope__seal {
+  animation: envelope-seal-out 0.2s ease-out 0.4s both;
+}
+
+.envelope--waiting .envelope__seal {
+  animation: envelope-seal-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes envelope-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes envelope-seal-out {
+  to {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+
+@keyframes envelope-seal-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 3px rgb(236 201 138 / 0.35),
+      inset 0 0 0 5px rgb(22 48 47 / 0.12);
+  }
+  50% {
+    box-shadow:
+      0 0 0 10px rgb(236 201 138 / 0.12),
+      inset 0 0 0 5px rgb(22 48 47 / 0.12);
+  }
+}
+
+/* Nắp lật lên; giữa chừng hạ z-index để tờ thư trượt ra phía trước nắp */
+@keyframes envelope-flap-open {
+  0% {
+    transform: rotateX(0deg);
+    z-index: 4;
+  }
+  50% {
+    z-index: 4;
+  }
+  51% {
+    z-index: 0;
+  }
+  100% {
+    transform: rotateX(180deg);
+    z-index: 0;
+  }
+}
+
+@keyframes envelope-sheet-up {
+  to {
+    transform: translateY(-62%);
+  }
+}
+
+@keyframes envelope-overlay-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Lật bìa sách: bìa xanh có logo nằm phủ đúng lên tờ thư,
+   rồi lật sang trái quanh gáy sách để lộ lá thư bên dưới.
+   --------------------------------------------------------------- */
+/* Cuốn sách: bìa sau (xanh) > xấp giấy (kem, thấy mép ở phải và dưới) > trang thư > bìa trước.
+   Chiều cao dùng phần màn hình còn lại để mọi trang luôn bằng nhau khi lật.
+   9rem chừa chỗ cho safe area, nhận diện thương hiệu và khoảng thở phía dưới. */
+.book {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: min(650px, calc(100dvh - 9rem));
+  min-height: min(420px, calc(100dvh - 9rem));
+  padding: 5px 12px 13px 5px;
+  perspective: 1800px;
+}
+
+/* Bìa sau: chỉ lộ một viền mỏng quanh xấp giấy, cùng màu vải với bìa trước */
+.book__back {
+  position: absolute;
+  inset: 0;
+  border-radius: 4px 10px 10px 4px;
+  background: linear-gradient(120deg, #2f524e 0%, #264643 100%);
+  box-shadow:
+    0 22px 40px -12px rgb(0 0 0 / 0.55),
+    0 4px 10px rgb(0 0 0 / 0.3);
+}
+
+.book__pages {
+  position: absolute;
+  inset: 5px 5px 5px 5px;
+  border-radius: 2px 5px 5px 2px;
+  background: #e9dfc8;
+}
+
+/* Mép xấp giấy: các đường kẻ mảnh gợi từng trang */
+.book__pages::before,
+.book__pages::after {
+  content: "";
+  position: absolute;
+}
+
+.book__pages::before {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 7px;
+  background: repeating-linear-gradient(to right, #f3ebd9 0 1px, #cfc4aa 1px 2px);
+  border-radius: 0 5px 5px 0;
+}
+
+.book__pages::after {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 7px;
+  background: repeating-linear-gradient(to bottom, #f3ebd9 0 1px, #cfc4aa 1px 2px);
+  border-radius: 0 0 5px 2px;
+}
+
+/* Trang thư bên trong sách: góc vuông hơn, có bóng đổ ở gáy */
+.book > article {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(47 82 78 / 0.35) transparent;
+  border-radius: 2px 5px 4px 2px;
+  box-shadow: 1px 1px 2px rgb(22 48 47 / 0.18);
+  background-image: linear-gradient(to right, rgb(22 48 47 / 0.16), rgb(22 48 47 / 0.04) 14px, transparent 34px);
+  padding-left: 2rem;
+}
+
+.book__cover {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 4px 12px 12px 4px;
+  /* Vải bìa: vân nhiễu mịn phủ lên nền xanh chuyển sắc */
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    linear-gradient(120deg, #2a4b48 0%, #1f3d3a 45%, #18312f 100%);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.05),
+    inset 0 -18px 30px -18px rgb(0 0 0 / 0.45),
+    0 16px 30px -10px rgb(0 0 0 / 0.5);
+  text-align: center;
+  transform-origin: left center;
+  backface-visibility: hidden;
+  animation: book-open 1s cubic-bezier(0.5, 0.05, 0.3, 1) 0.95s forwards;
+}
+
+/* Bìa trưng bày ở trang chủ: đứng yên như một cuốn sách thật, không tự lật. */
+.book__cover--static {
+  animation: none;
+}
+
+.home-book {
+  width: min(80vw, 310px);
+  filter: drop-shadow(0 24px 26px rgb(0 0 0 / 0.32));
+}
+
+.home-book .book {
+  height: 420px;
+  min-height: 0;
+  padding: 4px 10px 11px 4px;
+  perspective: none;
+  transform: rotate(-1.5deg);
+  transform-origin: center;
+}
+
+.home-book .book__cover {
+  border-radius: 4px 10px 10px 4px;
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.05),
+    inset 0 -18px 30px -18px rgb(0 0 0 / 0.45),
+    8px 14px 24px -10px rgb(0 0 0 / 0.45);
+}
+
+/* Gáy sách: dải sẫm bên trái, có rãnh bản lề và hai đai nhũ vàng */
+.book__spine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 26px;
+  background:
+    linear-gradient(to bottom, transparent 9%, rgb(236 201 138 / 0.75) 9% calc(9% + 1px), transparent calc(9% + 1px) 10.5%, rgb(236 201 138 / 0.45) 10.5% calc(10.5% + 1px), transparent calc(10.5% + 1px) 89.5%, rgb(236 201 138 / 0.45) 89.5% calc(89.5% + 1px), transparent calc(89.5% + 1px) 91%, rgb(236 201 138 / 0.75) 91% calc(91% + 1px), transparent calc(91% + 1px)),
+    linear-gradient(to right, rgb(0 0 0 / 0.5), rgb(0 0 0 / 0.12) 55%, rgb(255 255 255 / 0.07) 82%, rgb(0 0 0 / 0.5) 94%, rgb(0 0 0 / 0.15));
+}
+
+/* Khung nhũ vàng hai lớp */
+.book__frame {
+  position: absolute;
+  inset: 16px 16px 16px 40px;
+  border: 1px solid rgb(236 201 138 / 0.7);
+  border-radius: 3px;
+}
+
+.book__frame::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgb(236 201 138 / 0.28);
+  border-radius: 2px;
+}
+
+.book__corner {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: #ecc98a;
+  transform: rotate(45deg);
+}
+
+.book__corner--tl {
+  top: -4px;
+  left: -4px;
+}
+
+.book__corner--tr {
+  top: -4px;
+  right: -4px;
+}
+
+.book__corner--bl {
+  bottom: -4px;
+  left: -4px;
+}
+
+.book__corner--br {
+  right: -4px;
+  bottom: -4px;
+}
+
+/* ---------------------------------------------------------------
+   Chia trang cho lá thư dài (thư của người tặng).
+   Chữ chảy thành các cột rộng đúng bằng trang; mỗi cột là một trang.
+   --------------------------------------------------------------- */
+.pager {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.pager__flow {
+  position: absolute;
+  inset: 0;
+  column-count: 1;
+  column-gap: 32px;
+  column-fill: auto;
+}
+
+/* Tờ giấy đang lật: nằm đè đúng lên trang, quay quanh gáy sách */
+.book > article.book__leaf {
+  position: absolute;
+  inset: 5px 12px 13px 5px;
+  z-index: 2;
+  flex: none;
+  transform-origin: left center;
+  backface-visibility: hidden;
+  box-shadow: 6px 0 18px rgb(22 48 47 / 0.25);
+}
+
+.book__leaf--out {
+  animation: leaf-out 0.7s cubic-bezier(0.5, 0.05, 0.3, 1) forwards;
+}
+
+.book__leaf--in {
+  animation: leaf-in 0.7s cubic-bezier(0.5, 0.05, 0.3, 1) forwards;
+}
+
+@keyframes leaf-out {
+  to {
+    transform: rotateY(-180deg);
+  }
+}
+
+@keyframes leaf-in {
+  from {
+    transform: rotateY(-180deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+
+/* Chữ nhũ vàng */
+.book__foil {
+  background: linear-gradient(120deg, #f7e6bd 0%, #ecc98a 38%, #c4a05a 58%, #f3dcaa 80%, #e6c383 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Vệt sáng lướt qua bìa trước khi lật */
+.book__sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgb(255 255 255 / 0.13) 48%, rgb(255 255 255 / 0.03) 56%, transparent 66%);
+  transform: translateX(-110%);
+  animation: book-sheen 0.85s ease-in-out 0.15s forwards;
+}
+
+@keyframes book-sheen {
+  to {
+    transform: translateX(110%);
+  }
+}
+
+@keyframes book-open {
+  to {
+    transform: rotateY(-180deg);
+  }
+}
+
+/* Đi theo giọng đọc, kiểu mực hiện dần: chữ chưa đọc thì nhạt, đọc tới đâu đậm lên tới đó */
+.word {
+  transition: opacity 0.14s linear;
+}
+
+.word--unread {
+  opacity: 0.3;
+}
+
+/* Đi theo giọng đọc, kiểu ô vàng: chỉ chữ đang đọc có nền vàng */
+.reading {
+  border-radius: 4px;
+  background: rgb(236 201 138 / 0.7);
+  box-shadow: 0 0 0 3px rgb(236 201 138 / 0.7);
+}
+
+/* Chữ của lá thư hiện dần từng câu */
+.sentence {
+  opacity: 0;
+  animation: sentence-in 0.55s ease-out forwards;
+}
+
+@keyframes sentence-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .letter-in,
+  .envelope--opening,
+  .envelope--opening *,
+  .envelope--waiting .envelope__seal {
+    animation: none;
+  }
+  .envelope-overlay,
+  .book__cover {
+    display: none;
+  }
+  .book__sheen {
+    animation: none;
+  }
+  .sentence {
+    opacity: 1;
+    animation: none;
+  }
+  .word {
+    transition: none;
+  }
+}

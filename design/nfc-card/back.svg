@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="91.6mm" height="60mm" viewBox="0 0 91.6 60">
+  <title>Khoảng Ngẫm, mặt sau thẻ NFC</title>
+  <desc>Khổ thành phẩm 85.6 x 54 mm, bleed 3 mm mỗi cạnh.</desc>
+  <defs>
+    <style>
+      @font-face { font-family: "Source Serif 4"; font-style: normal; font-weight: 400; src: url("fonts/source-serif-4-regular.ttf") format("truetype"); }
+      @font-face { font-family: "Source Serif 4"; font-style: italic; font-weight: 400; src: url("fonts/source-serif-4-italic.ttf") format("truetype"); }
+      #guides:target { display: inline; }
+    </style>
+    <radialGradient id="paper" cx="50%" cy="42%" r="72%">
+      <stop stop-color="#fffaf0"/>
+      <stop offset="1" stop-color="#f0e5d1"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="91.6" height="60" fill="url(#paper)"/>
+
+  <!-- EMBLEM: bản rút gọn, không tia nắng -->
+  <g transform="translate(45.8 12.7) scale(.6)" fill="none" stroke-linecap="round">
+    <path d="M-4.8 1.5A4.8 4.8 0 0 1 4.8 1.5M-8.4 1.5H8.4" stroke="#c79f58" stroke-width=".6"/>
+    <path d="M-5.8 4H5.8M-3.2 6.2H3.2" stroke="#73927f" stroke-width=".55"/>
+  </g>
+
+  <text x="45.8" y="23.1" text-anchor="middle" fill="#16302f"
+        font-family="'Source Serif 4', Georgia, serif" font-size="3.5" font-weight="400">Lá thư hôm nay đang chờ bạn</text>
+
+  <!-- CÁCH 1: chạm điện thoại vào thẻ -->
+  <g transform="translate(27 35.5)">
+    <circle r="6" fill="#16302f"/>
+    <g fill="none" stroke="#f7f0e2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="-2.5" y="-4.1" width="5" height="8.2" rx=".85" stroke-width=".45"/>
+      <path d="M-1 2.9H1" stroke-width=".4"/>
+    </g>
+    <g fill="none" stroke="#ecc98a" stroke-linecap="round">
+      <path d="M4-2.7c1.8 1.5 1.8 3.9 0 5.4M3-1.5c.9.8.9 2.2 0 3" stroke-width=".52"/>
+    </g>
+  </g>
+  <text x="27" y="48.1" text-anchor="middle" fill="#3e6658"
+        font-family="'Source Serif 4', Georgia, serif" font-size="2.4" font-style="italic">Chạm để mở thư</text>
+
+  <!-- "hoặc" giữa hai cách -->
+  <path d="M45.8 28.5V33.1M45.8 38.1V42.5" fill="none" stroke="#c79f58" stroke-width=".15" stroke-linecap="round"/>
+  <text x="45.8" y="36.3" text-anchor="middle" fill="#73927f"
+        font-family="'Source Serif 4', Georgia, serif" font-size="2.4" font-style="italic">hoặc</text>
+
+  <!-- CÁCH 2: quét mã QR.
+       MÃ MẪU, KHÔNG IN: mỗi thẻ phải có mã QR riêng, mã hoá đúng nfcUrl của thẻ đó (cột nfcUrl trong CSV xuất từ /admin).
+       Ô mã: 16 x 16 mm tại x=56.6 y=27.5, màu #16302f, giữ trống ít nhất 2 mm quanh mã. -->
+  <g id="qr-sample" transform="translate(56.6 27.5) scale(0.48485)" fill="#16302f" shape-rendering="crispEdges">
+    <path d="M0 0h7v1h-7zM9 0h1v1h-1zM13 0h1v1h-1zM16 0h1v1h-1zM18 0h4v1h-4zM23 0h1v1h-1zM26 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM10 1h1v1h-1zM13 1h4v1h-4zM18 1h1v1h-1zM21 1h1v1h-1zM24 1h1v1h-1zM26 1h1v1h-1zM32 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM8 2h3v1h-3zM12 2h2v1h-2zM15 2h1v1h-1zM21 2h3v1h-3zM26 2h1v1h-1zM28 2h3v1h-3zM32 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM8 3h4v1h-4zM14 3h1v1h-1zM16 3h2v1h-2zM19 3h1v1h-1zM21 3h1v1h-1zM23 3h2v1h-2zM26 3h1v1h-1zM28 3h3v1h-3zM32 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM8 4h1v1h-1zM15 4h1v1h-1zM18 4h4v1h-4zM23 4h1v1h-1zM26 4h1v1h-1zM28 4h3v1h-3zM32 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM11 5h1v1h-1zM14 5h3v1h-3zM18 5h1v1h-1zM22 5h1v1h-1zM24 5h1v1h-1zM26 5h1v1h-1zM32 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h7v1h-7zM8 7h1v1h-1zM10 7h2v1h-2zM15 7h1v1h-1zM19 7h5v1h-5zM0 8h1v1h-1zM2 8h5v1h-5zM9 8h1v1h-1zM13 8h1v1h-1zM15 8h1v1h-1zM17 8h1v1h-1zM20 8h1v1h-1zM22 8h1v1h-1zM24 8h1v1h-1zM26 8h5v1h-5zM1 9h2v1h-2zM4 9h1v1h-1zM7 9h1v1h-1zM9 9h1v1h-1zM12 9h1v1h-1zM16 9h1v1h-1zM18 9h4v1h-4zM23 9h1v1h-1zM26 9h2v1h-2zM29 9h2v1h-2zM0 10h2v1h-2zM3 10h1v1h-1zM5 10h6v1h-6zM12 10h1v1h-1zM15 10h4v1h-4zM20 10h1v1h-1zM25 10h1v1h-1zM28 10h1v1h-1zM30 10h1v1h-1zM0 11h1v1h-1zM3 11h1v1h-1zM5 11h1v1h-1zM7 11h1v1h-1zM10 11h1v1h-1zM14 11h3v1h-3zM18 11h1v1h-1zM20 11h1v1h-1zM24 11h1v1h-1zM26 11h1v1h-1zM28 11h3v1h-3zM6 12h1v1h-1zM10 12h1v1h-1zM15 12h1v1h-1zM17 12h1v1h-1zM21 12h1v1h-1zM27 12h3v1h-3zM32 12h1v1h-1zM0 13h2v1h-2zM3 13h2v1h-2zM7 13h2v1h-2zM10 13h3v1h-3zM14 13h5v1h-5zM25 13h1v1h-1zM29 13h1v1h-1zM31 13h2v1h-2zM0 14h1v1h-1zM2 14h1v1h-1zM4 14h4v1h-4zM9 14h1v1h-1zM12 14h1v1h-1zM14 14h1v1h-1zM22 14h1v1h-1zM24 14h4v1h-4zM30 14h2v1h-2zM4 15h1v1h-1zM8 15h1v1h-1zM14 15h1v1h-1zM16 15h1v1h-1zM20 15h2v1h-2zM23 15h1v1h-1zM25 15h3v1h-3zM29 15h2v1h-2zM1 16h1v1h-1zM5 16h2v1h-2zM11 16h1v1h-1zM14 16h1v1h-1zM16 16h2v1h-2zM22 16h1v1h-1zM24 16h2v1h-2zM27 16h4v1h-4zM32 16h1v1h-1zM2 17h2v1h-2zM5 17h1v1h-1zM7 17h1v1h-1zM10 17h2v1h-2zM13 17h1v1h-1zM16 17h1v1h-1zM19 17h3v1h-3zM23 17h1v1h-1zM26 17h2v1h-2zM29 17h2v1h-2zM32 17h1v1h-1zM0 18h1v1h-1zM2 18h1v1h-1zM5 18h2v1h-2zM10 18h2v1h-2zM13 18h6v1h-6zM21 18h1v1h-1zM25 18h1v1h-1zM27 18h2v1h-2zM30 18h1v1h-1zM0 19h2v1h-2zM4 19h1v1h-1zM9 19h3v1h-3zM13 19h1v1h-1zM16 19h1v1h-1zM19 19h2v1h-2zM23 19h1v1h-1zM26 19h5v1h-5zM2 20h1v1h-1zM4 20h1v1h-1zM6 20h1v1h-1zM8 20h1v1h-1zM10 20h2v1h-2zM13 20h2v1h-2zM17 20h1v1h-1zM19 20h6v1h-6zM27 20h1v1h-1zM29 20h1v1h-1zM0 21h1v1h-1zM5 21h1v1h-1zM7 21h3v1h-3zM12 21h1v1h-1zM15 21h1v1h-1zM18 21h1v1h-1zM21 21h1v1h-1zM26 21h1v1h-1zM29 21h2v1h-2zM32 21h1v1h-1zM0 22h1v1h-1zM3 22h2v1h-2zM6 22h1v1h-1zM8 22h2v1h-2zM11 22h1v1h-1zM13 22h1v1h-1zM15 22h1v1h-1zM18 22h2v1h-2zM22 22h1v1h-1zM24 22h1v1h-1zM26 22h1v1h-1zM31 22h1v1h-1zM0 23h1v1h-1zM4 23h2v1h-2zM8 23h1v1h-1zM10 23h1v1h-1zM12 23h1v1h-1zM16 23h1v1h-1zM18 23h6v1h-6zM25 23h8v1h-8zM0 24h1v1h-1zM4 24h3v1h-3zM8 24h1v1h-1zM11 24h1v1h-1zM15 24h1v1h-1zM17 24h1v1h-1zM22 24h1v1h-1zM24 24h5v1h-5zM31 24h2v1h-2zM8 25h1v1h-1zM10 25h1v1h-1zM12 25h3v1h-3zM18 25h2v1h-2zM21 25h1v1h-1zM24 25h1v1h-1zM28 25h1v1h-1zM30 25h2v1h-2zM0 26h7v1h-7zM9 26h2v1h-2zM14 26h3v1h-3zM20 26h5v1h-5zM26 26h1v1h-1zM28 26h1v1h-1zM30 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM8 27h3v1h-3zM12 27h2v1h-2zM15 27h2v1h-2zM18 27h1v1h-1zM20 27h5v1h-5zM28 27h5v1h-5zM0 28h1v1h-1zM2 28h3v1h-3zM6 28h1v1h-1zM8 28h1v1h-1zM10 28h2v1h-2zM14 28h2v1h-2zM17 28h1v1h-1zM19 28h1v1h-1zM22 28h1v1h-1zM24 28h6v1h-6zM31 28h2v1h-2zM0 29h1v1h-1zM2 29h3v1h-3zM6 29h1v1h-1zM8 29h1v1h-1zM11 29h3v1h-3zM16 29h4v1h-4zM21 29h1v1h-1zM24 29h2v1h-2zM28 29h1v1h-1zM31 29h1v1h-1zM0 30h1v1h-1zM2 30h3v1h-3zM6 30h1v1h-1zM8 30h1v1h-1zM14 30h3v1h-3zM19 30h1v1h-1zM21 30h1v1h-1zM26 30h2v1h-2zM0 31h1v1h-1zM6 31h1v1h-1zM10 31h1v1h-1zM12 31h1v1h-1zM15 31h2v1h-2zM18 31h6v1h-6zM25 31h1v1h-1zM28 31h3v1h-3zM0 32h7v1h-7zM8 32h3v1h-3zM12 32h1v1h-1zM14 32h2v1h-2zM17 32h1v1h-1zM22 32h1v1h-1zM24 32h1v1h-1zM26 32h2v1h-2zM31 32h1v1h-1z"/>
+  </g>
+  <text x="64.6" y="48.1" text-anchor="middle" fill="#3e6658"
+        font-family="'Source Serif 4', Georgia, serif" font-size="2.4" font-style="italic">Quét mã để mở thư</text>
+
+  <!-- GUIDES: ẩn trong file in. Mở front.svg#guides hoặc back.svg#guides (hoặc bật lớp này trong phần mềm đồ hoạ) để xem.
+       Hồng: vùng bleed 3 mm và đường cắt 85.6 x 54 mm (bo góc 3.18 mm). Xanh: vùng an toàn, cách đường cắt 4 mm. -->
+  <g id="guides" display="none" font-family="Arial, sans-serif" font-size="1.45">
+    <path fill="#ff2d95" fill-opacity=".16" fill-rule="evenodd"
+          d="M0 0H91.6V60H0ZM6.18 3H85.42A3.18 3.18 0 0 1 88.6 6.18V53.82A3.18 3.18 0 0 1 85.42 57H6.18A3.18 3.18 0 0 1 3 53.82V6.18A3.18 3.18 0 0 1 6.18 3Z"/>
+    <rect x="3" y="3" width="85.6" height="54" rx="3.18" fill="none" stroke="#ff2d95" stroke-width=".2"/>
+    <path d="M3 0V2M88.6 0V2M3 58V60M88.6 58V60M0 3H2M0 57H2M89.6 3H91.6M89.6 57H91.6" fill="none" stroke="#ff2d95" stroke-width=".15"/>
+    <rect x="7" y="7" width="77.6" height="46" rx="1" fill="none" stroke="#00a8e8" stroke-width=".15" stroke-dasharray=".8 .6"/>
+    <text x="8" y="2" fill="#ff2d95">Bleed 3 mm (phần bị cắt bỏ)</text>
+    <text x="83.6" y="2" text-anchor="end" fill="#ff2d95">Đường cắt 85.6 × 54 mm</text>
+    <text x="8" y="59.1" fill="#00a8e8">Vùng an toàn: cách đường cắt 4 mm</text>
+  </g>
+</svg>

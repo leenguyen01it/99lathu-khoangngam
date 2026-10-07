@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Khoảng Ngẫm, thẻ NFC 99 ngày thương mình (file in)</title>
+  <!-- Nguồn để xuất PDF in, mỗi trang 91.6 x 60 mm (đã gồm bleed 3 mm).
+       print.html#front chỉ xuất mặt trước, print.html#back chỉ xuất mặt sau, không có # thì xuất cả hai.
+       Xuất bằng Chrome: In, Lưu dưới dạng PDF, lề "Không", tắt đầu trang và chân trang. -->
+  <style>
+    @page { size: 91.6mm 60mm; margin: 0; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #fff; }
+    .page { display: block; width: 91.6mm; height: 60mm; overflow: hidden; break-after: page; break-inside: avoid; }
+    .page:last-child, .page:target { break-after: auto; }
+    .page object { display: block; width: 91.6mm; height: 60mm; }
+    body:has(.page:target) .page:not(:target) { display: none; }
+  </style>
+</head>
+<body>
+  <div class="page" id="front"><object type="image/svg+xml" data="front.svg" aria-label="Mặt trước"></object></div>
+  <div class="page" id="back"><object type="image/svg+xml" data="back.svg" aria-label="Mặt sau"></object></div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1702" height="630" viewBox="0 0 1702 630">
+  <title>Ảnh bìa Facebook — Khoảng Ngẫm</title>
+  <desc>Nội dung chính ở giữa, phù hợp với phần cắt trên máy tính và điện thoại.</desc>
+  <defs>
+    <style>
+      @font-face { font-family: 'Source Serif 4'; src: url('../nfc-card/fonts/source-serif-4-medium.ttf'); font-weight: 500; }
+      @font-face { font-family: 'Source Serif 4'; src: url('../nfc-card/fonts/source-serif-4-italic.ttf'); font-style: italic; }
+      @font-face { font-family: 'Great Vibes'; src: url('../nfc-card/fonts/wordmark/greatvibes.ttf'); }
+    </style>
+    <radialGradient id="night" cx="52%" cy="45%" r="75%">
+      <stop stop-color="#31564b"/><stop offset=".5" stop-color="#1d3b37"/><stop offset="1" stop-color="#102725"/>
+    </radialGradient>
+    <radialGradient id="halo"><stop stop-color="#ecc98a" stop-opacity=".14"/><stop offset="1" stop-color="#ecc98a" stop-opacity="0"/></radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8e5bc"/><stop offset=".55" stop-color="#ecc98a"/><stop offset="1" stop-color="#bb955c"/></linearGradient>
+    <pattern id="grain" width="137" height="137" patternUnits="userSpaceOnUse"><circle cx="8" cy="11" r="1" fill="#f7f0e2" opacity=".05"/><circle cx="91" cy="93" r="1" fill="#f7f0e2" opacity=".055"/></pattern>
+  </defs>
+  <rect width="1702" height="630" fill="url(#night)"/>
+  <ellipse cx="851" cy="310" rx="660" ry="450" fill="url(#halo)"/>
+  <rect width="1702" height="630" fill="url(#grain)"/>
+  <g fill="none" stroke="#bcd3bd" stroke-width="1.6" opacity=".16">
+    <path d="M-70 425C190 260 250 70 580-40M-40 485C250 315 300 125 620 10"/>
+    <path d="M1760 165C1470 250 1440 450 1190 650M1720 100C1400 200 1380 390 1150 610"/>
+  </g>
+  <g fill="none" stroke="#ecc98a" opacity=".25" stroke-width="2">
+    <g transform="translate(130 165) rotate(-13)"><rect width="230" height="155" rx="5"/><path d="M0 7L115 93 230 7M0 150L90 75M230 150L140 75"/></g>
+    <g transform="translate(1380 302) rotate(11)"><rect width="210" height="142" rx="5"/><path d="M0 7L105 85 210 7M0 138L82 70M210 138L128 70"/></g>
+  </g>
+  <g fill="#ecc98a" opacity=".48"><circle cx="430" cy="96" r="2.4"/><circle cx="1295" cy="90" r="2.2"/><circle cx="1520" cy="535" r="2.1"/></g>
+  <!-- Vùng chữ x=400–1302, y=110–500; tránh góc trái dưới bị ảnh đại diện che. -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M824 172A27 27 0 0 1 878 172M794 172H908" stroke="url(#gold)" stroke-width="3"/>
+    <path d="M819 185H883M832 196H870" stroke="#bcd3bd" stroke-width="2"/>
+    <path d="M851 133v-11M832 136l-5-10M870 136l5-10" stroke="url(#gold)" stroke-width="2"/>
+  </g>
+  <text x="851" y="284" text-anchor="middle" fill="#ecc98a" font-family="Great Vibes, Georgia, serif" font-size="76">Khoảng Ngẫm</text>
+  <text x="851" y="376" text-anchor="middle" fill="#f7f0e2" font-family="Source Serif 4, Georgia, serif" font-size="73" font-weight="500">99 ngày thương mình</text>
+  <path d="M654 409H751M951 409H1048" stroke="#ecc98a" stroke-width="1.5" opacity=".62"/>
+  <path d="M851 404l5 5-5 5-5-5z" fill="#ecc98a" opacity=".8"/>
+  <text x="851" y="469" text-anchor="middle" fill="#bcd3bd" font-family="Source Serif 4, Georgia, serif" font-style="italic" font-size="35">Mỗi ngày một lá thư.</text>
+</svg>

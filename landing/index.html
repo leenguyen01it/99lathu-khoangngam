@@ -1,0 +1,1033 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Khoảng Ngẫm · 99 ngày thương mình, mỗi ngày một lá thư</title>
+  <meta name="description" content="Một tấm thẻ nhỏ chứa 99 lá thư. Chạm điện thoại vào thẻ để mở lá thư của hôm nay. Không cần ứng dụng, không cần tài khoản.">
+  <meta name="theme-color" content="#16302f">
+  <link rel="canonical" href="https://khoangngam.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://khoangngam.com/">
+  <meta property="og:title" content="Khoảng Ngẫm · 99 ngày thương mình">
+  <meta property="og:description" content="Một tấm thẻ nhỏ chứa 99 lá thư. Chạm để mở lá thư của hôm nay.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke-linecap='round' stroke-width='2.6'%3E%3Crect width='64' height='64' rx='14' fill='%2316302f'/%3E%3Cpath d='M14 32A18 18 0 0 1 50 32M5 32H59' stroke='%23ecc98a'/%3E%3Cpath d='M17 40H47M24 47H40' stroke='%23bcd3bd'/%3E%3C/svg%3E">
+
+  <script>document.documentElement.classList.add("js");</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Bảng màu và font giống hệt app 99lathu (tailwind.config.ts).
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#16302f",
+            deep: "#3e6658",
+            paper: "#f7f0e2",
+            gold: "#ecc98a",
+            sage: "#bcd3bd",
+            rose: "#dc9b86",
+          },
+          fontFamily: {
+            sans: ['"Be Vietnam Pro"', "system-ui", "sans-serif"],
+            serif: ["Lora", "Georgia", "serif"],
+            script: ['"Great Vibes"', "cursive"],
+          },
+        },
+      },
+    };
+  </script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <style>
+    html { scroll-behavior: smooth; background: #16302f; }
+    body { margin: 0; background: #16302f; color: #f7f0e2; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+    section[id] { scroll-margin-top: 84px; }
+    [x-cloak] { display: none !important; }
+    ::selection { background: #ecc98a; color: #16302f; }
+
+    /* Màn chào khi tải trang: mặt trời mọc trên đường chân trời, rồi màn kéo lên. */
+    .loader {
+      position: fixed; inset: 0; z-index: 100;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: radial-gradient(circle at 50% 40%, #24463f 0%, #16302f 60%);
+      animation: loader-out 0.6s ease-in 1.7s forwards;
+    }
+    .js .loader { animation: none; transition: opacity 0.6s ease, visibility 0.6s ease, transform 0.8s cubic-bezier(0.7, 0, 0.2, 1); }
+    .js.loaded .loader { opacity: 0; visibility: hidden; transform: translateY(-4%); }
+    .loader-sun { stroke-dasharray: 60; stroke-dashoffset: 60; animation: draw 0.8s ease-out 0.15s forwards; }
+    .loader-line { stroke-dasharray: 60; stroke-dashoffset: 60; animation: draw 0.6s ease-out forwards; }
+    .loader-ray { opacity: 0; animation: fade 0.4s ease-out forwards; }
+    .loader-name { opacity: 0; letter-spacing: 0.5em; animation: name-in 0.9s ease-out 0.55s forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @keyframes fade { to { opacity: 1; } }
+    @keyframes name-in { to { opacity: 1; letter-spacing: 0.28em; } }
+    @keyframes loader-out { to { opacity: 0; visibility: hidden; } }
+
+    /* Phần đầu trang hiện dần sau màn chào */
+    .js [data-hero] { opacity: 0; }
+    .js.loaded [data-hero] { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+    @keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Hiện dần khi cuộn tới */
+    .js [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .js [data-reveal="left"] { transform: translateX(-32px); }
+    .js [data-reveal="right"] { transform: translateX(32px); }
+    .js [data-reveal="zoom"] { transform: scale(0.94); }
+    .js [data-reveal].is-in { opacity: 1; transform: none; }
+
+    /* Nền: hạt nhiễu mịn và đốm sáng trôi */
+    .grain::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.5;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .firefly { position: absolute; width: 4px; height: 4px; border-radius: 9999px; background: #ecc98a; box-shadow: 0 0 10px 2px rgb(236 201 138 / 0.5); opacity: 0; animation: firefly 9s ease-in-out infinite; }
+    @keyframes firefly {
+      0% { opacity: 0; transform: translate(0, 0); }
+      20% { opacity: 0.9; }
+      60% { opacity: 0.5; transform: translate(26px, -60px); }
+      100% { opacity: 0; transform: translate(-12px, -120px); }
+    }
+    .glow-drift { animation: glow-drift 14s ease-in-out infinite alternate; }
+    @keyframes glow-drift { to { transform: translate(40px, 30px) scale(1.12); } }
+
+    /* Tấm thẻ 3D */
+    .card-stage { perspective: 1400px; }
+    .card-float { animation: card-float 6s ease-in-out infinite; }
+    @keyframes card-float { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-14px) rotate(-0.5deg); } }
+    .card-3d { position: relative; width: 100%; aspect-ratio: 85.6 / 54; transform-style: preserve-3d; transition: transform 0.7s cubic-bezier(0.3, 0.8, 0.3, 1); }
+    .card-3d.is-tilting { transition: transform 0.12s linear; }
+    .card-face { position: absolute; inset: 0; overflow: hidden; border-radius: 3.7% / 5.9%; backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: 0 30px 50px -18px rgb(0 0 0 / 0.6), 0 6px 14px rgb(0 0 0 / 0.3), inset 0 0 0 1px rgb(255 255 255 / 0.06); }
+    .card-face svg { display: block; width: 100%; height: 100%; }
+    .card-back { transform: rotateY(180deg); }
+    .card-sheen { position: absolute; inset: 0; background: linear-gradient(105deg, transparent 36%, rgb(255 255 255 / 0.16) 48%, rgb(255 255 255 / 0.03) 56%, transparent 66%); transform: translateX(-120%); animation: sheen 5.5s ease-in-out 2.6s infinite; }
+    @keyframes sheen { 0% { transform: translateX(-120%); } 22%, 100% { transform: translateX(120%); } }
+
+    /* Sóng chạm */
+    .ring { position: absolute; inset: 0; border-radius: 9999px; border: 1px solid rgb(236 201 138 / 0.55); opacity: 0; animation: ring 3.2s ease-out infinite; }
+    @keyframes ring { 0% { opacity: 0.7; transform: scale(0.35); } 100% { opacity: 0; transform: scale(1.25); } }
+
+    /* Bản thử chạm thẻ */
+    .mini-card { transition: transform 0.4s ease; transform: rotate(9deg); }
+    .mini-card.is-tapping { animation: mini-tap 0.85s cubic-bezier(0.4, 0, 0.2, 1); }
+    @keyframes mini-tap {
+      0% { transform: rotate(9deg); }
+      45% { transform: translate(-58%, -118%) rotate(-3deg) scale(0.96); }
+      60% { transform: translate(-58%, -118%) rotate(-3deg) scale(0.96); }
+      100% { transform: rotate(9deg); }
+    }
+    .tap-flash { animation: tap-flash 0.7s ease-out; }
+    @keyframes tap-flash { 0% { box-shadow: 0 0 0 0 rgb(236 201 138 / 0.7); } 100% { box-shadow: 0 0 0 26px rgb(236 201 138 / 0); } }
+    .sentence { opacity: 0; animation: sentence-in 0.6s ease-out forwards; }
+    @keyframes sentence-in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    .paper-in { animation: paper-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+    @keyframes paper-in { from { opacity: 0; transform: translateY(18px) scale(0.97); } to { opacity: 1; transform: none; } }
+    .seal-pulse { animation: seal-pulse 1.8s ease-in-out infinite; }
+    @keyframes seal-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgb(236 201 138 / 0.4); } 50% { box-shadow: 0 0 0 14px rgb(236 201 138 / 0); } }
+
+    /* Dải chủ đề chạy ngang */
+    .marquee { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+    .marquee.reverse { animation-direction: reverse; animation-duration: 46s; }
+    .marquee-wrap:hover .marquee { animation-play-state: paused; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+    .fade-x { -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent); }
+
+    /* Phong thư mở ra khi cuộn tới phần quà tặng */
+    .envelope { position: relative; width: 260px; height: 178px; perspective: 800px; }
+    .env-back, .env-front, .env-flap, .env-sheet { position: absolute; inset: 0; }
+    .env-back { border-radius: 12px; background: #e6dcc6; z-index: 1; box-shadow: 0 26px 40px -16px rgb(0 0 0 / 0.55); }
+    .env-sheet { inset: 12px 16px 16px; border-radius: 6px; background: #fffaf0; z-index: 2; box-shadow: 0 2px 8px rgb(22 48 47 / 0.18); padding: 14px 16px; transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.75s; }
+    .env-front { border-radius: 0 0 12px 12px; background: #f7f0e2; clip-path: polygon(0 0, 50% 52%, 100% 0, 100% 100%, 0 100%); z-index: 3; }
+    .env-flap { background: #efe5cf; clip-path: polygon(0 0, 100% 0, 50% 58%); transform-origin: top center; z-index: 4; transition: transform 0.6s ease-in-out 0.3s, z-index 0s linear 0.6s; }
+    .env-seal { position: absolute; left: 50%; top: 50%; width: 42px; height: 42px; margin: -21px 0 0 -21px; border-radius: 9999px; background: #ecc98a; z-index: 5; box-shadow: 0 0 0 3px rgb(236 201 138 / 0.35), inset 0 0 0 5px rgb(22 48 47 / 0.12); transition: opacity 0.25s ease, transform 0.25s ease; }
+    .is-in .env-flap { transform: rotateX(180deg); z-index: 0; }
+    .is-in .env-sheet { transform: translateY(-58%); }
+    .is-in .env-seal { opacity: 0; transform: scale(0.6); }
+
+    .foil { background: linear-gradient(120deg, #f7e6bd 0%, #ecc98a 38%, #c4a05a 58%, #f3dcaa 80%, #e6c383 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .btn-gold { position: relative; overflow: hidden; }
+    .btn-gold::after { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 30%, rgb(255 255 255 / 0.55) 50%, transparent 70%); transform: translateX(-120%); transition: transform 0.7s ease; }
+    .btn-gold:hover::after { transform: translateX(120%); }
+    .underline-draw { background: linear-gradient(#ecc98a, #ecc98a) no-repeat 0 100% / 0 1px; transition: background-size 0.35s ease; }
+    .underline-draw:hover { background-size: 100% 1px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .loader { display: none; }
+      .js [data-hero], .js [data-reveal] { opacity: 1; transform: none; animation: none; transition: none; }
+      .card-float, .card-sheen, .ring, .firefly, .marquee, .glow-drift, .seal-pulse, .mini-card.is-tapping { animation: none; }
+      .sentence, .paper-in { opacity: 1; animation: none; }
+    }
+  </style>
+</head>
+
+<body class="font-sans" x-data="page" @scroll.window.passive="onScroll()">
+
+  <!-- MÀN CHÀO -->
+  <div class="loader" aria-hidden="true">
+    <svg width="132" height="110" viewBox="0 0 64 54" fill="none" stroke-linecap="round">
+      <g stroke="#ecc98a" stroke-width="1.6">
+        <path class="loader-ray" style="animation-delay:.75s" d="M12.5 21.5 8.8 20.2"/>
+        <path class="loader-ray" style="animation-delay:.8s" d="M17.5 13.5 14.8 10.6"/>
+        <path class="loader-ray" style="animation-delay:.85s" d="M24.6 8.6 23.4 4.9"/>
+        <path class="loader-ray" style="animation-delay:.9s" d="M32 7V3"/>
+        <path class="loader-ray" style="animation-delay:.95s" d="M39.4 8.6 40.6 4.9"/>
+        <path class="loader-ray" style="animation-delay:1s" d="M46.5 13.5 49.2 10.6"/>
+        <path class="loader-ray" style="animation-delay:1.05s" d="M51.5 21.5 55.2 20.2"/>
+      </g>
+      <path class="loader-sun" d="M14 30A18 18 0 0 1 50 30" stroke="#ecc98a" stroke-width="2.4"/>
+      <path class="loader-line" style="animation-delay:.05s" d="M5 30H59" stroke="#ecc98a" stroke-width="2.4"/>
+      <path class="loader-line" style="animation-delay:.45s" d="M17 38H47" stroke="#bcd3bd" stroke-width="2.4"/>
+      <path class="loader-line" style="animation-delay:.6s" d="M24 45H40" stroke="#bcd3bd" stroke-width="2.4"/>
+    </svg>
+    <p class="loader-name" style="margin-top:22px;font:600 13px 'Be Vietnam Pro',system-ui,sans-serif;text-transform:uppercase;color:#ecc98a">Khoảng Ngẫm</p>
+  </div>
+
+  <!-- THANH TIẾN ĐỘ CUỘN -->
+  <div class="fixed left-0 top-0 z-[60] h-[2px] bg-gold" :style="`width:${progress}%`" aria-hidden="true"></div>
+
+  <!-- ĐIỀU HƯỚNG -->
+  <header class="fixed inset-x-0 top-0 z-50 transition-all duration-500"
+          :class="scrolled ? 'bg-ink/85 backdrop-blur-md shadow-[0_1px_0_rgb(188_211_189/0.14)]' : 'bg-transparent'">
+    <nav class="mx-auto flex h-16 max-w-6xl items-center gap-6 px-5" aria-label="Điều hướng chính">
+      <a href="#top" class="flex items-center gap-2.5" aria-label="Khoảng Ngẫm, về đầu trang">
+        <svg width="30" height="30" viewBox="0 0 64 64" fill="none" stroke-linecap="round" stroke-width="2.6" aria-hidden="true">
+          <path d="M14 32A18 18 0 0 1 50 32M5 32H59" stroke="#ecc98a"/>
+          <path d="M17 40H47M24 47H40" stroke="#bcd3bd"/>
+        </svg>
+        <span class="text-[13px] font-semibold uppercase tracking-[0.22em] text-gold">Khoảng Ngẫm</span>
+      </a>
+
+      <ul class="ml-auto hidden items-center gap-7 text-[14px] text-sage md:flex">
+        <template x-for="link in links" :key="link.href">
+          <li><a :href="link.href" class="underline-draw pb-1 transition-colors hover:text-paper" x-text="link.label"></a></li>
+        </template>
+      </ul>
+
+      <a :href="trialUrl" class="btn-gold ml-auto hidden rounded-full bg-gold px-5 py-2 text-[14px] font-semibold text-ink sm:inline-flex md:ml-0">Đọc thử miễn phí</a>
+
+      <button type="button" class="ml-auto flex h-10 w-10 items-center justify-center rounded-full border border-sage/30 sm:ml-0 md:hidden"
+              @click="menu = !menu" :aria-expanded="menu" aria-controls="mobile-menu" aria-label="Mở menu">
+        <span class="relative block h-3 w-5">
+          <span class="absolute left-0 top-0 h-px w-5 bg-paper transition-transform duration-300" :class="menu && 'translate-y-[6px] rotate-45'"></span>
+          <span class="absolute bottom-0 left-0 h-px w-5 bg-paper transition-transform duration-300" :class="menu && '-translate-y-[5px] -rotate-45'"></span>
+        </span>
+      </button>
+    </nav>
+
+    <div id="mobile-menu" x-cloak x-show="menu" x-collapse class="border-t border-sage/15 bg-ink/95 backdrop-blur-md md:hidden">
+      <ul class="mx-auto flex max-w-6xl flex-col px-5 py-3 text-[15px]">
+        <template x-for="link in links" :key="link.href">
+          <li><a :href="link.href" class="block border-b border-sage/10 py-3 text-paper" @click="menu = false" x-text="link.label"></a></li>
+        </template>
+        <li class="py-4"><a :href="trialUrl" class="inline-flex w-full justify-center rounded-full bg-gold px-5 py-3 font-semibold text-ink">Đọc thử miễn phí</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- 1. MỞ ĐẦU -->
+    <section class="grain relative overflow-hidden pt-24 sm:pt-28">
+      <div class="glow-drift pointer-events-none absolute -top-48 left-1/2 h-[640px] w-[640px] -translate-x-1/2 rounded-full bg-deep/50 blur-3xl" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <span class="firefly" style="left:12%;top:62%;animation-delay:0s"></span>
+        <span class="firefly" style="left:28%;top:80%;animation-delay:2.4s"></span>
+        <span class="firefly" style="left:55%;top:72%;animation-delay:4.1s"></span>
+        <span class="firefly" style="left:74%;top:58%;animation-delay:1.2s"></span>
+        <span class="firefly" style="left:88%;top:78%;animation-delay:5.6s"></span>
+        <span class="firefly" style="left:42%;top:44%;animation-delay:6.8s"></span>
+      </div>
+
+      <div class="relative mx-auto grid max-w-6xl items-center gap-14 px-5 pb-14 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:pb-20">
+        <div class="text-center lg:text-left">
+          <p data-hero style="animation-delay:.05s" class="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-[12px] font-semibold uppercase tracking-[0.2em] text-gold">
+            <span class="h-1.5 w-1.5 rounded-full bg-gold"></span> 99 ngày thương mình
+          </p>
+          <h1 data-hero style="animation-delay:.18s" class="mt-6 font-serif text-[40px] font-medium leading-[1.12] text-paper sm:text-[54px] lg:text-[64px]">
+            Mỗi ngày một lá thư, <span class="foil italic">viết cho chính bạn</span>
+          </h1>
+          <p data-hero style="animation-delay:.32s" class="mx-auto mt-6 max-w-xl text-[16px] leading-8 text-sage lg:mx-0">
+            Một tấm thẻ nhỏ chứa 99 lá thư ngắn về những ngày cố gắng, lớn lên, yêu thương và học cách dịu dàng với mình.
+            Chạm điện thoại vào thẻ, lá thư của hôm nay mở ra. Không cần đọc vội. Mỗi ngày một lá là đủ.
+          </p>
+          <div data-hero style="animation-delay:.46s" class="mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
+            <a href="#gia" class="btn-gold inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 text-[15px] font-semibold text-ink shadow-[0_14px_30px_-12px_rgb(236_201_138/0.7)] transition hover:-translate-y-0.5 sm:w-auto">
+              Đặt thẻ cho mình
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a :href="trialUrl" class="inline-flex w-full items-center justify-center rounded-full border border-sage/40 px-7 py-3.5 text-[15px] font-medium text-paper transition hover:border-gold hover:text-gold sm:w-auto">
+              Đọc thử 7 lá thư
+            </a>
+          </div>
+          <p data-hero style="animation-delay:.6s" class="mt-6 text-[13px] text-sage/80">Không cần cài ứng dụng. Không cần tạo tài khoản.</p>
+        </div>
+
+        <!-- Tấm thẻ: di chuột để nghiêng, bấm để lật -->
+        <div data-hero style="animation-delay:.4s" class="relative mx-auto w-full max-w-[460px]" x-data="card">
+          <div class="pointer-events-none absolute left-1/2 top-1/2 h-[118%] w-[76%] -translate-x-1/2 -translate-y-1/2" aria-hidden="true">
+            <span class="ring"></span>
+            <span class="ring" style="animation-delay:1.05s"></span>
+            <span class="ring" style="animation-delay:2.1s"></span>
+          </div>
+
+          <div class="absolute -right-2 -top-10 hidden w-[58%] rotate-[7deg] rounded-md bg-[#fffaf0] px-5 py-4 text-left text-ink shadow-[0_20px_40px_-18px_rgb(0_0_0/0.6)] sm:block" aria-hidden="true">
+            <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-deep">Lá thư hôm nay</p>
+            <p class="mt-2 font-serif text-[13px] leading-6 text-ink/80">Cứ tưới đều, rồi sẽ có một sáng bạn chợt thấy mình có lá mới.</p>
+          </div>
+
+          <div class="card-float relative">
+            <button type="button" class="card-stage block w-full cursor-pointer rounded-2xl text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-gold"
+                    @pointermove="move($event)" @pointerleave="leave()" @click="flipped = !flipped"
+                    :aria-label="flipped ? 'Mặt sau của thẻ. Bấm để xem mặt trước.' : 'Mặt trước của thẻ. Bấm để xem mặt sau.'">
+              <div class="card-3d" :class="tilting && 'is-tilting'" :style="style">
+                <!-- Mặt trước -->
+                <div class="card-face">
+                  <svg viewBox="3 3 85.6 54" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="cardCloth" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#1c3a38"/><stop offset="0.52" stop-color="#16302f"/><stop offset="1" stop-color="#102725"/>
+                      </linearGradient>
+                    </defs>
+                    <rect width="91.6" height="60" fill="url(#cardCloth)"/>
+                    <rect x="7.5" y="7.5" width="76.6" height="45" rx="1.2" fill="none" stroke="#ecc98a" stroke-width=".3"/>
+                    <g transform="translate(45.8 20.9) scale(.85)" fill="none" stroke-linecap="round">
+                      <g stroke="#ecc98a" stroke-width=".62">
+                        <path d="M-6.8 1.7A6.8 6.8 0 0 1 6.8 1.7"/><path d="M-12.8 1.7H12.8"/>
+                        <path d="M-9.1-1.5-11-2.2M-6.8-4.5-8.1-6M-3.6-6.7-4.1-8.6M0-7.5V-9.6M3.6-6.7 4.1-8.6M6.8-4.5 8.1-6M9.1-1.5 11-2.2"/>
+                      </g>
+                      <g stroke="#bcd3bd" stroke-width=".55"><path d="M-8.5 4.3H8.5"/><path d="M-5.3 6.5H5.3"/></g>
+                    </g>
+                    <text x="45.8" y="35.7" text-anchor="middle" fill="#ecc98a" font-family="Lora, Georgia, serif" font-size="9.4" font-weight="500">99</text>
+                    <text x="46" y="41.3" text-anchor="middle" fill="#f7f0e2" font-family="Lora, Georgia, serif" font-size="3.3" letter-spacing=".38">NGÀY THƯƠNG MÌNH</text>
+                    <text x="45.8" y="46" text-anchor="middle" fill="#bcd3bd" font-family="Lora, Georgia, serif" font-size="2.4" font-style="italic">Mỗi ngày một lá thư</text>
+                    <text x="10.2" y="12.1" fill="#ecc98a" font-family="'Great Vibes', cursive" font-size="3.2">Khoảng Ngẫm</text>
+                  </svg>
+                  <span class="card-sheen"></span>
+                </div>
+                <!-- Mặt sau -->
+                <div class="card-face card-back">
+                  <svg viewBox="3 3 85.6 54" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                      <radialGradient id="cardPaper" cx="50%" cy="42%" r="72%"><stop stop-color="#fffaf0"/><stop offset="1" stop-color="#f0e5d1"/></radialGradient>
+                    </defs>
+                    <rect width="91.6" height="60" fill="url(#cardPaper)"/>
+                    <g transform="translate(45.8 12.7) scale(.6)" fill="none" stroke-linecap="round">
+                      <path d="M-4.8 1.5A4.8 4.8 0 0 1 4.8 1.5M-8.4 1.5H8.4" stroke="#c79f58" stroke-width=".6"/>
+                      <path d="M-5.8 4H5.8M-3.2 6.2H3.2" stroke="#73927f" stroke-width=".55"/>
+                    </g>
+                    <text x="45.8" y="23.1" text-anchor="middle" fill="#16302f" font-family="Lora, Georgia, serif" font-size="3.5">Lá thư hôm nay đang chờ bạn</text>
+                    <g transform="translate(27 35.5)">
+                      <circle r="6" fill="#16302f"/>
+                      <g fill="none" stroke="#f7f0e2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="-2.5" y="-4.1" width="5" height="8.2" rx=".85" stroke-width=".45"/><path d="M-1 2.9H1" stroke-width=".4"/>
+                      </g>
+                      <path d="M4-2.7c1.8 1.5 1.8 3.9 0 5.4M3-1.5c.9.8.9 2.2 0 3" fill="none" stroke="#ecc98a" stroke-linecap="round" stroke-width=".52"/>
+                    </g>
+                    <text x="27" y="48.1" text-anchor="middle" fill="#3e6658" font-family="Lora, Georgia, serif" font-size="2.4" font-style="italic">Chạm để mở thư</text>
+                    <path d="M45.8 28.5V33.1M45.8 38.1V42.5" fill="none" stroke="#c79f58" stroke-width=".15" stroke-linecap="round"/>
+                    <text x="45.8" y="36.3" text-anchor="middle" fill="#73927f" font-family="Lora, Georgia, serif" font-size="2.4" font-style="italic">hoặc</text>
+                    <!-- Mã minh hoạ, không quét được. Mỗi thẻ thật có một mã riêng. -->
+                    <g transform="translate(56.6 27.5) scale(.7619)" fill="#16302f" shape-rendering="crispEdges"><path :d="qr"/></g>
+                    <text x="64.6" y="48.1" text-anchor="middle" fill="#3e6658" font-family="Lora, Georgia, serif" font-size="2.4" font-style="italic">Quét để mở thư</text>
+                  </svg>
+                </div>
+              </div>
+            </button>
+          </div>
+
+          <p class="mt-8 flex items-center justify-center gap-2 text-[13px] text-sage">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg>
+            <span x-text="flipped ? 'Bấm lần nữa để xem mặt trước' : 'Bấm vào thẻ để xem mặt sau'"></span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Con số -->
+      <div class="relative border-y border-sage/15 bg-ink/40">
+        <dl class="mx-auto grid max-w-6xl grid-cols-2 px-5 text-center md:grid-cols-4">
+          <div class="border-b border-r border-sage/15 py-8 md:border-b-0" data-reveal>
+            <dd class="font-serif text-[44px] leading-none text-gold" x-data="counter(99)" x-intersect.once="run()" x-text="value">99</dd>
+            <dt class="mt-2 text-[12px] uppercase tracking-[0.18em] text-sage">Lá thư</dt>
+          </div>
+          <div class="border-b border-sage/15 py-8 md:border-b-0 md:border-r" data-reveal style="transition-delay:.08s">
+            <dd class="font-serif text-[44px] leading-none text-gold" x-data="counter(1)" x-intersect.once="run()" x-text="value">1</dd>
+            <dt class="mt-2 text-[12px] uppercase tracking-[0.18em] text-sage">Lá mỗi ngày</dt>
+          </div>
+          <div class="border-r border-sage/15 py-8" data-reveal style="transition-delay:.16s">
+            <dd class="font-serif text-[44px] leading-none text-gold" x-data="counter(9)" x-intersect.once="run()" x-text="value">9</dd>
+            <dt class="mt-2 text-[12px] uppercase tracking-[0.18em] text-sage">Chủ đề</dt>
+          </div>
+          <div class="py-8" data-reveal style="transition-delay:.24s">
+            <dd class="font-serif text-[44px] leading-none text-gold">0</dd>
+            <dt class="mt-2 text-[12px] uppercase tracking-[0.18em] text-sage">Ứng dụng phải cài</dt>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 2. TẤM THẺ -->
+    <section id="the" class="relative mx-auto max-w-6xl px-5 py-14 sm:py-20 lg:py-24">
+      <div class="mx-auto max-w-2xl text-center">
+        <p data-reveal class="text-[12px] font-semibold uppercase tracking-[0.24em] text-gold">Tấm thẻ</p>
+        <h2 data-reveal class="mt-4 font-serif text-[32px] font-medium leading-tight sm:text-[42px]">Nhỏ như thẻ ngân hàng, đủ chỗ cho 99 ngày</h2>
+        <p data-reveal class="mt-5 text-[16px] leading-8 text-sage">
+          Bên trong tấm thẻ là một cuốn sổ thư. Bạn không lướt được hết trong một tối, vì mỗi ngày thẻ chỉ mở đúng một lá.
+          Chậm như vậy là có chủ ý.
+        </p>
+      </div>
+
+      <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <template x-for="(f, i) in features" :key="f.title">
+          <article data-reveal :style="`transition-delay:${(i % 3) * 0.09}s`"
+                   class="group relative overflow-hidden rounded-3xl border border-sage/15 bg-deep/10 p-7 transition duration-500 hover:-translate-y-1.5 hover:border-gold/50 hover:bg-deep/20">
+            <span class="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gold/10 blur-2xl transition duration-500 group-hover:bg-gold/25" aria-hidden="true"></span>
+            <span class="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-gold/30 bg-ink text-gold transition duration-500 group-hover:rotate-[-6deg] group-hover:scale-110">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" x-html="f.icon"></svg>
+            </span>
+            <h3 class="relative mt-5 font-serif text-[20px] text-paper" x-text="f.title"></h3>
+            <p class="relative mt-2 text-[15px] leading-7 text-sage" x-text="f.body"></p>
+          </article>
+        </template>
+      </div>
+    </section>
+
+    <!-- 3. CÁCH DÙNG -->
+    <section id="cach-dung" class="relative overflow-hidden border-y border-sage/15 bg-[#12292a]">
+      <div class="pointer-events-none absolute -left-40 top-1/3 h-[420px] w-[420px] rounded-full bg-deep/40 blur-3xl" aria-hidden="true"></div>
+      <div class="relative mx-auto grid max-w-6xl items-center gap-16 px-5 py-14 sm:py-20 lg:grid-cols-2 lg:py-24">
+
+        <div>
+          <p data-reveal class="text-[12px] font-semibold uppercase tracking-[0.24em] text-gold">Cách sử dụng</p>
+          <h2 data-reveal class="mt-4 font-serif text-[32px] font-medium leading-tight sm:text-[42px]">Ba giây để mở một lá thư</h2>
+
+          <ol class="mt-10 space-y-8">
+            <template x-for="(s, i) in steps" :key="s.title">
+              <li data-reveal="left" :style="`transition-delay:${i * 0.12}s`" class="relative flex gap-5">
+                <span class="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-ink font-serif text-[20px] text-gold" x-text="i + 1"></span>
+                <span x-show="i < steps.length - 1" class="absolute left-6 top-12 h-[calc(100%+8px)] w-px bg-gradient-to-b from-gold/40 to-transparent" aria-hidden="true"></span>
+                <div>
+                  <h3 class="font-serif text-[20px] text-paper" x-text="s.title"></h3>
+                  <p class="mt-1.5 text-[15px] leading-7 text-sage" x-text="s.body"></p>
+                </div>
+              </li>
+            </template>
+          </ol>
+
+          <p data-reveal class="mt-10 rounded-2xl border border-sage/20 bg-ink/50 px-5 py-4 text-[14px] leading-7 text-sage">
+            <strong class="font-semibold text-paper">Mẹo chạm:</strong> với iPhone, đưa thẻ lên mép trên của máy. Với Android, áp thẻ vào giữa lưng máy và nhớ bật NFC.
+            Máy không có NFC thì mở camera, quét mã QR ở mặt sau thẻ.
+          </p>
+        </div>
+
+        <!-- Bản thử: chạm thẻ ngay trên trang -->
+        <div data-reveal="right" class="mx-auto w-full max-w-[420px]" x-data="demo">
+          <div class="relative mx-auto w-[280px]">
+            <div class="relative h-[560px] overflow-hidden rounded-[42px] border-[9px] border-[#0b1b1b] bg-ink shadow-[0_40px_70px_-25px_rgb(0_0_0/0.8),inset_0_0_0_1px_rgb(255_255_255/0.08)]"
+                 :class="flash && 'tap-flash'">
+              <span class="absolute left-1/2 top-2.5 z-20 h-5 w-24 -translate-x-1/2 rounded-full bg-[#0b1b1b]" aria-hidden="true"></span>
+
+              <!-- Chưa mở lá hôm nay -->
+              <div x-show="!opened" x-transition.opacity.duration.400ms class="absolute inset-0 flex flex-col items-center justify-center px-7 text-center">
+                <span class="seal-pulse flex h-20 w-20 items-center justify-center rounded-full border border-gold/50 bg-deep/30">
+                  <svg width="42" height="42" viewBox="0 0 64 64" fill="none" stroke-linecap="round" stroke-width="2.6" aria-hidden="true">
+                    <path d="M14 32A18 18 0 0 1 50 32M5 32H59" stroke="#ecc98a"/><path d="M17 40H47M24 47H40" stroke="#bcd3bd"/>
+                  </svg>
+                </span>
+                <p class="mt-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-gold" x-text="`Ngày ${day}`"></p>
+                <p class="mt-2 font-serif text-[19px] leading-snug text-paper">Lá thư hôm nay đang chờ bạn</p>
+                <p class="mt-2 text-[13px] leading-6 text-sage">Chạm thẻ để mở</p>
+              </div>
+
+              <!-- Đã mở -->
+              <template x-if="opened">
+                <div class="paper-in absolute inset-0 flex flex-col bg-[#fffaf0] px-6 pb-6 pt-12 text-ink" :key="n">
+                  <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-deep" x-text="letter.theme"></p>
+                  <p class="mt-1 font-serif text-[20px] font-medium" x-text="`Lá thư số ${n}`"></p>
+                  <span class="mt-3 h-px w-10 bg-[#c79f58]"></span>
+                  <p class="mt-4 flex-1 overflow-hidden font-serif text-[14.5px] leading-[1.75] text-ink/90">
+                    <template x-for="(sentence, i) in sentences" :key="n + '-' + i">
+                      <span class="sentence" :style="`animation-delay:${0.35 + i * 0.55}s`" x-text="sentence + ' '"></span>
+                    </template>
+                  </p>
+                  <p class="mt-3 flex items-center justify-between text-[11px] text-deep/80">
+                    <span x-text="`${n} / 99`"></span>
+                    <span class="italic">Khoảng Ngẫm</span>
+                  </p>
+                </div>
+              </template>
+            </div>
+
+            <!-- Tấm thẻ nhỏ bay lên chạm vào máy -->
+            <div class="mini-card absolute -bottom-6 -right-16 z-30 flex h-[70px] w-[112px] flex-col items-center justify-center rounded-lg border border-gold/60 bg-gradient-to-br from-[#1c3a38] to-[#102725] shadow-[0_18px_30px_-12px_rgb(0_0_0/0.8)] max-[400px]:-right-6"
+                 :class="tapping && 'is-tapping'" aria-hidden="true">
+              <span class="font-serif text-[24px] leading-none text-gold">99</span>
+              <span class="mt-1 text-[6px] uppercase tracking-[0.2em] text-paper">Ngày thương mình</span>
+            </div>
+          </div>
+
+          <div class="mt-12 text-center">
+            <p class="min-h-[48px] text-[14px] leading-6 text-sage" aria-live="polite" x-text="message"></p>
+            <div class="mt-4 flex flex-col justify-center gap-3 sm:flex-row">
+              <button type="button" @click="tap()" :disabled="tapping"
+                      class="btn-gold inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-[15px] font-semibold text-ink transition hover:-translate-y-0.5 disabled:opacity-60">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 8.5a5 5 0 0 1 0 7M10 6a8.5 8.5 0 0 1 0 12M14 3.5a12 12 0 0 1 0 17"/></svg>
+                Chạm thẻ
+              </button>
+              <button type="button" @click="nextDay()" :disabled="tapping"
+                      class="inline-flex items-center justify-center rounded-full border border-sage/40 px-6 py-3 text-[15px] font-medium text-paper transition hover:border-gold hover:text-gold disabled:opacity-60"
+                      x-text="n >= letters.length && opened ? 'Thử lại từ đầu' : 'Tua sang ngày mai'">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. LÁ THƯ -->
+    <section id="la-thu" class="relative overflow-hidden bg-paper py-14 text-ink sm:py-20 lg:py-24">
+      <div class="mx-auto max-w-6xl px-5">
+        <div class="mx-auto max-w-2xl text-center">
+          <p data-reveal class="text-[12px] font-semibold uppercase tracking-[0.24em] text-deep">Những lá thư</p>
+          <h2 data-reveal class="mt-4 font-serif text-[32px] font-medium leading-tight sm:text-[42px]">Viết như một người bạn ngồi cạnh, không dạy đời</h2>
+          <p data-reveal class="mt-5 text-[16px] leading-8 text-ink/70">
+            Mỗi lá chỉ vài câu, đọc chưa tới một phút. Chuyện trong thư là chuyện thường ngày: cái điện thoại sắp hết pin, nhóm chat, cuộc gọi về nhà.
+          </p>
+        </div>
+      </div>
+
+      <div class="marquee-wrap fade-x mt-12 space-y-3 overflow-hidden" aria-label="Chín chủ đề của 99 lá thư">
+        <div class="marquee">
+          <template x-for="(t, i) in [...themes, ...themes]" :key="'a' + i">
+            <span class="mx-1.5 inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-ink/15 bg-white/50 px-5 py-2.5 font-serif text-[16px] text-ink">
+              <span class="h-1.5 w-1.5 rotate-45 bg-[#c79f58]"></span><span x-text="t"></span>
+            </span>
+          </template>
+        </div>
+        <div class="marquee reverse" aria-hidden="true">
+          <template x-for="(t, i) in [...themes.slice(4), ...themes.slice(0, 4), ...themes.slice(4), ...themes.slice(0, 4)]" :key="'b' + i">
+            <span class="mx-1.5 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-ink px-5 py-2.5 font-serif text-[16px] text-paper">
+              <span class="h-1.5 w-1.5 rotate-45 bg-gold"></span><span x-text="t"></span>
+            </span>
+          </template>
+        </div>
+      </div>
+
+      <div class="mx-auto mt-16 grid max-w-6xl gap-6 px-5 md:grid-cols-3">
+        <template x-for="(q, i) in quotes" :key="q.text">
+          <figure data-reveal :style="`transition-delay:${i * 0.12}s`"
+                  class="group relative rounded-2xl bg-[#fffaf0] p-8 shadow-[0_20px_40px_-24px_rgb(22_48_47/0.45)] ring-1 ring-ink/5 transition duration-500 hover:-translate-y-2 hover:shadow-[0_30px_50px_-24px_rgb(22_48_47/0.55)]"
+                  :class="['md:rotate-[-1.2deg]', 'md:translate-y-4', 'md:rotate-[1.2deg]'][i]">
+            <span class="font-serif text-[56px] leading-none text-[#c79f58]/60" aria-hidden="true">“</span>
+            <blockquote class="-mt-4 font-serif text-[17px] leading-8 text-ink/90" x-text="q.text"></blockquote>
+            <figcaption class="mt-6 flex items-center gap-3 text-[12px] uppercase tracking-[0.18em] text-deep">
+              <span class="h-px w-8 bg-[#c79f58]"></span><span x-text="q.theme"></span>
+            </figcaption>
+          </figure>
+        </template>
+      </div>
+
+      <div data-reveal class="mx-auto mt-16 max-w-xl px-5 text-center">
+        <p class="text-[15px] leading-7 text-ink/70">Ba đoạn trên trích từ bộ 7 lá đọc thử. 99 lá trong thẻ là những lá khác hẳn, bạn chưa từng đọc lá nào.</p>
+        <a :href="trialUrl" class="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-[15px] font-semibold text-paper transition hover:-translate-y-0.5 hover:bg-deep">
+          Đọc thử 7 lá, không cần thẻ
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- 5. QUÀ TẶNG -->
+    <section id="tang" class="relative overflow-hidden">
+      <div class="pointer-events-none absolute right-[-160px] top-10 h-[460px] w-[460px] rounded-full bg-rose/10 blur-3xl" aria-hidden="true"></div>
+      <div class="relative mx-auto grid max-w-6xl items-center gap-16 px-5 py-14 sm:py-20 lg:grid-cols-2 lg:py-24">
+        <div data-reveal="zoom" class="flex justify-center lg:order-2">
+          <div class="envelope">
+            <div class="env-back"></div>
+            <div class="env-sheet text-ink">
+              <p class="font-script text-[22px] leading-none text-deep">Gửi bạn,</p>
+              <p class="mt-2 font-serif text-[11.5px] leading-[1.6] text-ink/75">Mình mong 99 ngày tới, ngày nào bạn cũng có một phút dịu dàng với chính mình.</p>
+            </div>
+            <div class="env-front"></div>
+            <div class="env-flap"></div>
+            <div class="env-seal"></div>
+          </div>
+        </div>
+
+        <div>
+          <p data-reveal class="text-[12px] font-semibold uppercase tracking-[0.24em] text-gold">Để tặng</p>
+          <h2 data-reveal class="mt-4 font-serif text-[32px] font-medium leading-tight sm:text-[42px]">Một món quà được mở 99 lần</h2>
+          <p data-reveal class="mt-5 text-[16px] leading-8 text-sage">
+            Trước khi trao thẻ, bạn viết một lời nhắn riêng. Đó là điều đầu tiên người nhận nhìn thấy khi chạm thẻ lần đầu.
+            Sau đó, mỗi ngày họ nhận thêm một lá thư, và nhớ tới bạn thêm một lần.
+          </p>
+          <ul class="mt-8 space-y-4">
+            <template x-for="(g, i) in gifts" :key="g">
+              <li data-reveal :style="`transition-delay:${i * 0.1}s`" class="flex items-start gap-3 text-[15px] leading-7 text-paper">
+                <span class="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold text-ink">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+                </span>
+                <span x-text="g"></span>
+              </li>
+            </template>
+          </ul>
+          <a data-reveal :href="giftUrl" class="underline-draw mt-9 inline-flex items-center gap-2 pb-1 text-[15px] font-semibold text-gold">
+            Đã có thẻ? Viết lời nhắn cho người nhận
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. GIÁ BÁN -->
+    <section id="gia" class="relative border-y border-sage/15 bg-[#12292a]">
+      <div class="mx-auto max-w-6xl px-5 py-14 sm:py-20 lg:py-24">
+        <div class="mx-auto max-w-2xl text-center">
+          <p data-reveal class="text-[12px] font-semibold uppercase tracking-[0.24em] text-gold">Giá bán</p>
+          <h2 data-reveal class="mt-4 font-serif text-[32px] font-medium leading-tight sm:text-[42px]">Mua một lần, đọc 99 ngày</h2>
+          <p data-reveal class="mt-5 text-[16px] leading-8 text-sage">Không có phí hằng tháng. Không có gói nâng cấp. Tấm thẻ là tất cả những gì bạn cần.</p>
+        </div>
+
+        <div data-reveal="zoom" class="relative mx-auto mt-14 max-w-4xl">
+          <div class="pointer-events-none absolute -inset-px rounded-[34px] bg-gradient-to-br from-gold/70 via-gold/10 to-gold/50" aria-hidden="true"></div>
+          <div class="relative grid overflow-hidden rounded-[33px] bg-ink lg:grid-cols-[1fr_1.1fr]">
+            <div class="relative flex flex-col justify-between overflow-hidden bg-gradient-to-br from-[#21443f] to-[#16302f] p-9 sm:p-11">
+              <span class="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-gold/15 blur-3xl" aria-hidden="true"></span>
+              <div class="relative">
+                <p class="font-script text-[30px] leading-none text-gold">Khoảng Ngẫm</p>
+                <h3 class="mt-4 font-serif text-[26px] leading-tight text-paper">Thẻ 99 ngày thương mình</h3>
+                <p class="mt-2 text-[14px] leading-6 text-sage">Một bản để dùng, một bản để tặng.</p>
+              </div>
+              <div class="relative mt-9 space-y-3">
+                <template x-for="plan in plans" :key="plan.name">
+                  <div class="flex flex-col gap-3 rounded-2xl border px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+                       :class="plan.featured ? 'border-gold/45 bg-gold/[0.07]' : 'border-sage/20'">
+                    <div class="min-w-0">
+                      <span x-show="plan.featured" class="mb-2 inline-block rounded-full bg-gold px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-ink">Được chọn nhiều</span>
+                      <p class="font-serif text-[17px] leading-tight text-paper" x-text="plan.name"></p>
+                      <p class="mt-1.5 text-[13px] leading-5 text-sage sm:max-w-[220px]" x-text="plan.note"></p>
+                    </div>
+                    <div class="flex items-baseline justify-end gap-2.5 sm:block sm:shrink-0 sm:text-right">
+                      <p class="font-serif text-[26px] leading-none"><span class="foil" x-text="plan.price"></span></p>
+                      <p x-show="plan.compareAt" class="text-[12px] text-sage/70 line-through sm:mt-1" x-text="plan.compareAt"></p>
+                    </div>
+                  </div>
+                </template>
+                <a :href="orderUrl" class="btn-gold !mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 text-[15px] font-semibold text-ink transition hover:-translate-y-0.5">
+                  Đặt thẻ ngay
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+                <p class="text-center text-[12px] leading-5 text-sage/80" x-text="priceNote"></p>
+              </div>
+            </div>
+
+            <div class="p-9 sm:p-11">
+              <p class="text-[12px] font-semibold uppercase tracking-[0.2em] text-gold">Bạn nhận được</p>
+              <ul class="mt-6 space-y-4">
+                <template x-for="item in included" :key="item">
+                  <li class="flex items-start gap-3 text-[15px] leading-7 text-paper">
+                    <svg class="mt-1.5 shrink-0 text-gold" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+                    <span x-text="item"></span>
+                  </li>
+                </template>
+              </ul>
+              <p class="mt-8 rounded-2xl border border-sage/20 px-5 py-4 text-[14px] leading-7 text-sage">
+                Cần nhiều thẻ để tặng nhóm bạn, tặng nhân viên hay làm quà sự kiện?
+                <a :href="orderUrl" class="font-semibold text-gold underline-offset-4 hover:underline">Nhắn cho chúng mình</a> để có giá theo số lượng.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. HỎI ĐÁP -->
+    <section id="hoi-dap" class="mx-auto max-w-3xl px-5 py-14 sm:py-20 lg:py-24">
+      <div class="text-center">
+        <p data-reveal class="text-[12px] font-semibold uppercase tracking-[0.24em] text-gold">Hỏi đáp</p>
+        <h2 data-reveal class="mt-4 font-serif text-[32px] font-medium leading-tight sm:text-[42px]">Những điều bạn có thể đang thắc mắc</h2>
+      </div>
+
+      <div class="mt-12 divide-y divide-sage/15 border-y border-sage/15" x-data="{ open: 0 }">
+        <template x-for="(item, i) in faqs" :key="item.q">
+          <div data-reveal :style="`transition-delay:${Math.min(i, 5) * 0.05}s`">
+            <h3>
+              <button type="button" class="flex w-full items-center gap-4 py-5 text-left transition-colors hover:text-gold"
+                      @click="open = open === i ? null : i" :aria-expanded="open === i" :aria-controls="'faq-' + i">
+                <span class="flex-1 font-serif text-[18px] leading-snug" :class="open === i ? 'text-gold' : 'text-paper'" x-text="item.q"></span>
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition duration-300"
+                      :class="open === i ? 'rotate-45 border-gold bg-gold text-ink' : 'border-sage/40 text-sage'">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </button>
+            </h3>
+            <div :id="'faq-' + i" x-show="open === i" x-collapse x-cloak>
+              <p class="pb-6 pr-12 text-[15px] leading-8 text-sage" x-text="item.a"></p>
+            </div>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- 8. LỜI KẾT -->
+    <section class="grain relative overflow-hidden border-t border-sage/15">
+      <div class="glow-drift pointer-events-none absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-deep/50 blur-3xl" aria-hidden="true"></div>
+      <div class="relative mx-auto max-w-3xl px-5 py-14 text-center sm:py-20 lg:py-24">
+        <svg data-reveal class="mx-auto" width="72" height="72" viewBox="0 0 64 64" fill="none" stroke-linecap="round" stroke-width="2.2" aria-hidden="true">
+          <path d="M14 32A18 18 0 0 1 50 32M5 32H59" stroke="#ecc98a"/><path d="M17 40H47M24 47H40" stroke="#bcd3bd"/>
+        </svg>
+        <h2 data-reveal class="mt-8 font-serif text-[34px] font-medium leading-tight sm:text-[48px]">
+          Có những ngày, một câu nói đúng lúc cũng đủ để mình <span class="foil italic">đi tiếp</span>
+        </h2>
+        <p data-reveal class="mx-auto mt-6 max-w-xl text-[16px] leading-8 text-sage">Lá thư đầu tiên đang chờ. Bạn có thể đọc thử trước, hoặc mang cả 99 lá về.</p>
+        <div data-reveal class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <a :href="orderUrl" class="btn-gold inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-3.5 text-[15px] font-semibold text-ink transition hover:-translate-y-0.5 sm:w-auto">Đặt thẻ</a>
+          <a :href="trialUrl" class="inline-flex w-full items-center justify-center rounded-full border border-sage/40 px-8 py-3.5 text-[15px] font-medium text-paper transition hover:border-gold hover:text-gold sm:w-auto">Đọc thử trước</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CHÂN TRANG -->
+  <footer id="lien-he" class="border-t border-sage/15 bg-[#0f2424]">
+    <div class="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div>
+        <p class="font-script text-[34px] leading-none text-gold">Khoảng Ngẫm</p>
+        <p class="mt-4 max-w-sm text-[14px] leading-7 text-sage">Một khoảng nhỏ mỗi ngày để ở lại với mình. 99 lá thư, mở bằng một tấm thẻ.</p>
+      </div>
+      <div>
+        <p class="text-[12px] font-semibold uppercase tracking-[0.2em] text-gold">Khám phá</p>
+        <ul class="mt-4 space-y-2.5 text-[14px] text-sage">
+          <template x-for="link in links" :key="'f' + link.href">
+            <li><a :href="link.href" class="transition-colors hover:text-paper" x-text="link.label"></a></li>
+          </template>
+          <li><a :href="trialUrl" class="transition-colors hover:text-paper">Đọc thử 7 lá thư</a></li>
+          <li><a :href="giftUrl" class="transition-colors hover:text-paper">Viết lời nhắn tặng</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-[12px] font-semibold uppercase tracking-[0.2em] text-gold">Liên hệ đặt thẻ</p>
+        <ul class="mt-4 space-y-2.5 text-[14px] text-sage">
+          <template x-for="c in contacts" :key="c.label">
+            <li><a :href="c.href" target="_blank" rel="noopener" class="transition-colors hover:text-paper"><span class="text-paper" x-text="c.label + ': '"></span><span x-text="c.text"></span></a></li>
+          </template>
+          <li x-show="contacts.length === 0">Kênh đặt hàng đang được cập nhật.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-sage/10">
+      <p class="mx-auto max-w-6xl px-5 py-5 text-center text-[12px] text-sage/70">© <span x-text="new Date().getFullYear()">2026</span> Khoảng Ngẫm. Mỗi ngày một lá thư.</p>
+    </div>
+  </footer>
+
+  <!-- Nút đặt thẻ nổi trên điện thoại -->
+  <div x-cloak x-show="scrolled && !nearEnd" x-transition.opacity.duration.300ms class="fixed inset-x-0 bottom-0 z-40 border-t border-sage/15 bg-ink/90 px-5 py-3 backdrop-blur-md sm:hidden">
+    <a href="#gia" class="flex w-full items-center justify-center rounded-full bg-gold py-3 text-[15px] font-semibold text-ink">Đặt thẻ 99 ngày thương mình</a>
+  </div>
+
+  <script>
+    /* =====================================================================
+       CẤU HÌNH: sửa ở đây là đổi toàn trang.
+       ===================================================================== */
+    const KN = {
+      // Địa chỉ app đọc thư (subdomain).
+      appUrl: "https://99lathu.khoangngam.com",
+
+      // Hai bản đang bán. Sửa ở đây là đổi cả phần giá.
+      // compareAt là giá gạch, để rỗng thì bỏ dòng gạch.
+      // featured: true thì bản đó được tô nổi và gắn nhãn "Được chọn nhiều".
+      plans: [
+        {
+          name: "Bản thẻ",
+          price: "169.000đ",
+          compareAt: "229.000đ",
+          note: "Thẻ NFC kèm phong bì. Mua cho chính mình.",
+          featured: false,
+        },
+        {
+          name: "Bản quà tặng",
+          price: "249.000đ",
+          compareAt: "349.000đ",
+          note: "Thêm hộp cứng và bìa 99 ngày. Mua để tặng.",
+          featured: true,
+        },
+      ],
+
+      // Dòng nhỏ dưới nút đặt hàng.
+      priceNote: "Chọn bản khi đặt hàng. Miễn phí giao hàng toàn quốc.",
+
+      // Nút "Đặt thẻ" dẫn tới đâu (Shopee, Zalo, form đặt hàng...). Bỏ trống thì cuộn xuống phần liên hệ.
+      orderUrl: "",
+
+      // Kênh liên hệ ở chân trang. Dòng nào bỏ trống thì không hiện.
+      contact: {
+        zalo: "",          // ví dụ: "https://zalo.me/0900000000"
+        facebook: "",      // ví dụ: "https://facebook.com/khoangngam"
+        instagram: "",
+        tiktok: "",
+        email: "",         // ví dụ: "xinchao@khoangngam.com"
+      },
+    };
+
+    // Màn chào: giữ tối thiểu 1,7 giây cho hình vẽ xong, tối đa 4 giây nếu mạng chậm.
+    (function () {
+      const root = document.documentElement;
+      const started = performance.now();
+      let done = false;
+      const finish = () => {
+        if (done) return;
+        done = true;
+        setTimeout(() => root.classList.add("loaded"), Math.max(0, 1700 - (performance.now() - started)));
+      };
+      window.addEventListener("load", finish);
+      setTimeout(finish, 4000);
+    })();
+
+    // Hiện dần khi cuộn tới. Gọi lại sau khi Alpine vẽ xong các danh sách.
+    const revealObserver = "IntersectionObserver" in window
+      ? new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            entry.target.classList.add("is-in");
+            revealObserver.unobserve(entry.target);
+          }
+        }, { threshold: 0.14, rootMargin: "0px 0px -6% 0px" })
+      : null;
+
+    function watchReveals() {
+      document.querySelectorAll("[data-reveal]:not(.is-in)").forEach((el) => {
+        if (revealObserver) revealObserver.observe(el);
+        else el.classList.add("is-in");
+      });
+    }
+
+    // Mã QR minh hoạ cho mặt sau thẻ (không mang dữ liệu, không quét được).
+    function fakeQrPath() {
+      const size = 21;
+      let seed = 7;
+      const random = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
+      let d = "";
+      for (let y = 0; y < size; y++) {
+        for (let x = 0; x < size; x++) {
+          const corner = (x < 8 && y < 8) || (x >= 13 && y < 8) || (x < 8 && y >= 13);
+          let on;
+          if (corner) {
+            const fx = x >= 13 ? x - 14 : x;
+            const fy = y >= 13 ? y - 14 : y;
+            const inside = fx >= 0 && fx <= 6 && fy >= 0 && fy <= 6;
+            on = inside && (fx === 0 || fx === 6 || fy === 0 || fy === 6 || (fx >= 2 && fx <= 4 && fy >= 2 && fy <= 4));
+          } else {
+            on = random() > 0.52;
+          }
+          if (on) d += `M${x} ${y}h1v1h-1z`;
+        }
+      }
+      return d;
+    }
+
+    document.addEventListener("alpine:init", () => {
+      Alpine.data("page", () => ({
+        scrolled: false,
+        nearEnd: false,
+        progress: 0,
+        menu: false,
+        trialUrl: KN.appUrl + "/thu-thu",
+        giftUrl: KN.appUrl + "/tang",
+        orderUrl: KN.orderUrl || "#lien-he",
+        plans: KN.plans,
+        priceNote: KN.priceNote,
+
+        links: [
+          { href: "#the", label: "Tấm thẻ" },
+          { href: "#cach-dung", label: "Cách dùng" },
+          { href: "#la-thu", label: "Lá thư" },
+          { href: "#tang", label: "Để tặng" },
+          { href: "#gia", label: "Giá bán" },
+          { href: "#hoi-dap", label: "Hỏi đáp" },
+        ],
+
+        features: [
+          { title: "Chạm là mở", body: "Áp thẻ vào lưng điện thoại, lá thư hiện ra trong trình duyệt. Máy không có NFC thì quét mã QR ở mặt sau.", icon: '<path d="M6 8.5a5 5 0 0 1 0 7M10 6a8.5 8.5 0 0 1 0 12M14 3.5a12 12 0 0 1 0 17"/>' },
+          { title: "Mỗi ngày đúng một lá", body: "Lần chạm đầu tiên của ngày mới mở lá kế tiếp. Chạm lại trong ngày thì đọc lại lá đó. Không có cách nào đọc trước.", icon: '<rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M12 13.5v3.5"/>' },
+          { title: "Không ứng dụng, không tài khoản", body: "Không tải gì, không đăng ký gì, không nhớ mật khẩu nào. Tấm thẻ chính là chìa khoá của bạn.", icon: '<circle cx="8" cy="15" r="4"/><path d="M11 12l8.5-8.5M16 7l3 3M14 9l2 2"/>' },
+          { title: "Hộp thư giữ lại tất cả", body: "Những lá đã mở nằm sẵn trong hộp thư. Hôm nào cần, bạn lật lại lá từng làm mình nhẹ lòng.", icon: '<path d="M3.5 13.5 6 5.5h12l2.5 8v4a1.5 1.5 0 0 1-1.5 1.5H5a1.5 1.5 0 0 1-1.5-1.5z"/><path d="M3.5 13.5H9a3 3 0 0 0 6 0h5.5"/>' },
+          { title: "Lưu lại lá mình thích", body: "Gặp một lá đúng với lòng mình, bạn lưu thành ảnh để làm hình nền hoặc gửi cho một người bạn.", icon: '<rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="9" cy="10" r="1.6"/><path d="m4.5 17.5 5-4.5 3.5 3 2.5-2 4 3.5"/>' },
+          { title: "Vừa trong ví", body: "Kích thước 85,6 × 54 mm, bằng một tấm thẻ ngân hàng. Để trong ví, kẹp trong sổ hay đặt trên bàn làm việc đều gọn.", icon: '<rect x="2.5" y="6" width="19" height="12.5" rx="2.5"/><path d="M2.5 10.5h19M6.5 14.5h4"/>' },
+        ],
+
+        steps: [
+          { title: "Chạm thẻ vào điện thoại", body: "Mở khoá màn hình rồi áp thẻ vào lưng máy. Một thông báo hiện lên, bạn bấm vào đó." },
+          { title: "Đọc lá thư của hôm nay", body: "Lá thư mở ra như lật một trang sách. Đọc chậm thôi, chỉ mất chừng một phút." },
+          { title: "Ngày mai quay lại", body: "Lá tiếp theo mở vào ngày mai, tính từ 0 giờ theo giờ Việt Nam. Cứ thế cho tới lá thứ 99." },
+        ],
+
+        themes: ["Cố gắng", "Thành người mình thích", "Lớn lên", "Tình yêu", "Không cần vừa lòng ai", "Bạn bè", "Tuổi trẻ", "Ước mơ", "Ngày mai"],
+
+        quotes: [
+          { theme: "Thành người mình thích", text: "Bạn cũng đang lớn kiểu đó: chậm tới mức chính bạn không nhận ra. Cứ tưới đều, rồi sẽ có một sáng như vậy." },
+          { theme: "Tình yêu", text: "Bạn không cần sửa xong mình rồi mới xứng đáng được thương." },
+          { theme: "Cố gắng", text: "Chọn đúng một dòng dễ nhất, làm cho xong, gạch nó đi. Việc lớn nào cũng bắt đầu bằng một dòng được gạch." },
+        ],
+
+        gifts: [
+          "Lời nhắn của bạn hiện ra đầu tiên, trước cả lá thư số 1.",
+          "Viết trên điện thoại trong vài phút, bằng mã in trên thẻ.",
+          "Hợp cho sinh nhật, ngày tốt nghiệp, ngày một người thân bắt đầu chặng mới.",
+        ],
+
+        included: [
+          "Một tấm thẻ Khoảng Ngẫm, chạm hoặc quét mã để mở thư",
+          "99 lá thư thuộc 9 chủ đề, mỗi ngày mở một lá",
+          "Hộp thư lưu lại mọi lá đã mở để đọc lại",
+          "Lưu lá thư thành ảnh để giữ hoặc chia sẻ",
+          "Một lời nhắn riêng nếu bạn mua để tặng",
+          "Thiệp viết tay, và bản quà tặng thêm hộp cứng cùng bìa 99 ngày",
+          "Không phí duy trì, không cần ứng dụng hay tài khoản",
+        ],
+
+        faqs: [
+          { q: "Điện thoại của tôi có dùng được không?", a: "Hầu hết điện thoại hiện nay đều dùng được. iPhone từ đời XS, XR trở lên tự đọc thẻ khi bạn đưa thẻ lại gần mép trên của máy. Phần lớn máy Android có NFC, bạn chỉ cần bật NFC trong phần cài đặt. Nếu máy không có NFC, hãy mở camera và quét mã QR in ở mặt sau thẻ." },
+          { q: "Tôi có phải cài ứng dụng hay tạo tài khoản không?", a: "Không. Lá thư mở ngay trong trình duyệt của điện thoại. Bạn không cần tải ứng dụng, không cần đăng ký, không cần nhớ mật khẩu. Tấm thẻ chính là chìa khoá." },
+          { q: "Tôi có đọc được nhiều lá trong một ngày không?", a: "Không, và đó là chủ ý. Lần chạm đầu tiên của một ngày mới sẽ mở lá kế tiếp. Những lần chạm sau trong cùng ngày mở lại đúng lá đó. Ngày mới bắt đầu lúc 0 giờ theo giờ Việt Nam." },
+          { q: "Nếu tôi quên chạm thẻ vài ngày thì có mất lá thư nào không?", a: "Không mất lá nào. Thẻ không tự chạy theo lịch. Lá kế tiếp luôn chờ cho tới lần bạn chạm thẻ vào một ngày mới, nên dù bạn nghỉ một tuần, bạn vẫn đọc tiếp đúng từ chỗ đã dừng." },
+          { q: "Tôi có đọc lại được những lá đã mở không?", a: "Có. Mỗi lần chạm thẻ, bạn vào được hộp thư chứa mọi lá đã mở từ trước tới giờ." },
+          { q: "Vì sao trang thư tự khoá sau một lúc?", a: "Mỗi lần chạm thẻ mở ra một phiên đọc dài 10 phút. Hết thời gian, trang tự khoá và bạn chạm thẻ lần nữa để đọc tiếp. Cách này giữ cho thư chỉ mở được khi tấm thẻ đang ở trong tay bạn." },
+          { q: "Đọc hết 99 lá rồi thì sao?", a: "Tấm thẻ vẫn là của bạn. Bạn vẫn chạm thẻ để vào hộp thư và đọc lại cả 99 lá bất cứ lúc nào." },
+          { q: "Tôi muốn tặng thẻ, viết lời nhắn thế nào?", a: "Vào 99lathu.khoangngam.com/tang, nhập mã in trên thẻ rồi viết lời nhắn. Hãy viết trước khi trao thẻ: sau khi thẻ được mở lần đầu thì không viết thêm được nữa. Người nhận sẽ thấy lời nhắn của bạn ngay trong lần chạm đầu tiên." },
+          { q: "99 lá trong thẻ có trùng với 7 lá đọc thử không?", a: "Không trùng lá nào. Bộ đọc thử là 7 lá viết riêng. Khi cầm thẻ, bạn nhận 99 lá hoàn toàn mới." },
+        ],
+
+        get contacts() {
+          const c = KN.contact;
+          const list = [];
+          if (c.zalo) list.push({ label: "Zalo", href: c.zalo, text: c.zalo.replace(/^https?:\/\/(zalo\.me\/)?/, "") });
+          if (c.facebook) list.push({ label: "Facebook", href: c.facebook, text: c.facebook.replace(/^https?:\/\/(www\.)?/, "") });
+          if (c.instagram) list.push({ label: "Instagram", href: c.instagram, text: c.instagram.replace(/^https?:\/\/(www\.)?/, "") });
+          if (c.tiktok) list.push({ label: "TikTok", href: c.tiktok, text: c.tiktok.replace(/^https?:\/\/(www\.)?/, "") });
+          if (c.email) list.push({ label: "Email", href: "mailto:" + c.email, text: c.email });
+          return list;
+        },
+
+        init() {
+          this.onScroll();
+          this.$nextTick(watchReveals);
+        },
+
+        onScroll() {
+          const max = document.documentElement.scrollHeight - window.innerHeight;
+          this.scrolled = window.scrollY > 24;
+          this.progress = max > 0 ? Math.min(100, (window.scrollY / max) * 100) : 0;
+          this.nearEnd = max > 0 && window.scrollY > max - 500;
+        },
+      }));
+
+      // Tấm thẻ ở đầu trang: nghiêng theo con trỏ, bấm để lật.
+      Alpine.data("card", () => ({
+        flipped: false,
+        tilting: false,
+        rx: 0,
+        ry: 0,
+        qr: fakeQrPath(),
+        move(event) {
+          if (event.pointerType === "touch") return;
+          const box = this.$el.getBoundingClientRect();
+          const px = (event.clientX - box.left) / box.width - 0.5;
+          const py = (event.clientY - box.top) / box.height - 0.5;
+          this.ry = px * 20;
+          this.rx = -py * 16;
+          this.tilting = true;
+        },
+        leave() {
+          this.tilting = false;
+          this.rx = 0;
+          this.ry = 0;
+        },
+        get style() {
+          return `transform: rotateX(${this.rx}deg) rotateY(${this.ry + (this.flipped ? 180 : 0)}deg)`;
+        },
+      }));
+
+      // Số đếm chạy lên khi cuộn tới.
+      Alpine.data("counter", (target) => ({
+        value: target,
+        run() {
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || target < 2) return;
+          const start = performance.now();
+          const duration = 1400;
+          this.value = 0;
+          const tick = (now) => {
+            const t = Math.min(1, (now - start) / duration);
+            this.value = Math.round(target * (1 - Math.pow(1 - t, 3)));
+            if (t < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        },
+      }));
+
+      // Bản thử chạm thẻ. Dùng 3 lá trong bộ đọc thử, không dùng lá nào của 99 lá chính.
+      Alpine.data("demo", () => ({
+        day: 1,
+        n: 0,
+        opened: false,
+        tapping: false,
+        flash: false,
+        message: "Bấm “Chạm thẻ” để xem điều gì xảy ra khi bạn áp thẻ vào điện thoại.",
+        letters: [
+          { theme: "Thành người mình thích", text: "Chậu cây ngoài ban công không lớn nhanh hơn vì bạn nhìn nó mỗi ngày. Hôm nay nhìn y như hôm qua, hôm qua nhìn y như hôm kia. Rồi một sáng bạn tưới nước và chợt thấy nó có lá mới. Bạn cũng đang lớn kiểu đó: chậm tới mức chính bạn không nhận ra. Đừng sốt ruột đào nó lên xem rễ dài tới đâu. Cứ tưới đều, rồi sẽ có một sáng như vậy." },
+          { theme: "Không cần vừa lòng ai", text: "Trong nhóm chat, bạn gõ một câu, xoá, gõ lại, thêm một cái mặt cười cho đỡ căng, rồi mới gửi. Xong vẫn mở ra xem có ai thả tim không. Mệt nhỉ. Người quý bạn sẽ đọc câu đó theo nghĩa tốt nhất, dù bạn viết vụng tới đâu. Còn người không quý thì thêm mười cái mặt cười cũng vậy. Lần tới, viết xong thì gửi luôn." },
+          { theme: "Cố gắng", text: "Bạn mở danh sách việc cần làm, thấy mười hai dòng, rồi đóng lại. Không phải vì bạn lười, mà vì nhìn cả mười hai dòng một lúc thì ai cũng ngợp. Chọn đúng một dòng dễ nhất, làm cho xong, gạch nó đi. Cảm giác gạch được một dòng sẽ kéo bạn sang dòng thứ hai. Việc lớn nào cũng bắt đầu bằng một dòng được gạch." },
+        ],
+        get letter() {
+          return this.letters[Math.max(0, this.n - 1)];
+        },
+        get sentences() {
+          return this.letter.text.match(/[^.!?]+[.!?]+/g) || [this.letter.text];
+        },
+        tap() {
+          if (this.tapping) return;
+          this.tapping = true;
+          setTimeout(() => {
+            this.flash = true;
+            if (this.opened) {
+              this.message = "Hôm nay bạn đã mở lá này rồi. Chạm lại thì vẫn là lá đó. Lá tiếp theo chờ bạn vào ngày mai.";
+            } else {
+              this.n += 1;
+              this.opened = true;
+              this.message = this.n >= this.letters.length
+                ? "Bản thử trên trang này dừng ở 3 lá. Trên thẻ thật, 99 lá khác đang chờ bạn."
+                : `Lá thư số ${this.n} đã mở. Thử chạm lần nữa, hoặc tua sang ngày mai.`;
+            }
+          }, 380);
+          setTimeout(() => {
+            this.tapping = false;
+            this.flash = false;
+          }, 900);
+        },
+        nextDay() {
+          if (this.tapping) return;
+          if (this.opened && this.n >= this.letters.length) {
+            this.day = 1;
+            this.n = 0;
+            this.opened = false;
+            this.message = "Quay lại ngày đầu tiên. Bấm “Chạm thẻ” để mở lá thư số 1.";
+            return;
+          }
+          const skipped = !this.opened;
+          this.day += 1;
+          this.opened = false;
+          this.message = skipped
+            ? `Sang ngày ${this.day}. Hôm qua bạn chưa chạm, nên lá thư số ${this.n + 1} vẫn chờ ở đó, không mất đi đâu.`
+            : `Sang ngày ${this.day}. Một lá thư mới đang chờ. Chạm thẻ để mở.`;
+        },
+      }));
+    });
+  </script>
+</body>
+</html>

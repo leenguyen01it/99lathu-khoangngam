@@ -1,0 +1,347 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// Một thẻ NFC vật lý. UID là mã vận hành nội bộ, không cần in lên thành phẩm.
+model Card {
+  id      String @id @default(cuid())
+  uid     String @unique // mã nội bộ 12 ký tự
+  uidHash String @unique // HMAC-SHA256(uid, CARD_HASH_SECRET), ghi vào URL của thẻ
+
+  // Chủ sở hữu và đơn hàng hiện tại. CardAssignment giữ lịch sử mọi lần gán lại.
+  customerId  String?
+  customer    Customer?  @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  orderId     String?
+  order       Order?     @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  orderItemId String?
+  orderItem   OrderItem? @relation(fields: [orderItemId], references: [id], onDelete: SetNull)
+  assignedAt  DateTime?
+
+  activatedAt   DateTime? // lần chạm đầu tiên
+  currentN      Int       @default(0) // lá thư mới nhất đã mở (0 = chưa mở lá nào)
+  lastOpenedDay String? // "YYYY-MM-DD", ngày gần nhất mở lá mới
+
+  // Lá thư riêng của người tặng, viết trước khi thẻ được chạm lần đầu
+  giftFrom    String?
+  giftMessage String?
+  giftSeenAt  DateTime?
+
+  createdAt DateTime @default(now())
+
+  sessions    ScanSession[]
+  logs        ScanLog[]
+  assignments CardAssignment[]
+
+  @@index([customerId])
+  @@index([orderId])
+  @@index([orderItemId])
+}
+
+// Khách hàng chuẩn trong hệ thống. Dữ liệu từ các kênh ngoài được nối qua ExternalCustomerLink.
+model Customer {
+  id              String    @id @default(cuid())
+  fullName        String?
+  phone           String? // cách viết để hiển thị
+  phoneNormalized String? // ví dụ 84901234567, dùng để tìm kiếm và chống trùng
+  email           String?
+  emailNormalized String?
+  note            String?
+  marketingOptIn  Boolean   @default(false)
+  archivedAt      DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  addresses       CustomerAddress[]
+  externalLinks   ExternalCustomerLink[]
+  orders          Order[]
+  cards           Card[]
+  cardAssignments CardAssignment[]
+
+  @@index([phoneNormalized])
+  @@index([emailNormalized])
+  @@index([createdAt])
+}
+
+// Một khách có thể có nhiều địa chỉ; đơn hàng vẫn giữ snapshot địa chỉ lúc mua.
+model CustomerAddress {
+  id            String   @id @default(cuid())
+  customerId    String
+  customer      Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  label         String?
+  recipientName String?
+  phone         String?
+  address1      String
+  address2      String?
+  ward          String?
+  district      String?
+  province      String?
+  postalCode    String?
+  countryCode   String   @default("VN")
+  isDefault     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([customerId])
+}
+
+// Kênh dữ liệu như Shopify, CSV, sàn thương mại điện tử hoặc hệ thống bán hàng.
+// Chỉ lưu cấu hình không bí mật trong configJson; token/API key phải nằm trong biến môi trường.
+model SyncSource {
+  id           String    @id @default(cuid())
+  key          String    @unique
+  name         String
+  kind         String
+  enabled      Boolean   @default(true)
+  configJson   String?
+  lastSyncedAt DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  customerLinks ExternalCustomerLink[]
+  orders        Order[]
+  runs          SyncRun[]
+}
+
+// Ánh xạ một customer nội bộ với ID của chính khách đó ở từng nguồn ngoài.
+model ExternalCustomerLink {
+  id              String     @id @default(cuid())
+  sourceId        String
+  source          SyncSource @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  externalId      String
+  customerId      String
+  customer        Customer   @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  rawJson         String?
+  sourceUpdatedAt DateTime?
+  lastSyncedAt    DateTime   @default(now())
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  @@unique([sourceId, externalId])
+  @@index([customerId])
+}
+
+// Đơn hàng chuẩn. Các trường contact/shipping là snapshot tại thời điểm đặt hàng.
+model Order {
+  id                  String      @id @default(cuid())
+  sourceId            String?
+  source              SyncSource? @relation(fields: [sourceId], references: [id], onDelete: SetNull)
+  externalId          String?
+  orderNumber         String?
+  customerId          String?
+  customer            Customer?   @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  status              String      @default("pending")
+  financialStatus     String?
+  fulfillmentStatus   String?
+  currency            String      @default("VND")
+  subtotalAmount      Int?
+  discountAmount      Int?
+  shippingAmount      Int?
+  taxAmount           Int?
+  totalAmount         Int?
+  customerName        String?
+  phone               String?
+  phoneNormalized     String?
+  email               String?
+  shippingAddressJson String?
+  note                String?
+  tagsJson            String?
+  rawJson             String?
+  placedAt            DateTime?
+  cancelledAt         DateTime?
+  sourceCreatedAt     DateTime?
+  sourceUpdatedAt     DateTime?
+  importedAt          DateTime    @default(now())
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt
+
+  items           OrderItem[]
+  cards           Card[]
+  cardAssignments CardAssignment[]
+
+  @@unique([sourceId, externalId])
+  @@index([customerId])
+  @@index([phoneNormalized])
+  @@index([orderNumber])
+  @@index([placedAt])
+}
+
+model OrderItem {
+  id             String   @id @default(cuid())
+  orderId        String
+  order          Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  externalLineId String?
+  sku            String?
+  name           String
+  variantName    String?
+  quantity       Int      @default(1)
+  unitAmount     Int?
+  totalAmount    Int?
+  metadataJson   String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  cards           Card[]
+  cardAssignments CardAssignment[]
+
+  @@unique([orderId, externalLineId])
+  @@index([orderId])
+  @@index([sku])
+}
+
+// Lịch sử gán, thu hồi, đổi hoặc thay thẻ. Card giữ liên kết hiện tại để tra cứu nhanh.
+model CardAssignment {
+  id          String     @id @default(cuid())
+  cardId      String
+  card        Card       @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  customerId  String?
+  customer    Customer?  @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  orderId     String?
+  order       Order?     @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  orderItemId String?
+  orderItem   OrderItem? @relation(fields: [orderItemId], references: [id], onDelete: SetNull)
+  action      String     @default("assigned")
+  note        String?
+  createdAt   DateTime   @default(now())
+
+  @@index([cardId, createdAt])
+  @@index([customerId])
+  @@index([orderId])
+}
+
+// Một lần import hoặc đồng bộ. cursor cho phép tiếp tục khi nguồn có phân trang.
+model SyncRun {
+  id           String     @id @default(cuid())
+  sourceId     String
+  source       SyncSource @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  scope        String
+  status       String     @default("running")
+  cursor       String?
+  readCount    Int        @default(0)
+  createdCount Int        @default(0)
+  updatedCount Int        @default(0)
+  skippedCount Int        @default(0)
+  failedCount  Int        @default(0)
+  errorMessage String?
+  metadataJson String?
+  startedAt    DateTime   @default(now())
+  finishedAt   DateTime?
+
+  @@index([sourceId, startedAt])
+  @@index([status])
+}
+
+// Rate limit đăng nhập admin bền qua restart. key là HMAC của IP, không lưu IP thô.
+model AdminLoginThrottle {
+  key             String    @id
+  failures        Int       @default(0)
+  windowStartedAt DateTime  @default(now())
+  blockedUntil    DateTime?
+  blockLevel      Int       @default(0)
+  updatedAt       DateTime  @updatedAt
+
+  @@index([blockedUntil])
+}
+
+model AdminUser {
+  id                 String    @id @default(cuid())
+  email              String
+  emailNormalized    String    @unique
+  fullName           String
+  passwordHash       String
+  role               String    @default("support")
+  active             Boolean   @default(true)
+  mustChangePassword Boolean   @default(true)
+  lastLoginAt        DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  sessions  AdminSession[]
+  auditLogs AdminAuditLog[]
+
+  @@index([active, role])
+}
+
+model AdminSession {
+  id          String    @id @default(cuid())
+  tokenHash   String    @unique
+  adminUserId String
+  adminUser   AdminUser @relation(fields: [adminUserId], references: [id], onDelete: Cascade)
+  ipHash      String?
+  userAgent   String?
+  createdAt   DateTime  @default(now())
+  lastSeenAt  DateTime  @default(now())
+  expiresAt   DateTime
+  revokedAt   DateTime?
+
+  @@index([adminUserId, expiresAt])
+  @@index([expiresAt])
+}
+
+model AdminAuditLog {
+  id           String    @id @default(cuid())
+  adminUserId  String
+  adminUser    AdminUser @relation(fields: [adminUserId], references: [id], onDelete: Restrict)
+  action       String
+  entityType   String
+  entityId     String?
+  metadataJson String?
+  ipHash       String?
+  createdAt    DateTime  @default(now())
+
+  @@index([adminUserId, createdAt])
+  @@index([entityType, entityId])
+  @@index([createdAt])
+}
+
+// Phiên xem 10 phút, tạo mỗi lần chạm thẻ
+model ScanSession {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  cardId    String
+  card      Card     @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+
+  @@index([cardId])
+  @@index([expiresAt])
+}
+
+// Nhật ký mọi lần chạm thẻ
+model ScanLog {
+  id        String   @id @default(cuid())
+  cardId    String
+  card      Card     @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  scannedAt DateTime @default(now())
+  ip        String?
+  userAgent String?
+
+  @@index([cardId, scannedAt])
+}
+
+// Mỗi lần một lá thư được lưu thành ảnh để chia sẻ
+model ShareEvent {
+  id        String   @id @default(cuid())
+  letterId  String // id của lá thư, ví dụ "co-gang-06" hoặc "doc-thu-01"
+  cardId    String? // thẻ đã lưu ảnh; trống với bản đọc thử
+  createdAt DateTime @default(now())
+
+  @@index([letterId])
+  @@index([cardId])
+}
+
+// Mỗi lần một lá thư được bấm nghe giọng đọc
+model ListenEvent {
+  id        String   @id @default(cuid())
+  letterId  String
+  cardId    String? // trống với bản đọc thử
+  createdAt DateTime @default(now())
+
+  @@index([letterId])
+  @@index([cardId])
+}

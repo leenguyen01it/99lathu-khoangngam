@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="91.6mm" height="60mm" viewBox="0 0 91.6 60">
+  <title>Khoảng Ngẫm, mặt trước thẻ NFC</title>
+  <desc>Khổ thành phẩm 85.6 x 54 mm, bleed 3 mm mỗi cạnh.</desc>
+  <defs>
+    <style>
+      @font-face { font-family: "Source Serif 4"; font-style: normal; font-weight: 400; src: url("fonts/source-serif-4-regular.ttf") format("truetype"); }
+      @font-face { font-family: "Source Serif 4"; font-style: normal; font-weight: 500; src: url("fonts/source-serif-4-medium.ttf") format("truetype"); }
+      @font-face { font-family: "Source Serif 4"; font-style: italic; font-weight: 400; src: url("fonts/source-serif-4-italic.ttf") format("truetype"); }
+      @font-face { font-family: "Great Vibes"; font-style: normal; font-weight: 400; src: url("fonts/wordmark/greatvibes.ttf") format("truetype"); }
+      #guides:target { display: inline; }
+    </style>
+    <linearGradient id="cloth" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1c3a38"/>
+      <stop offset="0.52" stop-color="#16302f"/>
+      <stop offset="1" stop-color="#102725"/>
+    </linearGradient>
+  </defs>
+
+  <!-- BLEED -->
+  <rect width="91.6" height="60" fill="url(#cloth)"/>
+
+  <!-- FRAME: 4.5 mm inside trim -->
+  <rect x="7.5" y="7.5" width="76.6" height="45" rx="1.2"
+        fill="none" stroke="#ecc98a" stroke-width=".3"/>
+
+  <!-- EMBLEM -->
+  <g transform="translate(45.8 20.9) scale(.85)" fill="none" stroke-linecap="round">
+    <g stroke="#ecc98a" stroke-width=".62">
+      <path d="M-6.8 1.7A6.8 6.8 0 0 1 6.8 1.7"/>
+      <path d="M-12.8 1.7H12.8"/>
+      <path d="M-9.1-1.5-11-2.2M-6.8-4.5-8.1-6M-3.6-6.7-4.1-8.6M0-7.5V-9.6M3.6-6.7 4.1-8.6M6.8-4.5 8.1-6M9.1-1.5 11-2.2"/>
+    </g>
+    <g stroke="#bcd3bd" stroke-width=".55">
+      <path d="M-8.5 4.3H8.5"/><path d="M-5.3 6.5H5.3"/>
+    </g>
+  </g>
+
+  <!-- PRODUCT NAME -->
+  <text x="45.8" y="35.7" text-anchor="middle" fill="#ecc98a"
+        font-family="'Source Serif 4', Georgia, serif" font-size="9.4" font-weight="500" style="font-optical-sizing:auto;font-variation-settings:'opsz' 32">99</text>
+  <text x="46" y="41.3" text-anchor="middle" fill="#f7f0e2"
+        font-family="'Source Serif 4', Georgia, serif" font-size="3.3" font-weight="400" letter-spacing=".38">NGÀY THƯƠNG MÌNH</text>
+  <text x="45.8" y="46" text-anchor="middle" fill="#bcd3bd"
+        font-family="'Source Serif 4', Georgia, serif" font-size="2.4" font-style="italic">Mỗi ngày một lá thư</text>
+
+  <!-- BRAND: chữ thư pháp ở góc trên trái -->
+  <text x="10.2" y="12.1" fill="#ecc98a"
+        font-family="Great Vibes, cursive" font-size="3.2">Khoảng Ngẫm</text>
+
+  <!-- GUIDES: ẩn trong file in. Mở front.svg#guides hoặc back.svg#guides (hoặc bật lớp này trong phần mềm đồ hoạ) để xem.
+       Hồng: vùng bleed 3 mm và đường cắt 85.6 x 54 mm (bo góc 3.18 mm). Xanh: vùng an toàn, cách đường cắt 4 mm. -->
+  <g id="guides" display="none" font-family="Arial, sans-serif" font-size="1.45">
+    <path fill="#ff2d95" fill-opacity=".16" fill-rule="evenodd"
+          d="M0 0H91.6V60H0ZM6.18 3H85.42A3.18 3.18 0 0 1 88.6 6.18V53.82A3.18 3.18 0 0 1 85.42 57H6.18A3.18 3.18 0 0 1 3 53.82V6.18A3.18 3.18 0 0 1 6.18 3Z"/>
+    <rect x="3" y="3" width="85.6" height="54" rx="3.18" fill="none" stroke="#ff2d95" stroke-width=".2"/>
+    <path d="M3 0V2M88.6 0V2M3 58V60M88.6 58V60M0 3H2M0 57H2M89.6 3H91.6M89.6 57H91.6" fill="none" stroke="#ff2d95" stroke-width=".15"/>
+    <rect x="7" y="7" width="77.6" height="46" rx="1" fill="none" stroke="#00a8e8" stroke-width=".15" stroke-dasharray=".8 .6"/>
+    <text x="8" y="2" fill="#ff2d95">Bleed 3 mm (phần bị cắt bỏ)</text>
+    <text x="83.6" y="2" text-anchor="end" fill="#ff2d95">Đường cắt 85.6 × 54 mm</text>
+    <text x="8" y="59.1" fill="#00a8e8">Vùng an toàn: cách đường cắt 4 mm</text>
+  </g>
+</svg>
