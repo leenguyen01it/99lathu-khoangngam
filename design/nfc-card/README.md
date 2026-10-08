@@ -16,7 +16,15 @@ Mở `preview.html` để xem hai mặt cạnh nhau. Bản xem trước hiển t
 
 File gửi nhà in (vector, mỗi file 1 trang 91.6 × 60 mm đã gồm bleed, font nhúng sẵn, màu RGB, không có lớp guides):
 
-Trong trang Admin, nút `Tải file in QR` tự động tạo ZIP cho tối đa 500 thẻ chưa mở. ZIP gồm mặt trước dùng chung, một SVG mặt sau có QR riêng theo UID, font và file `doi-chieu.csv` để ghép đúng mặt in với chip NFC.
+Trong trang Admin, tạo thẻ cần xác nhận số lượng trong modal. Mỗi lần tạo được lưu thành một đợt riêng trong nhật ký quản trị, cùng danh sách UID chính xác; thẻ và nhật ký được lưu trong cùng một transaction. Nút `Tải file in QR` xuất riêng đợt được chọn, mặc định là đợt vừa tạo hoặc đợt mới nhất. Có thể chọn lại đợt cũ để in lại. Thẻ tạo trước tính năng chia đợt vẫn xuất được qua mục `Tất cả thẻ chưa mở` (tối đa 500 thẻ).
+
+ZIP chỉ gồm `mat-truoc.pdf` dùng chung và các file `mat-sau/KN001.pdf`, `KN002.pdf`… có QR riêng cho từng thẻ, không có CSV, thư mục font hoặc file hướng dẫn riêng. Số thứ tự bắt đầu từ KN001 trong mỗi đợt và giữ nguyên cho cùng một thẻ khi tải lại đợt đó. PDF là vector, mỗi file một trang 91.6 × 60 mm gồm bleed 3 mm, nhúng font sẵn.
+
+Tên ZIP gửi nhà in: `Khoang-Ngam_File-In_20-The_08-10-2026.zip`. Ngày theo định dạng ngày-tháng-năm, dùng ngày tạo đợt theo múi giờ Việt Nam; khi xuất tất cả thẻ chưa mở thì dùng ngày tải. Tên ZIP không chứa nhãn trạng thái.
+
+Ghi chip sau khi nhận thẻ từ nhà in: mở `/admin/nfc` bằng Chrome trên điện thoại Android có NFC, qua HTTPS. Chọn đợt, quét QR bằng camera trong trang, bấm `Ghi NFC và kiểm tra`, áp chính thẻ đó vào điện thoại rồi nhấc ra và chạm lại để xác nhận. Số `KNxxx` được tra theo thứ tự UID đã lưu của đợt, khớp tên PDF. Không cần giữ thứ tự thẻ khi nhận từ nhà in. Trang chỉ đọc nội dung QR và chip, không mở URL, không kích hoạt thẻ hoặc khóa chip. Chip chứa dữ liệu khác sẽ bị từ chối ghi đè.
+
+Chỉ sau khi đọc được URL chip khớp QR mới lưu nhật ký `nfc_verified` và cập nhật tiến độ; kiểm tra lại cùng thẻ không tăng số lượng. Tiến độ lưu trên server và giữ nguyên khi tải lại trang hoặc đổi thiết bị. Nếu mạng lỗi sau khi ghi, dùng `Lưu lại kết quả` hoặc đọc kiểm tra lại thẻ. Tài khoản hỗ trợ không có quyền ghi thẻ. Chạy `npm run test:nfc` để kiểm tra quy trình với chip mô phỏng; cần kiểm tra cuối cùng trên điện thoại và chip thật.
 
 - `khoang-ngam-mat-truoc.pdf`: mặt trước, in giống nhau cho mọi thẻ.
 - `khoang-ngam-mat-sau-MA-QR-MAU.pdf`: mặt sau. Mã QR trong file là MÃ MẪU để nhà in biết vị trí và kích thước, không được in nguyên như vậy. Nhà in thay bằng mã riêng của từng thẻ theo CSV.

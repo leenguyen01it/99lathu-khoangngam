@@ -27,7 +27,7 @@ export default function HomePage() {
           thương và học cách dịu dàng với chính mình. Không cần đọc vội. Mỗi ngày chỉ một lá là đủ.
         </p>
 
-        <Link href="/thu-thu" className="btn mt-7 min-w-52">
+        <Link href="/doc-thu" className="btn mt-7 min-w-52">
           Đọc thử {TRIAL_LETTERS} lá thư
         </Link>
       </section>

@@ -61,13 +61,18 @@ export async function logout(): Promise<void> {
   redirect("/admin/login");
 }
 
-export async function createCardBatch(formData: FormData): Promise<void> {
+export interface CardBatchState { error?: string }
+
+export async function createCardBatch(_previous: CardBatchState, formData: FormData): Promise<CardBatchState> {
   const actor = await requireAdmin();
   if (actor.role === "support") redirect("/admin");
   const count = Number(formData.get("count"));
-  if (Number.isFinite(count) && count >= 1) {
-    const created = await createCards(count);
-    await auditAdmin(actor, "create_batch", "card", null, { count: created });
+  let batchId: string;
+  try {
+    batchId = await createCards(count, actor);
+  } catch {
+    return { error: "Không thể tạo thẻ. Kiểm tra số lượng và thử lại." };
   }
   revalidatePath("/admin");
+  redirect(`/admin?batch=${encodeURIComponent(batchId)}&created=1`);
 }

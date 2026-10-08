@@ -80,8 +80,8 @@ Thêm vào object `nextConfig` hiện có trong `next.config.ts`:
 
 ```ts
 outputFileTracingIncludes: {
-  "/thu-thu": ["./audio/*.mp3", "./audio/*.json"],
-  "/thu-thu/audio/*": ["./audio/*.mp3"],
+  "/doc-thu": ["./audio/*.mp3", "./audio/*.json"],
+  "/doc-thu/audio/*": ["./audio/*.mp3"],
   "/v/*": ["./audio/*.mp3", "./audio/*.json"],
   "/v/*/audio/*": ["./audio/*.mp3"],
   "/admin/print-export": ["./design/nfc-card/*.svg", "./design/nfc-card/fonts/**/*.ttf"],
@@ -125,7 +125,6 @@ Trong **Project → Settings → Environment Variables**, nhập các biến sau
 | `DIRECT_URL` | URL **direct** của cùng Neon production |
 | `APP_URL` | `https://99lathu.khoangngam.com` |
 | `CARD_HASH_SECRET` | Đúng khóa đang dùng nếu đã tạo hoặc ghi thẻ; khóa mới ngẫu nhiên nếu bắt đầu hoàn toàn từ đầu |
-| `SCAN_TOKEN_SECRET` | Chuỗi ngẫu nhiên dài dùng ký phiên đọc thư |
 | `ADMIN_SESSION_SECRET` | Chuỗi ngẫu nhiên dài dùng phiên đăng nhập admin |
 | `ADMIN_PASSWORD` | Mật khẩu khởi tạo owner **lần đầu** khi bảng `AdminUser` còn trống |
 
@@ -151,7 +150,7 @@ Sau đó để Vercel triển khai commit trên `main` hoặc chọn **Redeploy*
 2. Tại nơi đang quản lý DNS của `khoangngam.com`, tạo bản ghi **CNAME** với Host/Name là `99lathu`, Target/Value là **giá trị chính xác Vercel hiển thị cho dự án**. Không tự đoán CNAME chung; Vercel có thể cấp target riêng. Không thay nameserver cả domain chính nếu bạn chỉ cần subdomain. [Vercel: thêm custom domain](https://vercel.com/docs/domains/working-with-domains/add-a-domain).
 3. Đợi Vercel báo domain và HTTPS đã hoạt động. Nếu dùng Cloudflare, khi xác minh DNS gặp lỗi hãy kiểm tra bản ghi đang được proxy hay DNS-only và làm theo hướng dẫn Vercel trong mục Domains.
 4. Truy cập `https://99lathu.khoangngam.com/` và kiểm tra:
-   - `/thu-thu` mở lá đọc thử, cookie giữ ngày bắt đầu; nếu có MP3 đúng ID thì nút nghe phát được, kể cả trên iPhone (audio route hỗ trợ HTTP Range).
+   - `/doc-thu` mở lá đọc thử, cookie giữ ngày bắt đầu; nếu có MP3 đúng ID thì nút nghe phát được, kể cả trên iPhone (audio route hỗ trợ HTTP Range).
    - `/admin/login` cho tạo owner đầu tiên bằng email và `ADMIN_PASSWORD` khi Neon chưa có admin; sau đó kiểm tra đăng nhập, đăng xuất và tải ZIP in thẻ.
    - Tạo **một thẻ thử** chưa đưa cho khách, xuất CSV/ZIP; `nfcUrl` và QR phải bắt đầu bằng `https://99lathu.khoangngam.com/uid/`. Thử chạm hoặc mở URL của thẻ thử, xem thư, thử link tặng và kiểm tra số lần mở trong admin.
    - Neon có dữ liệu mới; Vercel Runtime Logs không có lỗi `P1001`, `P2021`, thiếu font, thiếu audio hoặc `ENOENT`.

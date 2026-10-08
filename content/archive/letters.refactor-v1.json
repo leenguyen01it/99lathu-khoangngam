@@ -1,0 +1,911 @@
+{
+  "letters": [
+    {
+      "id": "lon-len-01",
+      "theme": "lon-len",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Hồi nhỏ, buồn thì bạn tìm một người để kể. Lớn rồi, có hôm bạn mở danh bạ, nhìn một lúc rồi đặt điện thoại xuống. Ai cũng có việc của mình, còn bạn chưa biết bắt đầu từ đâu. Bạn pha một ly nước ấm, kéo chăn lên và nằm nghe tiếng xe ngoài đường. Tự lo được cho mình là một điều đã học qua nhiều năm. Nhưng có những tối, bạn vẫn mong có người hỏi: hôm nay có chuyện gì à?",
+      "n": 1,
+      "pin": 1
+    },
+    {
+      "id": "tuoi-tre-01",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Buổi họp lớp, bạn nghe người này đổi việc, người kia sắp mua nhà. Tới lượt mình, bạn kể vài câu rồi nhường lời. Trên đường về, những chuyện vừa nghe khiến cuộc sống của bạn có vẻ chậm hơn lúc sáng. Căn phòng vẫn nhỏ, công việc vẫn còn nhiều điều chưa biết. Có lẽ điều làm bạn buồn nhất là chưa có một câu trả lời khiến mình yên tâm. Tuổi này, đôi khi chỉ riêng chuyện sống với từng ấy điều chưa rõ đã thấy mệt rồi.",
+      "n": 2,
+      "pin": 2
+    },
+    {
+      "id": "khong-lay-long-02",
+      "theme": "khong-lay-long",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Có một người trong nhóm ít khi đáp lại lời bạn. Bạn nhớ từng lần mình chào mà họ chỉ gật đầu, rồi nghĩ mãi xem đã làm gì khiến họ khó chịu. Nhưng cũng trong nhóm ấy, có người vẫn để dành chỗ cho bạn, vẫn hỏi sao hôm nay về sớm. Những điều đó thường trôi qua rất nhanh, còn một ánh mắt lạnh lại ở lâu. Bạn chỉ mong mình hiểu được: vì sao sự quý mến đã có đôi khi vẫn nhẹ hơn một sự xa cách chưa rõ lý do.",
+      "n": 3,
+      "pin": 3
+    },
+    {
+      "id": "tinh-yeu-03",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Đi đám cưới về, bạn tháo đôi giày đau chân và đặt phong bì thiệp lên bàn. Lúc chụp ảnh, có người hỏi bao giờ tới lượt, bạn cười rồi nói một câu cho qua. Giờ ở nhà một mình, câu hỏi ấy mới khiến bạn chạnh lòng. Bạn cũng muốn có người để kể chuyện trong ngày, muốn một bữa cơm có thêm cái bát. Mong muốn đó có thể ở cạnh một cuộc sống bạn vẫn đang tự lo được. Có những tối, cả hai đều rất thật.",
+      "n": 4,
+      "pin": 4
+    },
+    {
+      "id": "lon-len-02",
+      "theme": "lon-len",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Bạn kể mình muốn mở một quán nhỏ. Người nghe hỏi kiếm được bao nhiêu, rồi nói giờ quán xá nhiều lắm. Bạn gật đầu và thôi kể về cái bàn bên cửa sổ, về món nước đã nghĩ tên từ lâu. Bạn biết tiền thuê, tiền hàng, những ngày vắng khách đều là chuyện thật. Nhưng cái hình dung khiến mình thấy ấm lòng ấy cũng thật. Có một phần ước muốn chưa được nói hết, vẫn nằm lại sau cuộc chuyện trò.",
+      "n": 5,
+      "pin": 5
+    },
+    {
+      "id": "ngay-mai-01",
+      "theme": "ngay-mai",
+      "form": "loi-chuc",
+      "tone": "om",
+      "rank": 3,
+      "text": "Tối nay bạn xem dự báo thời tiết, thấy ngày mai vẫn mưa. Áo ngoài ban công chưa khô, trong lịch có một cuộc hẹn bạn hơi ngại. Ngày mới đôi khi đã mang theo vài nỗi lo từ trước khi bắt đầu. Mình mong giữa những điều ấy có một khoảng dễ chịu: xe tới vừa lúc, món ăn còn nóng, người đối diện nghe bạn nói hết câu. Một điều đủ nhỏ để xảy ra trong một ngày bình thường, nhưng đủ để bạn nhớ khi về nhà.",
+      "n": 6,
+      "pin": 6
+    },
+    {
+      "id": "tuoi-tre-03",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Cuối tháng, bạn đứng trước quầy đồ ăn và tính xem mua món này thì còn bao nhiêu tới ngày lương. Cuối cùng bạn trả lại một thứ, nói với người bán là lấy thế thôi. Chuyện rất nhỏ, nhưng trên đường về bạn thấy tủi. Có những quãng tiền bạc khiến ngay cả một bữa ăn cũng phải cân nhắc. Lúc đang ở trong quãng ấy, khó nghĩ tới chuyện sau này sẽ kể lại thế nào. Bạn chỉ mong tháng này qua được, và tháng sau có thể dễ thở hơn một chút.",
+      "n": 7,
+      "pin": 7
+    },
+    {
+      "id": "tinh-yeu-11",
+      "theme": "tinh-yeu",
+      "form": "loi-chuc",
+      "tone": "om",
+      "rank": 3,
+      "text": "Bạn đang kể một chuyện thì quên mất mình định nói gì. Người ngồi đối diện vẫn chờ, không vội lấp khoảng im bằng câu chuyện của họ. Bạn nói dạo này mình hơi khó chịu, họ hỏi có chuyện gì làm bạn mệt. Có lẽ một sự gần gũi bạn mong là như vậy: được nói khi chưa sắp xếp xong lời, được có một hôm thiếu dễ thương. Mong bạn gặp một người mà trước khi tới gặp, bạn không phải tập lại cách làm cho mình có vẻ ổn.",
+      "n": 8,
+      "pin": 8
+    },
+    {
+      "id": "co-gang-06",
+      "theme": "co-gang",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Thư từ chối tới vào buổi chiều. Lời lẽ rất lịch sự, bạn đọc hai lần rồi đóng lại. Tối đó, những câu đã trả lời trong buổi phỏng vấn cứ quay về, câu nào cũng có vẻ đáng ra nên nói khác. Bạn chưa biết mình thiếu điều gì, cũng chưa biết cơ hội tiếp theo ở đâu. Một kết quả như vậy dễ làm bạn nghi ngờ cả những thứ trước đó vẫn tin ở mình. Mình tiếc cho những ngày bạn đã chờ, và cho cả sự háo hức phải cất xuống hôm nay.",
+      "n": 9,
+      "pin": 9
+    },
+    {
+      "id": "khong-lay-long-05",
+      "theme": "khong-lay-long",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bữa cơm ở quê, câu chuyện lần lượt tới lương, chuyện cưới, rồi chuyện mua nhà. Bạn trả lời từng câu, cười đúng lúc, đến cuối bữa thấy mình ít nói hẳn. Có người hỏi vì quan tâm, có người chỉ nối câu chuyện, bạn cũng khó biết hết. Nhưng sự chạnh lòng khi bị hỏi vẫn ở đó. Bạn đã mang về ít quà, đã đi một chuyến xe dài để gặp mọi người. Bạn từng mong mình được hỏi cả những điều khác nữa.",
+      "n": 10,
+      "pin": 10
+    },
+    {
+      "id": "ban-than-04",
+      "theme": "ban-than",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn xem ảnh một người đang đi biển, rồi một người vừa nhận việc mới. Đặt điện thoại xuống, bạn nhìn chỗ quần áo chưa gấp và thấy căn phòng buồn hơn trước. Mấy phút vừa rồi chứa rất nhiều khoảnh khắc đẹp của rất nhiều người, còn trước mắt bạn là cả một buổi tối bình thường. Có những ngày cuộc sống riêng vẫn ổn, cho tới khi bạn nhìn quá nhiều cuộc sống khác. Cảm giác thiếu thốn tới mà chẳng có món gì trong phòng vừa mất đi.",
+      "n": 11,
+      "pin": 11
+    },
+    {
+      "id": "ban-than-05",
+      "theme": "ban-than",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Trước khi tới lượt trình bày, bạn thấy tay lạnh và đọc lại dòng đầu trong đầu. Người ngồi cạnh trông bình thản, khiến bạn càng để ý tiếng tim mình. Rồi bạn đứng lên, có chỗ nói vấp, có chỗ phải nhìn giấy. Khi ngồi xuống, bạn vẫn nhớ những chỗ chưa trôi chảy ấy. Nhưng phần bạn muốn nói đã được nghe, dù cách nói còn run. Có những lần tự tin tới muộn hơn hành động, khi mọi việc xong rồi bạn mới nhận ra mình đã đi qua được.",
+      "n": 12,
+      "pin": 12
+    },
+    {
+      "id": "ban-be-01",
+      "theme": "ban-be",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Lâu rồi hai người mới gặp. Lúc đầu còn hỏi công việc, chỗ ở, rồi một chuyện cũ được nhắc tới và giọng nói tự nhiên trở lại như ngày trước. Bạn ngạc nhiên vì có những điều đã quên, người kia vẫn nhớ. Tới lúc quán dọn ghế, cả hai lại phải về với những cuộc sống ít gặp nhau. Trên đường về, bạn thấy nhẹ hơn một chút. Đã có một buổi tối bạn không cần kể lại mình từ đầu để được hiểu.",
+      "n": 13,
+      "pin": 13
+    },
+    {
+      "id": "tuoi-tre-16",
+      "theme": "tuoi-tre",
+      "form": "loi-chuc",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn tìm lại tấm ảnh chụp ở một thành phố từng sống. Áo khi ấy không đẹp lắm, tóc cũng khác bây giờ, nhưng nhìn lâu lại nhớ cả tiếng xe dưới cửa sổ. Có chuyện bạn đã dám làm, có chuyện vẫn tiếc vì hồi đó quá sợ. Cả hai cùng nằm trong những năm ấy. Mình mong sau này khi nhớ lại, bạn còn nhớ cả những người đã chờ mình về, những bữa cơm sau một ngày khó, bên cạnh những điều đã kịp làm hoặc còn dang dở.",
+      "n": 14,
+      "pin": 14
+    },
+    {
+      "id": "uoc-mo-04",
+      "theme": "uoc-mo",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Trong quyển lưu bút cũ, bạn viết mình muốn làm một nghề rất rõ ràng. Nét chữ nghiêng, câu trả lời không có chỗ ngập ngừng. Bây giờ nghĩ tới điều mình muốn, bạn nghĩ luôn tới tiền nhà, tới gia đình, tới những thứ có thể không thành. Bạn có nhiều điều để cân nhắc hơn đứa trẻ viết trang ấy. Nhưng đọc lại vẫn thấy nhớ sự háo hức khi một mong muốn còn được nói ra thật dễ dàng, trước khi phải giải thích nó có khả thi hay không.",
+      "n": 15,
+      "pin": 15
+    },
+    {
+      "id": "ban-than-01",
+      "theme": "ban-than",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Đã muộn, bạn vẫn mở thêm một tài liệu dù đọc vài dòng là phải quay lại từ đầu. Ly nước bên cạnh nguội rồi, vai bắt đầu nhức. Bạn nhớ hồi chiều đã nghĩ tối nay sẽ ngủ sớm, nhưng công việc cứ có thêm một chỗ chưa xong. Có lúc mệt tới mức bạn chỉ thấy mình làm chậm, rồi lại giận mình vì chậm. Trong căn phòng còn sáng đèn ấy, có một người đã cố giữ sự tập trung lâu hơn sức mình đang có.",
+      "n": 16
+    },
+    {
+      "id": "tinh-yeu-01",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Tô phở được đẩy sang phía bạn, không có hành như mọi lần. Người đối diện vẫn đang nói chuyện khác, chẳng nhắc mình vừa dặn người bán. Bạn ăn được một lúc mới để ý. Có những sự quan tâm xảy ra như thế, lẫn trong một bữa ăn, một chuyến xe, một câu hỏi trước khi ra ngoài. Đôi khi bạn nhớ chúng lâu hơn lời nói ở một dịp đặc biệt. Nhớ cảm giác sở thích rất nhỏ của mình đã có một chỗ trong trí nhớ của người khác.",
+      "n": 17
+    },
+    {
+      "id": "co-gang-02",
+      "theme": "co-gang",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Hôm nay danh sách việc của bạn còn nguyên mấy dòng. Nhưng bạn đã ra khỏi giường sau một đêm ngủ chập chờn, đã đi làm, đã trả lời cuộc gọi cần trả lời. Tối về, bạn ăn được một bữa rồi mới nằm xuống. Nhìn vào kết quả, ngày này có vẻ chẳng được bao nhiêu. Chỉ bạn biết mỗi việc đã tốn sức thế nào. Hôm nay, có lẽ phần tốn sức nhất là lúc ngồi ở mép giường, trước khi bạn bước ra ngoài với vẻ bình thường mọi người vẫn thấy.",
+      "n": 18
+    },
+    {
+      "id": "khong-lay-long-01",
+      "theme": "khong-lay-long",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Một câu nhận xét ở cuộc họp theo bạn về tận nhà. Lúc rửa bát bạn nghĩ lại, lúc nằm xuống vẫn nghe đúng giọng người ấy. Trong câu đó có thể có điều cần nghe, nhưng cách nó được nói khiến bạn buồn nhiều hơn bạn tưởng. Bạn đã phân tích từng chữ mà cảm giác vẫn chưa nhẹ đi. Đôi khi điều còn mắc lại sau một lời chê là mong muốn rất bình thường: giá như người ta nói với mình bằng một chút dịu dàng.",
+      "n": 19
+    },
+    {
+      "id": "tuoi-tre-07",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Căn phòng đầu tiên bạn thuê có cái quạt hơi kêu và một bếp nhỏ kê cạnh cửa. Bữa cơm đầu nấu nhão, bạn ăn trong chiếc bát mang từ nhà lên. Tối đó nhớ nhà hơn lúc đi, vì tới giờ này mọi người chắc đang ngồi cùng nhau. Mấy hôm sau bạn biết chỗ mua rau, biết tiếng chìa khóa của phòng bên. Căn phòng dần có những thứ quen thuộc, dù đôi khi chỉ một cuộc gọi về cũng đủ làm bạn muốn xếp đồ trở lại.",
+      "n": 20
+    },
+    {
+      "id": "ban-be-04",
+      "theme": "ban-be",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Bạn đăng một tấm ảnh đi chơi, ai cũng để lại lời khen. Một lúc sau có tin nhắn riêng: dạo này ổn không? Bạn nhìn câu ấy khá lâu rồi mới trả lời. Trong ảnh vẫn cười được, còn những chuyện mệt chưa biết kể cho ai. Người bạn ấy cũng không có câu nào giải quyết mọi việc. Họ chỉ nghe, hỏi thêm ở chỗ bạn định nói lướt qua. Đêm đó, câu chuyện của bạn đã được kể đủ hơn những gì một tấm ảnh có thể nói.",
+      "n": 21
+    },
+    {
+      "id": "lon-len-03",
+      "theme": "lon-len",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Bóng đèn phòng tắm hỏng, bạn mua cái mới và đứng trên ghế thay. Làm xong, bạn bật thử mấy lần rồi cất cái cũ vào túi rác. Một việc trước kia thường gọi người nhà, giờ đã tự xử lý được. Cảm giác ấy đi cùng một chút lạ: có thêm chuyện mình biết làm, có ít hơn những lý do để nói con chưa biết. Bạn vẫn thích được ai đó hỏi có cần giúp không, dù lần này câu trả lời đã là làm xong rồi.",
+      "n": 22
+    },
+    {
+      "id": "tinh-yeu-02",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Đoạn tin nhắn cũ vẫn nằm trong điện thoại. Bạn ít mở hơn trước, nhưng có hôm vô tình thấy tên người ấy lại kéo lên đọc. Những câu rất thường, hỏi ăn chưa, kể đường hôm nay kẹt, giờ làm bạn nhớ cả một thời gian. Bạn từng muốn xóa để đỡ thấy mình còn vướng. Nhưng giữ lại hay xóa đi đều chưa chắc nói được lòng bạn đang ở đâu. Trên màn hình là ngày tháng của mấy năm trước. Còn cảm giác khi đọc câu hỏi ấy, tối nay vẫn chưa xa được từng ấy.",
+      "n": 23
+    },
+    {
+      "id": "ban-than-03",
+      "theme": "ban-than",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Chuông báo thức reo lần thứ ba, bạn mới ngồi dậy. Việc đầu tiên trong đầu là trách mình sao cứ chậm chạp. Đêm qua còn sáng màn hình tới khuya, lúc ngủ lại lo việc sáng nay. Cơ thể chưa được nghỉ bao nhiêu, nhưng vừa mở mắt đã phải nghe một lời chê. Mắt vẫn cay, bạn đã nghĩ tới những người dậy sớm hơn mình và thấy mình kém đi. Ngày còn chưa bắt đầu, bạn đã thấy mình có lỗi.",
+      "n": 24
+    },
+    {
+      "id": "co-gang-01",
+      "theme": "co-gang",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Bạn gửi bản sửa cuối lúc đồng hồ đã qua mười một giờ. Không có ai trả lời ngay, màn hình chỉ hiện dòng đã gửi. Bữa tối ăn vội còn để trên bàn, ngoài hành lang cũng yên hơn lúc nãy. Bạn chưa biết công việc này sẽ đưa mình tới đâu, chỉ biết tối nay đã ngồi với nó rất lâu. Ngày mai người nhận sẽ thấy công việc đã xong. Còn tối nay, bạn đóng máy và ngồi thêm một lúc trước khi đủ sức đứng dậy dọn bàn.",
+      "n": 25
+    },
+    {
+      "id": "khong-lay-long-03",
+      "theme": "khong-lay-long",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Đồng nghiệp nhờ thêm một việc, bạn đáp được rồi mới nhìn lại lịch của mình. Buổi tối đã kín, nhưng giờ nói lại thấy khó hơn lúc gật đầu. Bạn ngồi làm tới muộn, vừa thương người ta đang cần vừa khó chịu vì mình lại nhận. Lúc đáp lời, bạn đã nghĩ tới sự nhẹ nhõm của người kia nhiều hơn lịch của mình. Người khác chỉ nghe một câu nhẹ nhàng; bạn phải sống với cả buổi tối phía sau câu ấy.",
+      "n": 26
+    },
+    {
+      "id": "tuoi-tre-02",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn tới một lớp học mới, đứng ở cửa tìm chỗ ngồi như hồi còn đi học. Những người xung quanh có vẻ biết mình đang làm gì, còn bạn phải nhìn theo từng bước. Trên đường về, bạn chưa biết có thích việc này không. Nhưng buổi tối vừa rồi có một cảm giác lâu chưa gặp: được bắt đầu một thứ mà chưa ai chờ mình làm giỏi. Bạn giữ tờ ghi chú của buổi học trong túi. Chưa có kế hoạch dài hơn, chỉ có một tối vừa đi qua khác với mọi tối thường ngày.",
+      "n": 27
+    },
+    {
+      "id": "tinh-yeu-06",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Tối Chủ nhật, bạn nấu phần ăn vừa đủ cho mình. Bộ phim đang xem còn một tập, quần áo phơi ngoài cửa đã khô. Có lúc căn phòng yên khiến bạn dễ chịu, có lúc cùng sự yên ấy lại khiến bạn nhớ một người để nói chuyện. Hai cảm giác thay nhau tới, không phải hôm nào cũng giống hôm nào. Bạn có thể quen với việc sống một mình mà vẫn mong có thêm một tiếng chìa khóa ngoài cửa.",
+      "n": 28
+    },
+    {
+      "id": "uoc-mo-01",
+      "theme": "uoc-mo",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Bạn từng hình dung lúc lớn sẽ có một công việc mình thích và biết rõ những năm sau muốn đi đâu. Giờ có hôm chỉ việc lo xong tiền nhà và bữa tối đã hết ngày. Bản hình dung cũ vẫn còn, nhưng cuộc sống đang diễn ra có nhiều phần bạn chưa nghĩ tới khi ấy. Có lẽ điều khiến bạn hụt hẫng là khoảng cách giữa hai thứ. Một ước muốn chưa thực hiện được có thể vẫn ở trong lòng, ngay cả khi hôm nay bạn chưa còn sức để nghĩ nhiều về nó.",
+      "n": 29
+    },
+    {
+      "id": "ban-than-02",
+      "theme": "ban-than",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Bạn mở tủ, thấy chiếc áo đã để dành từ lâu vì nghĩ khi nào gầy hơn sẽ mặc. Có vài cuộc hẹn cũng từng bị hoãn với một lý do giống vậy: khi nào mình trông ổn hơn. Bạn không nhớ đã bắt đầu đặt những điều kiện ấy từ lúc nào. Chỉ thấy cuộc sống có nhiều chuyện cứ đứng chờ một phiên bản khác của mình. Trong lúc chờ, người đang đi làm, ăn cơm và sống từng ngày vẫn là bạn của hiện tại.",
+      "n": 30
+    },
+    {
+      "id": "lon-len-05",
+      "theme": "lon-len",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn nghe mẹ kể hồi mới có con, có đêm mẹ cũng không biết tiếng khóc ấy là vì đói hay đau. Trong câu chuyện, mẹ ít chắc chắn hơn hình ảnh bạn nhớ từ nhỏ. Bạn thấy thương, nhưng cũng nhớ những lần mẹ đã làm mình buồn. Hai điều ấy ở cạnh nhau, không xóa nhau đi. Lớn thêm một chút, bạn biết thêm chuyện của bố mẹ, còn chuyện của mình vẫn cần được nghe bằng sự nghiêm túc như trước.",
+      "n": 31
+    },
+    {
+      "id": "tinh-yeu-08",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 3,
+      "text": "Bạn nhớ người ấy hay gọi đồ uống ít đường. Trong một buổi gặp đông người, chỉ một câu họ hỏi riêng cũng đủ để bạn nhớ tới lúc về. Bạn chưa kể chuyện này với ai, vì nói ra lại thấy những điều mình vui có vẻ nhỏ quá. Tình cảm còn chưa có tên rõ ràng, chưa biết sẽ tới đâu. Nhưng có một đoạn đường bạn đã thấy ngắn hơn vì đi cạnh họ, và một ngày bình thường đã có điều để mong.",
+      "n": 32
+    },
+    {
+      "id": "tuoi-tre-11",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Mẹ gọi đúng lúc bạn vừa về nhà. Bạn nói công việc vẫn ổn, ăn uống đầy đủ, rồi hỏi ở nhà có gì mới. Cúp máy, bạn nhìn hộp cơm còn chưa mở và thấy muốn nghe thêm giọng mẹ. Có vài chuyện bạn giấu vì sợ mẹ lo, vài chuyện vì chính mình cũng chưa hiểu hết. Trong cuộc gọi ngắn ấy, con vẫn ổn là câu dễ nói nhất. Còn phần muốn được dựa vào ai đó đã im lặng suốt từ đầu.",
+      "n": 33
+    },
+    {
+      "id": "ban-be-02",
+      "theme": "ban-be",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn thấy một tấm ảnh của người bạn cũ. Họ đang ngồi cùng những người bạn không biết, ở một quán bạn chưa từng tới. Bạn vẫn nhớ họ thích uống gì, nhưng không biết dạo này họ làm ở đâu. Cảm giác ấy hơi lạ: từng biết một người rất rõ, rồi chỉ còn biết về họ qua vài tấm ảnh. Có thể bạn không muốn quay lại như trước. Bạn chỉ thấy nhớ cái thời hai người còn có nhiều chuyện để kể cho nhau.",
+      "n": 34
+    },
+    {
+      "id": "co-gang-10",
+      "theme": "co-gang",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Việc hôm nay được giao giống một việc từng khiến bạn mất ngủ mấy năm trước. Lần này bạn biết cần hỏi ai, biết chỗ nào dễ sai, làm xong rồi chuyển sang việc khác. Đến chiều mới nhớ hồi ấy mình đã lo tới mức nào. Chức danh và mức lương có thể chưa đổi nhiều. Nhưng lần này bạn đã biết cách làm, không còn phải mang việc ấy về lo suốt bữa tối. Bạn có thể chưa tới nơi mình mong, nhưng có vài đoạn đã đi qua lâu hơn mình nhớ.",
+      "n": 35
+    },
+    {
+      "id": "khong-lay-long-04",
+      "theme": "khong-lay-long",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn nói tối nay không giúp được. Người bên kia đáp một câu ngắn hơn mọi lần, và từ đó bạn cứ nhìn điện thoại. Bạn biết mình đã mệt, biết nếu nhận thêm sẽ không còn buổi tối để nghỉ, nhưng vẫn lo họ buồn. Một lời từ chối đôi khi không nhẹ ngay sau khi nói ra. Bạn vẫn có thể quý một người, cần giữ lại sức cho mình, rồi mất thêm một lúc để quen với khoảng im giữa hai bên.",
+      "n": 36
+    },
+    {
+      "id": "tinh-yeu-04",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn luôn là người hỏi hôm nào gặp, rồi giữ trống một tối trong tuần. Người kia chưa hẹn được, bạn nói không sao và chờ. Có lần cuộc hẹn cuối cùng cũng tới, bạn vui tới mức quên những buổi tối trước đã buồn. Sau đó lại là mình hỏi trước. Bạn chưa biết gọi mối quan hệ ấy là gì. Chỉ có một điều ngày càng rõ: sự háo hức mỗi lần gần được gặp đang đi cùng rất nhiều thời gian phải đoán.",
+      "n": 37
+    },
+    {
+      "id": "ban-than-06",
+      "theme": "ban-than",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn về nhà khi hàng cơm dưới ngõ đang dọn. Trong tủ lạnh còn nửa hộp thức ăn từ hôm qua, hâm lại thì hơi khô. Bạn vừa ăn vừa lướt điện thoại, thấy người ta ngồi quanh một bàn đông đủ, tự nhiên bữa cơm của mình khó nuốt hơn một chút. Có lẽ tối nay bạn không cần ai nói phải mạnh mẽ lên. Bạn chỉ muốn có người ngồi đối diện, hỏi hôm nay thế nào, rồi chờ nghe hết câu trả lời.",
+      "n": 38
+    },
+    {
+      "id": "tuoi-tre-05",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn chọn công việc này vì lúc ấy ai cũng nói ổn định. Đi được một quãng, bạn mới thấy có những buổi sáng mình ngại cả tiếng chuông báo thức. Nhưng nghĩ tới chuyện đổi lại lo tiền, lo phải học lại, lo những câu hỏi ở nhà. Mong muốn riêng chưa có một câu trả lời gọn để giải thích với mọi người. Nó thường hiện ra lúc rất muộn, khi bạn hết bận và bắt đầu tự hỏi mình còn muốn sống những ngày giống thế này bao lâu.",
+      "n": 39
+    },
+    {
+      "id": "uoc-mo-02",
+      "theme": "uoc-mo",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Trong máy tính có một thư mục bạn lâu chưa mở. Vài bản viết, vài hình tham khảo, tên một việc từng làm mình háo hức. Dạo này công việc và tiền nhà chiếm gần hết thời gian, thư mục ấy cứ nằm yên. Có hôm bạn thấy nó và hơi áy náy, như vừa quên trả lời một người quen. Một điều từng muốn chưa biến mất hẳn, nhưng cũng chưa biết lúc nào sẽ trở lại. Khoảng cách ấy có cả tiếc nuối lẫn những lý do rất thật.",
+      "n": 40
+    },
+    {
+      "id": "lon-len-04",
+      "theme": "lon-len",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn từng chờ một lời giải thích cho chuyện cũ. Vì sao người ấy thay đổi, vì sao mọi việc dừng lại đúng lúc bạn vẫn còn tin. Lâu rồi không có câu trả lời mới, nhưng cuộc sống vẫn có thêm những ngày khác. Bạn ít nghĩ tới hơn, dù thỉnh thoảng một chi tiết lại kéo chuyện ấy về. Có lẽ sẽ còn điều chưa hiểu hết. Và có những buổi chiều, bạn nhận ra mình đã đi qua được mà hôm đó không cần giải được câu hỏi nào.",
+      "n": 41
+    },
+    {
+      "id": "tinh-yeu-05",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Hai người cãi nhau vì một việc quên mua. Câu chuyện đi xa hơn cái túi hàng còn thiếu, tới những lần không được nghe, những lần đã nhường mà không nói. Lúc yên lại, bạn nhớ vẻ mệt của người kia và cả cảm giác của mình trước khi nổi giận. Một chuyện nhỏ có thể chạm vào nhiều điều đã để đó từ lâu. Cả hai ngồi cùng bàn, nhưng phải mất một lúc mới nói được điều thật sự làm mình buồn.",
+      "n": 42
+    },
+    {
+      "id": "khong-lay-long-06",
+      "theme": "khong-lay-long",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Sau buổi gặp, bạn nhớ người này thích mình nói nhiều, người kia lại có vẻ ngại. Lần trước bạn im hơn cũng từng bị hỏi sao hôm nay lạnh nhạt. Bạn đã đổi cách nói mấy lần mà vẫn không biết thế nào mới vừa. Trong buổi gặp ấy, bạn nghe phản ứng của mọi người nhiều tới mức quên mất câu mình ban đầu muốn kể. Về nhà, điều bạn thấy thiếu là cảm giác được nói một câu tự nhiên, trước khi nghĩ người nghe sẽ thích mình hơn hay ít đi.",
+      "n": 43
+    },
+    {
+      "id": "co-gang-03",
+      "theme": "co-gang",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn gửi một công việc đi rồi mở hộp thư liên tục. Mỗi lần không có phản hồi lại đọc bản đã gửi, tìm xem chỗ nào có thể chưa ổn. Phần mình làm đã xong, nhưng sự chờ đợi vẫn lấy nhiều sức. Hộp thư chưa có gì mới, bản đã gửi cũng chưa có chỗ rõ ràng cần thay đổi. Chỉ có bạn chưa yên tâm đủ để rời màn hình. Bạn đã dành một phần buổi tối ở đó, khó nghỉ hẳn mà cũng không biết phải làm thêm gì.",
+      "n": 44
+    },
+    {
+      "id": "tuoi-tre-08",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn nhớ hồi chọn ngành đã tin mình hiểu công việc ấy sẽ như thế nào. Tới khi đi làm, có những phần thích hơn dự đoán, có những phần khiến bạn muốn đổi hướng. Nhắc lại lựa chọn cũ, bạn hơi ngượng vì lúc đó từng nói rất chắc. Nhưng khi ấy bạn chỉ biết từng ấy, với những người đã gặp và những chuyện đã nghe. Có nhiều điều về một con đường chỉ hiện ra sau khi mình thực sự sống trên nó.",
+      "n": 45
+    },
+    {
+      "id": "ban-than-07",
+      "theme": "ban-than",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn từng nói mình rất thích một điều, giờ lại thấy khác. Mỗi lần ai nhắc, bạn vẫn đáp như cũ vì giải thích thì dài. Có những sở thích thay đổi rất nhẹ, những kế hoạch cũng vậy, mà mình phải mất lâu mới nhận ra. Người khác giữ trong trí nhớ một phiên bản bạn đã từng là. Còn bạn đang sống ở những ngày có thêm điều mới. Đôi khi sự xa lạ với chính câu trả lời cũ là dấu hiệu đầu tiên của thay đổi ấy.",
+      "n": 46
+    },
+    {
+      "id": "tinh-yeu-09",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn quay lại quán từng hay đi cùng người ấy. Nhân viên đưa thực đơn, bạn suýt gọi luôn hai món như trước. Khi nhận ra, bạn ngừng một chút rồi chọn lại. Bữa ăn không có chuyện gì lớn, chỉ vài thói quen vẫn đi trước suy nghĩ. Chia tay đã được nói rõ từ lâu, còn cuộc sống có những chỗ phải quen lại từng lần. Tối đó, bạn đã ăn xong một bữa ở quán cũ, với chiếc ghế đối diện để trống.",
+      "n": 47
+    },
+    {
+      "id": "ban-be-03",
+      "theme": "ban-be",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn nhìn lại cuộc trò chuyện, mấy lần gần đây đều là mình hỏi trước. Có buổi gặp vẫn vui, người kia vẫn nhớ chuyện bạn kể, nên bạn không biết sự im lặng giữa những lần ấy có nghĩa gì. Bạn ngại nói vì sợ một lời hỏi biến thành trách móc. Nhưng lâu lâu vẫn mong có tin nhắn tới trước khi mình nghĩ ra chuyện để bắt đầu. Trong tình bạn này, bạn cũng muốn có những lần được biết người kia vừa nhớ tới mình.",
+      "n": 48
+    },
+    {
+      "id": "khong-lay-long-09",
+      "theme": "khong-lay-long",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn viết xong một đoạn rồi xóa đi. Nội dung chẳng có gì đặc biệt, chỉ một điều mình nghĩ, nhưng bạn hình dung từng người sẽ đọc nó thế nào. Có người thật sự từng nhận xét khiến bạn ngại, có người chưa nói gì mà bạn đã lo trước. Cuối cùng màn hình lại trống. Điều chưa được đăng vẫn ở trong lòng, đi cùng cảm giác mệt vì phải giải thích một câu mình còn chưa nói ra.",
+      "n": 49
+    },
+    {
+      "id": "tuoi-tre-14",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Có người hỏi bạn đam mê gì. Bạn kể vài thứ hơi thích rồi thấy câu trả lời của mình thiếu chắc chắn. Người kia có một nghề đã muốn theo từ nhỏ, còn bạn chỉ biết công việc nào làm lâu thì dễ chịu hơn, chuyện nào nghe tới thì muốn tìm hiểu. Những điều ấy chưa ghép thành một tên gọi rõ ràng. Có lẽ điều bạn đang có là một sự tò mò còn rải rác, trước khi có thể kể thành một câu chuyện liền mạch về mình.",
+      "n": 50
+    },
+    {
+      "id": "co-gang-07",
+      "theme": "co-gang",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn nghỉ một việc mình từng rất thích suốt vài tuần. Hôm nay mở lại, trang đang làm dở vẫn ở đúng chỗ cũ. Vừa thấy quen vừa thấy ngại vì đã bỏ lâu, bạn mất một lúc mới nhớ mình định tiếp tục thế nào. Những ngày không đụng tới nó có nhiều lý do, có cả mệt và nản. Nhưng lúc nhìn lại phần đã làm, bạn vẫn thấy có điều mình muốn giữ. Sự gắn bó đôi khi còn đó ngay cả trong quãng mình chưa làm được gì thêm.",
+      "n": 51
+    },
+    {
+      "id": "tinh-yeu-12",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Người ấy cảm ơn vì bạn đã đợi hôm qua. Bạn nói chuyện nhỏ mà, rồi thấy vui lâu hơn mình tưởng. Việc mình làm khi ấy chỉ là ngồi lại thêm một lúc, nhưng người kia đã nhận ra. Trong những ngày quen nhau, có nhiều điều xảy ra rồi trôi qua như thể vốn phải vậy. Một câu cảm ơn làm buổi tối cũ hiện ra khác đi: bạn đã ở đó, và sự có mặt ấy có ý nghĩa với một người.",
+      "n": 52
+    },
+    {
+      "id": "lon-len-07",
+      "theme": "lon-len",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Lần đầu phải đứng ra lo một việc trong nhà, bạn gọi điện hỏi chỗ này, ghi lại số tiền chỗ kia. Ai cũng chờ bạn trả lời, còn bạn phải tìm hiểu từng phần. Tối đó, bạn nhớ những năm mình chỉ ngồi chờ người lớn sắp xếp. Giờ tới lượt mình mà cảm giác sẵn sàng vẫn chưa tới. Trong nhà vẫn còn một người bạn muốn hỏi phải làm thế nào. Chỉ là lần này, người ấy cũng đang chờ câu trả lời từ bạn.",
+      "n": 53
+    },
+    {
+      "id": "ban-than-09",
+      "theme": "ban-than",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Tấm ảnh vừa chụp, bạn nhìn ngay vào chỗ tóc lệch và quầng mắt. Người bạn đứng cạnh lại nói thích tấm này vì hai đứa trông thoải mái. Bạn xem thêm lần nữa, vẫn thấy những chỗ mình không thích, nhưng bắt đầu nhớ câu chuyện khiến cả hai cười lúc ấy. Một tấm ảnh có thể giữ nhiều thứ cùng lúc. Có phần bạn muốn sửa, có phần người khác muốn giữ nguyên vì ở đó họ nhận ra đúng con người đã ở cạnh mình.",
+      "n": 54
+    },
+    {
+      "id": "khong-lay-long-10",
+      "theme": "khong-lay-long",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Mọi người hỏi bạn muốn ăn gì, bạn đáp gì cũng được như mọi lần. Tới lúc món được mang ra, bạn mới nhớ mình đã thèm một món khác từ sáng. Chuyện quá nhỏ để thấy cần nói lại, nhưng cảm giác bị bỏ quên hơi quen. Không ai biết điều bạn muốn vì bạn chưa nói, còn bạn đã quen làm cho mọi lựa chọn của mình có vẻ không quan trọng. Món bạn thèm vẫn nằm trong thực đơn, chỉ không ai ở bàn biết bạn đã nghĩ tới nó.",
+      "n": 55
+    },
+    {
+      "id": "ngay-mai-02",
+      "theme": "ngay-mai",
+      "form": "loi-chuc",
+      "tone": "om",
+      "rank": 3,
+      "text": "Bạn nằm xuống sau một ngày nhiều việc không như ý. Câu đã nói lỡ ở cuộc họp, món đồ bỏ quên, một người chưa trả lời. Những chuyện ấy tới giờ vẫn chen nhau trong đầu, dù bên ngoài đã yên. Ngày mai có vài việc phải giải quyết tiếp, nhưng cũng có những giờ chưa biết sẽ ra sao. Đêm nay bạn chưa cần biết hết. Mình mong giấc ngủ tới được, để buổi sáng có thể bắt đầu bằng một cảm giác khác với lúc này.",
+      "n": 56
+    },
+    {
+      "id": "tuoi-tre-04",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn giữ hai lời mời làm việc trong hộp thư và đọc lại từng điều kiện. Chỗ này gần nhà hơn, chỗ kia đúng việc mình muốn hơn. Hỏi vài người, mỗi người nghiêng một phía. Bạn từng nghĩ tới lúc có lựa chọn sẽ thấy dễ hơn, giờ lại sợ điều mình bỏ lỡ. Bạn đã đọc rất kỹ, đã hỏi rất nhiều, nhưng không có ai kể trước được những ngày mình sẽ sống ở mỗi nơi. Hai lá thư vẫn nằm cạnh nhau trong hộp thư tối đó.",
+      "n": 57
+    },
+    {
+      "id": "tinh-yeu-10",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Một người hỏi sao bạn còn buồn, chuyện đã qua lâu rồi. Bạn cười cho nhẹ câu chuyện, nhưng về nhà lại tự tính xem đã bao nhiêu tháng. Có hôm bạn thấy bình thường, có hôm chỉ một bài hát là chùng xuống. Những ngày ấy không nối thành một đường thẳng để dễ giải thích. Bạn đã có thêm nhiều chuyện mới, vẫn còn vài chỗ cũ dễ đau. Thời gian đi qua được đếm rõ trên lịch; cảm giác trong lòng thì khó đếm giống vậy.",
+      "n": 58
+    },
+    {
+      "id": "co-gang-04",
+      "theme": "co-gang",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Hôm trước bạn ngồi vào bàn đầy háo hức, làm một mạch tới tối. Hôm nay cùng công việc ấy, bạn thấy nặng ngay từ lúc mở máy. Phần muốn làm vẫn còn, nhưng sức và sự tập trung không giống nhau mỗi ngày. Bạn hơi thất vọng vì từng nghĩ đã tìm được điều mình thích thì sẽ dễ giữ nhịp hơn. Tối đó, bạn lưu phần đã làm rồi đóng máy. Sự háo hức chưa trở lại, nhưng công việc đã có thêm một đoạn không còn để trống.",
+      "n": 59
+    },
+    {
+      "id": "ban-than-08",
+      "theme": "ban-than",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn làm sai một việc và cứ gọi mình là tệ suốt đường về. Tới khi kể cho bạn thân, họ hỏi cụ thể chỗ nào sai, chỗ nào còn sửa được. Nghe họ nói, câu chuyện có các phần rõ hơn, bớt giống một lời kết luận về cả con người mình. Bạn vẫn tiếc việc đã xảy ra, vẫn ngại phải xử lý tiếp. Nhưng trong cuộc trò chuyện ấy, một sai sót đã có tên riêng, thay vì mang tên bạn.",
+      "n": 60
+    },
+    {
+      "id": "khong-lay-long-07",
+      "theme": "khong-lay-long",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Một câu đùa làm bạn khó chịu, nhưng bạn vẫn cười theo. Buổi gặp xong rồi, bạn nghĩ nếu nói mình không thích thì không khí sẽ thế nào. Bạn đã quen với việc giữ cho mọi người thoải mái, tới mức phản ứng thật thường tới sau, lúc chỉ còn mình. Tiếng cười ban nãy không kể được hết cảm giác của bạn. Khi nhớ lại buổi gặp, bạn vẫn nhớ đúng chỗ mọi người cùng cười. Chỉ mình bạn biết lúc ấy câu nói kia đã làm lòng chùng xuống.",
+      "n": 61
+    },
+    {
+      "id": "tinh-yeu-15",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Người ấy về nhà, đặt chìa khóa vào chỗ cũ rồi hỏi bạn đã ăn chưa. Hai người kể chuyện trong ngày, có đoạn nghe quen tới mức đoán được câu tiếp theo. Bạn từng nhớ những buổi đầu hồi hộp, từng lo sự bình thường này là một điều đã mất. Nhưng lúc bị ốm, nghe tiếng người kia ở bếp lại thấy dễ ngủ hơn. Trong một mối quan hệ lâu ngày, có những cảm giác ít làm tim đập nhanh, vẫn có chỗ rất riêng trong đời sống.",
+      "n": 62
+    },
+    {
+      "id": "tuoi-tre-09",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Sau một tuần ngủ muộn, bạn ngồi trên xe tới chỗ làm và thấy mắt cứ nhắm lại. Tối nào cũng có lý do để thức thêm: việc chưa xong, phim đang hay, hoặc chỉ muốn ngày đừng kết thúc sớm quá. Khoảng thời gian riêng thường nằm ở lúc cơ thể đã mệt. Bạn thấy khó chọn giữa nghỉ và được sống thêm một phần không dành cho công việc. Bạn nhớ đoạn phim còn dở, cuốn sách mở ở đầu giường. Chúng thường phải chờ tới giờ muộn ấy mới được tới lượt.",
+      "n": 63
+    },
+    {
+      "id": "uoc-mo-03",
+      "theme": "uoc-mo",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn cầm trên tay bản in đầu tiên của một việc đã nghĩ rất lâu. Có vài chỗ chưa giống hình dung, một trang còn lỗi, người khác xem có thể thấy bình thường. Nhưng bạn nhớ những tối nó chỉ nằm trong đầu, chưa có hình dạng để đặt lên bàn. Giờ nó đã có mép giấy, có chữ, có những phần nhìn thấy được để tiếc và để thích. Cảm giác khi một mong muốn trở thành thứ có thật đôi khi nhỏ hơn mình chờ, nhưng rất riêng.",
+      "n": 64
+    },
+    {
+      "id": "ban-be-05",
+      "theme": "ban-be",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Đêm đó, bạn gọi một người bạn và hỏi còn thức không. Họ nói còn, giọng hơi ngái ngủ. Bạn ngại đã làm phiền, kể một đoạn rồi định thôi, nhưng người kia vẫn hỏi tiếp. Cuộc gọi không làm chuyện khó biến mất, chỉ khiến căn phòng bớt yên tới mức khó chịu. Có một người đã nghe giọng bạn vào lúc lời nói còn lộn xộn. Sáng hôm sau nghĩ lại, điều bạn nhớ nhất là mình đã không phải nói mọi chuyện vào khoảng trống.",
+      "n": 65
+    },
+    {
+      "id": "co-gang-08",
+      "theme": "co-gang",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn hoàn thành một bản đầu còn nhiều chỗ thô. Nhìn nó, bạn thấy ngại gửi đi vì biết mình có thể làm tốt hơn nếu có thêm thời gian. Nhưng thời gian đã dành cũng không ít, và đây là phần mình làm được trong những ngày vừa qua. Bản đầu ấy còn chỗ cần sửa, nhưng đã có phần trước đây chỉ nằm trong đầu. Bạn đọc lại, vừa thấy thiếu, vừa nhớ buổi tối mình đã khó khăn thế nào để bắt đầu.",
+      "n": 66
+    },
+    {
+      "id": "tinh-yeu-13",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn thấy ảnh người cũ bên một người mới. Ngực chùng xuống rất nhanh, trước khi kịp nghĩ mình còn buồn vì điều gì. Bạn tưởng đã quen với việc hai người có cuộc sống riêng, nhưng nhìn thấy vẫn khác với biết trong đầu. Tối ấy, chuyện cũ lại có thêm một đoạn mà bạn đứng ngoài. Có thể bạn không muốn quay lại. Bạn chỉ cần một lúc để quen với hình ảnh nơi người từng rất gần đang ở cạnh một người mình không biết.",
+      "n": 67
+    },
+    {
+      "id": "khong-lay-long-11",
+      "theme": "khong-lay-long",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn nhận lời giúp một người rồi về nhà thấy ấm ức. Việc cũng không quá lớn, người kia còn cảm ơn, nên bạn càng khó hiểu cảm giác của mình. Nghĩ lại, lúc được hỏi bạn đã biết mình không muốn, nhưng sợ từ chối sẽ bị nhìn khác đi. Sự quý mến và nỗi lo mất lòng có thể nằm trong cùng một lời đồng ý. Nhìn từ ngoài rất khó phân biệt, còn bạn là người biết buổi tối ấy đã được cho đi với tâm trạng nào.",
+      "n": 68
+    },
+    {
+      "id": "tuoi-tre-10",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Sinh nhật tới, bạn đọc những lời chúc thành công và nhìn lại một năm chưa có thay đổi lớn. Con số tuổi mới khiến những việc dang dở có vẻ gấp hơn hôm qua. Trong năm ấy, bạn đã đổi vài thói quen, qua một chuyện khó, có thêm người để quý. Nhưng khi tự hỏi đã đạt được gì, những điều đó thường không đứng đầu. Một năm khó kể ngắn gọn. Bạn nhớ cuộc gọi mình đã đủ bình tĩnh để trả lời, một chuyện cũ giờ nhắc tới đã bớt đau, dù chưa biết viết chúng vào lời tổng kết thế nào.",
+      "n": 69
+    },
+    {
+      "id": "lon-len-06",
+      "theme": "lon-len",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn phải gọi lại để nhận mình đã gửi nhầm một thứ. Trước khi bấm số, bạn nghĩ ra vài cách giải thích cho đỡ ngượng, rồi vẫn nói đúng chuyện đã xảy ra. Người bên kia hỏi giờ xử lý thế nào. Cuộc gọi không dễ chịu, nhưng ngắn hơn khoảng thời gian bạn đã lo trước đó. Lớn thêm một chút, có những lúc bạn phải ở lại với hậu quả của một việc mình làm. Cảm giác trách nhiệm đôi khi bắt đầu bằng một câu nói khá run.",
+      "n": 70
+    },
+    {
+      "id": "ban-than-10",
+      "theme": "ban-than",
+      "form": "canh",
+      "tone": "om",
+      "rank": 1,
+      "text": "Tới tối bạn mới nhận ra hôm nay mình đã trả lời rất nhiều người. Công việc, nhóm gia đình, chuyện của bạn bè, những câu hỏi nhỏ nối nhau không dứt. Lúc điện thoại yên, bạn ngồi một mình và chưa biết muốn làm gì. Sự im lặng lúc này hơi lạ, như vừa bước ra khỏi một căn phòng đông. Bạn nhớ hôm nay đã hỏi nhiều người có ổn không. Giờ chỉ còn mình ở đây, câu hỏi ấy lại chưa có sẵn câu trả lời.",
+      "n": 71
+    },
+    {
+      "id": "tinh-yeu-07",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn đọc lại câu hẹn để hôm nào của người ấy. Không có ngày cụ thể, nhưng bạn vẫn để ý lịch tuần tới, vẫn ngại nhận một cuộc hẹn khác. Bạn không biết họ thật sự bận hay chỉ chưa muốn gặp, và khoảng chưa biết ấy kéo dài hơn mình thích. Mỗi lần nói chuyện, bạn thấy gần. Khi cuộc gọi hết, khoảng cách lại hiện ra trong một lời hẹn chưa có ngày. Bạn nhớ cả sự gần gũi lẫn cảm giác mệt vì chưa biết mình đang được chờ ở đâu.",
+      "n": 72
+    },
+    {
+      "id": "co-gang-05",
+      "theme": "co-gang",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn mở lại những trang ghi chép đầu tiên, thấy chữ còn lộn xộn và những điều bây giờ đã quen khi ấy phải viết rất kỹ. Lúc học từng ngày, bạn ít thấy thay đổi; có buổi còn nghĩ mình chẳng giữ được gì trong đầu. Khoảng cách chỉ rõ hơn khi đặt hai trang cạnh nhau. Một phần công sức đã thành điều bạn biết mà không còn để ý. Những buổi tối tưởng giống hệt nhau vẫn để lại dấu trên cách bạn làm việc hôm nay.",
+      "n": 73
+    },
+    {
+      "id": "khong-lay-long-14",
+      "theme": "khong-lay-long",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Cuối ngày, có người gọi để kể một chuyện buồn. Bạn nghe, hỏi han, rồi cúp máy với cảm giác mình không còn sức nói thêm. Chuyện của người kia thật sự khó, nhưng hôm nay bạn cũng có phần mệt chưa kể. Có những lúc quan tâm một người và muốn được yên cùng xuất hiện. Bạn vẫn quý họ, chỉ là sau cuộc gọi cần ngồi im rất lâu. Khả năng lắng nghe cũng có những ngày ít hơn, dù tình cảm dành cho người ấy chưa đổi.",
+      "n": 74
+    },
+    {
+      "id": "tuoi-tre-06",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn lướt điện thoại lúc chờ một việc xong. Tới khi ngẩng lên, ngoài cửa sổ đã tối hơn và món nước bên cạnh tan hết đá. Mấy phút định nghỉ thành một quãng dài, mà bạn không nhớ rõ đã xem gì. Bạn từng thích cảm giác được biết thêm chuyện của mọi người, vẫn có lúc thấy mình vừa đi qua quá nhiều thứ mà chẳng ở lại với điều nào. Buổi chiều trôi mất nhẹ tới mức chỉ màu trời ngoài cửa sổ nhận ra trước.",
+      "n": 75
+    },
+    {
+      "id": "lon-len-08",
+      "theme": "lon-len",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn báo mình gặp chuyện khó, có người hỏi thêm, có người im lặng. Một người không thân lắm lại nhớ nhắn xem hôm nay thế nào. Bạn ngạc nhiên vì sự quan tâm không tới từ đúng những chỗ đã nghĩ. Có người có lý do riêng mà bạn chưa biết, có người thật sự đã xa hơn trước. Sau chuyện ấy, bạn nhìn vài mối quan hệ khác đi. Có sự hụt hẫng, và cũng có một sự gần gũi mới chưa từng được chú ý.",
+      "n": 76
+    },
+    {
+      "id": "tinh-yeu-20",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 1,
+      "text": "Đã khuya, bạn gõ một tin nhắn cho người cũ. Viết được vài dòng thì đọc lại, thêm một câu rồi xóa. Có chuyện muốn hỏi, có chuyện chỉ muốn kể như hồi hai người còn nói với nhau mỗi tối. Tin nhắn vẫn chưa gửi, nhưng khoảng trống trước nút gửi đã chứa rất nhiều cảm giác. Có lẽ điều bạn nhớ là một người, cũng có thể là thói quen có nơi để kể những chuyện nhỏ trước khi ngày khép lại.",
+      "n": 77
+    },
+    {
+      "id": "co-gang-09",
+      "theme": "co-gang",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Một việc chưa bắt đầu cứ theo bạn qua cả ngày nghỉ. Đang ăn cũng nhớ, đang xem phim lại nghĩ tới, khiến thời gian rảnh không yên như đã mong. Bạn biết mình lo, nhưng chưa biết phần khó nhất là công việc hay điều có thể xảy ra khi làm nó. Sự chần chừ đôi khi trông giống không làm gì, bên trong lại rất ồn. Buổi tối ấy bạn đã mệt, dù trên danh sách chưa có thêm dòng nào được đánh dấu.",
+      "n": 78
+    },
+    {
+      "id": "tuoi-tre-15",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 1,
+      "text": "Kết quả không như bạn mong. Có người nói coi như một bài học, nhưng lúc ấy bạn chỉ nghĩ tới số tiền đã mất và những ngày đã dành. Ý nghĩa của chuyện này chưa hiện ra, hoặc hiện ra cũng không khiến nó bớt tiếc ngay. Bạn còn phải lo phần tiếp theo trong khi lòng vẫn nặng với phần vừa hỏng. Có những thất bại cần được buồn vì chính điều đã mất, trước khi người trong cuộc biết mình có thể mang theo điều gì khác.",
+      "n": 79
+    },
+    {
+      "id": "khong-lay-long-13",
+      "theme": "khong-lay-long",
+      "form": "canh",
+      "tone": "om",
+      "rank": 1,
+      "text": "Bạn nghe lại một lời người khác nói về mình qua một người quen. Không biết nguyên câu thế nào, bạn vẫn thấy tức và muốn hỏi cho rõ. Cả chiều, những việc trước mặt bị chen vào bởi một cuộc trò chuyện mình không có mặt. Điều khó chịu ấy có thật, dù câu chuyện còn thiếu nhiều phần. Có lúc bị nhắc tới sau lưng làm bạn thấy mình mất quyền kể về chính mình, trước cả khi biết người ta đã hiểu sai tới đâu.",
+      "n": 80
+    },
+    {
+      "id": "tinh-yeu-17",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Cuộc gọi bắt đầu lúc bên bạn đã tối, còn chỗ người ấy trời vẫn sáng. Hai người kể những chuyện rất thường: bữa ăn, đường về, một người gặp ở chỗ làm. Có đoạn mạng chậm, phải nói lại, có đoạn im vì chẳng còn chuyện mới. Khi tắt máy, căn phòng lại chỉ có tiếng quen thuộc của mình. Bạn đã được gặp giọng nói ấy trong ngày, vẫn nhớ sự có mặt của họ. Trong một mối quan hệ xa, hai điều đó thường cùng ở lại sau cuộc gọi.",
+      "n": 81
+    },
+    {
+      "id": "tuoi-tre-13",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn mở ứng dụng ngân hàng trước một khoản cần trả. Có một số tiền để riêng từ những tháng trước, chưa nhiều nhưng vừa đủ để lần này không phải hỏi mượn. Bạn nhìn con số còn lại rồi tính tiếp tháng sau. Tiền bạc hiếm khi làm bạn yên tâm hoàn toàn, vì vẫn còn nhiều thứ phải lo. Nhưng trong một việc cụ thể hôm nay, bạn đã có thêm một chút chủ động. Cảm giác ấy nhỏ, và bạn biết nó đã được giữ lại từ nhiều lần cân nhắc.",
+      "n": 82
+    },
+    {
+      "id": "khong-lay-long-08",
+      "theme": "khong-lay-long",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Có người hỏi sao bạn nghỉ công việc ấy, giọng như thể quyết định rất dễ dàng. Bạn nhớ những đêm đã nghĩ, những lần định ở lại, những chuyện không tiện kể ở một buổi gặp. Câu trả lời cuối cùng chỉ có vài chữ, vì toàn bộ câu chuyện dài hơn điều người kia đang chờ. Người ta thấy ngày bạn rời đi, còn bạn đã sống với quyết định ấy từ nhiều ngày trước. Khoảng cách giữa hai cách nhìn khiến một cuộc trò chuyện ngắn cũng có thể làm mình mệt.",
+      "n": 83
+    },
+    {
+      "id": "tinh-yeu-22",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 1,
+      "text": "Tối đó bạn chờ một tin nhắn. Người ấy đã nói hôm nay bận, bạn hiểu, nhưng càng muộn lại càng thấy mình để ý tiếng điện thoại. Bạn chưa biết một ngày của họ thực sự diễn ra thế nào. Còn ngày của bạn có một phần đã dành để chờ. Một khoảng im có thể có nhiều lý do, vẫn để lại cảm giác rất cụ thể cho người ở phía này. Trong mối quan hệ ấy, bạn mong cả sự bận rộn lẫn mong muốn được hỏi han đều có thể được nói ra.",
+      "n": 84
+    },
+    {
+      "id": "ban-than-11",
+      "theme": "ban-than",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Có người hỏi dạo này bạn có gì mới không, bạn nghĩ một lúc rồi nói không có gì. Vẫn công việc ấy, đường về ấy, cái phòng ấy. Nói xong thấy đời mình hơi nhỏ. Nhưng trong những ngày không có gì mới đó, bạn vẫn trả tiền nhà, vẫn nhớ mua thuốc, vẫn đi làm dù có sáng chẳng muốn bước ra cửa. Có nhiều việc đang được bạn giữ cho ổn, chỉ là chúng ít khi thành một câu chuyện để kể.",
+      "n": 85
+    },
+    {
+      "id": "tuoi-tre-12",
+      "theme": "tuoi-tre",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn nhớ buổi đầu đi làm, không biết gửi thư thế nào nên đọc đi đọc lại lời chào. Giờ viết xong rất nhanh, tới khi gặp một người mới lúng túng ở cùng chỗ ấy mới nhớ mình từng như vậy. Có những sự vụng về đã rời đi mà không báo, vì bạn làm đủ nhiều lần để quên chúng từng khó. Nhưng trong một việc khác, cảm giác bỡ ngỡ vẫn có thể trở lại. Bạn vừa là người đã biết thêm nhiều điều, vừa là người còn phải bắt đầu ở những chỗ mới.",
+      "n": 86
+    },
+    {
+      "id": "tinh-yeu-14",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn hỏi người ấy có thể dành một tối cho mình không, rồi tự thấy câu hỏi có vẻ đòi hỏi. Bạn đã sửa cách nói cho nhẹ, thêm rằng nếu bận thì thôi. Điều mình muốn vốn chỉ là được gặp và được biết người kia cũng mong gặp. Nhưng lâu dần bạn quen trình bày nhu cầu của mình như một điều nên xin lỗi trước. Trong những câu rất dè dặt ấy, có một phần tình cảm chưa được đặt xuống bằng sự thoải mái mà bạn từng mong.",
+      "n": 87
+    },
+    {
+      "id": "khong-lay-long-12",
+      "theme": "khong-lay-long",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn nhìn mấy cuộc gọi nhỡ sau một buổi không cầm điện thoại. Mỗi người có một việc, và bạn bắt đầu nghĩ phải trả lời thế nào để không ai khó chịu. Có cuộc gọi cần gấp, có cuộc chỉ muốn hỏi chuyện, nhưng lúc ấy tất cả đều khiến bạn thấy mình đang chậm. Một buổi yên vừa có đã mang thêm cảm giác mắc nợ. Bạn đặt điện thoại xuống rồi lại cầm lên, muốn nghỉ thêm mà chưa hết lo người bên kia đang chờ. Buổi chiều riêng của mình vẫn còn, nhưng đã bớt yên hơn lúc đầu.",
+      "n": 88
+    },
+    {
+      "id": "tinh-yeu-16",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Sau khi rời một mối quan hệ, bạn vẫn nhớ có người từng đợi mình về. Có tối muốn gọi lại chỉ để nghe một câu quen, dù những lý do ra đi vẫn còn rất rõ. Bạn đã chọn điều mình nghĩ là cần, mà lòng chưa đi theo ngay được. Một quyết định có thể đúng với những gì bạn biết và vẫn khiến bạn buồn. Trong những ngày ấy, bạn vừa sống với sự vắng mặt của một người, vừa tập quen với lựa chọn đã được chính mình nói ra.",
+      "n": 89
+    },
+    {
+      "id": "ngay-mai-03",
+      "theme": "ngay-mai",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn trở lại một công việc từng bỏ dở. Cái bàn khác trước, vài người không còn ở đó, nhưng khi bắt đầu có những động tác tay vẫn nhớ. Bạn chưa biết lần này sẽ đi được bao xa. Vẫn có sự lo lắng của một khởi đầu, đi cùng những điều lần trước đã hiểu bằng cách khó. Trước mặt là phần chưa làm, phía sau là một quãng không thể quay lại nguyên vẹn. Bạn đang bắt đầu từ chỗ cả hai cùng có mặt.",
+      "n": 90
+    },
+    {
+      "id": "co-gang-11",
+      "theme": "co-gang",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Chuyện bạn chờ cuối cùng cũng tới: được nhận việc, trả xong một khoản nợ, qua được kỳ thi. Bạn tưởng mình sẽ vui lắm. Vậy mà tối đó chỉ thấy mệt, nằm xuống rồi ngủ một giấc dài. Có lẽ bạn đã căng người vì chuyện ấy lâu quá, tới lúc xong vẫn chưa kịp thấy nhẹ. Niềm vui có thể tới sau, vào một sáng bình thường, khi bạn thức dậy và nhận ra hôm nay mình không còn phải lo việc đó nữa.",
+      "n": 91
+    },
+    {
+      "id": "tinh-yeu-19",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn kể lại chuyện hai người chia tay, càng kể càng thấy khó chọn một lý do gọn. Có những điều người kia đã làm bạn buồn, có những điều chính mình chưa biết làm tốt. Cũng có những hôm cả hai đã thật sự dễ chịu ở cạnh nhau. Mối quan hệ ấy giữ nhiều phần khác nhau, dù cuối cùng vẫn dừng lại. Bạn không muốn xóa điều từng đẹp để giải thích điều đã đau, và cũng không muốn vì nhớ chuyện đẹp mà coi nhẹ những gì khiến mình phải rời đi.",
+      "n": 92
+    },
+    {
+      "id": "khong-lay-long-15",
+      "theme": "khong-lay-long",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Có người nhắc lại một chuyện bạn từng làm sai. Bạn cười theo, dù về nhà vẫn thấy khó chịu. Bạn biết chuyện đó có thật, cũng biết hồi ấy mình đã vụng. Nhưng từ đó tới giờ, bạn đã học cách nói khác đi, làm khác đi, có những lần biết dừng lại đúng lúc. Bạn không muốn chối chuyện cũ. Bạn chỉ mong mình được nhìn bằng cả những gì đã xảy ra sau nó.",
+      "n": 93
+    },
+    {
+      "id": "tinh-yeu-23",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Một người mới hỏi bạn có muốn gặp lại không. Bạn thấy vui rồi lại nghĩ tới chuyện lần trước đã kết thúc thế nào. Cuộc hẹn vừa rồi không có điều gì khiến mình buồn, nhưng sự lo lắng vẫn tới như đã quen đường. Bạn muốn gần thêm, cũng muốn biết mình sẽ được an toàn. Sau một chuyện khó, hai mong muốn ấy có thể làm mỗi bước rất chậm. Người mới đang ở trước mặt, còn bạn vẫn mang theo một phần ký ức của những lần đã tin.",
+      "n": 94
+    },
+    {
+      "id": "lon-len-09",
+      "theme": "lon-len",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn nhận ra mình cân nhắc nhiều hơn trước khi tin một lời hứa. Có chuyện từng háo hức giờ nghe xong còn chờ xem, có người muốn thân lại cũng cần thêm thời gian. Những dè dặt ấy có lý do, bạn nhớ rõ chúng từ đâu mà tới. Nhưng đôi khi nhận được một sự quan tâm rất nhỏ, lòng vẫn mềm đi trước khi kịp đề phòng. Qua nhiều chuyện, có những phần trong bạn đã thay đổi, và có những phần vẫn còn muốn được gần một người.",
+      "n": 95
+    },
+    {
+      "id": "tinh-yeu-21",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Một bài hát làm bạn nhớ chuyện cũ. Bạn nhớ cả người từng ở cạnh và cách mình đã sống trong những ngày ấy: điều gì dễ làm buồn, điều gì khiến vui rất lâu. Có phần bây giờ nhìn lại thấy chưa hiểu nhau, có phần vẫn tiếc vì đã hết. Bạn chưa chắc gọi tất cả là bài học, cũng không cần có một ý nghĩa chung cho từng cuộc gặp. Đã có một quãng đời diễn ra như vậy, với những cảm giác khi ấy rất thật.",
+      "n": 96
+    },
+    {
+      "id": "tinh-yeu-24",
+      "theme": "tinh-yeu",
+      "form": "loi-chuc",
+      "tone": "om",
+      "rank": 2,
+      "text": "Bạn kể một chuyện dài, người kia nghe tới cuối mới hỏi thêm. Không có gì đặc biệt trong buổi gặp, chỉ một câu bạn nói chưa rõ được họ nhớ lại và hỏi cho hiểu. Trên đường về, bạn thấy mình không cần diễn giải quá nhiều như mọi lần. Có lẽ một sự gần gũi bạn mong là được chú ý theo cách ấy. Mong trong đời bạn có những người sẵn lòng tìm hiểu cả phần chưa dễ nói, để cuộc trò chuyện không kết thúc ở chỗ bạn vừa bắt đầu thấy thật lòng.",
+      "n": 97
+    },
+    {
+      "id": "tinh-yeu-18",
+      "theme": "tinh-yeu",
+      "form": "canh",
+      "tone": "om",
+      "rank": 2,
+      "text": "Hai người không thích cùng một cách nghỉ cuối tuần. Có lần vì chuyện đó mà bực, có lần sắp xếp được rồi mỗi người làm việc mình muốn. Tối gặp lại vẫn kể cho nhau nghe. Bạn dần biết điều nào chỉ là khác sở thích, điều nào thật sự khiến mình tủi. Sự gần gũi này còn có những chỗ phải hiểu thêm, nhưng đã có vài điều nói ra được mà không thành cuộc hơn thua. Trong những buổi tối ấy, khác nhau vẫn có chỗ ở cùng một căn phòng.",
+      "n": 98
+    },
+    {
+      "id": "ngay-mai-04",
+      "theme": "ngay-mai",
+      "form": "loi-chuc",
+      "tone": "om",
+      "rank": 3,
+      "text": "Đây là lá thư cuối của bộ thư này. Có thể bạn đã đọc đều, cũng có thể có những ngày bận rồi quay lại sau. Mình không biết lá nào đã ở lại với bạn, lá nào chỉ được đọc một lần. Giữa những ngày ấy, cuộc sống của bạn vẫn có thêm chuyện riêng, những điều không nằm trong những trang này. Cảm ơn bạn đã dành một khoảng thời gian ở đây. Mong khi bộ thư khép lại, bạn còn giữ được cảm giác đã có vài dòng ngồi cùng mình trong một ngày bình thường.",
+      "n": 99,
+      "pin": 99
+    }
+  ]
+}

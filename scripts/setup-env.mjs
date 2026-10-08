@@ -18,7 +18,6 @@ const password = crypto.randomBytes(12).toString("base64url");
 const content = fs
   .readFileSync(path.join(root, ".env.example"), "utf8")
   .replace('CARD_HASH_SECRET=""', `CARD_HASH_SECRET="${secret()}"`)
-  .replace('SCAN_TOKEN_SECRET=""', `SCAN_TOKEN_SECRET="${secret()}"`)
   .replace('ADMIN_SESSION_SECRET=""', `ADMIN_SESSION_SECRET="${secret()}"`)
   .replace('ADMIN_PASSWORD=""', `ADMIN_PASSWORD="${password}"`);
 

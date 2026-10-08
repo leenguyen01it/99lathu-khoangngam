@@ -75,13 +75,13 @@ function Page({
             .map((paragraph, i) => (
               <p
                 key={i}
-                className={`whitespace-pre-line font-serif text-[18px] leading-[1.75] ${i > 0 ? "mt-[1.75em]" : ""}`}
+                className={`whitespace-pre-line break-words font-serif text-[18px] leading-[1.75] ${i > 0 ? "mt-[1.75em]" : ""}`}
               >
                 {paragraph.trim()}
               </p>
             ))}
           {from ? (
-            <p className="break-inside-avoid pt-6 text-right font-serif text-[16px] italic text-deep">
+            <p className="break-inside-avoid break-words pt-6 text-right font-serif text-[16px] italic text-deep">
               {from}
             </p>
           ) : null}
@@ -89,10 +89,9 @@ function Page({
       </div>
       {count > 1 ? (
         <div className="-mb-3 flex items-center justify-between pt-4 font-serif text-[14px] text-deep/80">
-          <span>{index > 0 ? "‹" : ""}</span>
+          <span />
           <span>
             {roman(index + 1)}
-            {index < count - 1 ? " ›" : ""}
           </span>
         </div>
       ) : null}
@@ -102,17 +101,18 @@ function Page({
 
 /**
  * Lá thư của người tặng, đặt trong cuốn sách.
- * Thư dài hơn một trang thì chia thành nhiều trang: chạm nửa phải hoặc vuốt sang trái để lật tới,
- * chạm mép trái hoặc vuốt sang phải để lật lui.
+ * Thư dài hơn một trang thì dùng nút Trước/Tiếp để chuyển trang.
  */
-export function GiftBook({ message, from, withCover }: Content & { withCover: boolean }) {
+export function GiftBook({ message, from, withCover, onContinue, continuing = false }: Content & {
+  withCover: boolean;
+  onContinue?: () => void;
+  continuing?: boolean;
+}) {
   const [page, setPage] = useState(0);
   const [count, setCount] = useState(1);
   const [turn, setTurn] = useState<{ from: number; to: number } | null>(null);
   const [coverGone, setCoverGone] = useState(!withCover);
   const flowRef = useRef<HTMLDivElement>(null);
-  const touchStartX = useRef<number | null>(null);
-  const swiped = useRef(false);
 
   // Đếm số trang: bề rộng toàn bộ các cột chia cho bề rộng một trang.
   useLayoutEffect(() => {
@@ -144,35 +144,8 @@ export function GiftBook({ message, from, withCover }: Content & { withCover: bo
   const baseIndex = turn ? (forward ? turn.to : turn.from) : page;
 
   return (
-    <div
-      className="book letter-in"
-      onClick={(event) => {
-        if (swiped.current) {
-          swiped.current = false;
-          return;
-        }
-        if (!coverGone) {
-          setCoverGone(true);
-          return;
-        }
-        const box = event.currentTarget.getBoundingClientRect();
-        const position = (event.clientX - box.left) / box.width;
-        turnTo(position < 0.35 ? page - 1 : page + 1);
-      }}
-      onTouchStart={(event) => {
-        touchStartX.current = event.touches[0]?.clientX ?? null;
-      }}
-      onTouchEnd={(event) => {
-        const start = touchStartX.current;
-        const end = event.changedTouches[0]?.clientX;
-        touchStartX.current = null;
-        if (start === null || end === undefined || !coverGone) return;
-        const distance = end - start;
-        if (Math.abs(distance) < 40) return;
-        swiped.current = true;
-        turnTo(distance < 0 ? page + 1 : page - 1);
-      }}
-    >
+    <>
+    <div className="book letter-in">
       <div className="book__back" />
       <div className="book__pages" />
       <Page message={message} from={from} index={baseIndex} count={count} flowRef={flowRef} />
@@ -191,5 +164,23 @@ export function GiftBook({ message, from, withCover }: Content & { withCover: bo
       ) : null}
       {!coverGone ? <BookCover onOpened={() => setCoverGone(true)} /> : null}
     </div>
+    {count > 1 || onContinue ? (
+      <div className="mt-4">
+        <nav aria-label="Các trang lời tặng" className="flex items-center justify-between gap-3">
+          <button type="button" className="btn-ghost" aria-label="Trang trước" disabled={page === 0 || Boolean(turn) || continuing} onClick={() => { setCoverGone(true); turnTo(page - 1); }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+          </button>
+          <span role="status" aria-live="polite" aria-atomic="true" className="text-[14px] text-sage">{continuing ? "Đang mở…" : `Lời mở đầu · ${page + 1}/${count}`}</span>
+          <button type="button" className="btn-ghost" aria-label={page === count - 1 && onContinue ? "Mở lá thư hôm nay" : "Trang tiếp"} title={page === count - 1 && onContinue ? "Mở lá thư hôm nay" : "Trang tiếp"} aria-busy={continuing} disabled={(page === count - 1 && !onContinue) || Boolean(turn) || continuing} onClick={() => {
+            setCoverGone(true);
+            if (page === count - 1) onContinue?.();
+            else turnTo(page + 1);
+          }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg>
+          </button>
+        </nav>
+      </div>
+    ) : null}
+    </>
   );
 }

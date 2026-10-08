@@ -9,6 +9,7 @@ import { STATUS_LABELS, getCardDetail, type DayCell } from "@/server/stats";
 import { STATUS_STYLES, lastOpenLabel, percent } from "../../status";
 import { CopyLinkButton } from "@/components/CopyLinkButton";
 import { formatAdminDateTime, formatAdminDayKey } from "@/lib/admin-format";
+import { resetActivation } from "./actions";
 
 export const metadata: Metadata = {
   title: "Chi tiết thẻ",
@@ -97,7 +98,7 @@ function HourChart({ hours }: { hours: number[] }) {
 }
 
 export default async function CardDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  await requireAdmin();
+  const actor = await requireAdmin();
   const { id } = await params;
   const detail = await getCardDetail(id);
   if (!detail) notFound();
@@ -136,11 +137,28 @@ export default async function CardDetailPage({ params }: { params: Promise<{ id:
           {STATUS_LABELS[usage.status]}
         </span>
       </header>
-      <p className="mt-1 break-all font-mono text-[12px] text-sage">{card.nfcUrl}</p>
+      <div className="mt-1 flex items-center gap-2">
+        <p className="min-w-0 break-all font-mono text-[12px] text-sage">{card.nfcUrl}</p>
+        <CopyLinkButton value={card.nfcUrl} iconOnly />
+      </div>
       <p className="mt-1 text-[13px] text-sage">
         Tạo ngày {formatAdminDateTime(card.createdAt)}
         {card.activatedAt ? ` · Mở lần đầu ${formatAdminDateTime(card.activatedAt)}` : " · Chưa được mở"}
       </p>
+      <section className="mt-4 rounded-2xl border border-sage/25 p-4">
+        <h2 className="text-[16px] font-semibold">Kiểm tra trước khi giao thẻ</h2>
+        <p className={`mt-2 text-[14px] ${card.activatedAt ? "text-rose" : "text-sage"}`}>
+          {card.activatedAt ? "Đã kích hoạt. Nếu đây là lượt thử của nhà in, hãy đặt lại trước khi giao khách." : "Chưa kích hoạt. Thẻ sẵn sàng để khách xác nhận mở lần đầu."}
+        </p>
+        {actor.role !== "support" && card.activatedAt ? <details className="mt-3">
+          <summary className="cursor-pointer text-[14px] text-gold">Đặt lại kích hoạt</summary>
+          <form action={resetActivation.bind(null, card.id)} className="mt-3">
+            <p className="text-[13px] text-sage">Thẻ trở về chưa kích hoạt, bắt đầu từ lá thư đầu tiên. Xóa lịch sử chạm, nghe, lưu ảnh và thu hồi phiên đọc cũ. Giữ lời tặng, khách hàng, đơn hàng và URL trên thẻ. Thao tác được ghi vào nhật ký quản trị.</p>
+            <label className="mt-3 flex items-start gap-2 text-[14px]"><input type="checkbox" name="confirm" value="yes" required className="mt-1" />Tôi xác nhận đặt lại thẻ này trước khi giao khách.</label>
+            <button className="btn mt-3">Xác nhận đặt lại thẻ</button>
+          </form>
+        </details> : null}
+      </section>
       <div className="mt-4 rounded-2xl border border-gold/40 p-4">
         <p className="text-[13px] font-medium text-gold">Link gửi khách viết lời tặng</p>
         <div className="mt-2 flex flex-wrap items-center gap-2">
@@ -150,6 +168,17 @@ export default async function CardDetailPage({ params }: { params: Promise<{ id:
           <CopyLinkButton value={card.giftUrl} />
         </div>
       </div>
+      <section id="gift-letter" className="mt-4 rounded-2xl border border-gold/40 p-4">
+        <h2 className="text-[16px] font-semibold text-gold">Lời tặng từ người tặng</h2>
+        {card.giftMessage ? (
+          <>
+            <p className="mt-2 text-[13px] text-sage">Người tặng: {card.giftFrom || "Không ghi tên"}</p>
+            <p className="mt-3 whitespace-pre-wrap break-words text-[15px] leading-relaxed">{card.giftMessage}</p>
+          </>
+        ) : (
+          <p className="mt-2 text-[14px] text-sage">Chưa có lời tặng cho thẻ này.</p>
+        )}
+      </section>
       <div className="mt-3 flex flex-wrap gap-2 text-[13px]">
         {card.customer ? <Link href={`/admin/customers/${card.customer.id}`} className="rounded-full border border-sage/30 px-3 py-1 hover:border-gold">Khách: {card.customer.fullName || card.customer.phone || "Chi tiết"}</Link> : <span className="rounded-full border border-sage/20 px-3 py-1 text-sage">Chưa gắn khách hàng</span>}
         {card.order ? <Link href={`/admin/orders/${card.order.id}`} className="rounded-full border border-sage/30 px-3 py-1 hover:border-gold">Đơn: {card.order.orderNumber || card.order.id.slice(-8)}</Link> : null}

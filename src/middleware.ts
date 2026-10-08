@@ -18,4 +18,4 @@ export function middleware(req: NextRequest) {
   return res;
 }
 
-export const config = { matcher: ["/thu-thu"] };
+export const config = { matcher: ["/doc-thu"] };

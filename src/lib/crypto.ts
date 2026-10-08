@@ -71,32 +71,9 @@ export function giftUrl(cardId: string): string {
 }
 
 // ---------------------------------------------------------------
-// JWT ngắn hạn: phiên xem 10 phút và phiên admin
+// JWT ngắn hạn: phiên admin
 // ---------------------------------------------------------------
 const key = (envName: string) => new TextEncoder().encode(requireEnv(envName));
-
-export async function signScanToken(
-  payload: { cardId: string; sessionId: string },
-  ttlSeconds: number,
-): Promise<string> {
-  return new SignJWT(payload)
-    .setProtectedHeader({ alg: "HS256" })
-    .setIssuedAt()
-    .setExpirationTime(`${ttlSeconds}s`)
-    .sign(key("SCAN_TOKEN_SECRET"));
-}
-
-export async function verifyScanToken(
-  token: string,
-): Promise<{ cardId: string; sessionId: string } | null> {
-  try {
-    const { payload } = await jwtVerify(token, key("SCAN_TOKEN_SECRET"), { algorithms: ["HS256"] });
-    if (typeof payload.cardId !== "string" || typeof payload.sessionId !== "string") return null;
-    return { cardId: payload.cardId, sessionId: payload.sessionId };
-  } catch {
-    return null;
-  }
-}
 
 export async function signAdminToken(ttlSeconds: number): Promise<string> {
   return new SignJWT({ role: "admin" })

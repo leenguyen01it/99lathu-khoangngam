@@ -200,7 +200,7 @@ export function summarize(rows: CardUsageRow[]): Overview {
 }
 
 export interface CardDetail {
-  card: CardUsageRow & { giftFrom: string | null };
+  card: CardUsageRow & { giftFrom: string | null; giftMessage: string | null };
   logs: { id: string; scannedAt: Date; ip: string | null; userAgent: string | null }[];
   hours: number[]; // 24 ô: số ngày mà lần chạm đầu tiên rơi vào giờ đó (giờ Việt Nam)
 }
@@ -245,6 +245,7 @@ export async function getCardDetail(id: string, now: Date = new Date()): Promise
       currentN: card.currentN,
       hasGift: Boolean(card.giftMessage),
       giftFrom: card.giftFrom,
+      giftMessage: card.giftMessage,
       activatedAt: card.activatedAt,
       createdAt: card.createdAt,
       customer: card.customer,

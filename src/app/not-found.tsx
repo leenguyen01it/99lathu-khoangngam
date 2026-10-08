@@ -23,7 +23,7 @@ export default function NotFound() {
         <Link href="/" className="btn">
           Về trang chủ
         </Link>
-        <Link href="/thu-thu" className="btn-ghost">
+        <Link href="/doc-thu" className="btn-ghost">
           Đọc một lá thư
         </Link>
       </div>

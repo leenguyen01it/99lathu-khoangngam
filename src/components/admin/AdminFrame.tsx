@@ -7,6 +7,7 @@ import { LogoutButton } from "./LogoutButton";
 
 const items = [
   { href: "/admin", label: "Thẻ", exact: true },
+  { href: "/admin/nfc", label: "Ghi thẻ NFC", writeOnly: true },
   { href: "/admin/customers", label: "Khách hàng" },
   { href: "/admin/orders", label: "Đơn hàng" },
   { href: "/admin/users", label: "Tài khoản", ownerOnly: true },
@@ -15,7 +16,7 @@ const items = [
 
 function NavLinks({ mobile = false, role }: { mobile?: boolean; role?: string | null }) {
   const pathname = usePathname();
-  return items.filter((item) => !item.ownerOnly || role === "owner").map((item) => {
+  return items.filter((item) => (!item.ownerOnly || role === "owner") && (!item.writeOnly || role === "owner" || role === "manager")).map((item) => {
     const active = item.exact ? pathname === item.href || pathname.startsWith("/admin/cards/") : pathname.startsWith(item.href);
     return (
       <Link

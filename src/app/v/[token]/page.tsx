@@ -24,9 +24,6 @@ export default async function ViewerPage({ params }: { params: Promise<{ token: 
 
   const gift = card.giftMessage ? { from: card.giftFrom, message: card.giftMessage } : null;
   const showGiftFirst = Boolean(gift) && !card.giftSeenAt;
-  if (showGiftFirst) {
-    await prisma.card.update({ where: { id: card.id }, data: { giftSeenAt: new Date() } });
-  }
 
   const letters = lettersUpTo(card.currentN);
   const audio: Record<number, WordTiming[]> = {};

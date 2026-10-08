@@ -1,23 +1,53 @@
 import { prisma } from "@/lib/prisma";
+import { randomUUID } from "node:crypto";
+import { Prisma } from "@prisma/client";
+import type { AdminActor } from "@/lib/admin";
+import { MAX_CARDS_PER_BATCH } from "./card-batches";
 import { cardIdFromGiftToken, computeUidHash, generateCardUid, normalizeUid } from "@/lib/crypto";
 
-export const MAX_CARDS_PER_BATCH = 500;
+export { MAX_CARDS_PER_BATCH } from "./card-batches";
 export const GIFT_FROM_MAX = 40;
 export const GIFT_MESSAGE_MAX = 1200;
 
-export async function createCards(count: number): Promise<number> {
-  const total = Math.min(Math.max(1, Math.floor(count)), MAX_CARDS_PER_BATCH);
-  let created = 0;
-  while (created < total) {
-    const uid = generateCardUid();
+export async function resetCardActivation(id: string, actor: AdminActor): Promise<void> {
+  if (actor.role !== "owner" && actor.role !== "manager") throw new Error("Không có quyền đặt lại thẻ.");
+  await prisma.$transaction(async (tx) => {
+    const previous = await tx.card.findUniqueOrThrow({ where: { id }, select: { activatedAt: true, currentN: true, lastOpenedDay: true, giftSeenAt: true } });
+    await tx.card.update({ where: { id }, data: { activatedAt: null, currentN: 0, lastOpenedDay: null, giftSeenAt: null } });
+    await tx.scanSession.deleteMany({ where: { cardId: id } });
+    await tx.scanLog.deleteMany({ where: { cardId: id } });
+    await tx.shareEvent.deleteMany({ where: { cardId: id } });
+    await tx.listenEvent.deleteMany({ where: { cardId: id } });
+    await tx.adminAuditLog.create({ data: {
+      adminUserId: actor.id, action: "reset_activation", entityType: "card", entityId: id,
+      metadataJson: JSON.stringify(previous), ipHash: actor.ipHash,
+    } });
+  });
+}
+
+export async function createCards(count: number, actor: AdminActor): Promise<string> {
+  if (!Number.isInteger(count) || count < 1 || count > MAX_CARDS_PER_BATCH) {
+    throw new Error(`Số thẻ phải là số nguyên từ 1 đến ${MAX_CARDS_PER_BATCH}.`);
+  }
+  const batchId = randomUUID();
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    const uids = new Set<string>();
+    while (uids.size < count) uids.add(generateCardUid());
+    const members = [...uids];
     try {
-      await prisma.card.create({ data: { uid, uidHash: computeUidHash(uid) } });
-      created += 1;
-    } catch {
-      // UID trùng (gần như không xảy ra): sinh lại
+      await prisma.$transaction([
+        prisma.card.createMany({ data: members.map((uid) => ({ uid, uidHash: computeUidHash(uid) })) }),
+        prisma.adminAuditLog.create({ data: {
+          adminUserId: actor.id, action: "create_batch", entityType: "card", entityId: batchId,
+          metadataJson: JSON.stringify({ count, uids: members }), ipHash: actor.ipHash,
+        } }),
+      ]);
+      return batchId;
+    } catch (error) {
+      if (!(error instanceof Prisma.PrismaClientKnownRequestError) || error.code !== "P2002" || attempt === 2) throw error;
     }
   }
-  return created;
+  throw new Error("Không thể tạo mã thẻ duy nhất. Vui lòng thử lại.");
 }
 
 export type GiftResult = { ok: true } | { ok: false; error: string };

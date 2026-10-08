@@ -8,15 +8,16 @@ import { Shell } from "@/components/Shell";
 import type { Letter } from "@/lib/letters";
 import type { WordTiming } from "@/lib/sentences";
 import { themeLabel } from "@/lib/site";
+import { markGiftSeen } from "./actions";
 
 interface Props {
-  token: string;
-  expiresAt: string;
+  token?: string;
+  expiresAt?: string;
   letters: Letter[]; // các lá đã mở, lá mới nhất đứng đầu
   audio: Record<number, WordTiming[]>; // mốc thời gian từng chữ của những lá đã có giọng đọc
   total: number;
-  gift: { from: string | null; message: string } | null;
-  showGiftFirst: boolean;
+  gift?: { from: string | null; message: string } | null;
+  showGiftFirst?: boolean;
 }
 
 type View = { kind: "gift" } | { kind: "letter"; n: number } | { kind: "box" };
@@ -24,6 +25,8 @@ type View = { kind: "gift" } | { kind: "letter"; n: number } | { kind: "box" };
 export function ViewerClient({ token, expiresAt, letters, audio, total, gift, showGiftFirst }: Props) {
   const todayN = letters[0]?.n ?? 1;
   const [locked, setLocked] = useState(false);
+  const [openingToday, setOpeningToday] = useState(false);
+  const [giftError, setGiftError] = useState<string | null>(null);
   const [view, setView] = useState<View>(
     showGiftFirst ? { kind: "gift" } : { kind: "letter", n: todayN },
   );
@@ -40,6 +43,7 @@ export function ViewerClient({ token, expiresAt, letters, audio, total, gift, sh
 
   // Khoá trang đúng lúc phiên hết hạn, kể cả khi tab vừa được mở lại sau một lúc.
   useEffect(() => {
+    if (!expiresAt) return;
     const deadline = new Date(expiresAt).getTime();
     const check = () => {
       if (Date.now() >= deadline) setLocked(true);
@@ -58,10 +62,22 @@ export function ViewerClient({ token, expiresAt, letters, audio, total, gift, sh
   if (view.kind === "gift" && gift) {
     return (
       <Shell>
-        <GiftBook message={gift.message} from={gift.from} withCover={firstScreen} />
-        <button className="btn mt-6 self-center" onClick={() => go({ kind: "letter", n: todayN })}>
-          Mở lá thư hôm nay
-        </button>
+        <GiftBook message={gift.message} from={gift.from} withCover={firstScreen} continuing={openingToday} onContinue={async () => {
+          setOpeningToday(true);
+          setGiftError(null);
+          try {
+            if (!token || !await markGiftSeen(token)) {
+              setLocked(true);
+              return;
+            }
+            go({ kind: "letter", n: todayN }, true);
+          } catch {
+            setGiftError("Chưa thể mở thư hôm nay. Bạn thử lại nhé.");
+          } finally {
+            setOpeningToday(false);
+          }
+        }} />
+        {giftError ? <p role="alert" className="mt-4 text-center text-[14px] text-rose">{giftError}</p> : null}
       </Shell>
     );
   }
@@ -80,7 +96,7 @@ export function ViewerClient({ token, expiresAt, letters, audio, total, gift, sh
                 className="w-full rounded-xl border border-gold/50 px-4 py-3 text-left"
                 onClick={() => go({ kind: "gift" })}
               >
-                <span className="block text-[12px] uppercase tracking-wider text-gold">Thư riêng</span>
+                <span className="block text-[12px] uppercase tracking-wider text-gold">Lời mở đầu</span>
                 <span className="block text-[15px]">
                   {gift.from ? `Lá thư từ ${gift.from}` : "Lá thư gửi riêng cho bạn"}
                 </span>
@@ -128,7 +144,7 @@ export function ViewerClient({ token, expiresAt, letters, audio, total, gift, sh
       letterId={letter.id}
       token={token}
       paper={paper}
-      audio={timings ? { src: `/v/${token}/audio/${letter.n}`, words: timings } : null}
+      audio={timings ? { src: token ? `/v/${token}/audio/${letter.n}` : `/doc-thu/audio/${letter.n}`, words: timings } : null}
       opening={firstScreen}
       settled={turned}
       previous={previous ? toPaper(previous) : null}
