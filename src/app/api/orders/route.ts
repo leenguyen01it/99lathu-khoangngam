@@ -63,8 +63,8 @@ export async function POST(req: NextRequest) {
         shippingAddressJson: JSON.stringify({ recipientName: order.customerName, phone: order.phone, address1: order.address, ...location, countryCode: "VN" }),
         note: order.note || null, status: "pending", financialStatus: "pending", fulfillmentStatus: "unfulfilled",
         subtotalAmount: order.totalAmount, totalAmount: order.totalAmount, shippingAmount: 0, placedAt: new Date(),
-        items: { create: { name: "99 ngày thương mình", sku: order.product.sku, variantName: order.product.name,
-          quantity: order.quantity, unitAmount: order.product.unitAmount, totalAmount: order.totalAmount } },
+        items: { create: order.items.map(({ product, quantity, totalAmount }) => ({ name: "99 ngày thương mình", sku: product.sku, variantName: product.name,
+          quantity, unitAmount: product.unitAmount, totalAmount })) },
       } });
     });
     return reply({ orderNumber }, 201);

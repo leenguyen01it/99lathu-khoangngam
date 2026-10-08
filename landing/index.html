@@ -55,19 +55,25 @@
     [hidden] { display: none !important; }
     .order-field { display: block; width: 100%; margin-top: 8px; border: 1px solid rgb(188 211 189 / .25); border-radius: 12px; background: #16302f; padding: 13px 14px; color: #f7f0e2; font: inherit; font-size: 14px; line-height: 1.5; transition: border-color .2s, box-shadow .2s; }
     .order-field::placeholder { color: rgb(188 211 189 / .5); }
+    .order-field[type="number"] { appearance: textfield; -moz-appearance: textfield; }
+    .order-field[type="number"]::-webkit-inner-spin-button,
+    .order-field[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
     .order-field:focus { outline: none; border-color: #ecc98a; box-shadow: 0 0 0 3px rgb(236 201 138 / .1); }
     #order-form { box-shadow: 0 32px 90px -35px rgb(0 0 0 / .55); }
-    .checkout-details { background: #f7f0e2; color: #16302f; }
-    .checkout-details label { color: #456255; }
-    .checkout-details label > span { color: #7a897e; }
-    .checkout-details .order-field { background: #fffcf6; color: #16302f; border-color: rgb(22 48 47 / .18); }
-    .checkout-details .order-field::placeholder { color: #7a897e; }
-    .checkout-details .order-field:focus { border-color: #9b7b45; box-shadow: 0 0 0 3px rgb(155 123 69 / .12); }
-    .checkout-details legend > span { color: #8c6f40; border-color: rgb(140 111 64 / .3); }
+    .checkout-details { background: #193735; color: #f7f0e2; }
+    .checkout-details label { color: #bcd3bd; }
+    .checkout-details .order-field { background: #122c2a; color: #f7f0e2; border-color: rgb(188 211 189 / .28); }
+    .checkout-details .order-field::placeholder { color: rgb(188 211 189 / .6); }
+    .checkout-details select.order-field { appearance: none; -webkit-appearance: none; padding-right: 44px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23bcd3bd' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; background-size: 16px; }
+    .checkout-details select.order-field:disabled { opacity: .6; cursor: wait; }
+    .checkout-details .order-field:focus { border-color: #ecc98a; box-shadow: 0 0 0 3px rgb(236 201 138 / .12); }
+    .checkout-details legend > span { color: #ecc98a; border-color: rgb(236 201 138 / .3); }
+    .checkout-details fieldset + fieldset { border-color: rgb(188 211 189 / .18); }
     .checkout-plan { position: relative; display: block; cursor: pointer; }
     .checkout-plan input { position: absolute; opacity: 0; }
-    .checkout-plan-box { display: block; height: 100%; border: 1px solid #d8d3c4; border-radius: 16px; padding: 18px; background: #fffcf6; transition: border-color .25s, background .25s, transform .25s, box-shadow .25s; }
-    .checkout-plan input:checked + .checkout-plan-box { border-color: #9b7b45; background: #eee5d3; box-shadow: inset 0 0 0 1px #9b7b45; }
+    .checkout-plan-box { display: block; height: 100%; border: 1px solid rgb(188 211 189 / .25); border-radius: 16px; padding: 18px; background: #1e403c; transition: border-color .25s, background .25s, box-shadow .25s; }
+    .checkout-plan-box:focus-within { border-color: rgb(236 201 138 / .6); }
+    .checkout-plan input:checked + .checkout-plan-box { border-color: #ecc98a; background: #254b43; box-shadow: inset 0 0 0 1px rgb(236 201 138 / .4); }
     .checkout-plan input:focus-visible + .checkout-plan-box { outline: 2px solid #8c6f40; outline-offset: 4px; }
     .checkout-plan:hover .checkout-plan-box { transform: translateY(-3px); }
     .checkout-plan-dot { float: right; width: 16px; height: 16px; border: 1px solid #b8ae97; border-radius: 50%; }
@@ -234,15 +240,15 @@
         <span class="text-[13px] font-semibold uppercase tracking-[0.22em] text-gold">Khoảng Ngẫm</span>
       </a>
 
-      <ul class="ml-auto hidden items-center gap-7 text-[14px] text-sage md:flex">
+      <ul class="ml-auto hidden items-center gap-4 whitespace-nowrap text-[14px] text-sage lg:flex xl:gap-7">
         <template x-for="link in links" :key="link.href">
           <li><a :href="link.href" class="underline-draw pb-1 transition-colors hover:text-paper" x-text="link.label"></a></li>
         </template>
       </ul>
 
-      <a :href="trialUrl" class="btn-gold ml-auto hidden rounded-full bg-gold px-5 py-2 text-[14px] font-semibold text-ink sm:inline-flex md:ml-0">Đọc thử miễn phí</a>
+      <a :href="trialUrl" class="btn-gold ml-auto hidden shrink-0 rounded-full bg-gold px-5 py-2 text-[14px] font-semibold text-ink sm:inline-flex lg:ml-0">Đọc thử miễn phí</a>
 
-      <button type="button" class="ml-auto flex h-10 w-10 items-center justify-center rounded-full border border-sage/30 sm:ml-0 md:hidden"
+      <button type="button" class="ml-auto flex h-10 w-10 items-center justify-center rounded-full border border-sage/30 sm:ml-0 lg:hidden"
               @click="menu = !menu" :aria-expanded="menu" aria-controls="mobile-menu" aria-label="Mở menu">
         <span class="relative block h-3 w-5">
           <span class="absolute left-0 top-0 h-px w-5 bg-paper transition-transform duration-300" :class="menu && 'translate-y-[6px] rotate-45'"></span>
@@ -251,7 +257,7 @@
       </button>
     </nav>
 
-    <div id="mobile-menu" x-cloak x-show="menu" x-collapse class="border-t border-sage/15 bg-ink/95 backdrop-blur-md md:hidden">
+    <div id="mobile-menu" x-cloak x-show="menu" x-collapse class="border-t border-sage/15 bg-ink/95 backdrop-blur-md lg:hidden">
       <ul class="mx-auto flex max-w-6xl flex-col px-5 py-3 text-[15px]">
         <template x-for="link in links" :key="link.href">
           <li><a :href="link.href" class="block border-b border-sage/10 py-3 text-paper" @click="menu = false" x-text="link.label"></a></li>
@@ -687,7 +693,10 @@
           <fieldset>
             <legend class="flex items-center gap-3 font-serif text-[20px]"><span class="flex h-8 w-8 items-center justify-center rounded-full border border-gold/30 font-sans text-[12px] text-gold">01</span>Chọn thẻ của bạn</legend>
             <div id="checkout-plans" class="mt-5 grid gap-3 sm:grid-cols-2" aria-label="Phiên bản thẻ"><p class="text-sm">Đang tải phiên bản…</p></div>
-            <label class="mt-4 flex items-center justify-between gap-4 text-[13px]">Số lượng thẻ<input name="quantity" type="number" min="1" max="20" value="1" required class="order-field !mt-0 !w-24 text-center"></label>
+            <label id="single-quantity" class="mt-4 flex items-center justify-between gap-4 text-[13px]">Số lượng thẻ<input name="quantity" type="number" min="1" max="20" step="1" value="1" required class="order-field !mt-0 !w-24 text-center"></label>
+            <label class="mt-5 flex cursor-pointer items-center gap-3 text-[13px]"><input id="buy-both" type="checkbox" class="h-4 w-4 shrink-0 accent-[#ecc98a]" aria-controls="mixed-quantities" aria-expanded="false">Mua cả hai phiên bản</label>
+            <div id="mixed-quantities" hidden class="mt-4 grid gap-3 sm:grid-cols-2"></div>
+            <p id="items-error" role="alert" class="mt-2 text-[12px] !text-[#f0a898]" hidden></p>
           </fieldset>
           <fieldset class="border-t border-ink/15 pt-7">
             <legend class="float-left mb-5 flex w-full items-center gap-3 font-serif text-[20px]"><span class="flex h-8 w-8 items-center justify-center rounded-full border border-gold/30 font-sans text-[12px] text-gold">02</span>Gửi đến người nhận</legend>
@@ -696,8 +705,8 @@
               <label class="text-[13px] text-sage">Số điện thoại<input name="phone" type="tel" autocomplete="tel" maxlength="24" required placeholder="Số điện thoại liên hệ" class="order-field"></label>
               <label class="text-[13px] text-sage">Tỉnh / Thành phố<select name="provinceCode" autocomplete="address-level1" required disabled class="order-field"><option value="">Đang tải tỉnh/thành…</option></select></label>
               <label class="text-[13px] text-sage">Phường / Xã<select name="wardCode" autocomplete="address-level2" required disabled class="order-field"><option value="">Chọn tỉnh/thành trước</option></select></label>
-              <p id="location-error" role="alert" class="text-[12px] !text-[#9e4934] sm:col-span-2" hidden></p>
-              <button id="location-reload" type="button" hidden class="text-left text-[12px] !text-[#8c6f40] underline sm:col-span-2">Tải lại địa chỉ</button>
+              <p id="location-error" role="alert" class="text-[12px] !text-[#f0a898] sm:col-span-2" hidden></p>
+              <button id="location-reload" type="button" hidden class="text-left text-[12px] !text-gold underline sm:col-span-2">Tải lại địa chỉ</button>
               <label class="text-[13px] text-sage sm:col-span-2">Số nhà, tên đường / Thôn, ấp<textarea name="address" rows="2" autocomplete="street-address" minlength="5" maxlength="300" required placeholder="Ví dụ: 12 Nguyễn Văn A, tầng 2" class="order-field resize-y"></textarea></label>
               <label class="text-[13px] text-sage sm:col-span-2">Ghi chú <span class="text-sage/60">· Không bắt buộc</span><textarea name="note" rows="2" maxlength="1000" placeholder="Điều bạn muốn chúng mình lưu ý khi giao thẻ…" class="order-field resize-y"></textarea></label>
             </div>
@@ -705,12 +714,33 @@
           <div hidden aria-hidden="true"><input name="website" tabindex="-1" autocomplete="off"></div>
         </div>
         <aside class="flex flex-col border-t border-sage/15 bg-[#12292a] p-6 sm:p-9 lg:border-l lg:border-t-0 lg:p-10" aria-label="Thông tin đơn hàng">
-          <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">Bạn sắp nhận được</p>
-          <div class="my-7 flex items-center gap-4">
-            <div class="checkout-card flex h-20 w-28 shrink-0 flex-col items-center justify-center rounded-lg border border-gold/35 bg-gradient-to-br from-[#24473f] to-ink shadow-lg" aria-hidden="true"><span class="font-script text-[20px] text-gold">Khoảng Ngẫm</span><span class="mt-1 text-[8px] tracking-wider text-paper">99 NGÀY THƯƠNG MÌNH</span></div>
-            <div><p class="font-serif text-[19px] leading-snug">99 ngày<br>thương mình</p><p id="order-selection" class="mt-2 text-[12px] text-sage">Chọn phiên bản dành cho bạn</p></div>
+          <div id="checkout-card-preview" class="relative mx-auto mb-7 w-full max-w-[320px]" style="aspect-ratio: 85.6 / 54" role="img" aria-label="Mặt trước thẻ 99 ngày thương mình">
+            <div class="card-face">
+                  <svg viewBox="3 3 85.6 54" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="checkout-cardCloth" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#1c3a38"/><stop offset="0.52" stop-color="#16302f"/><stop offset="1" stop-color="#102725"/>
+                      </linearGradient>
+                    </defs>
+                    <rect width="91.6" height="60" fill="url(#checkout-cardCloth)"/>
+                    <rect x="7.5" y="7.5" width="76.6" height="45" rx="1.2" fill="none" stroke="#ecc98a" stroke-width=".3"/>
+                    <g transform="translate(45.8 20.9) scale(.85)" fill="none" stroke-linecap="round">
+                      <g stroke="#ecc98a" stroke-width=".62">
+                        <path d="M-6.8 1.7A6.8 6.8 0 0 1 6.8 1.7"/><path d="M-12.8 1.7H12.8"/>
+                        <path d="M-9.1-1.5-11-2.2M-6.8-4.5-8.1-6M-3.6-6.7-4.1-8.6M0-7.5V-9.6M3.6-6.7 4.1-8.6M6.8-4.5 8.1-6M9.1-1.5 11-2.2"/>
+                      </g>
+                      <g stroke="#bcd3bd" stroke-width=".55"><path d="M-8.5 4.3H8.5"/><path d="M-5.3 6.5H5.3"/></g>
+                    </g>
+                    <text x="45.8" y="35.7" text-anchor="middle" fill="#ecc98a" font-family="Lora, Georgia, serif" font-size="9.4" font-weight="500">99</text>
+                    <text x="46" y="41.3" text-anchor="middle" fill="#f7f0e2" font-family="Lora, Georgia, serif" font-size="3.3" letter-spacing=".38">NGÀY THƯƠNG MÌNH</text>
+                    <text x="45.8" y="46" text-anchor="middle" fill="#bcd3bd" font-family="Lora, Georgia, serif" font-size="2.4" font-style="italic">Mỗi ngày một lá thư</text>
+                    <text x="10.2" y="12.1" fill="#ecc98a" font-family="'Great Vibes', cursive" font-size="3.2">Khoảng Ngẫm</text>
+                  </svg>
+                
+            </div>
           </div>
-          <div class="border-y border-sage/15 py-5"><div class="flex justify-between text-[14px] text-sage"><span>Giao hàng toàn quốc</span><span class="text-paper">Miễn phí</span></div><p id="order-total" aria-live="polite" class="mt-4 font-serif text-[25px] text-gold">Đang tải giá bán…</p></div>
+          <div id="order-selection" class="mb-6 space-y-3" aria-live="polite">Chọn phiên bản dành cho bạn</div>
+          <div class="border-y border-sage/15 py-5"><div class="flex justify-between text-[14px] text-sage"><span>Giao hàng toàn quốc</span><span class="text-paper">Miễn phí</span></div><div class="mt-4 flex items-baseline justify-between gap-4"><span class="shrink-0 text-[14px] text-paper">Tổng tiền</span><p id="order-total" aria-live="polite" class="min-w-0 text-right font-serif text-[25px] text-gold">Đang tải giá bán…</p></div></div>
           <div class="mt-6 flex items-start gap-3 text-[13px] leading-6 text-sage"><svg class="mt-1 shrink-0 text-gold" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12.5 9.5 17 19 7.5"/></svg><p>Chúng mình sẽ gọi hoặc nhắn để xác nhận đơn và cách thanh toán. Bạn chưa cần thanh toán lúc này.</p></div>
           <div class="mt-7 lg:mt-auto lg:pt-7">
             <p id="order-error" role="alert" class="mb-3 text-[13px] leading-6 text-rose"></p>
@@ -783,11 +813,10 @@
       <div>
         <p class="text-[12px] font-semibold uppercase tracking-[0.2em] text-gold">Khám phá</p>
         <ul class="mt-4 space-y-2.5 text-[14px] text-sage">
-          <template x-for="link in links" :key="'f' + link.href">
+          <template x-for="link in links.filter(link => !['#tang', '#gia', '#la-thu'].includes(link.href))" :key="'f' + link.href">
             <li><a :href="link.href" class="transition-colors hover:text-paper" x-text="link.label"></a></li>
           </template>
           <li><a :href="trialUrl" class="transition-colors hover:text-paper">Đọc thử 7 lá thư</a></li>
-          <li><a :href="giftUrl" class="transition-colors hover:text-paper">Viết lời nhắn tặng</a></li>
         </ul>
       </div>
       <div>
@@ -928,6 +957,7 @@
           { href: "#la-thu", label: "Lá thư" },
           { href: "#tang", label: "Để tặng" },
           { href: "#gia", label: "Giá bán" },
+          { href: "#dat-hang", label: "Đặt hàng" },
           { href: "#hoi-dap", label: "Hỏi đáp" },
         ],
 
@@ -1107,6 +1137,6 @@
       }));
     });
   </script>
-<script src="./checkout.js"></script>
+<script src="./checkout.js?v=20261008-2"></script>
 </body>
 </html>

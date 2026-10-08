@@ -11,6 +11,13 @@ test("giá do máy chủ tính, bỏ qua giá khách gửi", () => {
   assert.equal(parseCheckout({ ...valid, totalAmount: 1, unitAmount: 1 }).totalAmount, 338000);
   assert.equal(parseCheckout({ ...valid, sku: "gift" }).totalAmount, 498000);
 });
+test("đơn hỗn hợp tính giá từng loại và chặn số lượng sai", () => {
+  const items = [{ sku: "card", quantity: 1 }, { sku: "gift", quantity: 1 }];
+  const order = parseCheckout({ ...valid, items, totalAmount: 1 });
+  assert.equal(order.totalAmount, 418000);
+  assert.deepEqual(order.items.map(i => i.totalAmount), [169000, 249000]);
+  for (const bad of [[], null, [{ sku: "fake", quantity: 1 }], [{ sku: "card", quantity: 0 }], [{ sku: "card", quantity: 1.5 }], [{ sku: "card", quantity: "1" }], [{ sku: "card", quantity: 1 }, { sku: "card", quantity: 2 }], [{ sku: "card", quantity: 20 }, { sku: "gift", quantity: 1 }]]) assert.throws(() => parseCheckout({ ...valid, items: bad }));
+});
 test("từ chối dữ liệu thiếu, sản phẩm lạ và số lượng ngoài giới hạn", () => {
   for (const patch of [{ customerName: "" }, { phone: "123" }, { address: "abc" }, { provinceCode: "1" }, { wardCode: 0 }, { sku: "fake" }, { quantity: 0 }, { quantity: 21 }, { quantity: 1.5 }, { quantity: "2" }, { requestId: "bad" }, { website: "spam" }, { note: "x".repeat(1001) }]) assert.throws(() => parseCheckout({ ...valid, ...patch }));
   assert.throws(() => parseCheckout(null));
@@ -41,10 +48,12 @@ test("API lưu đơn và trả lại mã cũ khi gửi lại, chặn origin ngo�
     "@/server/locations": { resolveAddress: async () => ({ province: "Hà Nội", ward: "Ba Đình", provinceCode: 1, wardCode: 4 }) },
   };
   new Function("require", "exports", "module", routeCode)((name) => dependencies[name] || require(name), module.exports, module);
-  const req = (origin) => new NextRequest("https://99lathu.khoangngam.com/api/orders", { method: "POST", headers: { origin, "Content-Type": "application/json" }, body: JSON.stringify(valid) });
+  const mixed = { ...valid, items: [{ sku: "card", quantity: 1 }, { sku: "gift", quantity: 1 }] };
+  const req = (origin) => new NextRequest("https://99lathu.khoangngam.com/api/orders", { method: "POST", headers: { origin, "Content-Type": "application/json" }, body: JSON.stringify(mixed) });
   assert.equal((await module.exports.POST(req("https://other.example"))).status, 403);
   assert.equal((await module.exports.POST(req("https://khoangngam.com"))).status, 201);
-  assert.equal(saved.totalAmount, 338000);
+  assert.equal(saved.totalAmount, 418000);
+  assert.deepEqual(saved.items.create.map(i => [i.sku, i.quantity, i.totalAmount]), [["card", 1, 169000], ["gift", 1, 249000]]);
   assert.equal(saved.status, "pending");
   assert.equal(JSON.parse(saved.shippingAddressJson).address1, valid.address);
   const retry = await module.exports.POST(req("https://khoangngam.com"));

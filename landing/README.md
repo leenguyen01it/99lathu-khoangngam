@@ -6,6 +6,8 @@
 
 - Các nút đặt thẻ dẫn đến `#dat-hang`.
 - Form tải giá từ `GET https://99lathu.khoangngam.com/api/orders` và gửi đơn qua `POST` cùng địa chỉ.
+- Mặc định chọn một trong hai phiên bản và số lượng. Bật “Mua cả hai phiên bản” mới hiện số lượng riêng cho mỗi loại; tắt tùy chọn sẽ trở lại phiên bản đã chọn. Tổng tối đa 20 thẻ. Payload mới dùng `items: [{ sku, quantity }]`; API vẫn nhận `sku`/`quantity` cũ trong lúc cập nhật landing. Ví dụ 1 bản thẻ + 1 bản quà tặng = 418.000đ.
+- JavaScript tạm ẩn lỗi khi focus vào ô để sửa, kiểm tra và hiện lỗi dưới ô khi blur hoặc gửi đơn. Máy chủ kiểm tra lại dữ liệu và tự tính giá theo từng sản phẩm.
 - Giá chuẩn nằm tại `src/lib/checkout.ts`: bản thẻ 169.000đ, bản quà tặng 249.000đ, miễn phí vận chuyển, theo giá hiện có trên landing. Khi đổi giá, cập nhật cả phần giới thiệu `KN.plans` trong HTML.
 - Đơn, sản phẩm, khách hàng và địa chỉ được lưu trong cùng một transaction. Xem tại `/admin/orders`, nguồn “Website Khoảng Ngẫm”. Đơn mới chờ xác nhận, chưa thanh toán, chưa giao; không tự tạo hoặc kích hoạt thẻ.
 - Form giữ requestId khi gửi lại để tránh tạo trùng đơn khi mạng bị gián đoạn. API giới hạn 10 request/IP/phút và 3 lần tạo đơn mới/số điện thoại/giờ. Bộ đếm PostgreSQL UPSERT nguyên tử, dùng chung giữa các instance; request sai cũng tiêu thụ giới hạn IP. Trả 429 với Retry-After; database giới hạn bị lỗi thì trả 503, không ghi đơn.

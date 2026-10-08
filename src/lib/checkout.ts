@@ -27,8 +27,19 @@ export function parseCheckout(input: unknown) {
   if (typeof provinceCode !== "number" || !Number.isInteger(provinceCode) || provinceCode < 1 || provinceCode > 999 || typeof wardCode !== "number" || !Number.isInteger(wardCode) || wardCode < 1 || wardCode > 99999) throw new Error("Vui lòng chọn tỉnh/thành và phường/xã.");
   const note = text("note", 1000);
   if (text("website", 200)) throw new Error("Thông tin đặt hàng không hợp lệ.");
-  const product = PRODUCTS.find((item) => item.sku === data.sku);
-  const quantity = data.quantity;
-  if (!product || typeof quantity !== "number" || !Number.isInteger(quantity) || quantity < 1 || quantity > 20) throw new Error("Vui lòng chọn phiên bản và số lượng từ 1 đến 20.");
-  return { requestId, customerName, phone: parsedPhone.number, address, provinceCode, wardCode, note, product, quantity, totalAmount: product.unitAmount * quantity };
+  // Giữ hỗ trợ payload một sản phẩm từ landing cũ trong lúc cập nhật.
+  const rawItems = data.items === undefined ? [{ sku: data.sku, quantity: data.quantity }] : data.items;
+  if (!Array.isArray(rawItems) || !rawItems.length || rawItems.length > PRODUCTS.length) throw new Error("Vui lòng chọn ít nhất một loại thẻ.");
+  const seen = new Set<string>();
+  const items = rawItems.map((raw: unknown) => {
+    if (!raw || typeof raw !== "object") throw new Error("Sản phẩm không hợp lệ.");
+    const item = raw as Record<string, unknown>;
+    const product = PRODUCTS.find((p) => p.sku === item.sku);
+    const quantity = item.quantity;
+    if (!product || seen.has(product.sku) || typeof quantity !== "number" || !Number.isInteger(quantity) || quantity < 1 || quantity > 20) throw new Error("Vui lòng chọn phiên bản và số lượng từ 1 đến 20, không lặp loại thẻ.");
+    seen.add(product.sku);
+    return { product, quantity, totalAmount: product.unitAmount * quantity };
+  });
+  if (items.reduce((sum, item) => sum + item.quantity, 0) > 20) throw new Error("Mỗi đơn tối đa 20 thẻ.");
+  return { requestId, customerName, phone: parsedPhone.number, address, provinceCode, wardCode, note, items, totalAmount: items.reduce((sum, item) => sum + item.totalAmount, 0) };
 }
