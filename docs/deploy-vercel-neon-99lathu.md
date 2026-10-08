@@ -1,6 +1,6 @@
 # Triển khai 99 lá thư lên Vercel và Neon
 
-Địa chỉ đích: **https://99lathu.khoangngam.com**. Tài liệu này áp dụng cho mã nguồn hiện tại của `khoang-ngam` (Next.js 15, Prisma 6, schema và migration PostgreSQL cho Neon). Cập nhật: 07/10/2026. Đây là hướng dẫn thao tác; việc tạo tài khoản, đổi DNS và triển khai production chưa được thực hiện.
+Địa chỉ đích: **https://99lathu.khoangngam.com**. Tài liệu này áp dụng cho mã nguồn hiện tại của `khoang-ngam` (Next.js 15, Prisma 6, schema và migration PostgreSQL cho Neon). Cập nhật: 08/10/2026. Đây là hướng dẫn thao tác; việc tạo tài khoản, đổi DNS và triển khai production chưa được thực hiện.
 
 ## 1. Những điều phải hiểu trước khi triển khai
 
@@ -42,9 +42,9 @@ DIRECT_URL="postgresql://USER:PASSWORD@ep-xxxxx.REGION.aws.neon.tech/DB?sslmode=
 
 Thực hiện các sửa đổi sau trên một nhánh làm việc; đây là các thay đổi cần được commit cùng nhau.
 
-### 4.1 Đổi Prisma datasource
+### 4.1 Bổ sung kết nối direct cho Prisma
 
-`prisma/schema.prisma` đã có khối `datasource db` sau:
+`prisma/schema.prisma` hiện dùng PostgreSQL nhưng chưa có `directUrl`. Bổ sung dòng này để migration dùng `DIRECT_URL`:
 
 ```prisma
 datasource db {
@@ -90,6 +90,16 @@ outputFileTracingIncludes: {
 
 Các key là **đường dẫn URL**, không phải đường dẫn `src/app`; glob phía phải tính từ gốc dự án. Sau khi build, thử trực tiếp trang đọc thử, trang thư của thẻ và ZIP xuất file in trên Preview. Nếu Next.js không ghép glob `"/v/*"` vào route động như dự kiến, kiểm tra trace của route tương ứng trong `.next/server/app` và đổi key sang route cụ thể mà Next báo; đừng đưa toàn bộ `audio/` vào mọi Function. [Next.js 15: quy tắc glob của output file tracing](https://nextjs.org/docs/15/app/api-reference/config/next-config-js/output), [Vercel: file trong Function](https://vercel.com/kb/guide/how-can-i-use-files-in-serverless-functions).
 
+**Lưu ý mã nguồn hiện tại:** tracing mới có file in, cần bổ sung các dòng audio ở trên. Thư mục audio đang bị bỏ qua bởi dòng `/audio/` trong `.gitignore`. Nếu deploy từ Git và phát file tại Function, thay dòng đó bằng:
+
+```gitignore
+/audio/*
+!/audio/*.mp3
+!/audio/*.json
+```
+
+Chỉ commit MP3/JSON cuối cùng ngay trong audio; các thư mục backup và thử giọng vẫn bị bỏ qua. Hiện có 99 lá chính và 7 lá đọc thử.
+
 Vercel Function không phải nơi lưu file được tạo trong lúc chạy. Các MP3/JSON hiện có phải được đưa vào bản triển khai; script `generate-audio.mjs` nên chạy trước build. Nếu về sau có đủ 99 + 7 giọng đọc và kích thước bundle tăng mạnh, chuyển audio sang storage riêng có kiểm tra quyền và hỗ trợ HTTP Range, thay vì đóng gói hàng trăm MP3 vào Function. [Giới hạn kích thước Function của Vercel](https://vercel.com/kb/guide/troubleshooting-function-250mb-limit).
 
 ### 4.4 Chốt Node và kiểm tra build
@@ -98,10 +108,9 @@ Vercel Function không phải nơi lưu file được tạo trong lúc chạy. C
 
 ## 5. Đưa mã lên GitHub
 
-Thư mục hiện chưa có Git repository. Tạo một GitHub repository riêng tư, sau đó ở gốc dự án:
+Dự án đã có Git repository. Kiểm tra `git remote -v` trước; các lệnh thêm remote dưới đây chỉ dành cho repo chưa có remote. Tạo GitHub repository riêng tư nếu cần, rồi ở gốc dự án:
 
 ```powershell
-git init
 git status --short
 git add .
 git diff --cached --name-only
@@ -144,16 +153,55 @@ Lệnh này chạy `prisma migrate deploy` với `DIRECT_URL` production từ Ve
 
 Sau đó để Vercel triển khai commit trên `main` hoặc chọn **Redeploy** nếu lần import đầu xảy ra trước khi database có bảng. Kiểm tra Build Logs; việc build thành công chưa thay thế việc thử các chức năng ghi/đọc.
 
-## 7. Gắn `99lathu.khoangngam.com` và kiểm tra
+## 7. Gắn subdomain trên iNET
 
-1. Vào **Vercel Project → Settings → Domains**, thêm `99lathu.khoangngam.com` và gán cho Production.
-2. Tại nơi đang quản lý DNS của `khoangngam.com`, tạo bản ghi **CNAME** với Host/Name là `99lathu`, Target/Value là **giá trị chính xác Vercel hiển thị cho dự án**. Không tự đoán CNAME chung; Vercel có thể cấp target riêng. Không thay nameserver cả domain chính nếu bạn chỉ cần subdomain. [Vercel: thêm custom domain](https://vercel.com/docs/domains/working-with-domains/add-a-domain).
-3. Đợi Vercel báo domain và HTTPS đã hoạt động. Nếu dùng Cloudflare, khi xác minh DNS gặp lỗi hãy kiểm tra bản ghi đang được proxy hay DNS-only và làm theo hướng dẫn Vercel trong mục Domains.
-4. Truy cập `https://99lathu.khoangngam.com/` và kiểm tra:
-   - `/doc-thu` mở lá đọc thử, cookie giữ ngày bắt đầu; nếu có MP3 đúng ID thì nút nghe phát được, kể cả trên iPhone (audio route hỗ trợ HTTP Range).
-   - `/admin/login` cho tạo owner đầu tiên bằng email và `ADMIN_PASSWORD` khi Neon chưa có admin; sau đó kiểm tra đăng nhập, đăng xuất và tải ZIP in thẻ.
-   - Tạo **một thẻ thử** chưa đưa cho khách, xuất CSV/ZIP; `nfcUrl` và QR phải bắt đầu bằng `https://99lathu.khoangngam.com/uid/`. Thử chạm hoặc mở URL của thẻ thử, xem thư, thử link tặng và kiểm tra số lần mở trong admin.
-   - Neon có dữ liệu mới; Vercel Runtime Logs không có lỗi `P1001`, `P2021`, thiếu font, thiếu audio hoặc `ENOENT`.
+### 7.1 Thêm domain vào Vercel
+
+Vào **Vercel → dự án → Settings → Domains → Add Domain**, nhập `99lathu.khoangngam.com`, gán cho Production. Sao chép target CNAME Vercel hiển thị; target có thể riêng cho từng dự án. [Hướng dẫn Vercel](https://vercel.com/docs/domains/working-with-domains/add-a-domain).
+
+### 7.2 Thêm bản ghi iNET
+
+Đăng nhập iNET → **Danh sách dịch vụ → Tên miền** → chọn `khoangngam.com` → **Cập nhật bản ghi / Quản lý DNS → Thêm bản ghi**. Tên menu có thể khác theo giao diện. [Hướng dẫn iNET](https://helpdesk.inet.vn/knowledgebase/y-nghia-va-cach-su-dung-ban-ghi-cname).
+
+| Trường | Giá trị |
+| --- | --- |
+| Tên bản ghi / Host | `99lathu` |
+| Loại / Type | `CNAME` |
+| Giá trị / Target | Target CNAME chính xác mà Vercel hiển thị |
+| TTL | Mặc định, hoặc 300 giây nếu cho chọn |
+
+Bấm lưu/tạo mới. Host `99lathu` trong vùng DNS `khoangngam.com` tạo địa chỉ `99lathu.khoangngam.com`. Target chỉ là hostname: không có `https://`, dấu `/` hay đường dẫn. Không cần tạo subdomain trong hosting/cPanel vì ứng dụng chạy trên Vercel.
+
+Nếu đã có A, AAAA hoặc CNAME cho đúng tên `99lathu`, kiểm tra và thay bản ghi cũ để tránh xung đột. Giữ các bản ghi của domain chính, `www`, email và subdomain khác. Nếu Vercel yêu cầu TXT xác minh sở hữu, thêm đúng tên và giá trị Vercel cung cấp.
+
+Mua tên miền ở iNET không đồng nghĩa DNS đang được quản lý ở iNET. Kiểm tra nameserver:
+
+```powershell
+Resolve-DnsName khoangngam.com -Type NS
+```
+
+Nếu nameserver thuộc nhà cung cấp khác (ví dụ Cloudflare), thêm CNAME tại đó. Một subdomain cụ thể không cần đổi nameserver toàn bộ domain.
+
+### 7.3 Kiểm tra và nghiệm thu
+
+Quay lại Vercel Domains để kiểm tra trạng thái. Kiểm tra CNAME bằng:
+
+```powershell
+Resolve-DnsName 99lathu.khoangngam.com -Type CNAME
+Resolve-DnsName 99lathu.khoangngam.com -Type CNAME -Server 1.1.1.1
+```
+
+Kết quả phải trả target đã lấy từ Vercel. Đợi DNS hết cache theo TTL và HTTPS hoạt động. Đặt `APP_URL=https://99lathu.khoangngam.com` trong Production rồi redeploy trước khi xuất QR và ghi thẻ.
+
+Kiểm tra trên domain thật:
+
+- `/doc-thu`: đọc thử và phát audio trên điện thoại, kể cả iPhone.
+- `/admin/login`: khởi tạo owner nếu chưa có admin, đăng nhập và tải ZIP in thẻ.
+- Tạo thẻ thử: URL/QR phải dùng domain thật. Mở URL chưa kích hoạt; bấm **Xác nhận kích hoạt** mới mở thư đầu tiên.
+- Danh sách admin có nhãn kích hoạt, thời điểm và bộ lọc. Quản lý/chủ sở hữu vào chi tiết thẻ để reset lượt thử trước khi giao khách. Reset giữ URL, lời tặng, khách và đơn hàng; xóa dữ liệu sử dụng và thu hồi phiên đọc cũ.
+- Mỗi ngày thực sự đọc mở thêm một lá theo giờ Việt Nam; bỏ ngày không nhảy số thư.
+- `/admin/nfc`: thử camera và ghi/xác nhận NFC trên HTTPS với thiết bị hỗ trợ Web NFC.
+- Neon nhận dữ liệu; Runtime Logs không có lỗi thiếu bảng, font hoặc audio.
 
 Khi nghiệm thu xong, lưu bản sao các khóa production và thông tin quản trị DNS/Neon tại nơi quản lý bí mật của bạn. Trước mỗi thay đổi schema sau này, tạo migration trên branch phát triển, kiểm tra, commit, áp dụng `migrate deploy` vào production rồi mới đưa phiên bản app phụ thuộc schema mới ra phục vụ. Sao lưu/khả năng khôi phục Neon và kiểm tra định kỳ là việc vận hành riêng, đặc biệt vì dữ liệu thẻ và tiến độ đọc không thể tái tạo chỉ từ mã nguồn.
 
