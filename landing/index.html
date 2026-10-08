@@ -52,6 +52,34 @@
     body { margin: 0; background: #16302f; color: #f7f0e2; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
     section[id] { scroll-margin-top: 84px; }
     [x-cloak] { display: none !important; }
+    [hidden] { display: none !important; }
+    .order-field { display: block; width: 100%; margin-top: 8px; border: 1px solid rgb(188 211 189 / .25); border-radius: 12px; background: #16302f; padding: 13px 14px; color: #f7f0e2; font: inherit; font-size: 14px; line-height: 1.5; transition: border-color .2s, box-shadow .2s; }
+    .order-field::placeholder { color: rgb(188 211 189 / .5); }
+    .order-field:focus { outline: none; border-color: #ecc98a; box-shadow: 0 0 0 3px rgb(236 201 138 / .1); }
+    #order-form { box-shadow: 0 32px 90px -35px rgb(0 0 0 / .55); }
+    .checkout-details { background: #f7f0e2; color: #16302f; }
+    .checkout-details label { color: #456255; }
+    .checkout-details label > span { color: #7a897e; }
+    .checkout-details .order-field { background: #fffcf6; color: #16302f; border-color: rgb(22 48 47 / .18); }
+    .checkout-details .order-field::placeholder { color: #7a897e; }
+    .checkout-details .order-field:focus { border-color: #9b7b45; box-shadow: 0 0 0 3px rgb(155 123 69 / .12); }
+    .checkout-details legend > span { color: #8c6f40; border-color: rgb(140 111 64 / .3); }
+    .checkout-plan { position: relative; display: block; cursor: pointer; }
+    .checkout-plan input { position: absolute; opacity: 0; }
+    .checkout-plan-box { display: block; height: 100%; border: 1px solid #d8d3c4; border-radius: 16px; padding: 18px; background: #fffcf6; transition: border-color .25s, background .25s, transform .25s, box-shadow .25s; }
+    .checkout-plan input:checked + .checkout-plan-box { border-color: #9b7b45; background: #eee5d3; box-shadow: inset 0 0 0 1px #9b7b45; }
+    .checkout-plan input:focus-visible + .checkout-plan-box { outline: 2px solid #8c6f40; outline-offset: 4px; }
+    .checkout-plan:hover .checkout-plan-box { transform: translateY(-3px); }
+    .checkout-plan-dot { float: right; width: 16px; height: 16px; border: 1px solid #b8ae97; border-radius: 50%; }
+    .checkout-plan input:checked + .checkout-plan-box .checkout-plan-dot { border: 5px solid #8c6f40; background: #fffaf0; }
+    .checkout-card { animation: checkout-float 6s ease-in-out infinite; }
+    #order-total.price-update { animation: checkout-price .35s ease-out; }
+    #order-success:not([hidden]) { animation: rise .6s ease-out both; }
+    #order-submit.is-loading::before { content: ''; display: inline-block; width: 14px; height: 14px; margin-right: 10px; border: 2px solid rgb(22 48 47 / .25); border-top-color: #16302f; border-radius: 50%; vertical-align: -2px; animation: checkout-spin .8s linear infinite; }
+    @keyframes checkout-float { 50% { transform: translateY(-5px) rotate(-2deg); } }
+    @keyframes checkout-price { from { opacity: .3; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+    @keyframes checkout-spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { .checkout-card, #order-total.price-update, #order-success:not([hidden]), #order-submit.is-loading::before { animation: none; } .checkout-plan-box { transition: none; } .checkout-plan:hover .checkout-plan-box { transform: none; } }
     ::selection { background: #ecc98a; color: #16302f; }
 
     /* Màn chào khi tải trang: mặt trời mọc trên đường chân trời, rồi màn kéo lên. */
@@ -376,7 +404,7 @@
 
     <!-- 2. TẤM THẺ -->
     <section id="the" class="relative mx-auto max-w-6xl px-5 py-14 sm:py-20 lg:py-24">
-      <div class="mx-auto max-w-2xl text-center">
+      <div class="mx-auto max-w-2xl text-center" data-reveal>
         <p data-reveal class="text-[12px] font-semibold uppercase tracking-[0.24em] text-gold">Tấm thẻ</p>
         <h2 data-reveal class="mt-4 font-serif text-[32px] font-medium leading-tight sm:text-[42px]">Nhỏ như thẻ ngân hàng, đủ chỗ cho 99 ngày</h2>
         <p data-reveal class="mt-5 text-[16px] leading-8 text-sage">
@@ -648,6 +676,54 @@
       </div>
     </section>
 
+    <section id="dat-hang" class="relative mx-auto max-w-6xl px-5 py-16 sm:py-20 lg:py-24">
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="text-[12px] font-semibold uppercase tracking-[0.24em] text-gold">Một món quà nhỏ</p>
+        <h2 class="mt-4 font-serif text-[32px] font-medium leading-tight sm:text-[42px]">Đặt thẻ 99 ngày thương mình</h2>
+        <p class="mt-5 text-[15px] leading-7 text-sage">Dành cho bạn, hoặc một người bạn thương.<br>Để lại thông tin, chúng mình sẽ liên hệ xác nhận trước khi gửi thẻ.</p>
+      </div>
+      <form id="order-form" data-reveal="zoom" class="mt-10 overflow-hidden rounded-[28px] border border-gold/25 bg-deep/10 lg:grid lg:grid-cols-[1.35fr_1fr]">
+        <div class="checkout-details space-y-7 p-6 sm:p-9 lg:p-10">
+          <fieldset>
+            <legend class="flex items-center gap-3 font-serif text-[20px]"><span class="flex h-8 w-8 items-center justify-center rounded-full border border-gold/30 font-sans text-[12px] text-gold">01</span>Chọn thẻ của bạn</legend>
+            <div id="checkout-plans" class="mt-5 grid gap-3 sm:grid-cols-2" aria-label="Phiên bản thẻ"><p class="text-sm">Đang tải phiên bản…</p></div>
+            <label class="mt-4 flex items-center justify-between gap-4 text-[13px]">Số lượng thẻ<input name="quantity" type="number" min="1" max="20" value="1" required class="order-field !mt-0 !w-24 text-center"></label>
+          </fieldset>
+          <fieldset class="border-t border-ink/15 pt-7">
+            <legend class="float-left mb-5 flex w-full items-center gap-3 font-serif text-[20px]"><span class="flex h-8 w-8 items-center justify-center rounded-full border border-gold/30 font-sans text-[12px] text-gold">02</span>Gửi đến người nhận</legend>
+            <div class="clear-both grid gap-4 sm:grid-cols-2">
+              <label class="text-[13px] text-sage">Họ tên người nhận<input name="customerName" autocomplete="name" maxlength="100" required placeholder="Tên người nhận thẻ" class="order-field"></label>
+              <label class="text-[13px] text-sage">Số điện thoại<input name="phone" type="tel" autocomplete="tel" maxlength="24" required placeholder="Số điện thoại liên hệ" class="order-field"></label>
+              <label class="text-[13px] text-sage">Tỉnh / Thành phố<select name="provinceCode" autocomplete="address-level1" required disabled class="order-field"><option value="">Đang tải tỉnh/thành…</option></select></label>
+              <label class="text-[13px] text-sage">Phường / Xã<select name="wardCode" autocomplete="address-level2" required disabled class="order-field"><option value="">Chọn tỉnh/thành trước</option></select></label>
+              <p id="location-error" role="alert" class="text-[12px] !text-[#9e4934] sm:col-span-2" hidden></p>
+              <button id="location-reload" type="button" hidden class="text-left text-[12px] !text-[#8c6f40] underline sm:col-span-2">Tải lại địa chỉ</button>
+              <label class="text-[13px] text-sage sm:col-span-2">Số nhà, tên đường / Thôn, ấp<textarea name="address" rows="2" autocomplete="street-address" minlength="5" maxlength="300" required placeholder="Ví dụ: 12 Nguyễn Văn A, tầng 2" class="order-field resize-y"></textarea></label>
+              <label class="text-[13px] text-sage sm:col-span-2">Ghi chú <span class="text-sage/60">· Không bắt buộc</span><textarea name="note" rows="2" maxlength="1000" placeholder="Điều bạn muốn chúng mình lưu ý khi giao thẻ…" class="order-field resize-y"></textarea></label>
+            </div>
+          </fieldset>
+          <div hidden aria-hidden="true"><input name="website" tabindex="-1" autocomplete="off"></div>
+        </div>
+        <aside class="flex flex-col border-t border-sage/15 bg-[#12292a] p-6 sm:p-9 lg:border-l lg:border-t-0 lg:p-10" aria-label="Thông tin đơn hàng">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">Bạn sắp nhận được</p>
+          <div class="my-7 flex items-center gap-4">
+            <div class="checkout-card flex h-20 w-28 shrink-0 flex-col items-center justify-center rounded-lg border border-gold/35 bg-gradient-to-br from-[#24473f] to-ink shadow-lg" aria-hidden="true"><span class="font-script text-[20px] text-gold">Khoảng Ngẫm</span><span class="mt-1 text-[8px] tracking-wider text-paper">99 NGÀY THƯƠNG MÌNH</span></div>
+            <div><p class="font-serif text-[19px] leading-snug">99 ngày<br>thương mình</p><p id="order-selection" class="mt-2 text-[12px] text-sage">Chọn phiên bản dành cho bạn</p></div>
+          </div>
+          <div class="border-y border-sage/15 py-5"><div class="flex justify-between text-[14px] text-sage"><span>Giao hàng toàn quốc</span><span class="text-paper">Miễn phí</span></div><p id="order-total" aria-live="polite" class="mt-4 font-serif text-[25px] text-gold">Đang tải giá bán…</p></div>
+          <div class="mt-6 flex items-start gap-3 text-[13px] leading-6 text-sage"><svg class="mt-1 shrink-0 text-gold" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12.5 9.5 17 19 7.5"/></svg><p>Chúng mình sẽ gọi hoặc nhắn để xác nhận đơn và cách thanh toán. Bạn chưa cần thanh toán lúc này.</p></div>
+          <div class="mt-7 lg:mt-auto lg:pt-7">
+            <p id="order-error" role="alert" class="mb-3 text-[13px] leading-6 text-rose"></p>
+            <button id="order-submit" disabled class="btn-gold w-full rounded-full bg-gold px-6 py-3.5 text-[15px] font-semibold text-ink transition hover:-translate-y-0.5 disabled:cursor-wait disabled:opacity-50">Gửi đơn đặt hàng</button>
+            <button id="order-reload" type="button" hidden class="mt-3 w-full text-[13px] text-gold underline underline-offset-4">Tải lại thông tin đặt hàng</button>
+            <p class="mt-4 text-[11px] leading-5 text-sage/65">Thông tin của bạn chỉ được dùng để xác nhận, giao hàng và hỗ trợ đơn hàng này.</p>
+            <a href="https://www.facebook.com/khoangngam" target="_blank" rel="noopener noreferrer" class="mt-5 block text-center text-[12px] text-sage hover:text-gold">Cần hỗ trợ? Nhắn Khoảng Ngẫm ↗</a>
+          </div>
+        </aside>
+      </form>
+      <div id="order-success" hidden role="status" tabindex="-1" class="mx-auto mt-10 max-w-2xl rounded-[28px] border border-gold/30 bg-deep/15 p-8 text-center text-[16px] leading-8 break-words sm:p-12"></div>
+    </section>
+
     <!-- 7. HỎI ĐÁP -->
     <section id="hoi-dap" class="mx-auto max-w-3xl px-5 py-14 sm:py-20 lg:py-24">
       <div class="text-center">
@@ -701,6 +777,8 @@
       <div>
         <p class="font-script text-[34px] leading-none text-gold">Khoảng Ngẫm</p>
         <p class="mt-4 max-w-sm text-[14px] leading-7 text-sage">Một khoảng nhỏ mỗi ngày để ở lại với mình. 99 lá thư, mở bằng một tấm thẻ.</p>
+        <p class="mt-5 text-sm text-sage">@khoangngam</p>
+        <nav id="social-links" aria-label="Mạng xã hội Khoảng Ngẫm" class="mt-3 flex flex-wrap gap-3"><a href="https://www.facebook.com/khoangngam" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook @khoangngam" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-sage/25 text-sage hover:border-gold hover:text-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14 22v-9h3l.5-4H14V7c0-1.2.4-2 2-2h2V1.5c-.8-.1-1.8-.3-3-.3-3 0-5 1.9-5 5.3V9H7v4h3v9z" /></svg></a><a href="https://www.youtube.com/@khoangngam" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube @khoangngam" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-sage/25 text-sage hover:border-gold hover:text-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor" /><path d="m10 9 6 3-6 3z" fill="#16302f" /></svg></a><a href="https://www.tiktok.com/@khoangngam" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok @khoangngam" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-sage/25 text-sage hover:border-gold hover:text-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16 2h-4v13a3 3 0 1 1-3-3v-4a7 7 0 1 0 7 7V8a10 10 0 0 0 6 2V6a6 6 0 0 1-6-4z" /></svg></a><a href="https://www.instagram.com/khoangngam/" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram @khoangngam" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-sage/25 text-sage hover:border-gold hover:text-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" /></g></svg></a><a href="https://www.threads.com/@khoangngam" target="_blank" rel="noopener noreferrer" title="Threads" aria-label="Threads @khoangngam" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-sage/25 text-sage hover:border-gold hover:text-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M20 7c-1.2-3.2-3.9-5-8-5C6 2 3 6 3 12s3 10 9 10c5 0 9-3 9-7 0-3.5-3-5.5-7-5.5-3 0-5 1.4-5 3.5s1.5 3 3.5 3c3 0 4.5-2.2 4.5-5.5C17 7 15.2 5.5 12.5 5.5c-1.8 0-3.2.7-4 2" /></svg></a></nav>
       </div>
       <div>
         <p class="text-[12px] font-semibold uppercase tracking-[0.2em] text-gold">Khám phá</p>
@@ -764,12 +842,12 @@
       priceNote: "Chọn bản khi đặt hàng. Miễn phí giao hàng toàn quốc.",
 
       // Nút "Đặt thẻ" dẫn tới đâu (Shopee, Zalo, form đặt hàng...). Bỏ trống thì cuộn xuống phần liên hệ.
-      orderUrl: "",
+      orderUrl: "#dat-hang",
 
       // Kênh liên hệ ở chân trang. Dòng nào bỏ trống thì không hiện.
       contact: {
         zalo: "",          // ví dụ: "https://zalo.me/0900000000"
-        facebook: "",      // ví dụ: "https://facebook.com/khoangngam"
+        facebook: "https://www.facebook.com/khoangngam",      // ví dụ: "https://facebook.com/khoangngam"
         instagram: "",
         tiktok: "",
         email: "",         // ví dụ: "xinchao@khoangngam.com"
@@ -840,7 +918,7 @@
         menu: false,
         trialUrl: KN.appUrl + "/doc-thu",
         giftUrl: KN.appUrl + "/tang",
-        orderUrl: KN.orderUrl || "#lien-he",
+        orderUrl: KN.orderUrl || "#dat-hang",
         plans: KN.plans,
         priceNote: KN.priceNote,
 
@@ -1029,5 +1107,6 @@
       }));
     });
   </script>
+<script src="./checkout.js"></script>
 </body>
 </html>

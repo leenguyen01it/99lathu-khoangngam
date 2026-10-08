@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BookCover } from "@/components/BookCover";
 import { Shell } from "@/components/Shell";
+import { SocialFooter } from "@/components/SocialFooter";
 import { site } from "@/lib/site";
 import { TOTAL_LETTERS, TRIAL_LETTERS } from "@/lib/letters";
 
@@ -55,6 +56,7 @@ export default function HomePage() {
           Chạm thẻ bằng điện thoại để mở lá thư của hôm nay. Lá tiếp theo sẽ chờ bạn vào ngày mai.
         </p>
       </section>
+      <SocialFooter />
     </Shell>
   );
 }

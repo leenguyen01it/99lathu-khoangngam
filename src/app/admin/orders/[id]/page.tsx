@@ -18,6 +18,11 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
   const { id } = await params;
   const order = await getOrder(id);
   if (!order) notFound();
+  let shippingAddress = "";
+  try {
+    const address = JSON.parse(order.shippingAddressJson || "{}");
+    shippingAddress = [address.address1, address.address2, address.ward, address.district, address.province].filter((value) => typeof value === "string" && value).join(", ");
+  } catch { /* Dữ liệu nhập từ nguồn ngoài có thể không phải JSON hợp lệ. */ }
   const customers = await prisma.customer.findMany({ where: { archivedAt: null }, orderBy: { updatedAt: "desc" }, take: 200 });
   if (order.customer && !customers.some((c) => c.id === order.customerId)) customers.unshift(order.customer);
   const save = updateOrder.bind(null, id);
@@ -28,6 +33,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
     <Link href="/admin/orders" className="text-[14px] text-sage hover:text-gold">‹ Tất cả đơn hàng</Link>
     <header className="mt-3 flex flex-wrap items-start justify-between gap-3"><div><h1 className="text-[28px] font-semibold">Đơn {order.orderNumber || order.id.slice(-8)}</h1><p className="text-[13px] text-sage">{order.source?.name || "Tạo trên admin"} · cập nhật {formatAdminDateTime(order.updatedAt)}</p></div>{order.customer ? <Link className="btn-ghost" href={`/admin/customers/${order.customer.id}`}>Xem khách hàng</Link> : null}</header>
 
+    {shippingAddress ? <section className="mt-6 rounded-2xl border border-sage/25 p-5"><h2 className="text-[18px] font-semibold">Địa chỉ giao hàng</h2><p className="mt-2 whitespace-pre-wrap text-[14px] text-sage">{shippingAddress}</p></section> : null}
     <form action={save} className="mt-6 grid gap-4 rounded-2xl border border-sage/25 p-5">
       <div className="grid gap-4 md:grid-cols-4"><label><span className="mb-1 block text-[13px] text-sage">Mã đơn</span><input className="field" name="orderNumber" defaultValue={order.orderNumber ?? ""} /></label><label className="md:col-span-2"><span className="mb-1 block text-[13px] text-sage">Khách hàng</span><select className="field" name="customerId" defaultValue={order.customerId ?? ""}><option value="">Khách lẻ</option>{customers.map((c) => <option key={c.id} value={c.id}>{c.fullName || c.phone || c.email || c.id}</option>)}</select></label><label><span className="mb-1 block text-[13px] text-sage">Ngày đặt</span><input className="field" type="date" name="placedAt" defaultValue={dateValue(order.placedAt)} /></label></div>
       <div className="grid gap-4 md:grid-cols-3"><label><span className="mb-1 block text-[13px] text-sage">Trạng thái</span><select className="field" name="status" defaultValue={order.status}><option value="pending">Chờ xử lý</option><option value="confirmed">Đã xác nhận</option><option value="completed">Hoàn tất</option><option value="cancelled">Đã hủy</option></select></label><label><span className="mb-1 block text-[13px] text-sage">Thanh toán</span><select className="field" name="financialStatus" defaultValue={order.financialStatus ?? ""}><option value="">Chưa đặt</option><option value="pending">Chưa thanh toán</option><option value="paid">Đã thanh toán</option><option value="refunded">Đã hoàn tiền</option></select></label><label><span className="mb-1 block text-[13px] text-sage">Giao hàng</span><select className="field" name="fulfillmentStatus" defaultValue={order.fulfillmentStatus ?? ""}><option value="">Chưa đặt</option><option value="unfulfilled">Chưa giao</option><option value="processing">Đang xử lý</option><option value="fulfilled">Đã giao</option><option value="returned">Hoàn hàng</option></select></label></div>

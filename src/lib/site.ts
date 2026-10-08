@@ -3,6 +3,15 @@ export const site = {
   name: "Khoảng Ngẫm",
   product: "99 ngày thương mình",
   tagline: "Mỗi ngày một lá thư.",
+  socialHandle: "@khoangngam",
+  orderUrl: "https://khoangngam.com/#dat-hang",
+  socialLinks: [
+    { name: "Facebook", href: "https://www.facebook.com/khoangngam" },
+    { name: "YouTube", href: "https://www.youtube.com/@khoangngam" },
+    { name: "TikTok", href: "https://www.tiktok.com/@khoangngam" },
+    { name: "Instagram", href: "https://www.instagram.com/khoangngam/" },
+    { name: "Threads", href: "https://www.threads.com/@khoangngam" },
+  ],
 };
 
 // Tốc độ phát giọng đọc. Bản thu giữ tốc độ tự nhiên, trình phát tua lên khi nghe

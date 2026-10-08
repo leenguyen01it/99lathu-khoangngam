@@ -5,6 +5,8 @@ import { GiftBook } from "@/components/GiftBook";
 import { Locked } from "@/components/Locked";
 import { ReadingShell } from "@/components/ReadingShell";
 import { Shell } from "@/components/Shell";
+import { SocialFooter } from "@/components/SocialFooter";
+import { TrialPurchase } from "@/components/TrialPurchase";
 import type { Letter } from "@/lib/letters";
 import type { WordTiming } from "@/lib/sentences";
 import { themeLabel } from "@/lib/site";
@@ -117,6 +119,7 @@ export function ViewerClient({ token, expiresAt, letters, audio, total, gift, sh
             </li>
           ))}
         </ul>
+        {!token ? <><TrialPurchase /><SocialFooter /></> : null}
       </Shell>
     );
   }
@@ -182,6 +185,7 @@ export function ViewerClient({ token, expiresAt, letters, audio, total, gift, sh
           Bạn đã mở hết các lá thư. Cảm ơn bạn đã ghé mỗi ngày.
         </p>
       ) : null}
+      {!token ? <><TrialPurchase /><SocialFooter /></> : null}
     </ReadingShell>
   );
 }

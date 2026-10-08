@@ -247,6 +247,15 @@ model AdminLoginThrottle {
   @@index([blockedUntil])
 }
 
+// Bộ đếm đặt hàng dùng chung giữa các instance, chỉ lưu HMAC của IP/số điện thoại.
+model CheckoutThrottle {
+  key       String   @id
+  count     Int
+  expiresAt DateTime
+
+  @@index([expiresAt])
+}
+
 model AdminUser {
   id                 String    @id @default(cuid())
   email              String
