@@ -141,6 +141,7 @@
     let message = "";
     if (field.required && !value) message = "Vui lòng điền thông tin này.";
     else if (field.name === "phone" && !/^(?:0|\+?84)[35789]\d{8}$/.test(value.replace(/[\s.-]/g, ""))) message = "Nhập số di động Việt Nam hợp lệ, ví dụ 0901234567.";
+    else if (field.name === "email" && value && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) message = "Email chưa đúng định dạng, ví dụ ten@email.com.";
     else if (field.name === "address" && value.length < 5) message = "Vui lòng nhập số nhà và tên đường/thôn (ít nhất 5 ký tự).";
     else if (field.name.startsWith("quantity") && (field.validity.badInput || !Number.isInteger(Number(value)) || Number(value) < 1 || Number(value) > 20)) message = "Nhập số nguyên từ 1 đến 20.";
     else if (field.maxLength > 0 && value.length > field.maxLength) message = "Thông tin vượt quá " + field.maxLength + " ký tự.";

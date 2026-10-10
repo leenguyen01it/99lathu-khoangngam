@@ -27,6 +27,11 @@ test("hỗ trợ số điện thoại +84 và loại bỏ khoảng trắng thừ
   assert.equal(parseCheckout({ ...valid, phone: "84901234567" }).phone, "+84901234567");
   for (const phone of ["0101234567", "02412345678", "+12025550123", "090123456", "09012345678", "call 0901234567"]) assert.throws(() => parseCheckout({ ...valid, phone }), phone);
 });
+test("email không bắt buộc, có nhập thì phải đúng định dạng", () => {
+  assert.equal(parseCheckout(valid).email, "");
+  assert.equal(parseCheckout({ ...valid, email: "  Lan@Example.com " }).email, "Lan@Example.com");
+  for (const email of ["lan", "lan@", "lan@example", "lan @example.com", "x".repeat(250) + "@a.vn"]) assert.throws(() => parseCheckout({ ...valid, email }), email);
+});
 
 test("API lưu đơn và trả lại mã cũ khi gửi lại, chặn origin ngoài", async () => {
   const { NextRequest } = require("next/server");
@@ -41,20 +46,21 @@ test("API lưu đơn và trả lại mã cũ khi gửi lại, chặn origin ngo�
   };
   const routeCode = ts.transpileModule(fs.readFileSync("src/app/api/orders/route.ts", "utf8"), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
   const module = { exports: {} };
-  const dependencies = { "@/lib/prisma": { prisma: db }, "@/lib/checkout": loaded.exports, "@/lib/customer-data": { normalizePhone: () => "84901234567" },
+  const dependencies = { "@/lib/prisma": { prisma: db }, "@/lib/checkout": loaded.exports, "@/lib/customer-data": { normalizePhone: () => "84901234567", normalizeEmail: value => value.toLowerCase() },
     "@/lib/checkout-cors": { checkoutCors: () => ({}), checkoutOrigins: new Set(["https://khoangngam.com"]) },
     "@/lib/request": { getClientIp: () => "1.2.3.4" },
     "@/server/checkout-throttle": { consumeCheckoutLimit: async () => ({ allowed: true }) },
     "@/server/locations": { resolveAddress: async () => ({ province: "Hà Nội", ward: "Ba Đình", provinceCode: 1, wardCode: 4 }) },
   };
   new Function("require", "exports", "module", routeCode)((name) => dependencies[name] || require(name), module.exports, module);
-  const mixed = { ...valid, items: [{ sku: "card", quantity: 1 }, { sku: "gift", quantity: 1 }] };
+  const mixed = { ...valid, email: "Lan@Example.com", items: [{ sku: "card", quantity: 1 }, { sku: "gift", quantity: 1 }] };
   const req = (origin) => new NextRequest("https://99lathu.khoangngam.com/api/orders", { method: "POST", headers: { origin, "Content-Type": "application/json" }, body: JSON.stringify(mixed) });
   assert.equal((await module.exports.POST(req("https://other.example"))).status, 403);
   assert.equal((await module.exports.POST(req("https://khoangngam.com"))).status, 201);
   assert.equal(saved.totalAmount, 418000);
   assert.deepEqual(saved.items.create.map(i => [i.sku, i.quantity, i.totalAmount]), [["card", 1, 169000], ["gift", 1, 249000]]);
   assert.equal(saved.status, "pending");
+  assert.equal(saved.email, "Lan@Example.com");
   assert.equal(JSON.parse(saved.shippingAddressJson).address1, valid.address);
   const retry = await module.exports.POST(req("https://khoangngam.com"));
   assert.equal(retry.status, 200);

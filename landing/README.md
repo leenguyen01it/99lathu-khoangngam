@@ -2,6 +2,17 @@
 
 `index.html` là trang giới thiệu tại `https://khoangngam.com`. Footer có 5 kênh @khoangngam. Phải triển khai kèm `checkout.js` cùng thư mục.
 
+## SEO
+
+- Triển khai cả thư mục: `index.html`, `checkout.js`, `styles.css`, `img/`, `robots.txt`, `sitemap.xml`, `og.png` (ảnh chia sẻ 1200x630), `favicon.svg`, `favicon-96.png`, `apple-touch-icon.png`. Không cần đưa lên `tailwind.config.cjs` và `tailwind.css`.
+- Tailwind không còn tải từ CDN. Sau khi sửa class trong `index.html` hoặc `checkout.js`, chạy `npm run landing:css` để dựng lại `styles.css`, rồi tăng `?v=` ở thẻ `<link>` để trình duyệt tải bản mới.
+- Màn chào chỉ hiện ở lần mở đầu tiên của phiên (`sessionStorage` khóa `kn_seen`), giữ 1,5 giây, tối đa 2,5 giây.
+- Ba ảnh trong `img/` lấy từ `tiktok-shop/anh` (01, 02, 07), đổi sang WebP 1000x1000. Chúng cũng được khai báo trong `image` của JSON-LD `Product`.
+- `<head>` có JSON-LD `Organization`, `WebSite`, `Product`. Khi đổi giá, sửa cả hai `price` trong JSON-LD cùng với `KN.plans`.
+- Phần hỏi đáp viết thẳng trong HTML kèm microdata `FAQPage`, không còn nằm trong mảng `faqs` của JavaScript. Sửa câu hỏi ngay tại `#hoi-dap`.
+- Các link đọc thử, tặng và đặt hàng có `href` tĩnh bên cạnh `:href`. Khi đổi `KN.appUrl`, sửa cả các `href` này.
+- Khi đổi nội dung trang, cập nhật `lastmod` trong `sitemap.xml`.
+
 ## Đặt hàng
 
 - Các nút đặt thẻ dẫn đến `#dat-hang`.
@@ -12,6 +23,7 @@
 - Đơn, sản phẩm, khách hàng và địa chỉ được lưu trong cùng một transaction. Xem tại `/admin/orders`, nguồn “Website Khoảng Ngẫm”. Đơn mới chờ xác nhận, chưa thanh toán, chưa giao; không tự tạo hoặc kích hoạt thẻ.
 - Form giữ requestId khi gửi lại để tránh tạo trùng đơn khi mạng bị gián đoạn. API giới hạn 10 request/IP/phút và 3 lần tạo đơn mới/số điện thoại/giờ. Bộ đếm PostgreSQL UPSERT nguyên tử, dùng chung giữa các instance; request sai cũng tiêu thụ giới hạn IP. Trả 429 với Retry-After; database giới hạn bị lỗi thì trả 503, không ghi đơn.
 - Số điện thoại được chuẩn hóa về +84, kiểm tra country, độ dài và loại MOBILE bằng `libphonenumber-js/max`. Đây là kiểm tra cấu trúc, chưa xác minh quyền sở hữu bằng OTP.
+- Email không bắt buộc. Nếu có nhập, client và máy chủ đều kiểm tra định dạng, lưu vào `Order.email` và `Customer.email`/`emailNormalized`. Chưa gửi email tự động cho khách.
 - Origin, trường chống bot và giới hạn ứng dụng giảm spam; không chặn tuyệt đối bot dùng nhiều IP/số khác nhau. Khi vận hành cần cấu hình rate limit/WAF ở hosting. Reverse proxy phải ghi đè header IP từ client; API dùng IP do proxy cung cấp. Không coi CORS là xác thực.
 - API chấp nhận origin `https://khoangngam.com`, `https://www.khoangngam.com`, `https://99lathu.khoangngam.com`. Trong môi trường phát triển hỗ trợ `http://localhost:3000` và `http://localhost:8080`.
 

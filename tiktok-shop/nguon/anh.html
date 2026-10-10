@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Khoảng Ngẫm · Ảnh sản phẩm TikTok Shop</title>
+<!-- Nguồn dựng 9 ảnh sản phẩm 1200 × 1200. Mở anh.html#1 ... anh.html#9 để xem từng ảnh.
+     Xuất ảnh: node tiktok-shop/nguon/render.mjs
+     Không đặt tên miền, tên nền tảng khác hay giá bán vào ảnh. Mã QR trên thẻ là mã minh hoạ, không quét được. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: "Source Serif 4"; font-style: normal; font-weight: 400; src: url("../../design/nfc-card/fonts/source-serif-4-regular.ttf") format("truetype"); }
+  @font-face { font-family: "Source Serif 4"; font-style: normal; font-weight: 500; src: url("../../design/nfc-card/fonts/source-serif-4-medium.ttf") format("truetype"); }
+  @font-face { font-family: "Source Serif 4"; font-style: italic; font-weight: 400; src: url("../../design/nfc-card/fonts/source-serif-4-italic.ttf") format("truetype"); }
+  @font-face { font-family: "Great Vibes"; font-style: normal; font-weight: 400; src: url("../../design/nfc-card/fonts/wordmark/greatvibes.ttf") format("truetype"); }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 1200px; overflow: hidden; background: #16302f; }
+  body { font-family: "Be Vietnam Pro", system-ui, sans-serif; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  .slide { display: none; position: relative; width: 1200px; height: 1200px; overflow: hidden; padding: 84px; }
+  .slide.on { display: block; }
+  .dark { background: radial-gradient(circle at 50% 30%, #24463f 0%, #16302f 62%, #102725 100%); color: #f7f0e2; }
+  .light { background: radial-gradient(circle at 50% 36%, #fffaf0 0%, #f4ead6 70%, #eadfc6 100%); color: #16302f; }
+  .serif { font-family: Lora, Georgia, serif; }
+  .script { font-family: "Great Vibes", cursive; }
+
+  .eyebrow { font-size: 26px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; }
+  .dark .eyebrow { color: #ecc98a; }
+  .light .eyebrow { color: #3e6658; }
+  h1 { font-family: Lora, Georgia, serif; font-weight: 500; font-size: 74px; line-height: 1.14; margin-top: 22px; }
+  .dark h1 em, .dark .gold { color: #ecc98a; }
+  .light h1 em { color: #8c6f40; }
+  .lead { font-size: 34px; line-height: 1.5; margin-top: 24px; }
+  .dark .lead { color: #bcd3bd; }
+  .light .lead { color: rgb(22 48 47 / .72); }
+  .center { text-align: center; }
+
+  /* Tấm thẻ */
+  .card { position: relative; aspect-ratio: 85.6 / 54; border-radius: 3.7% / 5.9%; overflow: hidden; }
+  .card svg { display: block; width: 100%; height: 100%; }
+  .dark .card { box-shadow: 0 44px 70px -24px rgb(0 0 0 / .7), 0 8px 18px rgb(0 0 0 / .3), inset 0 0 0 1px rgb(255 255 255 / .07); }
+  .light .card { box-shadow: 0 46px 70px -28px rgb(22 48 47 / .6), 0 10px 22px rgb(22 48 47 / .2); }
+
+  .brandmark { display: flex; align-items: center; gap: 16px; font-size: 24px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; }
+  .foot { position: absolute; left: 84px; right: 84px; bottom: 62px; display: flex; align-items: center; justify-content: space-between; }
+  .dark .brandmark { color: #ecc98a; }
+  .light .brandmark { color: #3e6658; }
+  .pageno { font-family: Lora, serif; font-size: 24px; opacity: .55; }
+
+  .chip { display: inline-flex; align-items: center; gap: 14px; border-radius: 999px; padding: 16px 30px; font-size: 30px; font-weight: 500; white-space: nowrap; }
+  .light .chip { background: #16302f; color: #f7f0e2; }
+  .dark .chip { border: 1.5px solid rgb(236 201 138 / .5); color: #f7f0e2; background: rgb(236 201 138 / .08); }
+  .chip i { width: 10px; height: 10px; background: #ecc98a; transform: rotate(45deg); flex: none; }
+
+  .check { flex: none; width: 46px; height: 46px; border-radius: 50%; background: #ecc98a; color: #16302f; display: flex; align-items: center; justify-content: center; margin-top: 4px; }
+  .check svg { width: 24px; height: 24px; }
+
+  /* 1. Ảnh chính */
+  #s1 .screen { position: absolute; width: 412px; left: 120px; top: 128px; border-width: 12px; border-radius: 54px; transform: rotate(-3deg); }
+  #s1 .ring { position: absolute; left: 540px; top: 300px; border-radius: 50%; border: 3px solid rgb(140 111 64 / .5); transform: translate(-50%, -50%); }
+  #s1 .r1 { width: 420px; height: 420px; }
+  #s1 .r2 { width: 600px; height: 600px; opacity: .5; }
+  #s1 .r3 { width: 780px; height: 780px; opacity: .22; }
+  #s1 .front { position: absolute; width: 630px; left: 480px; top: 120px; transform: rotate(-9deg); }
+  #s1 .title { position: absolute; left: 0; right: 0; top: 950px; text-align: center; }
+  #s1 .title p { font-family: Lora, serif; font-size: 74px; font-weight: 500; }
+  #s1 .chips { position: absolute; left: 650px; top: -320px; display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+  #s1 .chips .chip { font-size: 31px; padding: 15px 28px; }
+  #s1 .top { position: absolute; left: 84px; top: 70px; }
+
+  /* 2. Hai mặt thẻ */
+  #s2 .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-top: 56px; }
+  #s2 .pair p { margin-top: 20px; text-align: center; font-size: 24px; letter-spacing: .2em; text-transform: uppercase; color: #bcd3bd; }
+  #s2 .size { margin: 34px auto 0; display: flex; align-items: center; gap: 22px; justify-content: center; font-size: 30px; color: #f7f0e2; }
+  #s2 .size span.l { height: 1.5px; width: 150px; background: rgb(236 201 138 / .6); }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 46px; border-top: 1.5px solid rgb(188 211 189 / .22); border-bottom: 1.5px solid rgb(188 211 189 / .22); }
+  .stats div { padding: 30px 0; text-align: center; border-right: 1.5px solid rgb(188 211 189 / .22); }
+  .stats div:last-child { border-right: 0; }
+  .stats b { display: block; font-family: Lora, serif; font-weight: 500; font-size: 84px; line-height: 1; color: #ecc98a; }
+  .stats span { display: block; margin-top: 12px; font-size: 20px; letter-spacing: .06em; white-space: nowrap; text-transform: uppercase; color: #bcd3bd; }
+
+  /* Màn hình điện thoại: ảnh chụp app thật (chup-man-hinh.mjs), tỷ lệ 390 × 750 */
+  .screen { position: relative; border: 14px solid #0b1b1b; border-radius: 62px; overflow: hidden; background: #16302f; box-shadow: 0 60px 90px -30px rgb(0 0 0 / .85), inset 0 0 0 1.5px rgb(255 255 255 / .08); }
+  .light .screen { box-shadow: 0 50px 80px -34px rgb(22 48 47 / .75), 0 10px 24px rgb(22 48 47 / .2); }
+  .screen img { display: block; width: 100%; }
+
+  /* 3. Cách dùng */
+  #s3 .tap { position: absolute; left: 84px; top: 310px; width: 440px; }
+  #s3 .tap .screen { width: 392px; border-width: 11px; border-radius: 50px; }
+  #s3 .tap .card { position: absolute; width: 300px; left: 222px; top: -58px; transform: rotate(-14deg); }
+  #s3 .ring { position: absolute; left: 362px; top: 30px; border-radius: 50%; border: 2.5px solid rgb(140 111 64 / .5); transform: translate(-50%, -50%); }
+  #s3 .r1 { width: 200px; height: 200px; }
+  #s3 .r2 { width: 290px; height: 290px; opacity: .55; }
+  #s3 .r3 { width: 380px; height: 380px; opacity: .25; }
+  .steps { position: absolute; left: 630px; right: 56px; top: 300px; display: grid; gap: 22px; }
+  .step { display: flex; gap: 24px; align-items: flex-start; background: #fffaf0; border-radius: 30px; padding: 28px 30px; box-shadow: 0 24px 44px -30px rgb(22 48 47 / .5), inset 0 0 0 1.5px rgb(22 48 47 / .06); }
+  .step .n { flex: none; width: 76px; height: 76px; border-radius: 50%; background: #16302f; color: #ecc98a; font-family: Lora, serif; font-size: 40px; display: flex; align-items: center; justify-content: center; }
+  .step h3 { font-family: Lora, serif; font-weight: 500; font-size: 35px; line-height: 1.2; }
+  .step p { margin-top: 8px; font-size: 26px; line-height: 1.42; color: rgb(22 48 47 / .72); }
+
+  /* 4. Lá thư trên điện thoại */
+  #s4 { padding-right: 60px; }
+  #s4 .cols { display: grid; grid-template-columns: 470px 1fr; gap: 70px; align-items: center; height: 100%; padding-bottom: 60px; }
+  #s4 .screen { width: 470px; }
+  #s4 .mini { position: absolute; width: 250px; left: 400px; top: 930px; transform: rotate(10deg); }
+  #s4 blockquote { margin-top: 44px; border-left: 3px solid #ecc98a; padding-left: 30px; font-family: Lora, serif; font-style: italic; font-size: 36px; line-height: 1.5; color: #f7f0e2; }
+  #s4 h1 { font-size: 66px; }
+
+  /* 5. Chủ đề */
+  .themes { margin-top: 64px; display: flex; flex-wrap: wrap; gap: 22px; justify-content: center; }
+  .themes .chip { font-family: Lora, serif; font-size: 38px; padding: 22px 38px; }
+  .themes .chip.alt { background: #fffaf0; color: #16302f; box-shadow: inset 0 0 0 1.5px rgb(22 48 47 / .16); }
+  .themes .chip.alt i { background: #c79f58; }
+  .note { margin: 64px auto 0; max-width: 940px; border-radius: 30px; padding: 30px 40px; font-size: 31px; line-height: 1.5; text-align: center; }
+  .light .note { background: rgb(22 48 47 / .06); color: rgb(22 48 47 / .8); }
+  .dark .note { border: 1.5px solid rgb(188 211 189 / .25); color: #bcd3bd; }
+  .note b { font-weight: 600; }
+  .light .note b { color: #16302f; }
+  .dark .note b { color: #f7f0e2; }
+
+  /* 6. Tương thích */
+  .rows { margin-top: 44px; display: grid; gap: 22px; }
+  .row { display: flex; gap: 32px; align-items: center; border: 1.5px solid rgb(188 211 189 / .2); background: rgb(62 102 88 / .16); border-radius: 32px; padding: 24px 38px; }
+  .row .ico { flex: none; width: 104px; height: 104px; border-radius: 28px; border: 1.5px solid rgb(236 201 138 / .4); background: #16302f; color: #ecc98a; display: flex; align-items: center; justify-content: center; }
+  .row .ico svg { width: 54px; height: 54px; }
+  .row h3 { font-family: Lora, serif; font-weight: 500; font-size: 40px; color: #f7f0e2; }
+  .row p { margin-top: 6px; font-size: 29px; line-height: 1.45; color: #bcd3bd; }
+
+  /* 7. Quà tặng */
+  #s7 { padding-right: 60px; }
+  #s7 .cols { display: grid; grid-template-columns: 470px 1fr; gap: 70px; align-items: start; padding-top: 40px; }
+  #s7 .screen { width: 470px; }
+  #s7 h1 { font-size: 64px; }
+  #s7 .list { margin-top: 36px; gap: 22px; }
+  #s7 .list li { font-size: 30px; }
+  .envelope { position: absolute; left: 730px; top: 820px; width: 330px; height: 226px; transform: rotate(6deg); }
+  .envelope > * { position: absolute; inset: 0; }
+  .env-back { border-radius: 16px; background: #e6dcc6; box-shadow: 0 40px 60px -24px rgb(0 0 0 / .7); }
+  .envelope .card { inset: auto; left: 28px; top: -92px; width: 274px; transform: rotate(-4deg); }
+  .env-front { border-radius: 0 0 16px 16px; background: #f7f0e2; clip-path: polygon(0 0, 50% 52%, 100% 0, 100% 100%, 0 100%); }
+  .list { margin-top: 28px; display: grid; gap: 16px; }
+  .list li { list-style: none; display: flex; gap: 22px; align-items: flex-start; font-size: 32px; line-height: 1.45; }
+
+  /* 8. Hai phiên bản */
+  .plans { margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  .plan { position: relative; border-radius: 36px; padding: 44px 38px 40px; background: #fffaf0; box-shadow: 0 24px 44px -30px rgb(22 48 47 / .5), inset 0 0 0 1.5px rgb(22 48 47 / .08); }
+  .plan.hot { background: #16302f; color: #f7f0e2; box-shadow: 0 30px 50px -28px rgb(22 48 47 / .8), inset 0 0 0 2px #ecc98a; }
+  .plan .tag { position: absolute; top: -22px; left: 38px; background: #ecc98a; color: #16302f; border-radius: 999px; padding: 8px 22px; font-size: 21px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+  .plan .for { font-size: 23px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: #3e6658; }
+  .plan.hot .for { color: #ecc98a; }
+  .plan h3 { font-family: Lora, serif; font-weight: 500; font-size: 54px; margin-top: 10px; }
+  .plan ul { margin-top: 28px; display: grid; gap: 18px; }
+  .plan li { list-style: none; display: flex; gap: 16px; align-items: flex-start; font-size: 29px; line-height: 1.4; }
+  .plan li::before { content: ""; flex: none; width: 12px; height: 12px; margin-top: 15px; background: #c79f58; transform: rotate(45deg); }
+  .plan.hot li::before { background: #ecc98a; }
+  .plan li.add { font-weight: 600; }
+
+  /* 9. Bạn nhận được */
+  #s9 .list { gap: 30px; } #s9 .list li { font-size: 37px; } #s9 .list .check { width: 52px; height: 52px; } #s9 .end { margin-top: 56px; font-family: Lora, serif; font-style: italic; font-size: 42px; color: #ecc98a; }
+</style>
+</head>
+<body>
+
+<!-- 1. ẢNH CHÍNH -->
+<section id="s1" class="slide light">
+  <div class="top brandmark" data-brand></div>
+  <span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span>
+  <div class="screen"><img src="man-hinh-thu.png" alt=""></div>
+  <div class="card front" data-card="front"></div>
+  <div class="title">
+    <p>Thẻ 99 ngày thương mình</p>
+    <div class="chips">
+      <span class="chip"><i></i>99 lá thư</span>
+      <span class="chip"><i></i>Chạm điện thoại để mở</span>
+      <span class="chip"><i></i>Không cần ứng dụng</span>
+    </div>
+  </div>
+</section>
+
+<!-- 2. HAI MẶT THẺ -->
+<section id="s2" class="slide dark">
+  <p class="eyebrow center">Tấm thẻ</p>
+  <h1 class="center">Nhỏ như thẻ ngân hàng,<br><em>đủ chỗ cho 99 ngày</em></h1>
+  <div class="pair">
+    <div><div class="card" data-card="front"></div><p>Mặt trước</p></div>
+    <div><div class="card" data-card="back"></div><p>Mặt sau</p></div>
+  </div>
+  <div class="size"><span class="l"></span>85,6 × 54 mm, vừa trong ví<span class="l"></span></div>
+  <div class="stats">
+    <div><b>99</b><span>Lá thư</span></div>
+    <div><b>1</b><span>Lá mỗi ngày</span></div>
+    <div><b>9</b><span>Chủ đề</span></div>
+    <div><b>0</b><span>Ứng dụng phải cài</span></div>
+  </div>
+  <div class="foot"><div class="brandmark" data-brand></div><span class="pageno">2 / 9</span></div>
+</section>
+
+<!-- 3. CÁCH DÙNG: thẻ chạm vào mép trên điện thoại, màn hình là bìa sách thật của app -->
+<section id="s3" class="slide light">
+  <p class="eyebrow">Cách sử dụng</p>
+  <h1>Chạm thẻ, <em>lá thư mở ra</em></h1>
+  <div class="tap">
+    <span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span>
+    <div class="screen"><img src="man-hinh-bia.png" alt=""></div>
+    <div class="card" data-card="front"></div>
+  </div>
+  <div class="steps">
+    <div class="step"><span class="n">1</span><div><h3>Chạm thẻ vào máy</h3><p>Mở khoá màn hình, áp thẻ vào điện thoại rồi bấm thông báo hiện lên.</p></div></div>
+    <div class="step"><span class="n">2</span><div><h3>Đọc lá thư hôm nay</h3><p>Cuốn sách mở ra ngay trong trình duyệt, đọc chừng một phút.</p></div></div>
+    <div class="step"><span class="n">3</span><div><h3>Ngày mai quay lại</h3><p>Lá tiếp theo mở vào ngày mai, cho tới lá thứ 99.</p></div></div>
+  </div>
+  <div class="foot"><div class="brandmark" data-brand></div><span class="pageno">3 / 9</span></div>
+</section>
+
+<!-- 4. LÁ THƯ -->
+<section id="s4" class="slide dark">
+  <div class="cols">
+    <div class="screen"><img src="man-hinh-thu.png" alt=""></div>
+    <div>
+      <p class="eyebrow">Những lá thư</p>
+      <h1>Viết như một người bạn <em>ngồi cạnh</em></h1>
+      <p class="lead">Mỗi lá chỉ vài câu, đọc chưa tới một phút. Chuyện trong thư là chuyện thường ngày.</p>
+      <blockquote>Bạn không cần sửa xong mình rồi mới xứng đáng được thương.</blockquote>
+    </div>
+  </div>
+  <div class="card mini" data-card="front"></div>
+  <div class="foot" style="left:auto"><span class="pageno">4 / 9</span></div>
+</section>
+
+<!-- 5. MỖI NGÀY MỘT LÁ, 9 CHỦ ĐỀ -->
+<section id="s5" class="slide light">
+  <p class="eyebrow center">99 lá thư · 9 chủ đề</p>
+  <h1 class="center">Mỗi ngày đúng <em>một lá</em></h1>
+  <p class="lead center">Bạn không lướt hết trong một tối được.<br>Chậm như vậy là có chủ ý.</p>
+  <div class="themes">
+    <span class="chip"><i></i>Cố gắng</span>
+    <span class="chip alt"><i></i>Thành người mình thích</span>
+    <span class="chip alt"><i></i>Lớn lên</span>
+    <span class="chip"><i></i>Tình yêu</span>
+    <span class="chip"><i></i>Không cần vừa lòng ai</span>
+    <span class="chip alt"><i></i>Bạn bè</span>
+    <span class="chip alt"><i></i>Tuổi trẻ</span>
+    <span class="chip"><i></i>Ước mơ</span>
+    <span class="chip alt"><i></i>Ngày mai</span>
+  </div>
+  <p class="note"><b>Quên chạm thẻ vài hôm cũng không mất lá nào.</b><br>Lá kế tiếp luôn chờ bạn. Lá đã mở nằm lại trong hộp thư để đọc lại.</p>
+  <div class="foot"><div class="brandmark" data-brand></div><span class="pageno">5 / 9</span></div>
+</section>
+
+<!-- 6. TƯƠNG THÍCH -->
+<section id="s6" class="slide dark">
+  <p class="eyebrow">Dùng được với máy của bạn</p>
+  <h1>Không ứng dụng.<br><em>Không tài khoản.</em></h1>
+  <div class="rows">
+    <div class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.6"/><path d="M10.5 5.5h3"/></svg></span><div><h3>iPhone XS, XR trở lên</h3><p>Đưa thẻ lại gần mép trên của máy.</p></div></div>
+    <div class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8.5a5 5 0 0 1 0 7M10 6a8.5 8.5 0 0 1 0 12M14 3.5a12 12 0 0 1 0 17"/></svg></span><div><h3>Android có NFC</h3><p>Bật NFC trong cài đặt, áp thẻ vào giữa lưng máy.</p></div></div>
+    <div class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><rect x="8.5" y="8.5" width="7" height="7" rx="1"/></svg></span><div><h3>Máy không có NFC</h3><p>Mở camera, quét mã in ở mặt sau thẻ.</p></div></div>
+  </div>
+  <p class="note" style="margin-top:30px;max-width:none;padding:24px 36px"><b>Tấm thẻ chính là chìa khoá.</b> Không tải gì, không đăng ký gì, không nhớ mật khẩu nào.</p>
+  <div class="foot"><div class="brandmark" data-brand></div><span class="pageno">6 / 9</span></div>
+</section>
+
+<!-- 7. QUÀ TẶNG: màn hình lời nhắn của người tặng (man-hinh-tang.png, lời nhắn là ví dụ) và thẻ trong phong bì -->
+<section id="s7" class="slide dark">
+  <div class="cols">
+    <div class="screen"><img src="man-hinh-tang.png" alt=""></div>
+    <div>
+      <p class="eyebrow">Để tặng</p>
+      <h1>Một món quà được <em>mở 99 lần</em></h1>
+      <ul class="list">
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>Bạn viết một lời nhắn riêng trước khi trao thẻ.</span></li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>Người nhận thấy lời nhắn đầu tiên, trước cả lá thư số 1.</span></li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>Rồi mỗi ngày họ mở thêm một lá thư.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="envelope">
+    <div class="env-back"></div>
+    <div class="card" data-card="front"></div>
+    <div class="env-front"></div>
+  </div>
+  <div class="foot" style="left:auto"><span class="pageno">7 / 9</span></div>
+</section>
+
+<!-- 8. HAI PHIÊN BẢN -->
+<section id="s8" class="slide light">
+  <p class="eyebrow center">Chọn phiên bản</p>
+  <h1 class="center">Một bản để dùng,<br><em>một bản để tặng</em></h1>
+  <div class="plans">
+    <div class="plan">
+      <p class="for">Mua cho chính mình</p>
+      <h3>Bản thẻ</h3>
+      <ul>
+        <li>Một tấm thẻ Khoảng Ngẫm</li>
+        <li>99 lá thư, mỗi ngày một lá</li>
+        <li>Phong bì đựng thẻ</li>
+        <li>Hộp thư lưu mọi lá đã mở</li>
+      </ul>
+    </div>
+    <div class="plan hot">
+      <p class="for">Mua để tặng</p>
+      <h3>Bản quà tặng</h3>
+      <ul>
+        <li>Mọi thứ của bản thẻ</li>
+        <li class="add">Thêm hộp cứng</li>
+        <li class="add">Thêm bìa 99 ngày</li>
+        <li>Hợp để trao tận tay</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">Cả hai bản đều có <b>đủ 99 lá thư</b> và viết được lời nhắn riêng cho người nhận.</p>
+  <div class="foot"><div class="brandmark" data-brand></div><span class="pageno">8 / 9</span></div>
+</section>
+
+<!-- 9. BẠN NHẬN ĐƯỢC -->
+<section id="s9" class="slide dark">
+  <p class="eyebrow">Bạn nhận được</p>
+  <h1>Mua một lần,<br><em>đọc 99 ngày</em></h1>
+  <ul class="list" style="margin-top:46px">
+    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>Một tấm thẻ, chạm hoặc quét mã để mở thư</span></li>
+    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>99 lá thư thuộc 9 chủ đề, mỗi ngày mở một lá</span></li>
+    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>Hộp thư lưu lại mọi lá đã mở để đọc lại</span></li>
+    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>Lưu lá thư thành ảnh để giữ hoặc chia sẻ</span></li>
+    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>Một lời nhắn riêng nếu bạn mua để tặng</span></li>
+    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>Không phí duy trì, không ứng dụng, không tài khoản</span></li>
+  </ul>
+  <p class="end">Lá thư đầu tiên đang chờ bạn.</p>
+  <div class="foot"><div class="brandmark" data-brand></div><span class="pageno">9 / 9</span></div>
+</section>
+
+<script>
+  // Mã QR minh hoạ cho mặt sau thẻ, giống landing: không mang dữ liệu, không quét được.
+  function fakeQrPath() {
+    const size = 21;
+    let seed = 7;
+    const random = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
+    let d = "";
+    for (let y = 0; y < size; y++) {
+      for (let x = 0; x < size; x++) {
+        const corner = (x < 8 && y < 8) || (x >= 13 && y < 8) || (x < 8 && y >= 13);
+        let on;
+        if (corner) {
+          const fx = x >= 13 ? x - 14 : x;
+          const fy = y >= 13 ? y - 14 : y;
+          const inside = fx >= 0 && fx <= 6 && fy >= 0 && fy <= 6;
+          on = inside && (fx === 0 || fx === 6 || fy === 0 || fy === 6 || (fx >= 2 && fx <= 4 && fy >= 2 && fy <= 4));
+        } else {
+          on = random() > 0.52;
+        }
+        if (on) d += `M${x} ${y}h1v1h-1z`;
+      }
+    }
+    return d;
+  }
+
+  // Hai mặt thẻ lấy đúng theo design/nfc-card/front.svg và back.svg, đã cắt bleed.
+  const SERIF = "'Source Serif 4', Georgia, serif";
+  const front = (id) => `<svg viewBox="3 3 85.6 54" preserveAspectRatio="none">
+    <defs><linearGradient id="cloth${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1c3a38"/><stop offset="0.52" stop-color="#16302f"/><stop offset="1" stop-color="#102725"/></linearGradient></defs>
+    <rect width="91.6" height="60" fill="url(#cloth${id})"/>
+    <rect x="7.5" y="7.5" width="76.6" height="45" rx="1.2" fill="none" stroke="#ecc98a" stroke-width=".3"/>
+    <g transform="translate(45.8 20.9) scale(.85)" fill="none" stroke-linecap="round">
+      <g stroke="#ecc98a" stroke-width=".62"><path d="M-6.8 1.7A6.8 6.8 0 0 1 6.8 1.7"/><path d="M-12.8 1.7H12.8"/><path d="M-9.1-1.5-11-2.2M-6.8-4.5-8.1-6M-3.6-6.7-4.1-8.6M0-7.5V-9.6M3.6-6.7 4.1-8.6M6.8-4.5 8.1-6M9.1-1.5 11-2.2"/></g>
+      <g stroke="#bcd3bd" stroke-width=".55"><path d="M-8.5 4.3H8.5"/><path d="M-5.3 6.5H5.3"/></g>
+    </g>
+    <text x="45.8" y="35.7" text-anchor="middle" fill="#ecc98a" font-family="${SERIF}" font-size="9.4" font-weight="500">99</text>
+    <text x="46" y="41.3" text-anchor="middle" fill="#f7f0e2" font-family="${SERIF}" font-size="3.3" letter-spacing=".38">NGÀY THƯƠNG MÌNH</text>
+    <text x="45.8" y="46" text-anchor="middle" fill="#bcd3bd" font-family="${SERIF}" font-size="2.4" font-style="italic">Mỗi ngày một lá thư</text>
+    <text x="10.2" y="12.1" fill="#ecc98a" font-family="'Great Vibes', cursive" font-size="3.2">Khoảng Ngẫm</text>
+  </svg>`;
+  const back = (id) => `<svg viewBox="3 3 85.6 54" preserveAspectRatio="none">
+    <defs><radialGradient id="paper${id}" cx="50%" cy="42%" r="72%"><stop stop-color="#fffaf0"/><stop offset="1" stop-color="#f0e5d1"/></radialGradient></defs>
+    <rect width="91.6" height="60" fill="url(#paper${id})"/>
+    <g transform="translate(45.8 12.7) scale(.6)" fill="none" stroke-linecap="round"><path d="M-4.8 1.5A4.8 4.8 0 0 1 4.8 1.5M-8.4 1.5H8.4" stroke="#c79f58" stroke-width=".6"/><path d="M-5.8 4H5.8M-3.2 6.2H3.2" stroke="#73927f" stroke-width=".55"/></g>
+    <text x="45.8" y="23.1" text-anchor="middle" fill="#16302f" font-family="${SERIF}" font-size="3.5">Lá thư hôm nay đang chờ bạn</text>
+    <g transform="translate(27 35.5)"><circle r="6" fill="#16302f"/>
+      <g fill="none" stroke="#f7f0e2" stroke-linecap="round" stroke-linejoin="round"><rect x="-2.5" y="-4.1" width="5" height="8.2" rx=".85" stroke-width=".45"/><path d="M-1 2.9H1" stroke-width=".4"/></g>
+      <path d="M4-2.7c1.8 1.5 1.8 3.9 0 5.4M3-1.5c.9.8.9 2.2 0 3" fill="none" stroke="#ecc98a" stroke-linecap="round" stroke-width=".52"/></g>
+    <text x="27" y="48.1" text-anchor="middle" fill="#3e6658" font-family="${SERIF}" font-size="2.4" font-style="italic">Chạm để mở thư</text>
+    <path d="M45.8 28.5V33.1M45.8 38.1V42.5" fill="none" stroke="#c79f58" stroke-width=".15" stroke-linecap="round"/>
+    <text x="45.8" y="36.3" text-anchor="middle" fill="#73927f" font-family="${SERIF}" font-size="2.4" font-style="italic">hoặc</text>
+    <g transform="translate(56.6 27.5) scale(.7619)" fill="#16302f" shape-rendering="crispEdges"><path d="${fakeQrPath()}"/></g>
+    <text x="64.6" y="48.1" text-anchor="middle" fill="#3e6658" font-family="${SERIF}" font-size="2.4" font-style="italic">Quét mã để mở thư</text>
+  </svg>`;
+
+  document.querySelectorAll("[data-card]").forEach((el, i) => {
+    el.innerHTML = el.dataset.card === "back" ? back(i) : front(i);
+  });
+  document.querySelectorAll("[data-brand]").forEach((el) => {
+    el.innerHTML = `<svg width="44" height="44" viewBox="0 0 64 64" fill="none" stroke-linecap="round" stroke-width="2.8"><path d="M14 32A18 18 0 0 1 50 32M5 32H59" stroke="${el.closest(".light") ? "#8c6f40" : "#ecc98a"}"/><path d="M17 40H47M24 47H40" stroke="${el.closest(".light") ? "#3e6658" : "#bcd3bd"}"/></svg><span>Khoảng Ngẫm</span>`;
+  });
+
+  function show() {
+    const n = (location.hash || "#1").slice(1);
+    document.querySelectorAll(".slide").forEach((s) => s.classList.toggle("on", s.id === "s" + n));
+  }
+  addEventListener("hashchange", show);
+  show();
+</script>
+</body>
+</html>

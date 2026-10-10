@@ -19,8 +19,21 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: `${site.name} · ${site.product}`,
-  description: site.tagline,
+  metadataBase: new URL(site.url),
+  title: {
+    default: `${site.product}: mỗi ngày mở một lá thư · ${site.name}`,
+    template: `%s · ${site.name}`,
+  },
+  description: site.description,
+  applicationName: site.name,
+  openGraph: {
+    type: "website",
+    siteName: site.name,
+    locale: "vi_VN",
+    title: `${site.product}: mỗi ngày mở một lá thư`,
+    description: site.description,
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {

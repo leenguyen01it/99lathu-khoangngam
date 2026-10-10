@@ -7,7 +7,24 @@ import type { WordTiming } from "@/lib/sentences";
 import { site } from "@/lib/site";
 import { getWordTimings } from "@/server/audio";
 
-export const metadata: Metadata = { title: `Đọc thử · ${site.product}` };
+const title = `Đọc thử ${TRIAL_LETTERS} lá thư miễn phí`;
+const description = `Đọc thử ${TRIAL_LETTERS} lá thư của ${site.product}, mỗi ngày mở thêm một lá. Có giọng đọc, không cần ứng dụng, không cần tài khoản.`;
+
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: { canonical: "/doc-thu" },
+  // Khai báo openGraph ở trang con thì không còn thừa hưởng ảnh của layout, nên phải ghi lại ảnh.
+  openGraph: {
+    type: "website",
+    siteName: site.name,
+    locale: "vi_VN",
+    url: "/doc-thu",
+    title,
+    description,
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: `${site.product} của ${site.name}` }],
+  },
+};
 export const dynamic = "force-dynamic";
 
 // Mỗi ngày mở thêm một lá; dùng chung giao diện đọc và hộp thư với thẻ thật.

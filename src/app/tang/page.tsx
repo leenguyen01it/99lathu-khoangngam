@@ -3,7 +3,7 @@ import { Shell } from "@/components/Shell";
 import { GIFT_FROM_MAX, GIFT_MESSAGE_MAX } from "@/server/cards";
 import { GiftForm } from "./GiftForm";
 
-export const metadata: Metadata = { title: "Viết lời nhắn cho người nhận" };
+export const metadata: Metadata = { title: "Viết lời nhắn cho người nhận", robots: { index: false, follow: false } };
 
 export default function GiftPage() {
   return (

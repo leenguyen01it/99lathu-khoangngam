@@ -1,9 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { BookCover } from "@/components/BookCover";
 import { Shell } from "@/components/Shell";
 import { SocialFooter } from "@/components/SocialFooter";
 import { site } from "@/lib/site";
 import { TOTAL_LETTERS, TRIAL_LETTERS } from "@/lib/letters";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default function HomePage() {
   return (
@@ -31,6 +34,9 @@ export default function HomePage() {
         <Link href="/doc-thu" className="btn mt-7 min-w-52">
           Đọc thử {TRIAL_LETTERS} lá thư
         </Link>
+        <a href={site.orderUrl} className="mt-4 text-[14px] text-sage underline-offset-4 hover:text-gold hover:underline">
+          Mua thẻ {site.product} tại khoangngam.com
+        </a>
       </section>
 
       <section className="mb-8 mt-10 grid grid-cols-3 gap-2 border-y border-sage/15 py-5 text-center">

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { normalizePhone } from "@/lib/customer-data";
+import { normalizeEmail, normalizePhone } from "@/lib/customer-data";
 import { parseCheckout, PRODUCTS } from "@/lib/checkout";
 import { checkoutCors as cors, checkoutOrigins as origins } from "@/lib/checkout-cors";
 import { getClientIp } from "@/lib/request";
@@ -54,12 +54,14 @@ export async function POST(req: NextRequest) {
     const location = await resolveAddress(order.provinceCode, order.wardCode);
     if (!location) return reply({ error: "Phường/xã không thuộc tỉnh/thành đã chọn. Vui lòng kiểm tra lại." }, 400);
     const orderNumber = `KN-${order.requestId.toUpperCase()}`;
+    const email = order.email || null;
     await prisma.$transaction(async (tx) => {
       const customer = await tx.customer.create({ data: { fullName: order.customerName, phone: order.phone, phoneNormalized,
+        email, emailNormalized: email && normalizeEmail(email),
         addresses: { create: { recipientName: order.customerName, phone: order.phone, address1: order.address, province: location.province, ward: location.ward, isDefault: true } } } });
       await tx.order.create({ data: {
         sourceId: source.id, externalId: order.requestId, orderNumber, customerId: customer.id,
-        customerName: order.customerName, phone: order.phone, phoneNormalized,
+        customerName: order.customerName, phone: order.phone, phoneNormalized, email,
         shippingAddressJson: JSON.stringify({ recipientName: order.customerName, phone: order.phone, address1: order.address, ...location, countryCode: "VN" }),
         note: order.note || null, status: "pending", financialStatus: "pending", fulfillmentStatus: "unfulfilled",
         subtotalAmount: order.totalAmount, totalAmount: order.totalAmount, shippingAmount: 0, placedAt: new Date(),

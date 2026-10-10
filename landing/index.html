@@ -3,45 +3,101 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Khoảng Ngẫm · 99 ngày thương mình, mỗi ngày một lá thư</title>
-  <meta name="description" content="Một tấm thẻ nhỏ chứa 99 lá thư. Chạm điện thoại vào thẻ để mở lá thư của hôm nay. Không cần ứng dụng, không cần tài khoản.">
+  <title>Thẻ NFC 99 lá thư, quà tặng ý nghĩa mỗi ngày · Khoảng Ngẫm</title>
+  <meta name="description" content="Thẻ 99 ngày thương mình của Khoảng Ngẫm: tấm thẻ NFC chứa 99 lá thư. Chạm điện thoại vào thẻ để mở lá thư của hôm nay. Quà tặng ý nghĩa, không cần ứng dụng.">
   <meta name="theme-color" content="#16302f">
   <link rel="canonical" href="https://khoangngam.com/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://khoangngam.com/">
-  <meta property="og:title" content="Khoảng Ngẫm · 99 ngày thương mình">
-  <meta property="og:description" content="Một tấm thẻ nhỏ chứa 99 lá thư. Chạm để mở lá thư của hôm nay.">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke-linecap='round' stroke-width='2.6'%3E%3Crect width='64' height='64' rx='14' fill='%2316302f'/%3E%3Cpath d='M14 32A18 18 0 0 1 50 32M5 32H59' stroke='%23ecc98a'/%3E%3Cpath d='M17 40H47M24 47H40' stroke='%23bcd3bd'/%3E%3C/svg%3E">
+  <meta property="og:title" content="99 ngày thương mình · Thẻ NFC 99 lá thư của Khoảng Ngẫm">
+  <meta property="og:description" content="Tấm thẻ NFC chứa 99 lá thư. Chạm điện thoại để mở lá thư của hôm nay. Mua cho mình hoặc làm quà tặng.">
+  <meta property="og:site_name" content="Khoảng Ngẫm">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:image" content="https://khoangngam.com/og.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Thẻ NFC 99 ngày thương mình của Khoảng Ngẫm: mỗi ngày một lá thư, viết cho chính bạn">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="./favicon-96.png">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
 
-  <script>document.documentElement.classList.add("js");</script>
+  <!-- Dữ liệu có cấu trúc. Khi đổi giá ở KN.plans, sửa cả hai "price" bên dưới. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://khoangngam.com/#org",
+        "name": "Khoảng Ngẫm",
+        "url": "https://khoangngam.com/",
+        "logo": "https://khoangngam.com/favicon-96.png",
+        "sameAs": [
+          "https://www.facebook.com/khoangngam",
+          "https://www.youtube.com/@khoangngam",
+          "https://www.tiktok.com/@khoangngam",
+          "https://www.instagram.com/khoangngam/",
+          "https://www.threads.com/@khoangngam"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://khoangngam.com/#site",
+        "name": "Khoảng Ngẫm",
+        "url": "https://khoangngam.com/",
+        "inLanguage": "vi",
+        "publisher": { "@id": "https://khoangngam.com/#org" }
+      },
+      {
+        "@type": "Product",
+        "@id": "https://khoangngam.com/#the",
+        "name": "Thẻ 99 ngày thương mình",
+        "description": "Tấm thẻ NFC chứa 99 lá thư ngắn thuộc 9 chủ đề. Chạm điện thoại vào thẻ để mở lá thư của hôm nay, mỗi ngày một lá. Không cần ứng dụng, không cần tài khoản.",
+        "image": [
+          "https://khoangngam.com/img/the-nfc-99-ngay-thuong-minh.webp",
+          "https://khoangngam.com/img/hai-mat-the-99-ngay-thuong-minh.webp",
+          "https://khoangngam.com/img/the-99-la-thu-qua-tang.webp",
+          "https://khoangngam.com/og.png"
+        ],
+        "brand": { "@type": "Brand", "name": "Khoảng Ngẫm" },
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Bản thẻ",
+            "sku": "card",
+            "price": "169000",
+            "priceCurrency": "VND",
+            "availability": "https://schema.org/InStock",
+            "url": "https://khoangngam.com/#dat-hang",
+            "seller": { "@id": "https://khoangngam.com/#org" }
+          },
+          {
+            "@type": "Offer",
+            "name": "Bản quà tặng",
+            "sku": "gift",
+            "price": "249000",
+            "priceCurrency": "VND",
+            "availability": "https://schema.org/InStock",
+            "url": "https://khoangngam.com/#dat-hang",
+            "seller": { "@id": "https://khoangngam.com/#org" }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <script>
+    document.documentElement.classList.add("js");
+    // Màn chào chỉ hiện ở lần mở đầu tiên của phiên; các lần sau vào thẳng nội dung.
+    try { if (sessionStorage.getItem("kn_seen")) document.documentElement.classList.add("loaded"); } catch (e) {}
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    // Bảng màu và font giống hệt app 99lathu (tailwind.config.ts).
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            ink: "#16302f",
-            deep: "#3e6658",
-            paper: "#f7f0e2",
-            gold: "#ecc98a",
-            sage: "#bcd3bd",
-            rose: "#dc9b86",
-          },
-          fontFamily: {
-            sans: ['"Be Vietnam Pro"', "system-ui", "sans-serif"],
-            serif: ["Lora", "Georgia", "serif"],
-            script: ['"Great Vibes"', "cursive"],
-          },
-        },
-      },
-    };
-  </script>
 
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
@@ -201,6 +257,8 @@
       .sentence, .paper-in { opacity: 1; animation: none; }
     }
   </style>
+  <!-- Tailwind dựng sẵn bằng `npm run landing:css`. Đặt sau <style> để lớp tiện ích thắng CSS viết tay, giống thứ tự cũ. -->
+  <link rel="stylesheet" href="./styles.css?v=20261010">
 </head>
 
 <body class="font-sans" x-data="page" @scroll.window.passive="onScroll()">
@@ -246,7 +304,7 @@
         </template>
       </ul>
 
-      <a :href="trialUrl" class="btn-gold ml-auto hidden shrink-0 rounded-full bg-gold px-5 py-2 text-[14px] font-semibold text-ink sm:inline-flex lg:ml-0">Đọc thử miễn phí</a>
+      <a href="https://99lathu.khoangngam.com/doc-thu" :href="trialUrl" class="btn-gold ml-auto hidden shrink-0 rounded-full bg-gold px-5 py-2 text-[14px] font-semibold text-ink sm:inline-flex lg:ml-0">Đọc thử miễn phí</a>
 
       <button type="button" class="ml-auto flex h-10 w-10 items-center justify-center rounded-full border border-sage/30 sm:ml-0 lg:hidden"
               @click="menu = !menu" :aria-expanded="menu" aria-controls="mobile-menu" aria-label="Mở menu">
@@ -262,7 +320,7 @@
         <template x-for="link in links" :key="link.href">
           <li><a :href="link.href" class="block border-b border-sage/10 py-3 text-paper" @click="menu = false" x-text="link.label"></a></li>
         </template>
-        <li class="py-4"><a :href="trialUrl" class="inline-flex w-full justify-center rounded-full bg-gold px-5 py-3 font-semibold text-ink">Đọc thử miễn phí</a></li>
+        <li class="py-4"><a href="https://99lathu.khoangngam.com/doc-thu" :href="trialUrl" class="inline-flex w-full justify-center rounded-full bg-gold px-5 py-3 font-semibold text-ink">Đọc thử miễn phí</a></li>
       </ul>
     </div>
   </header>
@@ -284,13 +342,13 @@
       <div class="relative mx-auto grid max-w-6xl items-center gap-14 px-5 pb-14 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:pb-20">
         <div class="text-center lg:text-left">
           <p data-hero style="animation-delay:.05s" class="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-[12px] font-semibold uppercase tracking-[0.2em] text-gold">
-            <span class="h-1.5 w-1.5 rounded-full bg-gold"></span> 99 ngày thương mình
+            <span class="h-1.5 w-1.5 rounded-full bg-gold"></span> Thẻ NFC 99 ngày thương mình
           </p>
           <h1 data-hero style="animation-delay:.18s" class="mt-6 font-serif text-[40px] font-medium leading-[1.12] text-paper sm:text-[54px] lg:text-[64px]">
             Mỗi ngày một lá thư, <span class="foil italic">viết cho chính bạn</span>
           </h1>
           <p data-hero style="animation-delay:.32s" class="mx-auto mt-6 max-w-xl text-[16px] leading-8 text-sage lg:mx-0">
-            Một tấm thẻ nhỏ chứa 99 lá thư ngắn về những ngày cố gắng, lớn lên, yêu thương và học cách dịu dàng với mình.
+            Một tấm thẻ NFC nhỏ chứa 99 lá thư ngắn về những ngày cố gắng, lớn lên, yêu thương và học cách dịu dàng với mình.
             Chạm điện thoại vào thẻ, lá thư của hôm nay mở ra. Không cần đọc vội. Mỗi ngày một lá là đủ.
           </p>
           <div data-hero style="animation-delay:.46s" class="mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
@@ -298,7 +356,7 @@
               Đặt thẻ cho mình
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
-            <a :href="trialUrl" class="inline-flex w-full items-center justify-center rounded-full border border-sage/40 px-7 py-3.5 text-[15px] font-medium text-paper transition hover:border-gold hover:text-gold sm:w-auto">
+            <a href="https://99lathu.khoangngam.com/doc-thu" :href="trialUrl" class="inline-flex w-full items-center justify-center rounded-full border border-sage/40 px-7 py-3.5 text-[15px] font-medium text-paper transition hover:border-gold hover:text-gold sm:w-auto">
               Đọc thử 7 lá thư
             </a>
           </div>
@@ -431,6 +489,19 @@
             <p class="relative mt-2 text-[15px] leading-7 text-sage" x-text="f.body"></p>
           </article>
         </template>
+      </div>
+
+      <!-- Ảnh sản phẩm (lấy từ tiktok-shop/anh). Khi có ảnh chụp thật thì thay file trong img/ và sửa alt cho đúng ảnh. -->
+      <div class="mt-10 grid gap-5 sm:grid-cols-3">
+        <figure data-reveal style="transition-delay:0.00s" class="overflow-hidden rounded-3xl border border-sage/15">
+          <img src="./img/the-nfc-99-ngay-thuong-minh.webp" width="1000" height="1000" loading="lazy" decoding="async" alt="Thẻ NFC 99 ngày thương mình của Khoảng Ngẫm đặt cạnh điện thoại đang mở lá thư số 1" class="block h-auto w-full">
+        </figure>
+        <figure data-reveal style="transition-delay:0.09s" class="overflow-hidden rounded-3xl border border-sage/15">
+          <img src="./img/hai-mat-the-99-ngay-thuong-minh.webp" width="1000" height="1000" loading="lazy" decoding="async" alt="Mặt trước và mặt sau của thẻ 99 ngày thương mình, kích thước 85,6 × 54 mm, vừa trong ví" class="block h-auto w-full">
+        </figure>
+        <figure data-reveal style="transition-delay:0.18s" class="overflow-hidden rounded-3xl border border-sage/15">
+          <img src="./img/the-99-la-thu-qua-tang.webp" width="1000" height="1000" loading="lazy" decoding="async" alt="Thẻ 99 ngày thương mình làm quà tặng, lời nhắn riêng của người tặng hiện ra trước lá thư số 1" class="block h-auto w-full">
+        </figure>
       </div>
     </section>
 
@@ -571,7 +642,7 @@
 
       <div data-reveal class="mx-auto mt-16 max-w-xl px-5 text-center">
         <p class="text-[15px] leading-7 text-ink/70">Ba đoạn trên trích từ bộ 7 lá đọc thử. 99 lá trong thẻ là những lá khác hẳn, bạn chưa từng đọc lá nào.</p>
-        <a :href="trialUrl" class="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-[15px] font-semibold text-paper transition hover:-translate-y-0.5 hover:bg-deep">
+        <a href="https://99lathu.khoangngam.com/doc-thu" :href="trialUrl" class="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-[15px] font-semibold text-paper transition hover:-translate-y-0.5 hover:bg-deep">
           Đọc thử 7 lá, không cần thẻ
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
@@ -612,7 +683,7 @@
               </li>
             </template>
           </ul>
-          <a data-reveal :href="giftUrl" class="underline-draw mt-9 inline-flex items-center gap-2 pb-1 text-[15px] font-semibold text-gold">
+          <a data-reveal href="https://99lathu.khoangngam.com/tang" :href="giftUrl" class="underline-draw mt-9 inline-flex items-center gap-2 pb-1 text-[15px] font-semibold text-gold">
             Đã có thẻ? Viết lời nhắn cho người nhận
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
@@ -654,7 +725,7 @@
                     </div>
                   </div>
                 </template>
-                <a :href="orderUrl" class="btn-gold !mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 text-[15px] font-semibold text-ink transition hover:-translate-y-0.5">
+                <a href="#dat-hang" :href="orderUrl" class="btn-gold !mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 text-[15px] font-semibold text-ink transition hover:-translate-y-0.5">
                   Đặt thẻ ngay
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                 </a>
@@ -674,7 +745,7 @@
               </ul>
               <p class="mt-8 rounded-2xl border border-sage/20 px-5 py-4 text-[14px] leading-7 text-sage">
                 Cần nhiều thẻ để tặng nhóm bạn, tặng nhân viên hay làm quà sự kiện?
-                <a :href="orderUrl" class="font-semibold text-gold underline-offset-4 hover:underline">Nhắn cho chúng mình</a> để có giá theo số lượng.
+                <a href="#dat-hang" :href="orderUrl" class="font-semibold text-gold underline-offset-4 hover:underline">Nhắn cho chúng mình</a> để có giá theo số lượng.
               </p>
             </div>
           </div>
@@ -703,6 +774,7 @@
             <div class="clear-both grid gap-4 sm:grid-cols-2">
               <label class="text-[13px] text-sage">Họ tên người nhận<input name="customerName" autocomplete="name" maxlength="100" required placeholder="Tên người nhận thẻ" class="order-field"></label>
               <label class="text-[13px] text-sage">Số điện thoại<input name="phone" type="tel" autocomplete="tel" maxlength="24" required placeholder="Số điện thoại liên hệ" class="order-field"></label>
+              <label class="text-[13px] text-sage sm:col-span-2">Email <span class="text-sage/60">· Không bắt buộc</span><input name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" maxlength="254" placeholder="ten@email.com" class="order-field"></label>
               <label class="text-[13px] text-sage">Tỉnh / Thành phố<select name="provinceCode" autocomplete="address-level1" required disabled class="order-field"><option value="">Đang tải tỉnh/thành…</option></select></label>
               <label class="text-[13px] text-sage">Phường / Xã<select name="wardCode" autocomplete="address-level2" required disabled class="order-field"><option value="">Chọn tỉnh/thành trước</option></select></label>
               <p id="location-error" role="alert" class="text-[12px] !text-[#f0a898] sm:col-span-2" hidden></p>
@@ -761,24 +833,143 @@
         <h2 data-reveal class="mt-4 font-serif text-[32px] font-medium leading-tight sm:text-[42px]">Những điều bạn có thể đang thắc mắc</h2>
       </div>
 
-      <div class="mt-12 divide-y divide-sage/15 border-y border-sage/15" x-data="{ open: 0 }">
-        <template x-for="(item, i) in faqs" :key="item.q">
-          <div data-reveal :style="`transition-delay:${Math.min(i, 5) * 0.05}s`">
+      <div class="mt-12 divide-y divide-sage/15 border-y border-sage/15" x-data="{ open: 0 }" itemscope itemtype="https://schema.org/FAQPage">
+        <!-- Câu hỏi viết thẳng trong HTML để công cụ tìm kiếm đọc được. Sửa nội dung ngay tại đây. -->
+          <div data-reveal style="transition-delay:0.00s" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
             <h3>
               <button type="button" class="flex w-full items-center gap-4 py-5 text-left transition-colors hover:text-gold"
-                      @click="open = open === i ? null : i" :aria-expanded="open === i" :aria-controls="'faq-' + i">
-                <span class="flex-1 font-serif text-[18px] leading-snug" :class="open === i ? 'text-gold' : 'text-paper'" x-text="item.q"></span>
+                      @click="open = open === 0 ? null : 0" :aria-expanded="open === 0" aria-controls="faq-0">
+                <span itemprop="name" class="flex-1 font-serif text-[18px] leading-snug" :class="open === 0 ? 'text-gold' : 'text-paper'">Điện thoại của tôi có dùng được không?</span>
                 <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition duration-300"
-                      :class="open === i ? 'rotate-45 border-gold bg-gold text-ink' : 'border-sage/40 text-sage'">
+                      :class="open === 0 ? 'rotate-45 border-gold bg-gold text-ink' : 'border-sage/40 text-sage'">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
                 </span>
               </button>
             </h3>
-            <div :id="'faq-' + i" x-show="open === i" x-collapse x-cloak>
-              <p class="pb-6 pr-12 text-[15px] leading-8 text-sage" x-text="item.a"></p>
+            <div id="faq-0" x-show="open === 0" x-collapse itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text" class="pb-6 pr-12 text-[15px] leading-8 text-sage">Hầu hết điện thoại hiện nay đều dùng được. iPhone từ đời XS, XR trở lên tự đọc thẻ khi bạn đưa thẻ lại gần mép trên của máy. Phần lớn máy Android có NFC, bạn chỉ cần bật NFC trong phần cài đặt. Nếu máy không có NFC, hãy mở camera và quét mã QR in ở mặt sau thẻ.</p>
             </div>
           </div>
-        </template>
+          <div data-reveal style="transition-delay:0.05s" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3>
+              <button type="button" class="flex w-full items-center gap-4 py-5 text-left transition-colors hover:text-gold"
+                      @click="open = open === 1 ? null : 1" :aria-expanded="open === 1" aria-controls="faq-1">
+                <span itemprop="name" class="flex-1 font-serif text-[18px] leading-snug" :class="open === 1 ? 'text-gold' : 'text-paper'">Tôi có phải cài ứng dụng hay tạo tài khoản không?</span>
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition duration-300"
+                      :class="open === 1 ? 'rotate-45 border-gold bg-gold text-ink' : 'border-sage/40 text-sage'">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </button>
+            </h3>
+            <div id="faq-1" x-show="open === 1" x-collapse x-cloak itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text" class="pb-6 pr-12 text-[15px] leading-8 text-sage">Không. Lá thư mở ngay trong trình duyệt của điện thoại. Bạn không cần tải ứng dụng, không cần đăng ký, không cần nhớ mật khẩu. Tấm thẻ chính là chìa khoá.</p>
+            </div>
+          </div>
+          <div data-reveal style="transition-delay:0.10s" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3>
+              <button type="button" class="flex w-full items-center gap-4 py-5 text-left transition-colors hover:text-gold"
+                      @click="open = open === 2 ? null : 2" :aria-expanded="open === 2" aria-controls="faq-2">
+                <span itemprop="name" class="flex-1 font-serif text-[18px] leading-snug" :class="open === 2 ? 'text-gold' : 'text-paper'">Tôi có đọc được nhiều lá trong một ngày không?</span>
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition duration-300"
+                      :class="open === 2 ? 'rotate-45 border-gold bg-gold text-ink' : 'border-sage/40 text-sage'">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </button>
+            </h3>
+            <div id="faq-2" x-show="open === 2" x-collapse x-cloak itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text" class="pb-6 pr-12 text-[15px] leading-8 text-sage">Không, và đó là chủ ý. Lần chạm đầu tiên của một ngày mới sẽ mở lá kế tiếp. Những lần chạm sau trong cùng ngày mở lại đúng lá đó. Ngày mới bắt đầu lúc 0 giờ theo giờ Việt Nam.</p>
+            </div>
+          </div>
+          <div data-reveal style="transition-delay:0.15s" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3>
+              <button type="button" class="flex w-full items-center gap-4 py-5 text-left transition-colors hover:text-gold"
+                      @click="open = open === 3 ? null : 3" :aria-expanded="open === 3" aria-controls="faq-3">
+                <span itemprop="name" class="flex-1 font-serif text-[18px] leading-snug" :class="open === 3 ? 'text-gold' : 'text-paper'">Nếu tôi quên chạm thẻ vài ngày thì có mất lá thư nào không?</span>
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition duration-300"
+                      :class="open === 3 ? 'rotate-45 border-gold bg-gold text-ink' : 'border-sage/40 text-sage'">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </button>
+            </h3>
+            <div id="faq-3" x-show="open === 3" x-collapse x-cloak itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text" class="pb-6 pr-12 text-[15px] leading-8 text-sage">Không mất lá nào. Thẻ không tự chạy theo lịch. Lá kế tiếp luôn chờ cho tới lần bạn chạm thẻ vào một ngày mới, nên dù bạn nghỉ một tuần, bạn vẫn đọc tiếp đúng từ chỗ đã dừng.</p>
+            </div>
+          </div>
+          <div data-reveal style="transition-delay:0.20s" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3>
+              <button type="button" class="flex w-full items-center gap-4 py-5 text-left transition-colors hover:text-gold"
+                      @click="open = open === 4 ? null : 4" :aria-expanded="open === 4" aria-controls="faq-4">
+                <span itemprop="name" class="flex-1 font-serif text-[18px] leading-snug" :class="open === 4 ? 'text-gold' : 'text-paper'">Tôi có đọc lại được những lá đã mở không?</span>
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition duration-300"
+                      :class="open === 4 ? 'rotate-45 border-gold bg-gold text-ink' : 'border-sage/40 text-sage'">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </button>
+            </h3>
+            <div id="faq-4" x-show="open === 4" x-collapse x-cloak itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text" class="pb-6 pr-12 text-[15px] leading-8 text-sage">Có. Mỗi lần chạm thẻ, bạn vào được hộp thư chứa mọi lá đã mở từ trước tới giờ.</p>
+            </div>
+          </div>
+          <div data-reveal style="transition-delay:0.25s" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3>
+              <button type="button" class="flex w-full items-center gap-4 py-5 text-left transition-colors hover:text-gold"
+                      @click="open = open === 5 ? null : 5" :aria-expanded="open === 5" aria-controls="faq-5">
+                <span itemprop="name" class="flex-1 font-serif text-[18px] leading-snug" :class="open === 5 ? 'text-gold' : 'text-paper'">Vì sao trang thư tự khoá sau một lúc?</span>
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition duration-300"
+                      :class="open === 5 ? 'rotate-45 border-gold bg-gold text-ink' : 'border-sage/40 text-sage'">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </button>
+            </h3>
+            <div id="faq-5" x-show="open === 5" x-collapse x-cloak itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text" class="pb-6 pr-12 text-[15px] leading-8 text-sage">Mỗi lần chạm thẻ mở ra một phiên đọc dài 10 phút. Hết thời gian, trang tự khoá và bạn chạm thẻ lần nữa để đọc tiếp. Cách này giữ cho thư chỉ mở được khi tấm thẻ đang ở trong tay bạn.</p>
+            </div>
+          </div>
+          <div data-reveal style="transition-delay:0.25s" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3>
+              <button type="button" class="flex w-full items-center gap-4 py-5 text-left transition-colors hover:text-gold"
+                      @click="open = open === 6 ? null : 6" :aria-expanded="open === 6" aria-controls="faq-6">
+                <span itemprop="name" class="flex-1 font-serif text-[18px] leading-snug" :class="open === 6 ? 'text-gold' : 'text-paper'">Đọc hết 99 lá rồi thì sao?</span>
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition duration-300"
+                      :class="open === 6 ? 'rotate-45 border-gold bg-gold text-ink' : 'border-sage/40 text-sage'">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </button>
+            </h3>
+            <div id="faq-6" x-show="open === 6" x-collapse x-cloak itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text" class="pb-6 pr-12 text-[15px] leading-8 text-sage">Tấm thẻ vẫn là của bạn. Bạn vẫn chạm thẻ để vào hộp thư và đọc lại cả 99 lá bất cứ lúc nào.</p>
+            </div>
+          </div>
+          <div data-reveal style="transition-delay:0.25s" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3>
+              <button type="button" class="flex w-full items-center gap-4 py-5 text-left transition-colors hover:text-gold"
+                      @click="open = open === 7 ? null : 7" :aria-expanded="open === 7" aria-controls="faq-7">
+                <span itemprop="name" class="flex-1 font-serif text-[18px] leading-snug" :class="open === 7 ? 'text-gold' : 'text-paper'">Tôi muốn tặng thẻ, viết lời nhắn thế nào?</span>
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition duration-300"
+                      :class="open === 7 ? 'rotate-45 border-gold bg-gold text-ink' : 'border-sage/40 text-sage'">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </button>
+            </h3>
+            <div id="faq-7" x-show="open === 7" x-collapse x-cloak itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text" class="pb-6 pr-12 text-[15px] leading-8 text-sage">Vào 99lathu.khoangngam.com/tang, nhập mã in trên thẻ rồi viết lời nhắn. Hãy viết trước khi trao thẻ: sau khi thẻ được mở lần đầu thì không viết thêm được nữa. Người nhận sẽ thấy lời nhắn của bạn ngay trong lần chạm đầu tiên.</p>
+            </div>
+          </div>
+          <div data-reveal style="transition-delay:0.25s" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3>
+              <button type="button" class="flex w-full items-center gap-4 py-5 text-left transition-colors hover:text-gold"
+                      @click="open = open === 8 ? null : 8" :aria-expanded="open === 8" aria-controls="faq-8">
+                <span itemprop="name" class="flex-1 font-serif text-[18px] leading-snug" :class="open === 8 ? 'text-gold' : 'text-paper'">99 lá trong thẻ có trùng với 7 lá đọc thử không?</span>
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition duration-300"
+                      :class="open === 8 ? 'rotate-45 border-gold bg-gold text-ink' : 'border-sage/40 text-sage'">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </button>
+            </h3>
+            <div id="faq-8" x-show="open === 8" x-collapse x-cloak itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text" class="pb-6 pr-12 text-[15px] leading-8 text-sage">Không trùng lá nào. Bộ đọc thử là 7 lá viết riêng. Khi cầm thẻ, bạn nhận 99 lá hoàn toàn mới.</p>
+            </div>
+          </div>
       </div>
     </section>
 
@@ -794,8 +985,8 @@
         </h2>
         <p data-reveal class="mx-auto mt-6 max-w-xl text-[16px] leading-8 text-sage">Lá thư đầu tiên đang chờ. Bạn có thể đọc thử trước, hoặc mang cả 99 lá về.</p>
         <div data-reveal class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a :href="orderUrl" class="btn-gold inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-3.5 text-[15px] font-semibold text-ink transition hover:-translate-y-0.5 sm:w-auto">Đặt thẻ</a>
-          <a :href="trialUrl" class="inline-flex w-full items-center justify-center rounded-full border border-sage/40 px-8 py-3.5 text-[15px] font-medium text-paper transition hover:border-gold hover:text-gold sm:w-auto">Đọc thử trước</a>
+          <a href="#dat-hang" :href="orderUrl" class="btn-gold inline-flex w-full items-center justify-center rounded-full bg-gold px-8 py-3.5 text-[15px] font-semibold text-ink transition hover:-translate-y-0.5 sm:w-auto">Đặt thẻ</a>
+          <a href="https://99lathu.khoangngam.com/doc-thu" :href="trialUrl" class="inline-flex w-full items-center justify-center rounded-full border border-sage/40 px-8 py-3.5 text-[15px] font-medium text-paper transition hover:border-gold hover:text-gold sm:w-auto">Đọc thử trước</a>
         </div>
       </div>
     </section>
@@ -816,7 +1007,7 @@
           <template x-for="link in links.filter(link => !['#tang', '#gia', '#la-thu'].includes(link.href))" :key="'f' + link.href">
             <li><a :href="link.href" class="transition-colors hover:text-paper" x-text="link.label"></a></li>
           </template>
-          <li><a :href="trialUrl" class="transition-colors hover:text-paper">Đọc thử 7 lá thư</a></li>
+          <li><a href="https://99lathu.khoangngam.com/doc-thu" :href="trialUrl" class="transition-colors hover:text-paper">Đọc thử 7 lá thư</a></li>
         </ul>
       </div>
       <div>
@@ -883,18 +1074,22 @@
       },
     };
 
-    // Màn chào: giữ tối thiểu 1,7 giây cho hình vẽ xong, tối đa 4 giây nếu mạng chậm.
+    // Màn chào: giữ 1,5 giây cho hình vẽ xong, tính từ lúc HTML sẵn sàng (không chờ font hay ảnh tải hết),
+    // tối đa 2,5 giây nếu mạng chậm. Đã xem trong phiên này thì bỏ qua (xem <head>).
     (function () {
       const root = document.documentElement;
+      if (root.classList.contains("loaded")) return;
       const started = performance.now();
       let done = false;
       const finish = () => {
         if (done) return;
         done = true;
-        setTimeout(() => root.classList.add("loaded"), Math.max(0, 1700 - (performance.now() - started)));
+        try { sessionStorage.setItem("kn_seen", "1"); } catch (e) {}
+        setTimeout(() => root.classList.add("loaded"), Math.max(0, 1500 - (performance.now() - started)));
       };
-      window.addEventListener("load", finish);
-      setTimeout(finish, 4000);
+      if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", finish);
+      else finish();
+      setTimeout(finish, 2500);
     })();
 
     // Hiện dần khi cuộn tới. Gọi lại sau khi Alpine vẽ xong các danh sách.
@@ -998,18 +1193,6 @@
           "Một lời nhắn riêng nếu bạn mua để tặng",
           "Thiệp viết tay, và bản quà tặng thêm hộp cứng cùng bìa 99 ngày",
           "Không phí duy trì, không cần ứng dụng hay tài khoản",
-        ],
-
-        faqs: [
-          { q: "Điện thoại của tôi có dùng được không?", a: "Hầu hết điện thoại hiện nay đều dùng được. iPhone từ đời XS, XR trở lên tự đọc thẻ khi bạn đưa thẻ lại gần mép trên của máy. Phần lớn máy Android có NFC, bạn chỉ cần bật NFC trong phần cài đặt. Nếu máy không có NFC, hãy mở camera và quét mã QR in ở mặt sau thẻ." },
-          { q: "Tôi có phải cài ứng dụng hay tạo tài khoản không?", a: "Không. Lá thư mở ngay trong trình duyệt của điện thoại. Bạn không cần tải ứng dụng, không cần đăng ký, không cần nhớ mật khẩu. Tấm thẻ chính là chìa khoá." },
-          { q: "Tôi có đọc được nhiều lá trong một ngày không?", a: "Không, và đó là chủ ý. Lần chạm đầu tiên của một ngày mới sẽ mở lá kế tiếp. Những lần chạm sau trong cùng ngày mở lại đúng lá đó. Ngày mới bắt đầu lúc 0 giờ theo giờ Việt Nam." },
-          { q: "Nếu tôi quên chạm thẻ vài ngày thì có mất lá thư nào không?", a: "Không mất lá nào. Thẻ không tự chạy theo lịch. Lá kế tiếp luôn chờ cho tới lần bạn chạm thẻ vào một ngày mới, nên dù bạn nghỉ một tuần, bạn vẫn đọc tiếp đúng từ chỗ đã dừng." },
-          { q: "Tôi có đọc lại được những lá đã mở không?", a: "Có. Mỗi lần chạm thẻ, bạn vào được hộp thư chứa mọi lá đã mở từ trước tới giờ." },
-          { q: "Vì sao trang thư tự khoá sau một lúc?", a: "Mỗi lần chạm thẻ mở ra một phiên đọc dài 10 phút. Hết thời gian, trang tự khoá và bạn chạm thẻ lần nữa để đọc tiếp. Cách này giữ cho thư chỉ mở được khi tấm thẻ đang ở trong tay bạn." },
-          { q: "Đọc hết 99 lá rồi thì sao?", a: "Tấm thẻ vẫn là của bạn. Bạn vẫn chạm thẻ để vào hộp thư và đọc lại cả 99 lá bất cứ lúc nào." },
-          { q: "Tôi muốn tặng thẻ, viết lời nhắn thế nào?", a: "Vào 99lathu.khoangngam.com/tang, nhập mã in trên thẻ rồi viết lời nhắn. Hãy viết trước khi trao thẻ: sau khi thẻ được mở lần đầu thì không viết thêm được nữa. Người nhận sẽ thấy lời nhắn của bạn ngay trong lần chạm đầu tiên." },
-          { q: "99 lá trong thẻ có trùng với 7 lá đọc thử không?", a: "Không trùng lá nào. Bộ đọc thử là 7 lá viết riêng. Khi cầm thẻ, bạn nhận 99 lá hoàn toàn mới." },
         ],
 
         get contacts() {

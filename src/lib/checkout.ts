@@ -20,6 +20,8 @@ export function parseCheckout(input: unknown) {
   const compact = phone.replace(/[\s.-]/g, "");
   const parsedPhone = /^(?:0|\+?84)\d+$/.test(compact) ? parsePhoneNumberFromString(compact.startsWith("84") ? `+${compact}` : compact, "VN") : undefined;
   if (!parsedPhone || parsedPhone.country !== "VN" || !parsedPhone.isValid() || parsedPhone.getType() !== "MOBILE") throw new Error("Vui lòng nhập số điện thoại di động Việt Nam hợp lệ.");
+  const email = text("email", 254);
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) throw new Error("Vui lòng nhập email hợp lệ hoặc để trống.");
   const address = text("address", 300, true);
   if (address.length < 5) throw new Error("Vui lòng nhập số nhà và tên đường/thôn.");
   const provinceCode = data.provinceCode;
@@ -41,5 +43,5 @@ export function parseCheckout(input: unknown) {
     return { product, quantity, totalAmount: product.unitAmount * quantity };
   });
   if (items.reduce((sum, item) => sum + item.quantity, 0) > 20) throw new Error("Mỗi đơn tối đa 20 thẻ.");
-  return { requestId, customerName, phone: parsedPhone.number, address, provinceCode, wardCode, note, items, totalAmount: items.reduce((sum, item) => sum + item.totalAmount, 0) };
+  return { requestId, customerName, phone: parsedPhone.number, email, address, provinceCode, wardCode, note, items, totalAmount: items.reduce((sum, item) => sum + item.totalAmount, 0) };
 }

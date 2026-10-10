@@ -3,6 +3,10 @@ export const site = {
   name: "Khoảng Ngẫm",
   product: "99 ngày thương mình",
   tagline: "Mỗi ngày một lá thư.",
+  // Địa chỉ công khai của app, dùng cho canonical, sitemap và ảnh chia sẻ.
+  url: (process.env.APP_URL ?? "https://99lathu.khoangngam.com").replace(/\/+$/, ""),
+  description:
+    "Chạm thẻ để mở lá thư của hôm nay. 99 lá thư ngắn về những ngày cố gắng, lớn lên, yêu thương và dịu dàng với chính mình. Đọc thử miễn phí.",
   socialHandle: "@khoangngam",
   orderUrl: "https://khoangngam.com/#dat-hang",
   socialLinks: [
