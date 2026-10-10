@@ -7,6 +7,8 @@ export const site = {
   url: (process.env.APP_URL ?? "https://99lathu.khoangngam.com").replace(/\/+$/, ""),
   description:
     "Chạm thẻ để mở lá thư của hôm nay. 99 lá thư ngắn về những ngày cố gắng, lớn lên, yêu thương và dịu dàng với chính mình. Đọc thử miễn phí.",
+  // Mã đo lường Google Analytics 4, dùng chung với landing để theo được hành trình từ landing sang đọc thử.
+  gaId: "G-6MD1104BLZ",
   socialHandle: "@khoangngam",
   orderUrl: "https://khoangngam.com/#dat-hang",
   socialLinks: [

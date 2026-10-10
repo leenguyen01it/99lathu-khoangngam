@@ -353,3 +353,16 @@ model ListenEvent {
   @@index([letterId])
   @@index([cardId])
 }
+
+// Mỗi người đọc thử, ẩn danh: nhận diện bằng mã ngẫu nhiên trong cookie kn_reader
+model TrialReader {
+  id          String   @id
+  startedOn   String // khoá ngày bắt đầu đọc thử, "YYYY-MM-DD" theo giờ Việt Nam
+  lastDay     String // khoá ngày mở trang gần nhất
+  visitDays   Int      @default(1) // số ngày khác nhau có mở trang
+  maxOpened   Int      @default(1) // số lá đã mở khoá ở lần xem gần nhất
+  firstSeenAt DateTime @default(now())
+  lastSeenAt  DateTime @default(now())
+
+  @@index([startedOn])
+}

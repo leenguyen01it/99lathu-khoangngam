@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Be_Vietnam_Pro, Lora } from "next/font/google";
+import { Analytics } from "@/components/Analytics";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -45,7 +46,11 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="vi" className={`${beVietnamPro.variable} ${lora.variable}`}>
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        {children}
+        {/* Chỉ đo trên bản chạy thật, để lượt thử ở máy phát triển không lẫn vào số liệu. */}
+        {process.env.NODE_ENV === "production" ? <Analytics id={site.gaId} /> : null}
+      </body>
     </html>
   );
 }

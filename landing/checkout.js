@@ -218,6 +218,11 @@
         const wait = response.status === 429 ? Number(response.headers.get("Retry-After")) : 0;
         throw new Error((data.error || "Chưa thể gửi đơn. Bạn thử lại nhé.") + (wait ? ` Thử lại sau khoảng ${Math.ceil(wait / 60)} phút.` : ""));
       }
+      // Báo đơn mới cho Google Analytics. Chỉ gửi mã đơn, sản phẩm và giá trị, không gửi tên, số điện thoại hay địa chỉ.
+      if (response.status === 201 && typeof gtag === "function") {
+        const bought = selectedItems().filter(p => p.quantity > 0);
+        gtag("event", "purchase", { transaction_id: data.orderNumber, currency: "VND", value: bought.reduce((sum, p) => sum + p.unitAmount * p.quantity, 0), items: bought.map(p => ({ item_id: p.sku, item_name: p.name, price: p.unitAmount, quantity: p.quantity })) });
+      }
       const success = document.getElementById("order-success");
       success.replaceChildren();
       const title = document.createElement("h3"); title.className = "font-serif text-[28px] text-gold"; title.textContent = "Đã nhận lời nhắn đặt thẻ của bạn";

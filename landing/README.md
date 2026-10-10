@@ -13,6 +13,12 @@
 - Các link đọc thử, tặng và đặt hàng có `href` tĩnh bên cạnh `:href`. Khi đổi `KN.appUrl`, sửa cả các `href` này.
 - Khi đổi nội dung trang, cập nhật `lastmod` trong `sitemap.xml`.
 
+## Thống kê
+
+- Google Analytics 4 mã `G-6MD1104BLZ`, dùng chung với app 99lathu (`site.gaId` trong `src/lib/site.ts`). Landing không gửi số liệu khi chạy ở localhost; app chỉ gửi ở bản production và chỉ trên `/` và `/doc-thu`.
+- Khi đơn được tạo (API trả 201), `checkout.js` gửi sự kiện `purchase` gồm mã đơn, sản phẩm và giá trị. Không gửi tên, số điện thoại hay địa chỉ.
+- Số người đọc thử được đếm riêng trong database (bảng `TrialReader`), xem tại `/admin/doc-thu`.
+
 ## Đặt hàng
 
 - Các nút đặt thẻ dẫn đến `#dat-hang`.
