@@ -4,6 +4,9 @@ export const checkoutOrigins = new Set(["https://khoangngam.com", "https://www.k
 if (process.env.NODE_ENV !== "production") {
   checkoutOrigins.add("http://localhost:3000");
   checkoutOrigins.add("http://localhost:8080");
+  checkoutOrigins.add("http://127.0.0.1:8080");
+  // Máy chủ có sẵn của WebStorm.
+  checkoutOrigins.add("http://localhost:63342");
 }
 export function checkoutCors(req: NextRequest) {
   const origin = req.headers.get("origin") || "";

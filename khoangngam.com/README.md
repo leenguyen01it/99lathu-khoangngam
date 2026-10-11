@@ -28,16 +28,17 @@
 - Giá chuẩn nằm tại `src/lib/checkout.ts`: bản thẻ 169.000đ, bản quà tặng 249.000đ, miễn phí vận chuyển, theo giá hiện có trên landing. Khi đổi giá, cập nhật cả phần giới thiệu `KN.plans` trong HTML.
 - Đơn, sản phẩm, khách hàng và địa chỉ được lưu trong cùng một transaction. Xem tại `/admin/orders`, nguồn “Website Khoảng Ngẫm”. Đơn mới chờ xác nhận, chưa thanh toán, chưa giao; không tự tạo hoặc kích hoạt thẻ.
 - Form giữ requestId khi gửi lại để tránh tạo trùng đơn khi mạng bị gián đoạn. API giới hạn 10 request/IP/phút và 3 lần tạo đơn mới/số điện thoại/giờ. Bộ đếm PostgreSQL UPSERT nguyên tử, dùng chung giữa các instance; request sai cũng tiêu thụ giới hạn IP. Trả 429 với Retry-After; database giới hạn bị lỗi thì trả 503, không ghi đơn.
-- Số điện thoại được chuẩn hóa về +84, kiểm tra country, độ dài và loại MOBILE bằng `libphonenumber-js/max`. Đây là kiểm tra cấu trúc, chưa xác minh quyền sở hữu bằng OTP.
+- Mã đơn có dạng `KN-` kèm 8 ký tự đầu của requestId, ví dụ `KN-3F2A9C1B`.
+- Số điện thoại được lưu dạng trong nước bắt đầu bằng 0 (ví dụ 0901234567), khách nhập +84 vẫn được nhận. Kiểm tra country, độ dài và loại MOBILE bằng `libphonenumber-js/max`. Đây là kiểm tra cấu trúc, chưa xác minh quyền sở hữu bằng OTP.
 - Email không bắt buộc. Nếu có nhập, client và máy chủ đều kiểm tra định dạng, lưu vào `Order.email` và `Customer.email`/`emailNormalized`. Chưa gửi email tự động cho khách.
 - Origin, trường chống bot và giới hạn ứng dụng giảm spam; không chặn tuyệt đối bot dùng nhiều IP/số khác nhau. Khi vận hành cần cấu hình rate limit/WAF ở hosting. Reverse proxy phải ghi đè header IP từ client; API dùng IP do proxy cung cấp. Không coi CORS là xác thực.
-- API chấp nhận origin `https://khoangngam.com`, `https://www.khoangngam.com`, `https://99lathu.khoangngam.com`. Trong môi trường phát triển hỗ trợ `http://localhost:3000` và `http://localhost:8080`.
+- API chấp nhận origin `https://khoangngam.com`, `https://www.khoangngam.com`, `https://99lathu.khoangngam.com`. Trong môi trường phát triển hỗ trợ `http://localhost:3000`, `http://localhost:8080`, `http://127.0.0.1:8080` và `http://localhost:63342` (máy chủ có sẵn của WebStorm).
 
 ## Triển khai
 
 Chạy `npm run db:deploy` để thêm bảng `CheckoutThrottle`, triển khai app 99 lá thư có API mới trước, sau đó cập nhật HTML landing và `checkout.js`. `CARD_HASH_SECRET` phải được thiết lập trên máy chủ để HMAC các khóa giới hạn; không đặt khóa admin hoặc khóa máy chủ trong landing page. Có thể xóa định kỳ các hàng `CheckoutThrottle` đã hết hạn hơn 1 ngày.
 
-Để thử local, phục vụ landing bằng HTTP tại localhost:8080, chạy app tại localhost:3000 và sửa `KN.appUrl` sang `http://localhost:3000` trong bản dùng thử. Không mở trực tiếp bằng file:// vì origin đó không được API chấp nhận.
+Để thử local, chạy app bằng `npm run dev` (localhost:3000) và landing bằng `npm run landing:serve` (localhost:8080). Khi mở ở localhost hoặc 127.0.0.1, `KN.appUrl` tự chuyển sang `http://localhost:3000`, nên đơn thử chỉ vào database local. Không mở trực tiếp bằng file:// vì origin đó không được API chấp nhận.
 
 ## API địa giới Việt Nam
 

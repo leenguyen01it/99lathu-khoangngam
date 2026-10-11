@@ -226,7 +226,7 @@
       const success = document.getElementById("order-success");
       success.replaceChildren();
       const title = document.createElement("h3"); title.className = "font-serif text-[28px] text-gold"; title.textContent = "Đã nhận lời nhắn đặt thẻ của bạn";
-      const message = document.createElement("p"); message.className = "mt-4 text-sage"; message.textContent = "Đã nhận đơn của bạn. Chúng mình sẽ liên hệ để xác nhận trước khi gửi thẻ. Bạn chưa cần thanh toán lúc này.";
+      const message = document.createElement("p"); message.className = "mt-4 text-sage"; message.textContent = "Đã nhận đơn của bạn. Chúng mình sẽ liên hệ để xác nhận trước khi gửi thẻ.";
       const reference = document.createElement("p"); reference.className = "mt-5 text-[12px] text-sage/70"; reference.textContent = "Mã đơn: " + data.orderNumber;
       success.append(title, message, reference); success.hidden = false; form.hidden = true; success.focus();
       success.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });

@@ -52,31 +52,35 @@ Nói trước ống kính hoặc lồng tiếng trên cảnh làm việc. Giọn
 
 Mã thư (S), mã chạm thẻ (C) và mã hậu trường (H) tra ở mục 5, 6, 7.
 
+Cột "Thư mục video" chỉ tới bộ đăng của ngày đó. Trong mỗi thư mục: `01-video.mp4` là video để đăng, `02-cover-tiktok-1080x1920.jpg` là ảnh bìa, `03-caption.txt` là chú thích, `04-binh-luan-goi-y.txt` là bình luận gợi ý, `05-phu-de.srt` là phụ đề, `06-cac-nen-tang-khac.txt` là nội dung cho các kênh còn lại. Đọc `00-HUONG-DAN.txt` trước khi đăng.
+
+Các video chạm thẻ (C1 đến C4) và hậu trường H2, H3 chưa có thư mục vì phải quay thật. Thư mục `video-thu/thu-chau-cay/` là một lá trong bộ đọc thử, không nằm trong lịch 3 tuần này.
+
 ### Tuần 1 (12/10 đến 18/10): tìm chủ đề và câu mở đầu giữ chân
 
-| Ngày | Tuyến | Nội dung | Định dạng | Cảnh mở đầu |
-|---|---|---|---|---|
-| T2 12/10 | Thư | S12, cuốn sổ có gạch xóa | Khuôn dọc | Tay viết vào cuốn sổ đã dùng dở |
-| T3 13/10 | Thư | S3, tấm ảnh và cuốn phim | Khuôn dọc | Ngón tay lướt bảng tin trong phòng tối |
-| T4 14/10 | Chạm thẻ | C1, tấm thẻ này chứa 99 lá thư | B | Tấm thẻ trên mặt bàn gỗ |
-| T5 15/10 | Thư | S4, chữ "đã xem" | Khuôn dọc | Màn hình tin nhắn có chữ "đã xem" |
-| T6 16/10 | Hậu trường | H1, vì sao mỗi ngày chỉ một lá | C | Bạn ngồi trước bàn làm việc |
-| T7 17/10 | Thư | S5, người lớn vừa làm vừa tra | Khuôn dọc | Tay viết câu đầu lên giấy |
-| CN 18/10 | Thư | S9, chiều Chủ nhật | Khuôn dọc | Cửa sổ lúc bốn giờ chiều |
+| Ngày | Tuyến | Nội dung | Định dạng | Cảnh mở đầu | Thư mục video |
+|---|---|---|---|---|---|
+| T2 12/10 | Thư | S12, cuốn sổ có gạch xóa | Khuôn dọc | Tay viết vào cuốn sổ đã dùng dở | `video-thu/thu-cuon-so/bo-dang/` |
+| T3 13/10 | Thư | S3, tấm ảnh và cuốn phim | Khuôn dọc | Ngón tay lướt bảng tin trong phòng tối | `video-thu/thu-tam-anh-cuon-phim/bo-dang/` |
+| T4 14/10 | Chạm thẻ | C1, tấm thẻ này chứa 99 lá thư | B | Tấm thẻ trên mặt bàn gỗ | Chưa có, cần quay |
+| T5 15/10 | Thư | S4, chữ "đã xem" | Khuôn dọc | Màn hình tin nhắn có chữ "đã xem" | `video-thu/thu-da-xem/bo-dang/` |
+| T6 16/10 | Hậu trường | H1, vì sao mỗi ngày chỉ một lá | C | Bạn ngồi trước bàn làm việc | `video-thu/hau-truong-moi-ngay-mot-la/bo-dang/` |
+| T7 17/10 | Thư | S5, người lớn vừa làm vừa tra | Khuôn dọc | Tay viết câu đầu lên giấy | `video-thu/thu-nguoi-lon/bo-dang/` |
+| CN 18/10 | Thư | S9, chiều Chủ nhật | Khuôn dọc | Cửa sổ lúc bốn giờ chiều | `video-thu/thu-chieu-chu-nhat/bo-dang/` |
 
 Cuối tuần 1: xếp 5 video thư theo tỉ lệ (lưu + chia sẻ) chia cho lượt xem. Xem lá nào đứng đầu và vì sao (chủ đề, câu mở đầu, cảnh quay), rồi áp dụng cho tuần 2.
 
 ### Tuần 2 (19/10 đến 25/10): dồn vào chủ đề thắng
 
-| Ngày | Tuyến | Nội dung | Cảnh mở đầu |
-|---|---|---|---|
-| T2 19/10 | Thư | S1, một nửa của hôm nay | Danh sách việc gạch dở một nửa |
-| T3 20/10 | Thư | S7, thứ tiếng thương | Mâm cơm có phần để dành |
-| T4 21/10 | Chạm thẻ | C2, có cần cài ứng dụng không | Màn hình điện thoại không có ứng dụng nào đang mở |
-| T5 22/10 | Thư | S11, ngồi thêm vài phút trên xe | Bên trong xe lúc vừa tắt máy, hoặc yên xe máy dưới hầm |
-| T6 23/10 | Hậu trường | H2, một lá thư được viết thế nào | Bản nháp có nhiều dòng bị gạch |
-| T7 24/10 | Thư | S2, nhóm chat cũ | Màn hình nhóm chat, tin gần nhất từ nhiều tháng trước |
-| CN 25/10 | Thư | S14, bữa cơm cho một người | Bàn ăn dọn cho một người, đèn vàng |
+| Ngày | Tuyến | Nội dung | Cảnh mở đầu | Thư mục video |
+|---|---|---|---|---|
+| T2 19/10 | Thư | S1, một nửa của hôm nay | Danh sách việc gạch dở một nửa | `video-thu/thu-mot-nua/bo-dang/` |
+| T3 20/10 | Thư | S7, thứ tiếng thương | Mâm cơm có phần để dành | `video-thu/thu-thu-tieng-thuong/bo-dang/` |
+| T4 21/10 | Chạm thẻ | C2, có cần cài ứng dụng không | Màn hình điện thoại không có ứng dụng nào đang mở | Chưa có, cần quay |
+| T5 22/10 | Thư | S11, ngồi thêm vài phút trên xe | Bên trong xe lúc vừa tắt máy, hoặc yên xe máy dưới hầm | `video-thu/thu-ngoi-them-vai-phut/bo-dang/` |
+| T6 23/10 | Hậu trường | H2, một lá thư được viết thế nào | Bản nháp có nhiều dòng bị gạch | Chưa có, cần quay |
+| T7 24/10 | Thư | S2, nhóm chat cũ | Màn hình nhóm chat, tin gần nhất từ nhiều tháng trước | `video-thu/thu-nhom-chat-cu/bo-dang/` |
+| CN 25/10 | Thư | S14, bữa cơm cho một người | Bàn ăn dọn cho một người, đèn vàng | `video-thu/thu-bua-com-mot-nguoi/bo-dang/` |
 
 Ngày 20/10 đăng lá S7 như một lá thư bình thường, không kèm lời mời mua quà.
 
@@ -84,15 +88,15 @@ Cuối tuần 2: lấy 3 lá có lượt lưu cao nhất, ghi lại chủ đề 
 
 ### Tuần 3 (26/10 đến 1/11): thêm bằng chứng thật, mở đường cho quà tặng
 
-| Ngày | Tuyến | Nội dung | Cảnh mở đầu |
-|---|---|---|---|
-| T2 26/10 | Thư | S13, leo bộ lên tầng tám | Cầu thang bộ nhìn từ dưới lên |
-| T3 27/10 | Thư | S6, dòng ghi chú cũ | Ứng dụng ghi chú, kéo xuống dòng cũ nhất |
-| T4 28/10 | Chạm thẻ | C3, bảy ngày đầu với tấm thẻ | Hộp thư trong ứng dụng đã có 7 lá |
-| T5 29/10 | Thư | S10, gọi món mình thích | Thực đơn quán ăn trên bàn |
-| T6 30/10 | Hậu trường | H3, những đơn đầu tiên | Bàn đóng gói, phong bì và tem niêm phong |
-| T7 31/10 | Chạm thẻ | C4, viết lời nhắn trước khi tặng | Tay gõ lời nhắn trên điện thoại, tấm thẻ bên cạnh |
-| CN 1/11 | Thư | S8, tấm ảnh cũ | Tay lướt album ảnh nhiều năm trước |
+| Ngày | Tuyến | Nội dung | Cảnh mở đầu | Thư mục video |
+|---|---|---|---|---|
+| T2 26/10 | Thư | S13, leo bộ lên tầng tám | Cầu thang bộ nhìn từ dưới lên | `video-thu/thu-leo-tang-tam/bo-dang/` |
+| T3 27/10 | Thư | S6, dòng ghi chú cũ | Ứng dụng ghi chú, kéo xuống dòng cũ nhất | `video-thu/thu-dong-ghi-chu-cu/bo-dang/` |
+| T4 28/10 | Chạm thẻ | C3, bảy ngày đầu với tấm thẻ | Hộp thư trong ứng dụng đã có 7 lá | Chưa có, cần quay |
+| T5 29/10 | Thư | S10, gọi món mình thích | Thực đơn quán ăn trên bàn | `video-thu/thu-goi-mon-minh-thich/bo-dang/` |
+| T6 30/10 | Hậu trường | H3, những đơn đầu tiên | Bàn đóng gói, phong bì và tem niêm phong | Chưa có, cần quay |
+| T7 31/10 | Chạm thẻ | C4, viết lời nhắn trước khi tặng | Tay gõ lời nhắn trên điện thoại, tấm thẻ bên cạnh | Chưa có, cần quay |
+| CN 1/11 | Thư | S8, tấm ảnh cũ | Tay lướt album ảnh nhiều năm trước | `video-thu/thu-tam-anh-cu/bo-dang/` |
 
 Từ tuần 3, nếu đã có video khách quay lúc chạm thẻ lần đầu, đăng thêm vào bất kỳ ngày nào, không cần chờ đúng lịch.
 

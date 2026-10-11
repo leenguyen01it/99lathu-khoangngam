@@ -22,9 +22,11 @@ test("từ chối dữ liệu thiếu, sản phẩm lạ và số lượng ngoà
   for (const patch of [{ customerName: "" }, { phone: "123" }, { address: "abc" }, { provinceCode: "1" }, { wardCode: 0 }, { sku: "fake" }, { quantity: 0 }, { quantity: 21 }, { quantity: 1.5 }, { quantity: "2" }, { requestId: "bad" }, { website: "spam" }, { note: "x".repeat(1001) }]) assert.throws(() => parseCheckout({ ...valid, ...patch }));
   assert.throws(() => parseCheckout(null));
 });
-test("hỗ trợ số điện thoại +84 và loại bỏ khoảng trắng thừa", () => {
+test("nhận số điện thoại +84, lưu dạng 0 và loại bỏ khoảng trắng thừa", () => {
   assert.equal(parseCheckout({ ...valid, customerName: "  Lan  ", phone: "+84 901 234 567" }).customerName, "Lan");
-  assert.equal(parseCheckout({ ...valid, phone: "84901234567" }).phone, "+84901234567");
+  assert.equal(parseCheckout({ ...valid, phone: "84901234567" }).phone, "0901234567");
+  assert.equal(parseCheckout({ ...valid, phone: "+84 901 234 567" }).phone, "0901234567");
+  assert.equal(parseCheckout(valid).phone, "0901234567");
   for (const phone of ["0101234567", "02412345678", "+12025550123", "090123456", "09012345678", "call 0901234567"]) assert.throws(() => parseCheckout({ ...valid, phone }), phone);
 });
 test("email không bắt buộc, có nhập thì phải đúng định dạng", () => {
@@ -60,6 +62,8 @@ test("API lưu đơn và trả lại mã cũ khi gửi lại, chặn origin ngo�
   assert.equal(saved.totalAmount, 418000);
   assert.deepEqual(saved.items.create.map(i => [i.sku, i.quantity, i.totalAmount]), [["card", 1, 169000], ["gift", 1, 249000]]);
   assert.equal(saved.status, "pending");
+  assert.equal(saved.orderNumber, "KN-12345678");
+  assert.equal(saved.phone, "0901234567");
   assert.equal(saved.email, "Lan@Example.com");
   assert.equal(JSON.parse(saved.shippingAddressJson).address1, valid.address);
   const retry = await module.exports.POST(req("https://khoangngam.com"));

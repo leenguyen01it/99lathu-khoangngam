@@ -43,5 +43,5 @@ export function parseCheckout(input: unknown) {
     return { product, quantity, totalAmount: product.unitAmount * quantity };
   });
   if (items.reduce((sum, item) => sum + item.quantity, 0) > 20) throw new Error("Mỗi đơn tối đa 20 thẻ.");
-  return { requestId, customerName, phone: parsedPhone.number, email, address, provinceCode, wardCode, note, items, totalAmount: items.reduce((sum, item) => sum + item.totalAmount, 0) };
+  return { requestId, customerName, phone: `0${parsedPhone.nationalNumber}`, email, address, provinceCode, wardCode, note, items, totalAmount: items.reduce((sum, item) => sum + item.totalAmount, 0) };
 }

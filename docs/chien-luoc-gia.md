@@ -4,6 +4,8 @@ Tài liệu nội bộ. Cập nhật lần hai ngày 07/10/2026, sau khi đối 
 
 Thay đổi so với bản đầu: giá chốt hạ từ 249.000đ xuống **199.000đ**, tách thành hai bản, và mục tiêu giá vốn hạ từ 30.000đ xuống **20.000đ**.
 
+Cập nhật ngày 10/10/2026: chốt mức affiliate **12%** (trước đó giả định 10%). Các bảng lãi trên sàn đã tính lại theo mức này.
+
 Mục đích: chốt giá bán cho hai kênh, TikTok Shop và bán trực tiếp, kèm cách tính để tự chỉnh khi giá vốn hoặc biểu phí thay đổi.
 
 Cách dùng: đọc phần "Kết luận nhanh" trước. Khi có báo giá thẻ thật, thay số ở Phần B rồi tra bảng nhạy cảm ở Phần C4.
@@ -16,16 +18,16 @@ Hai bản, dùng chung cho cả hai kênh:
 
 | Bản | Giá | Giá vốn | Lãi trên sàn | Lãi trực tiếp |
 |---|---|---|---|---|
-| **Bản thẻ** | **169.000đ** | 20.000đ | 55.795đ (33,0%) | 118.423đ (70,1%) |
-| **Bản quà tặng** | **249.000đ** | 32.000đ | 85.195đ (34,2%) | 178.783đ (71,8%) |
+| **Bản thẻ** | **169.000đ** | 20.000đ | 53.767đ (31,8%) | 118.423đ (70,1%) |
+| **Bản quà tặng** | **249.000đ** | 32.000đ | 82.207đ (33,0%) | 178.783đ (71,8%) |
 
 Bản thẻ dành cho người mua cho chính mình. Bản quà tặng có hộp cứng và bìa 99 ngày, dành cho người mua để tặng, nhóm ít nhạy giá hơn.
 
 Bốn nguyên tắc xuyên suốt:
 
 1. **Hai bản chia theo mục đích mua, không chia theo kênh.** Người mua cho mình và người mua để tặng có mức chịu chi khác nhau. Cùng một bản thì bán cùng một giá ở mọi kênh.
-2. **Không hạ giá thêm cho tới khi giá vốn về 20.000đ.** Ở giá vốn 30.000đ, bản thẻ 169.000đ chỉ còn biên 27,1%, quá mỏng.
-3. **Ngưỡng sàn tuyệt đối là 149.000đ.** Dưới mức đó, biên xuống dưới 30% và không chịu được một đợt tăng phí nữa.
+2. **Không hạ giá thêm cho tới khi giá vốn về 20.000đ.** Ở giá vốn 30.000đ, bản thẻ 169.000đ chỉ còn biên 25,9%, quá mỏng.
+3. **Ngưỡng sàn tuyệt đối là 149.000đ.** Ở mức đó biên chỉ còn 28,8%, không chịu được một đợt tăng phí nữa.
 4. **Sàn là kênh lấy khách, web là kênh giữ khách.** Biên trên sàn bằng một nửa biên bán trực tiếp.
 
 ---
@@ -61,7 +63,7 @@ Cách gỡ đúng vào gốc là tăng khối lượng vật lý và hạ ngư�
 | Phí giao dịch | **6%** | Từ 0h 9/5/2026. Còn 5% nếu đạt GMV Max từ 4% doanh thu trong 30 ngày |
 | Phí xử lý đơn | **3.000đ/đơn** | Cố định, không theo giá trị đơn, không hoàn khi khách trả hàng |
 | Voucher Extra (VXP) | **5%** | Từ 4% lên 5% hồi 3/7/2026. Tự chọn nhưng gần như bắt buộc để có traffic |
-| Phí affiliate | **5% đến 20%**, thường 10% | Nhà bán tự đặt. Chỉ tính khi đơn giao thành công |
+| Phí affiliate | **5% đến 20%**, đang đặt **12%** | Nhà bán tự đặt, mức thường gặp là 10%. Chỉ tính khi đơn giao thành công |
 | SPF (freeship) | Đã gộp vào hoa hồng | Seller chịu tối đa 40.000đ khi đơn hoàn hoặc hủy |
 | Logistics vận hành | 3.000đ đến 65.000đ/kiện | Chỉ với kiện trên 10kg, từ 12/10/2026. Sản phẩm này không dính |
 | Thuế sàn khấu trừ | **1,5%** doanh thu | 1% GTGT cộng 0,5% TNCN, theo Nghị định 117/2025 |
@@ -141,7 +143,7 @@ Bản quà tặng có giá vốn 32.000đ, cao hơn bản thẻ 12.000đ vì th�
 Với TikTok Shop:
 
 ```
-Lãi = P × 55,5% − 3.000 − giá vốn − ship
+Lãi = P × 54,3% − 3.000 − giá vốn − ship
 ```
 
 Với bán trực tiếp:
@@ -150,11 +152,12 @@ Với bán trực tiếp:
 Lãi = P × 96,7% − (P × ads%) − giá vốn − ship
 ```
 
-Trong đó P là giá bán. Hệ số 55,5% là phần còn lại sau khi trừ 14% hoa hồng, 6% giao dịch, 5% VXP, 1,5% thuế, 6% affiliate bình quân và 12% ads. Hệ số 96,7% là phần còn lại sau khi trừ 1,8% cổng thanh toán và 1,5% thuế.
+Trong đó P là giá bán. Hệ số 54,3% là phần còn lại sau khi trừ 14% hoa hồng, 6% giao dịch, 5% VXP, 1,5% thuế, 7,2% affiliate bình quân và 12% ads. Hệ số 96,7% là phần còn lại sau khi trừ 1,8% cổng thanh toán và 1,5% thuế.
 
 Giả định dùng chung cho các bảng dưới:
 
-- Affiliate bình quân **6%** trên sàn, tức là đặt 10% nhưng chỉ khoảng 60% đơn đi qua affiliate.
+- Affiliate bình quân **7,2%** trên sàn, tức là đặt **12%** nhưng chỉ khoảng 60% đơn đi qua affiliate. Chọn 12% vì bằng đúng chi phí ads mỗi đơn, và creator nhận 20.280đ mỗi đơn bản thẻ, đủ hấp dẫn hơn mức 10% (16.900đ).
+- Trần affiliate là 18% cho kế hoạch dài hạn. Mức 20% chỉ dùng vài tuần lúc ra mắt để lấy đánh giá.
 - Ads **12%** doanh thu trên sàn, **25%** khi bán trực tiếp. Bán trực tiếp tốn hơn vì phải tự dựng phễu và tỉ lệ chuyển đổi thấp hơn.
 - Có tham gia Voucher Extra.
 
@@ -169,12 +172,12 @@ Giả định dùng chung cho các bảng dưới:
 | VXP 5% | 8.450 | 12.450 | 14.950 | 34.950 |
 | Xử lý đơn | 3.000 | 3.000 | 3.000 | 3.000 |
 | Thuế 1,5% | 2.535 | 3.735 | 4.485 | 10.485 |
-| Affiliate 6% | 10.140 | 14.940 | 17.940 | 41.940 |
+| Affiliate 7,2% | 12.168 | 17.928 | 21.528 | 50.328 |
 | Ads 12% | 20.280 | 29.880 | 35.880 | 83.880 |
 | Giá vốn | 20.000 | 32.000 | 33.000 | 72.000 |
 | Ship | 15.000 | 18.000 | 20.000 | 30.000 |
-| **Lãi mỗi đơn** | **55.795** | **85.195** | **109.945** | **282.945** |
-| **Biên** | 33,0% | 34,2% | 36,8% | 40,5% |
+| **Lãi mỗi đơn** | **53.767** | **82.207** | **106.357** | **274.557** |
+| **Biên** | 31,8% | 33,0% | 35,6% | 39,3% |
 
 **Bán trực tiếp:**
 
@@ -189,7 +192,7 @@ Giả định dùng chung cho các bảng dưới:
 | **Lãi mỗi đơn** | **118.423** | **76.173** | **178.783** | **116.533** |
 | **Biên** | **70,1%** | 45,1% | **71,8%** | 46,8% |
 
-Chênh lệch giữa hai kênh ở bản thẻ 169.000đ, khi kênh trực tiếp không chạy ads, là **62.628đ mỗi đơn**. Đây là lý do kênh trực tiếp là trọng tâm dài hạn.
+Chênh lệch giữa hai kênh ở bản thẻ 169.000đ, khi kênh trực tiếp không chạy ads, là **64.656đ mỗi đơn**. Đây là lý do kênh trực tiếp là trọng tâm dài hạn.
 
 ### C4. Bảng nhạy cảm giá bán và giá vốn
 
@@ -197,16 +200,16 @@ Bảng quan trọng nhất của tài liệu. Lãi mỗi đơn trên sàn, theo 
 
 | Giá bán | 12.000đ | 16.000đ | **20.000đ** | 25.000đ | 30.000đ |
 |---|---|---|---|---|---|
-| 149.000đ | 52.695 (35,4%) | 48.695 (32,7%) | 44.695 (30,0%) | 39.695 (26,6%) | 34.695 (23,3%) |
-| **169.000đ** | 63.795 (37,7%) | 59.795 (35,4%) | **55.795 (33,0%)** | 50.795 (30,1%) | 45.795 (27,1%) |
-| 199.000đ | 80.445 (40,4%) | 76.445 (38,4%) | 72.445 (36,4%) | 67.445 (33,9%) | 62.445 (31,4%) |
-| **249.000đ** | 108.195 (43,5%) | 104.195 (41,8%) | 100.195 (40,2%) | 95.195 (38,2%) | **90.195 (36,2%)** |
+| 149.000đ | 50.907 (34,2%) | 46.907 (31,5%) | 42.907 (28,8%) | 37.907 (25,4%) | 32.907 (22,1%) |
+| **169.000đ** | 61.767 (36,5%) | 57.767 (34,2%) | **53.767 (31,8%)** | 48.767 (28,9%) | 43.767 (25,9%) |
+| 199.000đ | 78.057 (39,2%) | 74.057 (37,2%) | 70.057 (35,2%) | 65.057 (32,7%) | 60.057 (30,2%) |
+| **249.000đ** | 105.207 (42,3%) | 101.207 (40,6%) | 97.207 (39,0%) | 92.207 (37,0%) | **87.207 (35,0%)** |
 
 Quy luật rút ra: **giảm giá vốn 10.000đ mua được khoảng 50.000đ dư địa giảm giá** mà vẫn giữ nguyên biên phần trăm.
 
-Đối chiếu cụ thể: bán 169.000đ với giá vốn 20.000đ cho biên 33,0%, gần bằng bán 249.000đ với giá vốn 30.000đ cho biên 36,2%. Cắt được 80.000đ giá bán nhờ cắt 10.000đ giá vốn.
+Đối chiếu cụ thể: bán 169.000đ với giá vốn 20.000đ cho biên 31,8%, gần bằng bán 249.000đ với giá vốn 30.000đ cho biên 35,0%. Cắt được 80.000đ giá bán nhờ cắt 10.000đ giá vốn.
 
-Ngưỡng sàn 149.000đ: ở giá vốn 20.000đ, biên còn 30,0%. Xuống dưới mức đó, biên rơi nhanh vì phí xử lý 3.000đ và tiền ship không co lại theo giá.
+Ngưỡng sàn 149.000đ: ở giá vốn 20.000đ, biên còn 28,8%. Xuống dưới mức đó, biên rơi nhanh vì phí xử lý 3.000đ và tiền ship không co lại theo giá.
 
 ### C5. Bán cho doanh nghiệp
 
@@ -263,7 +266,7 @@ Ba lý do:
 
 1. **Nằm trong dải quà tặng bốc đồng của sàn.** Dưới 200.000đ là ngưỡng mua thử không cần suy nghĩ.
 2. **Dưới mức photobook 179.400đ một chút**, nên khi khách so sánh, giá trông hợp lý dù sản phẩm ít trang hơn.
-3. **Vẫn giữ biên 33,0%** ở giá vốn mục tiêu, đủ chịu một đợt tăng phí nữa.
+3. **Vẫn giữ biên 31,8%** ở giá vốn mục tiêu, đủ chịu một đợt tăng phí nữa.
 
 Và lý do quan trọng nhất: bản thẻ là cửa vào. Người mua bản thẻ rồi sẽ quay lại mua bản quà tặng để đem tặng, vì họ đã đọc được 99 lá thư và biết nó đáng giá bao nhiêu.
 
@@ -355,7 +358,7 @@ Cách khai thác:
 
 ### Nhắc lại về thuế
 
-Thuế tính trên doanh thu, không phải lợi nhuận, và doanh thu đó bao gồm cả phí sàn lẫn phí vận chuyển. Với biên 33% trên sàn, khoản 1,5% này tính trên phần doanh thu bạn chưa từng nhận được.
+Thuế tính trên doanh thu, không phải lợi nhuận, và doanh thu đó bao gồm cả phí sàn lẫn phí vận chuyển. Với biên khoảng 32% trên sàn, khoản 1,5% này tính trên phần doanh thu bạn chưa từng nhận được.
 
 ---
 

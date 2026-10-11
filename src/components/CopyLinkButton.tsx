@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 
-export function CopyLinkButton({ value, iconOnly = false }: { value: string; iconOnly?: boolean }) {
+export function CopyLinkButton({ value, iconOnly = false, title = "Sao chép link" }: { value: string; iconOnly?: boolean; title?: string }) {
   const [copied, setCopied] = useState(false);
   const [failed, setFailed] = useState(false);
-  const label = failed ? "Không sao chép được, vui lòng thử lại" : copied ? "Đã sao chép" : "Sao chép link";
+  const label = failed ? "Không sao chép được, vui lòng thử lại" : copied ? "Đã sao chép" : title;
   return (
     <button
       type="button"

@@ -53,7 +53,8 @@ export async function POST(req: NextRequest) {
     if (!limit.allowed) return NextResponse.json({ error: "Bạn đã gửi nhiều đơn. Vui lòng chờ shop liên hệ xác nhận." }, { status: 429, headers: { ...headers, "Retry-After": String(limit.retryAfter) } });
     const location = await resolveAddress(order.provinceCode, order.wardCode);
     if (!location) return reply({ error: "Phường/xã không thuộc tỉnh/thành đã chọn. Vui lòng kiểm tra lại." }, 400);
-    const orderNumber = `KN-${order.requestId.toUpperCase()}`;
+    // Mã ngắn để đọc qua điện thoại. Chống trùng đơn vẫn dựa vào externalId (requestId đầy đủ).
+    const orderNumber = `KN-${order.requestId.slice(0, 8).toUpperCase()}`;
     const email = order.email || null;
     await prisma.$transaction(async (tx) => {
       const customer = await tx.customer.create({ data: { fullName: order.customerName, phone: order.phone, phoneNormalized,
