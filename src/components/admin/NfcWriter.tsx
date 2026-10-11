@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { writeAndVerifyNfc, type NfcReaderConstructor, type NfcStage } from "@/lib/nfc-writer";
 import type { resolveNfcCard } from "@/server/nfc-cards";
+import { CopyLinkButton } from "@/components/CopyLinkButton";
 
 type Card = Awaited<ReturnType<typeof resolveNfcCard>>;
 type Batch = { id: string; createdAt: string; count: number };
@@ -196,7 +197,7 @@ export function NfcWriter({ batches, initialBatchId, initialProgress }: { batche
     </section>
 
     {!secure ? <p role="alert" className="rounded-xl border border-rose/30 p-4 text-[14px] text-rose">Mở trang qua HTTPS để dùng camera và NFC.</p> : null}
-    {supported === false ? <p className="rounded-xl border border-sage/25 p-4 text-[14px] text-sage">Thiết bị này có thể tra cứu QR. Để ghi chip, hãy mở trang bằng Chrome trên điện thoại Android có NFC và bật NFC.</p> : null}
+    {supported === false ? <p className="rounded-xl border border-sage/25 p-4 text-[14px] text-sage">Thiết bị này có thể tra cứu QR. Để ghi chip ngay tại đây, hãy mở trang bằng Chrome trên điện thoại Android có NFC và bật NFC. Trên iPhone, quét QR rồi bấm biểu tượng sao chép cạnh URL để dán vào ứng dụng ghi NFC.</p> : null}
 
     <section className="rounded-2xl border border-sage/25 p-4">
       <div className="flex flex-wrap gap-2">
@@ -219,7 +220,7 @@ export function NfcWriter({ batches, initialBatchId, initialProgress }: { batche
       <p className="mt-1 text-[14px] text-sage">{card.batchCreatedAt ? `Đợt ${dateLabel(card.batchCreatedAt)} · ${card.batchCount} thẻ` : "Thẻ được tạo trước tính năng chia đợt"}</p>
       {card.verifiedAt ? <p className="mt-2 text-[14px] text-sage">Đã xác nhận trước đó: {dateLabel(card.verifiedAt)}. Kiểm tra lại không làm tăng số thẻ đã hoàn tất.</p> : null}
       <p className="mt-2 text-[14px] text-gold">{card.activated ? "Thẻ này đã được kích hoạt." : "Thẻ chưa kích hoạt."} <a href={`/admin/cards/${card.id}`} className="underline">Kiểm tra chi tiết{card.activated ? " và đặt lại trước khi giao" : ""}</a></p>
-      <p className="mt-3 break-all font-mono text-[12px] text-sage">{card.url}</p>
+      <div className="mt-3 flex items-start gap-2"><p className="min-w-0 break-all pt-1.5 font-mono text-[12px] text-sage">{card.url}</p><CopyLinkButton key={card.id} value={card.url} iconOnly title="Sao chép URL ghi vào chip" /></div>
       {phase !== "done" ? <button type="button" className="btn mt-4" disabled={busy || supported !== true || !secure || Boolean(proof)} onClick={() => void writeCard()}>Ghi NFC và kiểm tra</button> : null}
       {proof && phase !== "saving" ? <button type="button" className="btn mt-4" onClick={() => {
         if (operation.current) return;
