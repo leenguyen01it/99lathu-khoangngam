@@ -20,8 +20,9 @@ body {
   .btn-ghost {
     @apply inline-flex items-center justify-center rounded-full border border-sage/40 px-5 py-2.5 text-[15px] font-medium text-paper transition hover:border-sage;
   }
+  /* iOS Safari tự phóng to trang khi chạm vào ô nhập có chữ nhỏ hơn 16px, nên trên điện thoại ô nhập dùng 16px. */
   .field {
-    @apply w-full rounded-xl border border-sage/30 bg-ink/40 px-4 py-3 text-[15px] text-paper placeholder:text-sage/50 focus:border-gold focus:outline-none;
+    @apply w-full rounded-xl border border-sage/30 bg-ink/40 px-4 py-3 text-[16px] text-paper sm:text-[15px] placeholder:text-sage/50 focus:border-gold focus:outline-none;
   }
 }
 
