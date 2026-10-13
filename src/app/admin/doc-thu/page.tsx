@@ -18,7 +18,7 @@ export default async function AdminTrialPage() {
     ["7 ngày gần đây", String(stats.last7Days), "Người bắt đầu trong 7 ngày, tính cả hôm nay"],
     ["Quay lại ngày thứ 2", ratio(stats.returned2, stats.eligible), "Trong số người bắt đầu trước hôm nay"],
     ["Quay lại từ 3 ngày", ratio(stats.returned3, stats.eligible), "Mở trang ít nhất 3 ngày khác nhau"],
-    [`Mở đủ ${TRIAL_LETTERS} lá`, String(stats.finished), "Còn quay lại khi lá cuối đã mở khoá"],
+    [`Đọc tới lá ${TRIAL_LETTERS}`, ratio(stats.finished, stats.total), "Lật tới lá cuối của bộ đọc thử"],
     ["Lượt nghe giọng đọc", String(stats.listens), "Trên các lá đọc thử"],
     ["Lượt lưu ảnh", String(stats.shares), "Trên các lá đọc thử"],
   ];
@@ -47,7 +47,7 @@ export default async function AdminTrialPage() {
       <section className="mt-6 grid gap-4 md:grid-cols-2">
         <div className="rounded-2xl border border-sage/25 p-4">
           <h2 className="text-[16px] font-semibold">Đọc tới lá thứ mấy</h2>
-          <p className="text-[13px] text-sage">Số lá đã mở khoá ở lần gần nhất mỗi người mở trang</p>
+          <p className="text-[13px] text-sage">Lá xa nhất mỗi người đã lật tới. Số liệu trước ngày mở sẵn cả bộ là số lá đã mở khoá theo ngày.</p>
           {stats.byOpened.length === 0 ? (
             <p className="mt-3 text-[14px] text-sage">Chưa có ai đọc thử.</p>
           ) : (

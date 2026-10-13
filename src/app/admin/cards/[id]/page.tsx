@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { requireAdmin } from "@/lib/admin";
 import { TOTAL_LETTERS } from "@/lib/letters";
 import { countListens } from "@/server/listens";
+import { countComments, countHearts } from "@/server/reactions";
 import { countShares } from "@/server/shares";
 import { STATUS_LABELS, getCardDetail, type DayCell } from "@/server/stats";
 import { STATUS_STYLES, lastOpenLabel, percent } from "../../status";
@@ -104,7 +105,7 @@ export default async function CardDetailPage({ params }: { params: Promise<{ id:
   if (!detail) notFound();
 
   const { card, logs, hours } = detail;
-  const [shares, listens] = await Promise.all([countShares(card.id), countListens(card.id)]);
+  const [shares, listens, hearts, comments] = await Promise.all([countShares(card.id), countListens(card.id), countHearts(card.id), countComments(card.id)]);
   const { usage } = card;
   const missed = usage.days.filter((cell, i) => cell.scans === 0 && i < usage.days.length - 1);
 
@@ -121,6 +122,7 @@ export default async function CardDetailPage({ params }: { params: Promise<{ id:
     ["Mở lần cuối", lastOpenLabel(usage.daysSinceLastOpen) || "Chưa mở", usage.lastOpenedDay ? formatAdminDayKey(usage.lastOpenedDay) : ""],
     ["Tổng lượt chạm", String(usage.totalScans), "Tính cả chạm lại trong ngày"],
     ["Nghe và lưu ảnh", `${listens} nghe · ${shares} lưu`, card.hasGift ? `Có thư tặng${card.giftFrom ? ` từ ${card.giftFrom}` : ""}` : "Không có thư tặng"],
+    ["Tim và bình luận", `${hearts} tim · ${comments} bình luận`, ""],
   ];
 
   return (
@@ -153,7 +155,7 @@ export default async function CardDetailPage({ params }: { params: Promise<{ id:
         {actor.role !== "support" && card.activatedAt ? <details className="mt-3">
           <summary className="cursor-pointer text-[14px] text-gold">Đặt lại kích hoạt</summary>
           <form action={resetActivation.bind(null, card.id)} className="mt-3">
-            <p className="text-[13px] text-sage">Thẻ trở về chưa kích hoạt, bắt đầu từ lá thư đầu tiên. Xóa lịch sử chạm, nghe, lưu ảnh và thu hồi phiên đọc cũ. Giữ lời tặng, khách hàng, đơn hàng và URL trên thẻ. Thao tác được ghi vào nhật ký quản trị.</p>
+            <p className="text-[13px] text-sage">Thẻ trở về chưa kích hoạt, bắt đầu từ lá thư đầu tiên. Xóa lịch sử chạm, nghe, lưu ảnh, tim, bình luận của thẻ và thu hồi phiên đọc cũ. Giữ lời tặng, khách hàng, đơn hàng và URL trên thẻ. Thao tác được ghi vào nhật ký quản trị.</p>
             <label className="mt-3 flex items-start gap-2 text-[14px]"><input type="checkbox" name="confirm" value="yes" required className="mt-1" />Tôi xác nhận đặt lại thẻ này trước khi giao khách.</label>
             <button className="btn mt-3">Xác nhận đặt lại thẻ</button>
           </form>

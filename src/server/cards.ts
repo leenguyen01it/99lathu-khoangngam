@@ -13,11 +13,13 @@ export async function resetCardActivation(id: string, actor: AdminActor): Promis
   if (actor.role !== "owner" && actor.role !== "manager") throw new Error("Không có quyền đặt lại thẻ.");
   await prisma.$transaction(async (tx) => {
     const previous = await tx.card.findUniqueOrThrow({ where: { id }, select: { activatedAt: true, currentN: true, lastOpenedDay: true, giftSeenAt: true } });
-    await tx.card.update({ where: { id }, data: { activatedAt: null, currentN: 0, lastOpenedDay: null, giftSeenAt: null } });
+    await tx.card.update({ where: { id }, data: { activatedAt: null, currentN: 0, lastOpenedDay: null, giftSeenAt: null, penName: null, penNameChanges: 0 } });
     await tx.scanSession.deleteMany({ where: { cardId: id } });
     await tx.scanLog.deleteMany({ where: { cardId: id } });
     await tx.shareEvent.deleteMany({ where: { cardId: id } });
     await tx.listenEvent.deleteMany({ where: { cardId: id } });
+    await tx.letterHeart.deleteMany({ where: { cardId: id } });
+    await tx.letterComment.deleteMany({ where: { cardId: id } });
     await tx.adminAuditLog.create({ data: {
       adminUserId: actor.id, action: "reset_activation", entityType: "card", entityId: id,
       metadataJson: JSON.stringify(previous), ipHash: actor.ipHash,

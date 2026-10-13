@@ -18,6 +18,8 @@ const trialLetters: Letter[] = trialData.letters.slice().sort((a, b) => a.n - b.
 
 export const TOTAL_LETTERS = letters.length;
 export const TRIAL_LETTERS = trialLetters.length;
+/** Số ký tự tối đa của một bình luận dưới lá thư. */
+export const COMMENT_MAX = 500;
 
 export function getLetter(n: number): Letter | null {
   return letters[n - 1] ?? null;

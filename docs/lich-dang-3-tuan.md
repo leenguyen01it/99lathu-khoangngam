@@ -62,7 +62,7 @@ Các video chạm thẻ (C1 đến C4) và hậu trường H2, H3 chưa có thư
 |---|---|---|---|---|---|
 | T2 12/10 | Thư | S12, cuốn sổ có gạch xóa | Khuôn dọc | Tay viết vào cuốn sổ đã dùng dở | `video-thu/thu-cuon-so/bo-dang/` |
 | T3 13/10 | Thư | S3, tấm ảnh và cuốn phim | Khuôn dọc | Ngón tay lướt bảng tin trong phòng tối | `video-thu/thu-tam-anh-cuon-phim/bo-dang/` |
-| T4 14/10 | Chạm thẻ | C1, tấm thẻ này chứa 99 lá thư | B | Tấm thẻ trên mặt bàn gỗ | Chưa có, cần quay |
+| T4 14/10 | Chạm thẻ | C1, tấm thẻ này chứa 99 lá thư | B | Tấm thẻ trên mặt bàn gỗ | `video-thu/cham-the-99-la-thu/bo-dang/` |
 | T5 15/10 | Thư | S4, chữ "đã xem" | Khuôn dọc | Màn hình tin nhắn có chữ "đã xem" | `video-thu/thu-da-xem/bo-dang/` |
 | T6 16/10 | Hậu trường | H1, vì sao mỗi ngày chỉ một lá | C | Bạn ngồi trước bàn làm việc | `video-thu/hau-truong-moi-ngay-mot-la/bo-dang/` |
 | T7 17/10 | Thư | S5, người lớn vừa làm vừa tra | Khuôn dọc | Tay viết câu đầu lên giấy | `video-thu/thu-nguoi-lon/bo-dang/` |
@@ -76,7 +76,7 @@ Cuối tuần 1: xếp 5 video thư theo tỉ lệ (lưu + chia sẻ) chia cho l
 |---|---|---|---|---|
 | T2 19/10 | Thư | S1, một nửa của hôm nay | Danh sách việc gạch dở một nửa | `video-thu/thu-mot-nua/bo-dang/` |
 | T3 20/10 | Thư | S7, thứ tiếng thương | Mâm cơm có phần để dành | `video-thu/thu-thu-tieng-thuong/bo-dang/` |
-| T4 21/10 | Chạm thẻ | C2, có cần cài ứng dụng không | Màn hình điện thoại không có ứng dụng nào đang mở | Chưa có, cần quay |
+| T4 21/10 | Chạm thẻ | C2, có cần cài ứng dụng không | Màn hình điện thoại không có ứng dụng nào đang mở | `video-thu/cham-the-khong-can-cai-ung-dung/bo-dang/` |
 | T5 22/10 | Thư | S11, ngồi thêm vài phút trên xe | Bên trong xe lúc vừa tắt máy, hoặc yên xe máy dưới hầm | `video-thu/thu-ngoi-them-vai-phut/bo-dang/` |
 | T6 23/10 | Hậu trường | H2, một lá thư được viết thế nào | Bản nháp có nhiều dòng bị gạch | Chưa có, cần quay |
 | T7 24/10 | Thư | S2, nhóm chat cũ | Màn hình nhóm chat, tin gần nhất từ nhiều tháng trước | `video-thu/thu-nhom-chat-cu/bo-dang/` |

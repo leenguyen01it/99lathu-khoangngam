@@ -4,6 +4,7 @@ import { requireAdmin } from "@/lib/admin";
 import { TOTAL_LETTERS } from "@/lib/letters";
 import { site } from "@/lib/site";
 import { MAX_CARDS_PER_BATCH, listCardBatches } from "@/server/card-batches";
+import { countComments, countHearts, topCommentedLetters, topHeartedLetters } from "@/server/reactions";
 import { countListens, topListenedLetters } from "@/server/listens";
 import { countShares, topSharedLetters, type ShareCount } from "@/server/shares";
 import { STATUS_LABELS, listCardUsage, summarize } from "@/server/stats";
@@ -60,12 +61,16 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
   const activation = ["activated", "unactivated"].includes(one(raw.activation)) ? one(raw.activation) : "";
   const size = pageSize(raw.pageSize);
   const requestedPage = positiveInt(raw.page);
-  const [cards, topShared, totalShares, topListened, totalListens, batches] = await Promise.all([
+  const [cards, topShared, totalShares, topListened, totalListens, topHearted, totalHearts, topCommented, totalComments, batches] = await Promise.all([
     listCardUsage(),
     topSharedLetters(10),
     countShares(),
     topListenedLetters(10),
     countListens(),
+    topHeartedLetters(10),
+    countHearts(),
+    topCommentedLetters(10),
+    countComments(),
     listCardBatches(),
   ]);
   const selectedBatch = batches.find((batch) => batch.id === one(raw.batch)) ?? batches[0];
@@ -153,6 +158,18 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
       </section>
 
       <section className="mt-6 grid gap-4 md:grid-cols-2">
+        <Ranking
+          title="Lá thư được thả tim nhiều nhất"
+          total={`Tổng cộng ${totalHearts} lượt tim, mỗi thẻ tính một lượt cho mỗi lá`}
+          empty="Chưa có ai thả tim lá thư nào."
+          items={topHearted}
+        />
+        <Ranking
+          title="Lá thư được bình luận nhiều nhất"
+          total={`Tổng cộng ${totalComments} bình luận`}
+          empty="Chưa có ai bình luận lá thư nào."
+          items={topCommented}
+        />
         <Ranking
           title="Lá thư được nghe nhiều nhất"
           total={`Tổng cộng ${totalListens} lượt nghe`}

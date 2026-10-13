@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 import { prisma } from "@/lib/prisma";
 import { dayKey } from "@/lib/day";
-import { TOTAL_LETTERS } from "@/lib/letters";
+import { TOTAL_LETTERS, getLetterById } from "@/lib/letters";
 
 export const SCAN_TTL_MS = 10 * 60 * 1000; // 10 phút
 
@@ -77,4 +77,17 @@ export async function resolveScanToken(
   if (!session || session.expiresAt <= new Date()) return null;
 
   return { cardId: session.cardId, expiresAt: session.expiresAt };
+}
+
+/**
+ * Dùng cho thao tác trên một lá thư (thả tim, viết ghi chú): phiên phải còn hạn
+ * và lá đó phải thuộc bộ chính, đã mở trên thẻ. Trả id thẻ, hoặc null.
+ */
+export async function resolveOpenedLetter(token: string, letterId: string): Promise<string | null> {
+  const scan = await resolveScanToken(token);
+  if (!scan) return null;
+  const found = getLetterById(letterId);
+  if (!found || found.trial) return null;
+  const card = await prisma.card.findUnique({ where: { id: scan.cardId }, select: { currentN: true } });
+  return card && found.letter.n <= card.currentN ? scan.cardId : null;
 }

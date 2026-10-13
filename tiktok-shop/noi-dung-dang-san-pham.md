@@ -170,6 +170,8 @@ Vài chỗ tôi cố ý viết khác landing:
 
 ## 7. Video sản phẩm
 
+Kế hoạch chi tiết (kịch bản 40 giây, danh sách cảnh quay, video gắn giỏ hàng) nằm ở `ke-hoach-video-san-pham.md`. Đoạn dưới là ghi chú ban đầu.
+
 Ô video của trang sản phẩm nhận video dọc hoặc vuông. Dùng kịch bản C1 trong `docs/lich-dang-3-tuan.md` (tấm thẻ này chứa 99 lá thư, 20 giây), nhưng đổi cảnh cuối: thay dòng "Đọc thử 7 lá miễn phí: khoangngam.com" bằng "Mỗi ngày một lá thư, viết cho chính bạn". Video cần quay tay thật và thẻ thật, nên chưa làm được lúc này.
 
 ## 8. Chú thích cho video gắn giỏ hàng

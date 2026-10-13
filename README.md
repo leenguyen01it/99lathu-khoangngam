@@ -24,7 +24,7 @@ Người đọc không cần tài khoản: tấm thẻ chính là danh tính.
 | Đường dẫn | Dành cho | Nội dung |
 |---|---|---|
 | `/` | Mọi người | Giới thiệu ngắn |
-| `/doc-thu` | Mọi người | Đọc thử 7 lá thư riêng (không nằm trong 99 lá của thẻ), mỗi ngày mở thêm một lá, không cần thẻ |
+| `/doc-thu` | Mọi người | Đọc thử 7 lá thư riêng (không nằm trong 99 lá của thẻ), mở sẵn cả 7 lá, không cần thẻ |
 | `/tang` | Người tặng | Nhập mã thẻ và viết lời nhắn riêng, trước khi thẻ được mở lần đầu |
 | `/tang/<token>` | Người tặng | Link riêng tạo tự động cho từng thẻ; mở đúng thẻ, không cần nhập UID |
 | `/uid/<hash>` | Thẻ NFC | Điểm vào khi chạm thẻ |
@@ -76,5 +76,5 @@ Cần `ELEVENLABS_API_KEY` và `ELEVENLABS_VOICE_ID` trong môi trường (tuỳ
 
 - Lá nào chưa có bản thu thì trang không hiện nút loa.
 - **Sửa chữ của một lá thư sau khi đã thu thì nút loa của lá đó tự ẩn**, vì bản thu không còn khớp chữ. Xoá hai file của lá đó trong `audio/` rồi chạy lại script để thu lại.
-- File âm thanh không nằm trong `public/`. Chúng chỉ được phát qua `/v/<token>/audio/<n>` (phiên chạm thẻ còn hạn và lá đã mở) và `/doc-thu/audio/<n>` (lá đọc thử đã tới ngày).
+- File âm thanh không nằm trong `public/`. Chúng chỉ được phát qua `/v/<token>/audio/<n>` (phiên chạm thẻ còn hạn và lá đã mở) và `/doc-thu/audio/<n>` (7 lá đọc thử, mở sẵn).
 - Thư mục `audio/` được đọc từ đĩa lúc chạy. Triển khai kiểu serverless thì phải khai báo để thư mục này được đóng gói kèm.

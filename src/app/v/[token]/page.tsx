@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { TOTAL_LETTERS, lettersUpTo } from "@/lib/letters";
 import type { WordTiming } from "@/lib/sentences";
 import { getWordTimings } from "@/server/audio";
+import { reactionsFor } from "@/server/reactions";
 import { resolveScanToken } from "@/server/scans";
 import { ViewerClient } from "./ViewerClient";
 
@@ -26,6 +27,7 @@ export default async function ViewerPage({ params }: { params: Promise<{ token: 
   const showGiftFirst = Boolean(gift) && !card.giftSeenAt;
 
   const letters = lettersUpTo(card.currentN);
+  const reactions = await reactionsFor({ cardId: card.id }, letters.map((letter) => letter.id));
   const audio: Record<number, WordTiming[]> = {};
   for (const letter of letters) {
     const timings = getWordTimings(letter);
@@ -39,6 +41,7 @@ export default async function ViewerPage({ params }: { params: Promise<{ token: 
       letters={letters}
       audio={audio}
       total={TOTAL_LETTERS}
+      reactions={reactions}
       gift={gift}
       showGiftFirst={showGiftFirst}
     />

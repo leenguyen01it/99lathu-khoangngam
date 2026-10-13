@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { GiftBook } from "@/components/GiftBook";
+import { HeartIcon, LetterReactions } from "@/components/LetterReactions";
 import { Locked } from "@/components/Locked";
 import { ReadingShell } from "@/components/ReadingShell";
 import { Shell } from "@/components/Shell";
@@ -10,7 +11,9 @@ import { TrialPurchase } from "@/components/TrialPurchase";
 import type { Letter } from "@/lib/letters";
 import type { WordTiming } from "@/lib/sentences";
 import { themeLabel } from "@/lib/site";
-import { markGiftSeen } from "./actions";
+import { markTrialRead } from "@/app/doc-thu/actions";
+import type { Reactions } from "@/server/reactions";
+import { markGiftSeen, setHeart } from "./actions";
 
 interface Props {
   token?: string;
@@ -18,19 +21,22 @@ interface Props {
   letters: Letter[]; // các lá đã mở, lá mới nhất đứng đầu
   audio: Record<number, WordTiming[]>; // mốc thời gian từng chữ của những lá đã có giọng đọc
   total: number;
+  reactions?: Reactions; // tim và số cảm nghĩ của các lá đang hiện
   gift?: { from: string | null; message: string } | null;
   showGiftFirst?: boolean;
 }
 
 type View = { kind: "gift" } | { kind: "letter"; n: number } | { kind: "box" };
 
-export function ViewerClient({ token, expiresAt, letters, audio, total, gift, showGiftFirst }: Props) {
+export function ViewerClient({ token, expiresAt, letters, audio, total, reactions, gift, showGiftFirst }: Props) {
   const todayN = letters[0]?.n ?? 1;
+  // Không có token là trang đọc thử: cả bộ mở sẵn nên bắt đầu từ lá số 1 rồi lật tới.
+  const trial = !token;
   const [locked, setLocked] = useState(false);
   const [openingToday, setOpeningToday] = useState(false);
   const [giftError, setGiftError] = useState<string | null>(null);
   const [view, setView] = useState<View>(
-    showGiftFirst ? { kind: "gift" } : { kind: "letter", n: todayN },
+    showGiftFirst ? { kind: "gift" } : { kind: "letter", n: trial ? 1 : todayN },
   );
   // Màn mở phong thư chỉ chạy một lần, ở màn hình đầu tiên sau khi chạm thẻ.
   // Xem lại thư trong hộp thư thì hiện ngay.
@@ -41,6 +47,35 @@ export function ViewerClient({ token, expiresAt, letters, audio, total, gift, sh
     setFirstScreen(false);
     setTurned(byTurning);
     setView(next);
+    // Ghi lại người đọc thử đã lật tới lá nào; lỗi ghi không được làm hỏng việc đọc.
+    if (trial && next.kind === "letter") markTrialRead(next.n).catch(() => {});
+  };
+
+  const [hearts, setHearts] = useState(() => new Set(reactions?.hearted));
+  const [heartCounts, setHeartCounts] = useState(reactions?.heartCounts ?? {});
+  const [commentCounts, setCommentCounts] = useState(reactions?.commentCounts ?? {});
+  const [onlyHearted, setOnlyHearted] = useState(false);
+  // Đổi ngay trên màn hình rồi mới ghi; ghi không được thì trả lại như cũ.
+  const toggleHeart = async (letterId: string) => {
+    const on = !hearts.has(letterId);
+    const apply = (value: boolean) => {
+      setHearts((current) => {
+        const next = new Set(current);
+        if (value) next.add(letterId);
+        else next.delete(letterId);
+        return next;
+      });
+      setHeartCounts((current) => ({ ...current, [letterId]: Math.max(0, (current[letterId] ?? 0) + (value ? 1 : -1)) }));
+    };
+    apply(on);
+    try {
+      if (await setHeart(token ?? null, letterId, on)) return;
+      // Với thẻ thật là phiên chạm thẻ đã hết hạn. Bản đọc thử thì chỉ không ghi được, vẫn đọc tiếp.
+      if (token) setLocked(true);
+      else apply(!on);
+    } catch {
+      apply(!on);
+    }
   };
 
   // Khoá trang đúng lúc phiên hết hạn, kể cả khi tab vừa được mở lại sau một lúc.
@@ -85,14 +120,29 @@ export function ViewerClient({ token, expiresAt, letters, audio, total, gift, sh
   }
 
   if (view.kind === "box") {
+    const filtering = onlyHearted && hearts.size > 0;
+    const boxLetters = (trial ? letters.slice().reverse() : letters).filter((letter) => !filtering || hearts.has(letter.id));
     return (
       <Shell>
         <h1 className="text-[24px] font-bold">Hộp thư của bạn</h1>
         <p className="mt-1 text-[14px] text-sage">
-          Đã mở {letters.length} trên {total} lá.
+          {trial ? `${total} lá đọc thử, đọc lá nào trước cũng được.` : `Đã mở ${letters.length} trên ${total} lá.`}
         </p>
+        {hearts.size > 0 ? (
+          <button
+            type="button"
+            aria-pressed={filtering}
+            onClick={() => setOnlyHearted(!filtering)}
+            className={`mt-4 flex items-center gap-2 rounded-full border px-4 py-1.5 text-[13px] transition ${
+              filtering ? "border-rose/70 text-rose" : "border-sage/35 text-sage hover:border-gold hover:text-gold"
+            }`}
+          >
+            <HeartIcon filled={filtering} size={15} />
+            {filtering ? "Xem tất cả lá đã mở" : `Chỉ xem ${hearts.size} lá đã thả tim`}
+          </button>
+        ) : null}
         <ul className="mt-5 flex flex-col gap-2.5">
-          {gift ? (
+          {gift && !filtering ? (
             <li>
               <button
                 className="w-full rounded-xl border border-gold/50 px-4 py-3 text-left"
@@ -105,14 +155,15 @@ export function ViewerClient({ token, expiresAt, letters, audio, total, gift, sh
               </button>
             </li>
           ) : null}
-          {letters.map((letter) => (
+          {boxLetters.map((letter) => (
             <li key={letter.n}>
               <button
                 className="w-full rounded-xl border border-sage/25 px-4 py-3 text-left transition hover:border-sage/60"
                 onClick={() => go({ kind: "letter", n: letter.n })}
               >
-                <span className="block text-[12px] uppercase tracking-wider text-sage">
+                <span className="flex items-center gap-1.5 text-[12px] uppercase tracking-wider text-sage">
                   Lá số {letter.n} · {themeLabel(letter.theme)}
+                  {hearts.has(letter.id) ? <span className="text-rose"><HeartIcon filled size={13} /></span> : null}
                 </span>
                 <span className="block truncate text-[15px]">{letter.text}</span>
               </button>
@@ -180,12 +231,29 @@ export function ViewerClient({ token, expiresAt, letters, audio, total, gift, sh
         ) : null
       }
     >
+      {reactions ? (
+        <LetterReactions
+          letterId={letter.id}
+          letterN={letter.n}
+          hearted={hearts.has(letter.id)}
+          heartCount={heartCounts[letter.id] ?? 0}
+          commentCount={commentCounts[letter.id] ?? 0}
+          token={token ?? null}
+          onToggleHeart={() => toggleHeart(letter.id)}
+          onCommentCount={(delta) => setCommentCounts((current) => ({ ...current, [letter.id]: Math.max(0, (current[letter.id] ?? 0) + delta) }))}
+          onExpired={() => {
+            if (token) setLocked(true);
+          }}
+        />
+      ) : null}
       {isToday && todayN >= total ? (
         <p className="mt-6 text-center text-[14px] leading-relaxed text-sage">
-          Bạn đã mở hết các lá thư. Cảm ơn bạn đã ghé mỗi ngày.
+          {trial
+            ? `Bạn đã đọc hết ${total} lá đọc thử. 99 lá trong thẻ là những lá khác hẳn, bạn chưa đọc lá nào.`
+            : "Bạn đã mở hết các lá thư. Cảm ơn bạn đã ghé mỗi ngày."}
         </p>
       ) : null}
-      {!token ? <><TrialPurchase /><SocialFooter /></> : null}
+      {!token ?<><TrialPurchase /><SocialFooter /></> : null}
     </ReadingShell>
   );
 }

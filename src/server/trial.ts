@@ -5,18 +5,23 @@ import { prisma } from "@/lib/prisma";
 // Ghi và đếm người đọc thử. Mỗi người một dòng, cập nhật mỗi lần họ mở trang /doc-thu.
 
 /** Ghi một lượt mở trang đọc thử của một người. */
-export async function recordTrialVisit(readerId: string, startedOn: string, today: string, opened: number): Promise<void> {
+export async function recordTrialVisit(readerId: string, startedOn: string, today: string): Promise<void> {
   await prisma.trialReader.upsert({
     where: { id: readerId },
-    create: { id: readerId, startedOn, lastDay: today, maxOpened: opened },
+    create: { id: readerId, startedOn, lastDay: today, maxOpened: 1 },
     update: {},
   });
-  // Hai lệnh có điều kiện để nhiều request cùng lúc không cộng trùng ngày.
+  // Lệnh có điều kiện để nhiều request cùng lúc không cộng trùng ngày.
   await prisma.trialReader.updateMany({
     where: { id: readerId, lastDay: { not: today } },
     data: { lastDay: today, visitDays: { increment: 1 }, lastSeenAt: new Date() },
   });
-  await prisma.trialReader.updateMany({ where: { id: readerId, maxOpened: { lt: opened } }, data: { maxOpened: opened } });
+}
+
+/** Ghi lá xa nhất một người đã lật tới. Cả bộ mở sẵn nên đây là số đo họ đọc tới đâu. */
+export async function recordTrialRead(readerId: string, n: number): Promise<void> {
+  if (!Number.isInteger(n) || n < 1 || n > TRIAL_LETTERS) return;
+  await prisma.trialReader.updateMany({ where: { id: readerId, maxOpened: { lt: n } }, data: { maxOpened: n } });
 }
 
 export type TrialStats = {

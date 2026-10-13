@@ -11,6 +11,7 @@ const items = [
   { href: "/admin/customers", label: "Khách hàng" },
   { href: "/admin/orders", label: "Đơn hàng" },
   { href: "/admin/doc-thu", label: "Đọc thử" },
+  { href: "/admin/binh-luan", label: "Bình luận" },
   { href: "/admin/users", label: "Tài khoản", ownerOnly: true },
   { href: "/admin/account/password", label: "Đổi mật khẩu" },
 ];

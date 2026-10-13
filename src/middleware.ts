@@ -4,7 +4,7 @@ import { READER_COOKIE, READER_HEADER, isReaderId } from "@/lib/trial-reader";
 
 const TRIAL_COOKIE = "kn_trial";
 
-// Ghi lại ngày đầu tiên một người mở trang đọc thử, để mỗi ngày mở thêm một lá,
+// Ghi lại ngày đầu tiên một người mở trang đọc thử, để thống kê người mới theo ngày,
 // và cấp một mã ẩn danh để đếm số người đọc thử.
 export function middleware(req: NextRequest) {
   const cookie = {

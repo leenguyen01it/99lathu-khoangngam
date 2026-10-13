@@ -31,11 +31,18 @@ model Card {
   giftMessage String?
   giftSeenAt  DateTime?
 
+  // Tên hiện bên cạnh cảm nghĩ của thẻ dưới lá thư: hệ thống đặt sẵn, người cầm thẻ đổi được thành tên mình.
+  // Không bắt buộc khác nhau, vì nhiều người có thể trùng tên thật. Xem src/lib/pen-names.ts
+  penName        String?
+  penNameChanges Int     @default(0) // số lần người cầm thẻ đã đổi tên
+
   createdAt DateTime @default(now())
 
   sessions    ScanSession[]
   logs        ScanLog[]
   assignments CardAssignment[]
+  hearts      LetterHeart[]
+  comments    LetterComment[]
 
   @@index([customerId])
   @@index([orderId])
@@ -354,15 +361,55 @@ model ListenEvent {
   @@index([cardId])
 }
 
+// Một lượt thả tim lá thư; bỏ tim thì xoá dòng. Đứng tên là một thẻ (99 lá chính)
+// hoặc một người đọc thử (bộ đọc thử), đúng một trong hai. Mỗi bên chỉ một tim cho mỗi lá.
+model LetterHeart {
+  id        String       @id @default(cuid())
+  cardId    String?
+  card      Card?        @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  readerId  String?
+  reader    TrialReader? @relation(fields: [readerId], references: [id], onDelete: Cascade)
+  letterId  String
+  createdAt DateTime     @default(now())
+
+  @@unique([cardId, letterId])
+  @@unique([readerId, letterId])
+  @@index([letterId])
+}
+
+// Cảm nghĩ dưới một lá thư, hiện dưới tên của người viết; ai đọc được lá ấy đều thấy.
+// Đứng tên là một thẻ hoặc một người đọc thử, như LetterHeart.
+model LetterComment {
+  id        String       @id @default(cuid())
+  cardId    String?
+  card      Card?        @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  readerId  String?
+  reader    TrialReader? @relation(fields: [readerId], references: [id], onDelete: Cascade)
+  letterId  String
+  text      String
+  createdAt DateTime     @default(now())
+
+  @@index([letterId, createdAt])
+  @@index([cardId, createdAt])
+  @@index([readerId, createdAt])
+}
+
 // Mỗi người đọc thử, ẩn danh: nhận diện bằng mã ngẫu nhiên trong cookie kn_reader
 model TrialReader {
   id          String   @id
   startedOn   String // khoá ngày bắt đầu đọc thử, "YYYY-MM-DD" theo giờ Việt Nam
   lastDay     String // khoá ngày mở trang gần nhất
   visitDays   Int      @default(1) // số ngày khác nhau có mở trang
-  maxOpened   Int      @default(1) // số lá đã mở khoá ở lần xem gần nhất
+  maxOpened   Int      @default(1) // lá xa nhất người này đã lật tới
   firstSeenAt DateTime @default(now())
   lastSeenAt  DateTime @default(now())
+
+  // Tên trong phần cảm nghĩ dưới lá đọc thử, như ở Card
+  penName        String?
+  penNameChanges Int     @default(0)
+
+  hearts   LetterHeart[]
+  comments LetterComment[]
 
   @@index([startedOn])
 }
