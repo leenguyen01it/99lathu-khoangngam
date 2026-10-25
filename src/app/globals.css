@@ -411,6 +411,24 @@ body {
   animation: leaf-in 0.7s cubic-bezier(0.5, 0.05, 0.3, 1) forwards;
 }
 
+/* Lớp chứa nút nghe nằm trên chính mặt giấy để đi cùng trang khi lật. */
+.book__audio-layer {
+  position: absolute;
+  inset: 5px 12px 13px 5px;
+  z-index: 4;
+  pointer-events: none;
+  transform-origin: left center;
+  backface-visibility: hidden;
+}
+
+.book__audio-layer--out {
+  animation: leaf-out 0.7s cubic-bezier(0.5, 0.05, 0.3, 1) forwards;
+}
+
+.book__audio-layer--under {
+  z-index: 1;
+}
+
 @keyframes leaf-out {
   to {
     transform: rotateY(-180deg);
@@ -452,6 +470,22 @@ body {
 @keyframes book-open {
   to {
     transform: rotateY(-180deg);
+  }
+}
+
+/* Nút nghe xuất hiện nhẹ sau khi bìa/trang đã lật xong. */
+.book-audio-in {
+  animation: book-audio-in 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes book-audio-in {
+  from {
+    opacity: 0;
+    transform: translateY(5px) scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -500,6 +534,9 @@ body {
     display: none;
   }
   .book__sheen {
+    animation: none;
+  }
+  .book-audio-in {
     animation: none;
   }
   .sentence {

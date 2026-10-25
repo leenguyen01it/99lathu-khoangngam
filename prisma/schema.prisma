@@ -22,9 +22,19 @@ model Card {
   orderItem   OrderItem? @relation(fields: [orderItemId], references: [id], onDelete: SetNull)
   assignedAt  DateTime?
 
-  activatedAt   DateTime? // lần chạm đầu tiên
-  currentN      Int       @default(0) // lá thư mới nhất đã mở (0 = chưa mở lá nào)
-  lastOpenedDay String? // "YYYY-MM-DD", ngày gần nhất mở lá mới
+  activatedAt         DateTime? // lần chạm đầu tiên
+  currentN            Int       @default(0) // lá thư mới nhất đã mở (0 = chưa mở lá nào)
+  lastOpenedDay       String? // "YYYY-MM-DD", ngày gần nhất mở lá mới
+  dailyLimit          Int       @default(1) // số lá tối đa được mở mỗi ngày, từ 1 đến 5
+  openedToday         Int       @default(0) // số lá đã mở trong lastOpenedDay
+  voiceSpeed          Float     @default(1.3) // tốc độ nghe thư: 1, 1.2, 1.3 hoặc 1.4
+  autoPlayAudio       Boolean   @default(false) // tự phát giọng đọc sau khi sách mở
+  readingStyle        String    @default("box") // ink, box hoặc off
+  pageSound           Boolean   @default(true) // âm thanh giấy khi lật trang
+  resumeReading       Boolean   @default(true) // mở lại lá đang đọc dở ở lần quét trước
+  lastViewedN         Int? // lá gần nhất người cầm thẻ đã xem
+  reminderTime        String? // giờ nhắc đọc theo múi giờ Việt Nam, dạng HH:mm
+  reminderLastSentDay String? // ngày gần nhất đã gửi, dạng YYYY-MM-DD
 
   // Lá thư riêng của người tặng, viết trước khi thẻ được chạm lần đầu
   giftFrom    String?
@@ -38,15 +48,29 @@ model Card {
 
   createdAt DateTime @default(now())
 
-  sessions    ScanSession[]
-  logs        ScanLog[]
-  assignments CardAssignment[]
-  hearts      LetterHeart[]
-  comments    LetterComment[]
+  sessions          ScanSession[]
+  logs              ScanLog[]
+  assignments       CardAssignment[]
+  hearts            LetterHeart[]
+  comments          LetterComment[]
+  pushSubscriptions PushSubscription[]
 
   @@index([customerId])
   @@index([orderId])
   @@index([orderItemId])
+}
+
+model PushSubscription {
+  id        String   @id @default(cuid())
+  cardId    String
+  card      Card     @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  endpoint  String   @unique
+  p256dh    String
+  auth      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([cardId])
 }
 
 // Khách hàng chuẩn trong hệ thống. Dữ liệu từ các kênh ngoài được nối qua ExternalCustomerLink.
@@ -314,7 +338,7 @@ model AdminAuditLog {
   @@index([createdAt])
 }
 
-// Phiên xem 10 phút, tạo mỗi lần chạm thẻ
+// Phiên xem 15 phút, tạo mỗi lần chạm thẻ
 model ScanSession {
   id        String   @id @default(cuid())
   token     String   @unique

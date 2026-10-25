@@ -24,11 +24,11 @@ export default function HomePage() {
           Một hành trình nhỏ dành cho bạn
         </p>
         <h1 className="mt-3 max-w-[350px] font-serif text-[22px] font-semibold leading-[1.25] text-paper">
-          Mỗi ngày, mở một lá thư và ở lại với mình một chút
+          Mỗi ngày, mở vài lá thư và ở lại với mình một chút
         </h1>
         <p className="mt-4 max-w-[350px] text-[15px] leading-7 text-sage">
           Trong cuốn sách này là {TOTAL_LETTERS} lá thư ngắn về những ngày cố gắng, lớn lên, yêu
-          thương và học cách dịu dàng với chính mình. Không cần đọc vội. Mỗi ngày chỉ một lá là đủ.
+          thương và học cách dịu dàng với chính mình. Bạn chọn đọc từ 1 đến 5 lá mỗi ngày.
         </p>
 
         <Link href="/doc-thu" className="btn mt-7 min-w-52">
@@ -45,8 +45,8 @@ export default function HomePage() {
           <p className="mt-1 text-[11px] uppercase tracking-wider text-sage">Lá thư</p>
         </div>
         <div className="border-x border-sage/15">
-          <p className="font-serif text-[24px] text-gold">1</p>
-          <p className="mt-1 text-[11px] uppercase tracking-wider text-sage">Mỗi ngày</p>
+          <p className="font-serif text-[24px] text-gold">1–5</p>
+          <p className="mt-1 text-[11px] uppercase tracking-wider text-sage">Lá mỗi ngày</p>
         </div>
         <div>
           <p className="font-serif text-[24px] text-gold">NFC</p>
@@ -59,7 +59,7 @@ export default function HomePage() {
           “Có những ngày, một câu nói đúng lúc cũng đủ để mình đi tiếp.”
         </p>
         <p className="mt-3 text-[13px] leading-relaxed text-sage">
-          Chạm thẻ bằng điện thoại để mở lá thư của hôm nay. Lá tiếp theo sẽ chờ bạn vào ngày mai.
+          Chạm thẻ bằng điện thoại để mở lá thư đầu tiên. Bạn có thể chọn nhịp đọc trong Hộp thư.
         </p>
       </section>
       <SocialFooter />

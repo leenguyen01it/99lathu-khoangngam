@@ -12,8 +12,8 @@ export const GIFT_MESSAGE_MAX = 1200;
 export async function resetCardActivation(id: string, actor: AdminActor): Promise<void> {
   if (actor.role !== "owner" && actor.role !== "manager") throw new Error("Không có quyền đặt lại thẻ.");
   await prisma.$transaction(async (tx) => {
-    const previous = await tx.card.findUniqueOrThrow({ where: { id }, select: { activatedAt: true, currentN: true, lastOpenedDay: true, giftSeenAt: true } });
-    await tx.card.update({ where: { id }, data: { activatedAt: null, currentN: 0, lastOpenedDay: null, giftSeenAt: null, penName: null, penNameChanges: 0 } });
+    const previous = await tx.card.findUniqueOrThrow({ where: { id }, select: { activatedAt: true, currentN: true, lastOpenedDay: true, openedToday: true, dailyLimit: true, voiceSpeed: true, giftSeenAt: true } });
+    await tx.card.update({ where: { id }, data: { activatedAt: null, currentN: 0, lastOpenedDay: null, openedToday: 0, dailyLimit: 1, voiceSpeed: 1.3, giftSeenAt: null, penName: null, penNameChanges: 0 } });
     await tx.scanSession.deleteMany({ where: { cardId: id } });
     await tx.scanLog.deleteMany({ where: { cardId: id } });
     await tx.shareEvent.deleteMany({ where: { cardId: id } });

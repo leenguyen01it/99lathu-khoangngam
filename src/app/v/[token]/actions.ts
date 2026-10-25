@@ -14,7 +14,7 @@ import {
   type SetPenNameResult,
   type Viewer,
 } from "@/server/reactions";
-import { resolveScanToken } from "@/server/scans";
+import { openNextLetter, rememberCardLetter, resolveScanToken, setCardDailyLimit, setCardExperienceSettings, setCardVoiceSpeed, type CardExperienceSettings } from "@/server/scans";
 
 // Tim và cảm nghĩ dùng chung cho thẻ thật và bản đọc thử.
 // Có `token` là phiên chạm thẻ; `token` là null thì nhận diện người đọc thử qua cookie.
@@ -66,4 +66,74 @@ export async function markGiftSeen(token: string): Promise<boolean> {
     data: { giftSeenAt: new Date() },
   });
   return true;
+}
+
+export async function changeDailyLimit(token: string, limit: number): Promise<boolean> {
+  return setCardDailyLimit(String(token).slice(0, 600), Number(limit));
+}
+
+export async function changeVoiceSpeed(token: string, speed: number): Promise<boolean> {
+  return setCardVoiceSpeed(String(token).slice(0, 600), Number(speed));
+}
+
+export async function changeExperienceSettings(token: string, settings: CardExperienceSettings): Promise<boolean> {
+  return setCardExperienceSettings(String(token).slice(0, 600), settings);
+}
+
+export async function rememberViewedLetter(token: string, n: number): Promise<boolean> {
+  return rememberCardLetter(String(token).slice(0, 600), Number(n));
+}
+
+type BrowserSubscriptionInput = {
+  endpoint: string;
+  keys: { p256dh: string; auth: string };
+};
+
+/** Bật/tắt lời nhắc và gắn đăng ký Web Push của trình duyệt với thẻ. */
+export async function changeBrowserReminder(
+  token: string,
+  time: string | null,
+  subscription: BrowserSubscriptionInput | null,
+): Promise<boolean> {
+  const scan = await resolveScanToken(String(token).slice(0, 600));
+  if (!scan) return false;
+  if (time !== null && !/^(0\d|1\d|2[0-3]):[0-5]\d$/.test(time)) return false;
+  if (time !== null && (
+    !subscription
+    || subscription.endpoint.length > 2000
+    || !/^https:\/\//.test(subscription.endpoint)
+    || !/^[A-Za-z0-9_-]+$/.test(subscription.keys.p256dh)
+    || !/^[A-Za-z0-9_-]+$/.test(subscription.keys.auth)
+  )) return false;
+
+  return prisma.$transaction(async (tx) => {
+    const card = await tx.card.updateMany({
+      where: { id: scan.cardId, activatedAt: { not: null } },
+      data: { reminderTime: time, reminderLastSentDay: null },
+    });
+    if (card.count !== 1) return false;
+    if (!time || !subscription) {
+      await tx.pushSubscription.deleteMany({ where: { cardId: scan.cardId } });
+      return true;
+    }
+    await tx.pushSubscription.upsert({
+      where: { endpoint: subscription.endpoint },
+      create: {
+        cardId: scan.cardId,
+        endpoint: subscription.endpoint,
+        p256dh: subscription.keys.p256dh,
+        auth: subscription.keys.auth,
+      },
+      update: {
+        cardId: scan.cardId,
+        p256dh: subscription.keys.p256dh,
+        auth: subscription.keys.auth,
+      },
+    });
+    return true;
+  });
+}
+
+export async function openAnotherLetter(token: string) {
+  return openNextLetter(String(token).slice(0, 600));
 }

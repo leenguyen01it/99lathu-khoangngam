@@ -2,7 +2,7 @@
 export const site = {
   name: "Khoảng Ngẫm",
   product: "99 ngày thương mình",
-  tagline: "Mỗi ngày một lá thư.",
+  tagline: "Mỗi ngày, đọc theo nhịp của bạn.",
   // Địa chỉ công khai của app, dùng cho canonical, sitemap và ảnh chia sẻ.
   url: (process.env.APP_URL ?? "https://99lathu.khoangngam.com").replace(/\/+$/, ""),
   description:
@@ -22,7 +22,7 @@ export const site = {
 
 // Tốc độ phát giọng đọc. Bản thu giữ tốc độ tự nhiên, trình phát tua lên khi nghe
 // (cao độ giọng được giữ nguyên), nên đổi con số này không cần thu lại.
-export const VOICE_SPEED = 1.2;
+export const VOICE_SPEED = 1.3;
 
 // Cách trang thư đi theo giọng đọc:
 // "ink" là mực hiện dần (lá thư nhạt đi, đọc tới đâu chữ đậm lên tới đó),

@@ -26,14 +26,14 @@ export function Shell({
           center ? "items-center justify-center text-center" : ""
         }`}
       >
-        <div className={`mb-4 flex items-center gap-2.5 ${action ? "w-full" : ""}`}>
+        <div className={`mb-4 flex flex-wrap items-center gap-x-2.5 gap-y-2 ${action ? "w-full" : ""}`}>
           <Link href="/" className="flex items-center gap-2.5 rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold" aria-label="Về trang chủ">
             <Logo size={30} />
-            <span className="text-[13px] font-semibold uppercase tracking-[0.22em] text-gold">
+            <span className="whitespace-nowrap text-[13px] font-semibold uppercase tracking-[0.22em] text-gold">
               {site.name}
             </span>
           </Link>
-          {action ? <div className="ml-auto">{action}</div> : null}
+          {action ? <div className="ml-auto shrink-0">{action}</div> : null}
         </div>
         {children}
       </main>

@@ -22,7 +22,7 @@ const lora = Lora({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.product}: mỗi ngày mở một lá thư · ${site.name}`,
+    default: `${site.product}: đọc theo nhịp của bạn · ${site.name}`,
     template: `%s · ${site.name}`,
   },
   description: site.description,
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: site.name,
     locale: "vi_VN",
-    title: `${site.product}: mỗi ngày mở một lá thư`,
+    title: `${site.product}: đọc theo nhịp của bạn`,
     description: site.description,
   },
   twitter: { card: "summary_large_image" },

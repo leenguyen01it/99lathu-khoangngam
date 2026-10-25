@@ -91,7 +91,7 @@ function Comment({ item, fresh, onRemove }: { item: LetterCommentView; fresh: bo
  * Mới nhất đứng đầu; cuộn tới cuối thì tự tải thêm một trang cũ hơn.
  *
  * Bảng luôn được giữ lại khi đóng, để mở lại không phải tải từ đầu.
- * Phiên chạm thẻ chỉ dài 10 phút, nên chữ đang viết dở được giữ trên máy
+ * Phiên chạm thẻ chỉ dài 15 phút, nên chữ đang viết dở được giữ trên máy
  * để lần chạm sau mở lại lá này vẫn còn.
  *
  * `onExpired` được gọi khi máy chủ không nhận ra người đang xem. Với thẻ thật thì trang cha khoá lại;
@@ -382,7 +382,7 @@ export function CommentSheet({
               <span>
                 Bạn viết dưới tên <span className="font-semibold text-gold">{me.name}</span>
               </span>
-              {me.changesLeft > 0 ? (
+              {!token && me.changesLeft > 0 ? (
                 <button
                   type="button"
                   onClick={() => {
@@ -396,7 +396,7 @@ export function CommentSheet({
               ) : null}
             </p>
           ) : null}
-          {me && nameDraft !== null ? (
+          {!token && me && nameDraft !== null ? (
             <form
               className="mb-3 rounded-2xl border border-sage/20 p-3"
               onSubmit={(event) => {

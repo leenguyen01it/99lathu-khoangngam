@@ -16,6 +16,9 @@ export function ListenButton({
   token,
   onWord,
   onStart,
+  speed = VOICE_SPEED,
+  onPaper = false,
+  autoPlay = false,
 }: {
   src: string;
   words: WordTiming[];
@@ -23,11 +26,15 @@ export function ListenButton({
   token?: string;
   onWord: (index: number | null) => void;
   onStart: () => void;
+  speed?: number;
+  onPaper?: boolean;
+  autoPlay?: boolean;
 }) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const counted = useRef(false);
   const frame = useRef(0);
   const lastWord = useRef<number | null>(null);
+  const autoStarted = useRef(false);
   const [state, setState] = useState<"idle" | "loading" | "playing" | "paused" | "failed">("idle");
 
   const report = (index: number | null) => {
@@ -73,8 +80,8 @@ export function ListenButton({
       if (state === "idle" || state === "failed") setState("loading");
       onStart();
       // Đặt lại mỗi lần phát: trình duyệt có thể trả tốc độ về 1 khi nạp lại file.
-      audio.defaultPlaybackRate = VOICE_SPEED;
-      audio.playbackRate = VOICE_SPEED;
+      audio.defaultPlaybackRate = speed;
+      audio.playbackRate = speed;
       await audio.play();
       if (!counted.current) {
         counted.current = true;
@@ -84,6 +91,14 @@ export function ListenButton({
       setState("failed");
     }
   };
+
+  useEffect(() => {
+    if (!autoPlay || autoStarted.current) return;
+    autoStarted.current = true;
+    void toggle();
+    // Nút chỉ được gắn vào trang sau khi hiệu ứng mở sách hoàn tất.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoPlay]);
 
   const label =
     state === "playing"
@@ -124,13 +139,15 @@ export function ListenButton({
         onClick={toggle}
         aria-label={label}
         title={label}
-        className={`flex h-10 w-10 items-center justify-center rounded-full border transition ${
+        className={`flex items-center justify-center rounded-full border transition ${
           state === "failed"
             ? "border-rose/70 text-rose"
             : state === "playing"
               ? "border-gold bg-gold text-ink"
-              : "border-sage/35 text-paper hover:border-gold hover:text-gold"
-        } ${state === "loading" ? "animate-pulse" : ""}`}
+              : onPaper
+                ? "border-deep/35 bg-paper/95 text-deep shadow-sm hover:border-deep hover:bg-paper"
+                : "border-sage/35 text-paper hover:border-gold hover:text-gold"
+        } ${onPaper ? "h-8 w-8 [&_svg]:h-[17px] [&_svg]:w-[17px]" : "h-10 w-10"} ${state === "loading" ? "animate-pulse" : ""}`}
       >
         {state === "playing" ? (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>

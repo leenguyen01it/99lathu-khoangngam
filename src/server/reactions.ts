@@ -73,6 +73,12 @@ async function penNameOf(writer: Writer): Promise<PenName> {
   return { name: row.penName ?? "Một người đọc", changesLeft: Math.max(0, PEN_NAME_CHANGES - row.penNameChanges) };
 }
 
+/** Lấy bút danh để hiển thị trong Cài đặt thẻ, dùng cùng tên với phần cảm nghĩ. */
+export async function getPenName(viewer: Viewer): Promise<PenName | null> {
+  const writer = await writerFor(viewer);
+  return writer ? penNameOf(writer) : null;
+}
+
 export type SetPenNameResult = { ok: true; me: PenName } | { ok: false; reason: "expired" | "invalid" | "limit" };
 
 /**

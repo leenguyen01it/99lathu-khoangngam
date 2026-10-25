@@ -16,7 +16,7 @@ export function Locked({ unknownCard = false }: { unknownCard?: boolean }) {
       <p className="mt-2 max-w-[290px] text-[15px] leading-relaxed text-sage">
         {unknownCard
           ? "Đường dẫn không khớp với thẻ nào. Hãy chạm lại đúng tấm thẻ của bạn."
-          : "Lá thư chỉ mở trong 10 phút sau mỗi lần chạm hoặc quét thẻ"}
+          : "Lá thư chỉ mở trong 15 phút sau mỗi lần chạm hoặc quét thẻ"}
       </p>
     </Shell>
   );

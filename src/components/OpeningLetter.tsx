@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { OPENING_EFFECT } from "@/lib/site";
+import type { ReadingStyle } from "@/server/scans";
 import { BookCover } from "./BookCover";
 import { Envelope } from "./Envelope";
 import { LetterPaper } from "./LetterPaper";
@@ -18,6 +19,8 @@ interface Paper {
   signature?: string;
   page?: number;
   activeWord?: number | null;
+  hasAudio?: boolean;
+  readingStyle?: ReadingStyle;
 }
 
 /** Thân cuốn sách: bìa sau, xấp giấy, rồi trang thư nằm trên. */

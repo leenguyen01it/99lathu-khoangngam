@@ -9,9 +9,9 @@ Dự án độc lập, không dùng chung mã hay dữ liệu với TapNow.
 1. Admin đăng nhập `/admin`, tạo thẻ, tải file CSV. Mỗi dòng có `uid` (in lên thẻ) và `nfcUrl` (ghi vào chip NFC).
 2. `nfcUrl` có dạng `/uid/<hash>`, với `hash` là 32 ký tự đầu của `HMAC-SHA256(uid, CARD_HASH_SECRET)`.
 3. Khi thẻ chưa kích hoạt, mở `/uid/<hash>` chỉ hiện màn hình xác nhận, không mở thư, không ghi lượt quét và không khóa lời nhắn riêng. Bên in có thể mở link để kiểm tra trước khi giao thẻ; không bấm **Xác nhận kích hoạt**.
-4. Người nhận bấm **Xác nhận kích hoạt** sau khi nhận thẻ. Máy chủ ghi thời điểm kích hoạt, mở lá đầu tiên, tạo phiên xem 10 phút, ghi nhật ký rồi chuyển sang `/v/<token>`. Các lần chạm sau tự mở thư như trước.
+4. Người nhận bấm **Xác nhận kích hoạt** sau khi nhận thẻ. Máy chủ ghi thời điểm kích hoạt, mở lá đầu tiên, tạo phiên xem 15 phút, ghi nhật ký rồi chuyển sang `/v/<token>`. Các lần chạm sau tự mở thư như trước.
 5. Lần chạm đầu tiên của một ngày mới mở lá thư kế tiếp. Các lần chạm sau trong ngày mở lại lá đó. "Ngày" tính theo giờ Việt Nam và chuyển ngày lúc 0 giờ (`src/lib/day.ts`).
-6. Hết 10 phút, trang tự khoá và yêu cầu chạm lại thẻ.
+6. Hết 15 phút, trang tự khoá và yêu cầu chạm lại thẻ.
 
 Người đọc không cần tài khoản: tấm thẻ chính là danh tính.
 
@@ -28,7 +28,7 @@ Người đọc không cần tài khoản: tấm thẻ chính là danh tính.
 | `/tang` | Người tặng | Nhập mã thẻ và viết lời nhắn riêng, trước khi thẻ được mở lần đầu |
 | `/tang/<token>` | Người tặng | Link riêng tạo tự động cho từng thẻ; mở đúng thẻ, không cần nhập UID |
 | `/uid/<hash>` | Thẻ NFC | Điểm vào khi chạm thẻ |
-| `/v/<token>` | Người có thẻ | Lá thư hôm nay và hộp thư các lá đã mở, sống 10 phút |
+| `/v/<token>` | Người có thẻ | Lá thư hôm nay và hộp thư các lá đã mở, sống 15 phút |
 | `/admin` | Admin | Tạo thẻ, xem tiến độ, tải CSV |
 
 ## Cài đặt

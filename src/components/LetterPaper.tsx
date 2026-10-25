@@ -1,5 +1,5 @@
 import { splitSentences, splitWords } from "@/lib/sentences";
-import { READING_STYLE } from "@/lib/site";
+import type { ReadingStyle } from "@/server/scans";
 
 // Nhịp hiện chữ: mỗi câu cách nhau SENTENCE_STEP giây.
 const SENTENCE_STEP = 0.4;
@@ -8,9 +8,10 @@ const SENTENCE_STEP = 0.4;
  * Lớp CSS của một chữ khi đang nghe giọng đọc.
  * `active` là thứ tự chữ đang được đọc: null là không nghe, -1 là đang nghe nhưng chưa đọc tới chữ nào.
  */
-function wordClass(index: number, active: number | null | undefined): string {
+function wordClass(index: number, active: number | null | undefined, readingStyle: ReadingStyle): string {
   if (active === null || active === undefined) return "word";
-  if (READING_STYLE === "box") return index === active ? "word reading" : "word";
+  if (readingStyle === "off") return "word";
+  if (readingStyle === "box") return index === active ? "word reading" : "word";
   // Mực hiện dần: chữ đã đọc thì đậm, chữ chưa đọc thì nhạt
   return index <= active ? "word" : "word word--unread";
 }
@@ -31,6 +32,8 @@ export function LetterPaper({
   revealDelay,
   still = false,
   activeWord,
+  hasAudio = false,
+  readingStyle = "box",
   hasPrevious = false,
   hasNext = false,
   className = "",
@@ -44,6 +47,8 @@ export function LetterPaper({
   revealDelay?: number;
   still?: boolean;
   activeWord?: number | null;
+  hasAudio?: boolean;
+  readingStyle?: ReadingStyle;
   hasPrevious?: boolean; // có trang trước để lật về: hiện mũi tên nhỏ ở góc dưới trái
   hasNext?: boolean; // có trang sau để lật tới: hiện mũi tên nhỏ cạnh số trang
   className?: string;
@@ -68,7 +73,7 @@ export function LetterPaper({
           : undefined
       }
     >
-      <h1 className="text-[22px] font-bold leading-tight">{title}</h1>
+      <h1 className={`text-[22px] font-bold leading-tight ${hasAudio ? "pr-10" : ""}`}>{title}</h1>
       <div aria-hidden="true" className="mt-1 h-0.5 w-12 rounded-full bg-deep/60" />
       <p className="mt-3 whitespace-pre-line font-serif text-[18px] leading-[1.75]">
         {sentences
@@ -87,7 +92,7 @@ export function LetterPaper({
                       const index = wordIndex++;
                       return (
                         <span key={index}>
-                          <span className={wordClass(index, activeWord)}>{word}</span>{" "}
+                          <span className={wordClass(index, activeWord, readingStyle)}>{word}</span>{" "}
                         </span>
                       );
                     })

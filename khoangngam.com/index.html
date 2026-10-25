@@ -17,7 +17,7 @@
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Thẻ NFC 99 ngày thương mình của Khoảng Ngẫm: mỗi ngày một lá thư, viết cho chính bạn">
+  <meta property="og:image:alt" content="Thẻ NFC 99 ngày thương mình của Khoảng Ngẫm: 99 lá thư, đọc theo nhịp của bạn">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <link rel="icon" type="image/png" sizes="96x96" href="./favicon-96.png">
@@ -54,7 +54,7 @@
         "@type": "Product",
         "@id": "https://khoangngam.com/#the",
         "name": "Thẻ 99 ngày thương mình",
-        "description": "Tấm thẻ NFC chứa 99 lá thư ngắn thuộc 9 chủ đề. Chạm điện thoại vào thẻ để mở lá thư của hôm nay, mỗi ngày một lá. Không cần ứng dụng, không cần tài khoản.",
+        "description": "Tấm thẻ NFC chứa 99 lá thư ngắn thuộc 9 chủ đề. Chạm điện thoại vào thẻ để mở thư, chọn nhịp đọc từ 1 đến 5 lá mỗi ngày. Không cần ứng dụng, không cần tài khoản.",
         "image": [
           "https://khoangngam.com/img/the-nfc-99-ngay-thuong-minh.webp",
           "https://khoangngam.com/img/hai-mat-the-99-ngay-thuong-minh.webp",
@@ -465,7 +465,7 @@
             <dt class="mt-2 text-[12px] uppercase tracking-[0.18em] text-sage">Lá thư</dt>
           </div>
           <div class="border-b border-sage/15 py-8 md:border-b-0 md:border-r" data-reveal style="transition-delay:.08s">
-            <dd class="font-serif text-[44px] leading-none text-gold" x-data="counter(1)" x-intersect.once="run()" x-text="value">1</dd>
+            <dd class="font-serif text-[44px] leading-none text-gold">1–5</dd>
             <dt class="mt-2 text-[12px] uppercase tracking-[0.18em] text-sage">Lá mỗi ngày</dt>
           </div>
           <div class="border-r border-sage/15 py-8" data-reveal style="transition-delay:.16s">
@@ -486,8 +486,8 @@
         <p data-reveal class="text-[12px] font-semibold uppercase tracking-[0.24em] text-gold">Tấm thẻ</p>
         <h2 data-reveal class="mt-4 font-serif text-[32px] font-medium leading-tight sm:text-[42px]">Nhỏ như thẻ ngân hàng, đủ chỗ cho 99 ngày</h2>
         <p data-reveal class="mt-5 text-[16px] leading-8 text-sage">
-          Bên trong tấm thẻ là một cuốn sổ thư. Bạn không lướt được hết trong một tối, vì mỗi ngày thẻ chỉ mở đúng một lá.
-          Chậm như vậy là có chủ ý.
+          Bên trong tấm thẻ là một cuốn sổ thư. Bạn chọn nhịp đọc từ 1 đến 5 lá mỗi ngày trong Hộp thư.
+          Mỗi lá tiếp theo chỉ mở khi bạn muốn đọc thêm.
         </p>
       </div>
 
@@ -685,7 +685,7 @@
           <h2 data-reveal class="mt-4 font-serif text-[32px] font-medium leading-tight sm:text-[42px]">Một món quà được mở 99 lần</h2>
           <p data-reveal class="mt-5 text-[16px] leading-8 text-sage">
             Trước khi trao thẻ, bạn viết một lời nhắn riêng. Đó là điều đầu tiên người nhận nhìn thấy khi chạm thẻ lần đầu.
-            Sau đó, mỗi ngày họ nhận thêm một lá thư, và nhớ tới bạn thêm một lần.
+            Sau đó, họ tự chọn nhịp đọc mỗi ngày và mở từng lá thư khi muốn.
           </p>
           <ul class="mt-8 space-y-4">
             <template x-for="(g, i) in gifts" :key="g">
@@ -710,7 +710,7 @@
       <div class="mx-auto max-w-6xl px-5 py-14 sm:py-20 lg:py-24">
         <div class="mx-auto max-w-2xl text-center">
           <p data-reveal class="text-[12px] font-semibold uppercase tracking-[0.24em] text-gold">Giá bán</p>
-          <h2 data-reveal class="mt-4 font-serif text-[32px] font-medium leading-tight sm:text-[42px]">Mua một lần, đọc 99 ngày</h2>
+          <h2 data-reveal class="mt-4 font-serif text-[32px] font-medium leading-tight sm:text-[42px]">Mua một lần, đọc theo nhịp của bạn</h2>
           <p data-reveal class="mt-5 text-[16px] leading-8 text-sage">Không có phí hằng tháng. Không có gói nâng cấp. Tấm thẻ là tất cả những gì bạn cần.</p>
         </div>
 
@@ -1181,7 +1181,7 @@
         steps: [
           { title: "Chạm thẻ vào điện thoại", body: "Mở khoá màn hình rồi áp thẻ vào lưng máy. Một thông báo hiện lên, bạn bấm vào đó." },
           { title: "Đọc lá thư của hôm nay", body: "Lá thư mở ra như lật một trang sách. Đọc chậm thôi, chỉ mất chừng một phút." },
-          { title: "Ngày mai quay lại", body: "Lá tiếp theo mở vào ngày mai, tính từ 0 giờ theo giờ Việt Nam. Cứ thế cho tới lá thứ 99." },
+          { title: "Chọn nhịp đọc", body: "Trong Hộp thư, bạn chọn mở từ 1 đến 5 lá mỗi ngày. Khi muốn đọc thêm, bấm mở từng lá tiếp theo." },
         ],
 
         themes: ["Cố gắng", "Thành người mình thích", "Lớn lên", "Tình yêu", "Không cần vừa lòng ai", "Bạn bè", "Tuổi trẻ", "Ước mơ", "Ngày mai"],
@@ -1200,7 +1200,7 @@
 
         included: [
           "Một tấm thẻ Khoảng Ngẫm, chạm hoặc quét mã để mở thư",
-          "99 lá thư thuộc 9 chủ đề, mỗi ngày mở một lá",
+          "99 lá thư thuộc 9 chủ đề, chọn đọc 1 đến 5 lá mỗi ngày",
           "Hộp thư lưu lại mọi lá đã mở để đọc lại",
           "Lưu lá thư thành ảnh để giữ hoặc chia sẻ",
           "Một lời nhắn riêng nếu bạn mua để tặng",
@@ -1300,7 +1300,7 @@
           setTimeout(() => {
             this.flash = true;
             if (this.opened) {
-              this.message = "Hôm nay bạn đã mở lá này rồi. Chạm lại thì vẫn là lá đó. Lá tiếp theo chờ bạn vào ngày mai.";
+              this.message = "Chạm lại vẫn là lá thư đã mở. Trên thẻ thật, bạn có thể chọn nhịp đọc từ 1 đến 5 lá mỗi ngày trong Hộp thư.";
             } else {
               this.n += 1;
               this.opened = true;
