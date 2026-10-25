@@ -91,7 +91,8 @@ export function ReadingShell({
   const [tapped, setTapped] = useState(false);
   const [coverGone, setCoverGone] = useState(false);
   const [turn, setTurn] = useState<-1 | 1 | null>(null);
-  const touchStartX = useRef<number | null>(null);
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const scrolledDuringTouch = useRef(false);
   const swiped = useRef(false);
   const frameRef = useRef<HTMLDivElement>(null);
   const bookButtonRef = useRef<HTMLDivElement>(null);
@@ -181,16 +182,22 @@ export function ReadingShell({
           turnTo((event.clientX - box.left) / box.width < 0.35 ? -1 : 1);
         }}
         onTouchStart={(event) => {
-          touchStartX.current = event.touches[0]?.clientX ?? null;
+          const touch = event.touches[0];
+          touchStart.current = touch ? { x: touch.clientX, y: touch.clientY } : null;
+          scrolledDuringTouch.current = false;
         }}
         onTouchEnd={(event) => {
-          const start = touchStartX.current;
-          const end = event.changedTouches[0]?.clientX;
-          touchStartX.current = null;
-          if (start === null || end === undefined || Math.abs(end - start) < 40) return;
+          const start = touchStart.current;
+          const end = event.changedTouches[0];
+          touchStart.current = null;
+          if (!start || !end || scrolledDuringTouch.current) return;
+          const dx = end.clientX - start.x;
+          const dy = end.clientY - start.y;
+          // Chỉ lật khi vuốt hẳn sang ngang; vuốt dọc để đọc tiếp thư dài thì bỏ qua dù tay hơi lệch.
+          if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
           swiped.current = true;
           if (opening && !skipped) setTapped(true);
-          turnTo(end < start ? 1 : -1);
+          turnTo(dx < 0 ? 1 : -1);
         }}
       >
         {base ? (
@@ -230,7 +237,10 @@ export function ReadingShell({
       }
     >
       {before}
-      <div ref={frameRef} className="relative w-full" onScrollCapture={placeBookButton}>
+      <div ref={frameRef} className="relative w-full" onScrollCapture={() => {
+          if (touchStart.current) scrolledDuringTouch.current = true;
+          placeBookButton();
+        }}>
         {body}
         {OPENING_EFFECT !== "book" && listenButton && showListenButton ? (
           <div className="book-audio-in absolute right-6 top-6 z-10">
