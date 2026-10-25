@@ -37,10 +37,9 @@ export async function GET(request: NextRequest) {
   webPush.setVapidDetails(process.env.VAPID_SUBJECT || "mailto:hello@khoangngam.com", publicKey, privateKey);
 
   const now = vietnamNow();
-  const dueTimes = Array.from({ length: 5 }, (_, minutes) => vietnamNow(new Date(Date.now() - minutes * 60_000)).time);
   const cards = await prisma.card.findMany({
     where: {
-      reminderTime: { in: dueTimes },
+      reminderTime: "07:00",
       NOT: { reminderLastSentDay: now.day },
       OR: [{ lastOpenedDay: null }, { lastOpenedDay: { not: now.day } }],
       pushSubscriptions: { some: {} },

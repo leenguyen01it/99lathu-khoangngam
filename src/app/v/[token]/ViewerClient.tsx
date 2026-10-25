@@ -412,26 +412,8 @@ export function ViewerClient({ token, expiresAt, letters, audio, total, dailyLim
             <span className={`absolute top-1 h-[18px] w-[18px] rounded-full transition-all ${reminder ? "left-6 bg-gold" : "left-1 bg-sage"}`} />
           </button>
         </div>
-        <label className="mt-4 block">
-          <span className="text-[13px] text-sage">Giờ nhắc</span>
-          <select
-            className="field mt-2"
-            value={reminderDraft}
-            disabled={savingReminder}
-            onChange={(event) => {
-              const value = event.target.value;
-              setReminderDraft(value);
-              if (reminder) void saveReminder(value);
-            }}
-          >
-            {Array.from({ length: 31 }, (_, index) => {
-              const minutes = 7 * 60 + index * 30;
-              const value = `${String(Math.floor(minutes / 60)).padStart(2, "0")}:${String(minutes % 60).padStart(2, "0")}`;
-              return <option key={value} value={value}>{value}</option>;
-            })}
-          </select>
-        </label>
-        <p className="mt-2 text-[11px] leading-relaxed text-sage/80">Mặc định là 07:00. Bạn cần bật một lần để trình duyệt xin quyền thông báo. Trên iPhone/iPad, trang cần được thêm vào Màn hình chính.</p>
+        <p className="mt-4 rounded-lg border border-sage/20 px-3 py-2 text-[13px] text-paper">Nhắc lúc 07:00 mỗi ngày</p>
+        <p className="mt-2 text-[11px] leading-relaxed text-sage/80">Bạn cần bật một lần để trình duyệt xin quyền thông báo. Trên iPhone/iPad, trang cần được thêm vào Màn hình chính.</p>
         {reminderError ? <p role="alert" className="mt-3 text-[13px] text-rose">{reminderError}</p> : null}
       </section>
 
