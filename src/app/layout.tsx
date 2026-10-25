@@ -27,6 +27,12 @@ export const metadata: Metadata = {
   },
   description: site.description,
   applicationName: site.name,
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: site.name,
+  },
   openGraph: {
     type: "website",
     siteName: site.name,

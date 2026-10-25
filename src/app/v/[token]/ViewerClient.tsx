@@ -49,6 +49,16 @@ function applicationServerKey(value: string): Uint8Array<ArrayBuffer> {
   return Uint8Array.from(raw, (character) => character.charCodeAt(0));
 }
 
+function isAppleMobileBrowser() {
+  return /iPhone|iPad|iPod/.test(navigator.userAgent)
+    || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+}
+
+function isStandaloneWebApp() {
+  const iosNavigator = navigator as Navigator & { standalone?: boolean };
+  return window.matchMedia("(display-mode: standalone)").matches || iosNavigator.standalone === true;
+}
+
 export function ViewerClient({ token, expiresAt, letters, audio, total, dailyLimit = 1, voiceSpeed = 1.3, autoPlayAudio = false, readingStyle = "box", pageSound = true, resumeReading = true, lastViewedN = null, reminderTime = null, reminderPromptedAt = null, vapidPublicKey = null, penName = null, openedToday = 0, canOpenToday = true, reactions, gift, showGiftFirst }: Props) {
   const todayN = letters[0]?.n ?? 1;
   // Không có token là trang đọc thử: cả bộ mở sẵn nên bắt đầu từ lá số 1 rồi lật tới.
@@ -172,7 +182,15 @@ export function ViewerClient({ token, expiresAt, letters, audio, total, dailyLim
     setSavingReminder(true);
     setReminderError(null);
     try {
-      if (!("serviceWorker" in navigator) || !("PushManager" in window) || !("Notification" in window) || !vapidPublicKey) {
+      if (!vapidPublicKey) {
+        setReminderError("Thông báo nhắc đọc chưa được cấu hình trên máy chủ.");
+        return;
+      }
+      if (isAppleMobileBrowser() && !isStandaloneWebApp()) {
+        setReminderError("Trên iPhone/iPad, hãy chọn Chia sẻ → Thêm vào Màn hình chính, rồi mở Khoảng Ngẫm từ biểu tượng để bật nhắc.");
+        return;
+      }
+      if (!("serviceWorker" in navigator) || !("PushManager" in window) || !("Notification" in window)) {
         setReminderError("Trình duyệt này chưa hỗ trợ thông báo nhắc đọc.");
         return;
       }
