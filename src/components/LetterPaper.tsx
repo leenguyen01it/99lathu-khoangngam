@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import { splitSentences, splitWords } from "@/lib/sentences";
 import type { ReadingStyle } from "@/server/scans";
 
@@ -60,9 +63,45 @@ export function LetterPaper({
   const sentences = reveal || karaoke ? splitSentences(text) : null;
   const signatureDelay = (revealDelay ?? 0) + 0.35 + (sentences?.length ?? 0) * SENTENCE_STEP;
   let wordIndex = 0;
+  const articleRef = useRef<HTMLElement>(null);
+
+  // Trang sách cao cố định, thư dài thì cuộn bên trong. Khi nghe giọng đọc, chữ đang đọc trôi
+  // xuống gần mép dưới (hoặc khuất phía trên) thì cuộn trang để chữ đó nằm ở khoảng một phần ba trang.
+  useEffect(() => {
+    const article = articleRef.current;
+    if (!article || activeWord === null || activeWord === undefined || activeWord < 0) return;
+    if (article.scrollHeight <= article.clientHeight) return;
+    const word = article.querySelectorAll(".word")[activeWord];
+    if (!(word instanceof HTMLElement)) return;
+    const top = word.getBoundingClientRect().top - article.getBoundingClientRect().top;
+    if (top > 0 && top < article.clientHeight * 0.75) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    article.scrollTo({ top: article.scrollTop + top - article.clientHeight / 3, behavior: reduce ? "auto" : "smooth" });
+  }, [activeWord]);
+
+  // Còn chữ bên dưới chưa cuộn tới thì bật data-more để hiện dải giấy mờ ở mép dưới (globals.css).
+  useEffect(() => {
+    const article = articleRef.current;
+    if (!article) return;
+    const update = () => {
+      const more = article.scrollHeight - article.clientHeight - article.scrollTop > 4;
+      article.toggleAttribute("data-more", more);
+    };
+    update();
+    article.addEventListener("scroll", update, { passive: true });
+    const observer = new ResizeObserver(update);
+    observer.observe(article);
+    const body = article.querySelector("p");
+    if (body) observer.observe(body);
+    return () => {
+      article.removeEventListener("scroll", update);
+      observer.disconnect();
+    };
+  }, [text]);
 
   return (
     <article
+      ref={articleRef}
       className={`flex flex-col rounded-2xl bg-paper px-6 py-7 text-ink shadow-xl shadow-black/25 ${still ? "" : "letter-in"} ${className}`}
       style={reveal && !still ? { animationDelay: `${revealDelay}s` } : undefined}
       onAnimationEnd={

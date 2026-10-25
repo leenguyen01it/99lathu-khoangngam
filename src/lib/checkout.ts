@@ -1,8 +1,8 @@
 import { parsePhoneNumberFromString } from "libphonenumber-js/max";
 
 export const PRODUCTS = [
-  { sku: "card", name: "Bản thẻ", unitAmount: 169000 },
-  { sku: "gift", name: "Bản quà tặng", unitAmount: 249000 },
+  { sku: "card", name: "Bản thẻ", unitAmount: 99000 },
+  { sku: "gift", name: "Bản quà tặng", unitAmount: 149000 },
 ] as const;
 
 export function parseCheckout(input: unknown) {

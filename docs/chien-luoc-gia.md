@@ -1,5 +1,7 @@
 # Chiến lược giá: Khoảng Ngẫm, thẻ 99 ngày thương mình
 
+> Cập nhật 25/10/2026: giá bán hiện tại là **99.000đ bản thẻ** và **149.000đ bản quà tặng**. Các phép tính, ngưỡng giá và đề xuất bên dưới thuộc phương án cũ, chưa được tính lại theo giá mới.
+
 Tài liệu nội bộ. Cập nhật lần hai ngày 07/10/2026, sau khi đối chiếu giá thị trường.
 
 Thay đổi so với bản đầu: giá chốt hạ từ 249.000đ xuống **199.000đ**, tách thành hai bản, và mục tiêu giá vốn hạ từ 30.000đ xuống **20.000đ**.

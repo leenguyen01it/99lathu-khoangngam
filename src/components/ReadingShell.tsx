@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { LetterImageInput } from "@/lib/letter-image";
 import type { WordTiming } from "@/lib/sentences";
 import { OPENING_EFFECT } from "@/lib/site";
@@ -14,20 +14,31 @@ import { Shell } from "./Shell";
 
 function playPaperSound() {
   const context = new AudioContext();
-  const duration = 0.14;
+  const duration = 0.24;
   const buffer = context.createBuffer(1, Math.ceil(context.sampleRate * duration), context.sampleRate);
   const data = buffer.getChannelData(0);
   for (let i = 0; i < data.length; i++) {
     const progress = i / data.length;
-    data[i] = (Math.random() * 2 - 1) * (1 - progress) * 0.16;
+    // Hai nhịp giấy rất ngắn: mép giấy được nhấc lên rồi nhẹ nhàng đặt xuống.
+    const lift = Math.exp(-Math.pow((progress - 0.22) / 0.16, 2));
+    const settle = Math.exp(-Math.pow((progress - 0.67) / 0.22, 2)) * 0.55;
+    const softenedNoise = (Math.random() * 2 - 1) * 0.7 + Math.sin(i * 0.19) * 0.3;
+    data[i] = softenedNoise * (lift + settle);
   }
   const source = context.createBufferSource();
-  const filter = context.createBiquadFilter();
-  filter.type = "bandpass";
-  filter.frequency.value = 1350;
-  filter.Q.value = 0.7;
+  const highpass = context.createBiquadFilter();
+  const lowpass = context.createBiquadFilter();
+  const gain = context.createGain();
+  highpass.type = "highpass";
+  highpass.frequency.value = 320;
+  lowpass.type = "lowpass";
+  lowpass.frequency.setValueAtTime(2400, context.currentTime);
+  lowpass.frequency.exponentialRampToValueAtTime(1200, context.currentTime + duration);
+  gain.gain.setValueAtTime(0.0001, context.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.038, context.currentTime + 0.025);
+  gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + duration);
   source.buffer = buffer;
-  source.connect(filter).connect(context.destination);
+  source.connect(highpass).connect(lowpass).connect(gain).connect(context.destination);
   source.start();
   source.onended = () => void context.close();
 }
@@ -82,6 +93,19 @@ export function ReadingShell({
   const [turn, setTurn] = useState<-1 | 1 | null>(null);
   const touchStartX = useRef<number | null>(null);
   const swiped = useRef(false);
+  const frameRef = useRef<HTMLDivElement>(null);
+  const bookButtonRef = useRef<HTMLDivElement>(null);
+
+  // Nút nghe nằm cạnh tiêu đề nên cuộn lên cùng tiêu đề, khỏi đè lên chữ khi trang thư dài.
+  // Riêng lúc đang nghe (activeWord khác null) thì nút đứng yên ở góc trên để luôn bấm dừng được:
+  // trang tự cuộn theo chữ đang đọc nên chữ nằm dưới nút là chữ đã đọc qua.
+  const placeBookButton = () => {
+    const button = bookButtonRef.current;
+    const page = frameRef.current?.querySelector<HTMLElement>(".book > article:not(.book__leaf)");
+    if (!button) return;
+    button.style.top = `${25 - (activeWord === null && page ? page.scrollTop : 0)}px`;
+  };
+  useEffect(placeBookButton);
 
   const skipped = tapped || listened;
   const showListenButton = !opening || skipped || coverGone;
@@ -108,6 +132,7 @@ export function ReadingShell({
       }`}
     >
       <div
+        ref={bookButtonRef}
         className="book-audio-in pointer-events-auto absolute right-3 top-[25px]"
         onClick={(event) => event.stopPropagation()}
         onTouchStart={(event) => event.stopPropagation()}
@@ -205,7 +230,7 @@ export function ReadingShell({
       }
     >
       {before}
-      <div className="relative w-full">
+      <div ref={frameRef} className="relative w-full" onScrollCapture={placeBookButton}>
         {body}
         {OPENING_EFFECT !== "book" && listenButton && showListenButton ? (
           <div className="book-audio-in absolute right-6 top-6 z-10">

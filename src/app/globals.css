@@ -196,13 +196,15 @@ body {
    rồi lật sang trái quanh gáy sách để lộ lá thư bên dưới.
    --------------------------------------------------------------- */
 /* Cuốn sách: bìa sau (xanh) > xấp giấy (kem, thấy mép ở phải và dưới) > trang thư > bìa trước.
-   Chiều cao dùng phần màn hình còn lại để mọi trang luôn bằng nhau khi lật.
+   Chiều cao cố định để mọi trang luôn bằng nhau khi lật; thư dài thì cuộn bên trong trang.
+   Cao khoảng 1,55 lần bề rộng (100vw trừ 2,5rem lề trang, tối đa 28rem của khung) cho ra dáng
+   một trang sách, nhưng không vượt phần màn hình còn lại.
    9rem chừa chỗ cho safe area, nhận diện thương hiệu và khoảng thở phía dưới. */
 .book {
   position: relative;
   display: flex;
   width: 100%;
-  height: min(650px, calc(100dvh - 9rem));
+  height: min(calc((min(100vw, 28rem) - 2.5rem) * 1.55), calc(100dvh - 9rem));
   min-height: min(420px, calc(100dvh - 9rem));
   padding: 5px 12px 13px 5px;
   perspective: 1800px;
@@ -264,6 +266,24 @@ body {
   box-shadow: 1px 1px 2px rgb(22 48 47 / 0.18);
   background-image: linear-gradient(to right, rgb(22 48 47 / 0.16), rgb(22 48 47 / 0.04) 14px, transparent 34px);
   padding-left: 2rem;
+}
+
+/* Dải giấy mờ dần ở mép dưới, báo còn chữ bên dưới. LetterPaper bật data-more khi chưa cuộn hết. */
+.book > article::after {
+  content: "";
+  position: sticky;
+  bottom: -1.75rem;
+  flex-shrink: 0;
+  height: 3.5rem;
+  margin: -3.5rem -1.5rem -1.75rem -2rem;
+  background: linear-gradient(to bottom, rgb(247 240 226 / 0), #f7f0e2 85%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.book > article[data-more]::after {
+  opacity: 1;
 }
 
 .book__cover {
@@ -416,6 +436,7 @@ body {
   position: absolute;
   inset: 5px 12px 13px 5px;
   z-index: 4;
+  overflow: hidden; /* nút nghe cuộn theo tiêu đề thì khuất sau mép trang, không tràn ra ngoài sách */
   pointer-events: none;
   transform-origin: left center;
   backface-visibility: hidden;

@@ -8,14 +8,14 @@ new Function("require", "exports", "module", code)(require, loaded.exports, load
 const { parseCheckout } = loaded.exports;
 const valid = { requestId: "12345678-1234-4123-8123-123456789abc", customerName: "Người nhận", phone: "0901234567", address: "12 đường A", provinceCode: 1, wardCode: 4, sku: "card", quantity: 2 };
 test("giá do máy chủ tính, bỏ qua giá khách gửi", () => {
-  assert.equal(parseCheckout({ ...valid, totalAmount: 1, unitAmount: 1 }).totalAmount, 338000);
-  assert.equal(parseCheckout({ ...valid, sku: "gift" }).totalAmount, 498000);
+  assert.equal(parseCheckout({ ...valid, totalAmount: 1, unitAmount: 1 }).totalAmount, 198000);
+  assert.equal(parseCheckout({ ...valid, sku: "gift" }).totalAmount, 298000);
 });
 test("đơn hỗn hợp tính giá từng loại và chặn số lượng sai", () => {
   const items = [{ sku: "card", quantity: 1 }, { sku: "gift", quantity: 1 }];
   const order = parseCheckout({ ...valid, items, totalAmount: 1 });
-  assert.equal(order.totalAmount, 418000);
-  assert.deepEqual(order.items.map(i => i.totalAmount), [169000, 249000]);
+  assert.equal(order.totalAmount, 248000);
+  assert.deepEqual(order.items.map(i => i.totalAmount), [99000, 149000]);
   for (const bad of [[], null, [{ sku: "fake", quantity: 1 }], [{ sku: "card", quantity: 0 }], [{ sku: "card", quantity: 1.5 }], [{ sku: "card", quantity: "1" }], [{ sku: "card", quantity: 1 }, { sku: "card", quantity: 2 }], [{ sku: "card", quantity: 20 }, { sku: "gift", quantity: 1 }]]) assert.throws(() => parseCheckout({ ...valid, items: bad }));
 });
 test("từ chối dữ liệu thiếu, sản phẩm lạ và số lượng ngoài giới hạn", () => {
@@ -59,8 +59,8 @@ test("API lưu đơn và trả lại mã cũ khi gửi lại, chặn origin ngo�
   const req = (origin) => new NextRequest("https://99lathu.khoangngam.com/api/orders", { method: "POST", headers: { origin, "Content-Type": "application/json" }, body: JSON.stringify(mixed) });
   assert.equal((await module.exports.POST(req("https://other.example"))).status, 403);
   assert.equal((await module.exports.POST(req("https://khoangngam.com"))).status, 201);
-  assert.equal(saved.totalAmount, 418000);
-  assert.deepEqual(saved.items.create.map(i => [i.sku, i.quantity, i.totalAmount]), [["card", 1, 169000], ["gift", 1, 249000]]);
+  assert.equal(saved.totalAmount, 248000);
+  assert.deepEqual(saved.items.create.map(i => [i.sku, i.quantity, i.totalAmount]), [["card", 1, 99000], ["gift", 1, 149000]]);
   assert.equal(saved.status, "pending");
   assert.equal(saved.orderNumber, "KN-12345678");
   assert.equal(saved.phone, "0901234567");
