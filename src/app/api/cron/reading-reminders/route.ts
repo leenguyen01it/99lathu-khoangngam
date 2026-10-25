@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
   const now = vietnamNow();
   const cards = await prisma.card.findMany({
     where: {
-      reminderTime: "07:00",
+      reminderTime: "20:00",
       NOT: { reminderLastSentDay: now.day },
       OR: [{ lastOpenedDay: null }, { lastOpenedDay: { not: now.day } }],
       pushSubscriptions: { some: {} },

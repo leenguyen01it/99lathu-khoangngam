@@ -35,6 +35,7 @@ model Card {
   lastViewedN         Int? // lá gần nhất người cầm thẻ đã xem
   reminderTime        String? // giờ nhắc đọc theo múi giờ Việt Nam, dạng HH:mm
   reminderLastSentDay String? // ngày gần nhất đã gửi, dạng YYYY-MM-DD
+  reminderPromptedAt  DateTime? // đã hiển thị lời mời bật thông báo lần đầu
 
   // Lá thư riêng của người tặng, viết trước khi thẻ được chạm lần đầu
   giftFrom    String?

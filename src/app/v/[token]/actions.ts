@@ -109,7 +109,7 @@ export async function changeBrowserReminder(
   return prisma.$transaction(async (tx) => {
     const card = await tx.card.updateMany({
       where: { id: scan.cardId, activatedAt: { not: null } },
-      data: { reminderTime: time, reminderLastSentDay: null },
+      data: { reminderTime: time, reminderLastSentDay: null, reminderPromptedAt: new Date() },
     });
     if (card.count !== 1) return false;
     if (!time || !subscription) {
@@ -132,6 +132,16 @@ export async function changeBrowserReminder(
     });
     return true;
   });
+}
+
+export async function dismissBrowserReminderPrompt(token: string): Promise<boolean> {
+  const scan = await resolveScanToken(String(token).slice(0, 600));
+  if (!scan) return false;
+  const updated = await prisma.card.updateMany({
+    where: { id: scan.cardId, activatedAt: { not: null } },
+    data: { reminderPromptedAt: new Date() },
+  });
+  return updated.count === 1;
 }
 
 export async function openAnotherLetter(token: string) {

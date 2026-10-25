@@ -51,6 +51,7 @@ export default async function ViewerPage({ params }: { params: Promise<{ token: 
       resumeReading={card.resumeReading}
       lastViewedN={card.lastViewedN}
       reminderTime={card.reminderTime}
+      reminderPromptedAt={card.reminderPromptedAt?.toISOString() ?? null}
       vapidPublicKey={process.env.VAPID_PUBLIC_KEY ?? null}
       penName={penName}
       openedToday={card.lastOpenedDay === dayKey() ? card.openedToday : 0}

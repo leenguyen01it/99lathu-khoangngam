@@ -15,7 +15,7 @@ import { themeLabel } from "@/lib/site";
 import { markTrialRead } from "@/app/doc-thu/actions";
 import type { PenName, Reactions } from "@/server/reactions";
 import type { CardExperienceSettings, ReadingStyle } from "@/server/scans";
-import { changeBrowserReminder, changeDailyLimit, changeExperienceSettings, changePenName, changeVoiceSpeed, markGiftSeen, openAnotherLetter, rememberViewedLetter, setHeart } from "./actions";
+import { changeBrowserReminder, changeDailyLimit, changeExperienceSettings, changePenName, changeVoiceSpeed, dismissBrowserReminderPrompt, markGiftSeen, openAnotherLetter, rememberViewedLetter, setHeart } from "./actions";
 
 interface Props {
   token?: string;
@@ -31,6 +31,7 @@ interface Props {
   resumeReading?: boolean;
   lastViewedN?: number | null;
   reminderTime?: string | null;
+  reminderPromptedAt?: string | null;
   vapidPublicKey?: string | null;
   penName?: PenName | null;
   openedToday?: number;
@@ -48,7 +49,7 @@ function applicationServerKey(value: string): Uint8Array<ArrayBuffer> {
   return Uint8Array.from(raw, (character) => character.charCodeAt(0));
 }
 
-export function ViewerClient({ token, expiresAt, letters, audio, total, dailyLimit = 1, voiceSpeed = 1.3, autoPlayAudio = false, readingStyle = "box", pageSound = true, resumeReading = true, lastViewedN = null, reminderTime = null, vapidPublicKey = null, penName = null, openedToday = 0, canOpenToday = true, reactions, gift, showGiftFirst }: Props) {
+export function ViewerClient({ token, expiresAt, letters, audio, total, dailyLimit = 1, voiceSpeed = 1.3, autoPlayAudio = false, readingStyle = "box", pageSound = true, resumeReading = true, lastViewedN = null, reminderTime = null, reminderPromptedAt = null, vapidPublicKey = null, penName = null, openedToday = 0, canOpenToday = true, reactions, gift, showGiftFirst }: Props) {
   const todayN = letters[0]?.n ?? 1;
   // Không có token là trang đọc thử: cả bộ mở sẵn nên bắt đầu từ lá số 1 rồi lật tới.
   const trial = !token;
@@ -65,9 +66,10 @@ export function ViewerClient({ token, expiresAt, letters, audio, total, dailyLim
   const [savingExperience, setSavingExperience] = useState(false);
   const [experienceError, setExperienceError] = useState<string | null>(null);
   const [reminder, setReminder] = useState<string | null>(reminderTime);
-  const [reminderDraft, setReminderDraft] = useState(reminderTime ?? "07:00");
+  const [reminderDraft, setReminderDraft] = useState(reminderTime ?? "20:00");
   const [savingReminder, setSavingReminder] = useState(false);
   const [reminderError, setReminderError] = useState<string | null>(null);
+  const [showReminderInvitation, setShowReminderInvitation] = useState(false);
   const [me, setMe] = useState(penName);
   const [nameDraft, setNameDraft] = useState(penName?.name ?? "");
   const [savingName, setSavingName] = useState(false);
@@ -205,11 +207,16 @@ export function ViewerClient({ token, expiresAt, letters, audio, total, dailyLim
       }
       setReminder(nextTime);
       setReminderDraft(nextTime);
+      setShowReminderInvitation(false);
     } catch {
       setReminderError("Chưa bật được lời nhắc trên thiết bị này. Bạn thử lại nhé.");
     } finally {
       setSavingReminder(false);
     }
+  };
+  const dismissReminderInvitation = () => {
+    setShowReminderInvitation(false);
+    if (token) void dismissBrowserReminderPrompt(token);
   };
   const saveName = async (name: string | null) => {
     if (!token || savingName) return;
@@ -287,6 +294,12 @@ export function ViewerClient({ token, expiresAt, letters, audio, total, dailyLim
     };
   }, [expiresAt]);
 
+  useEffect(() => {
+    if (!token || reminder || reminderPromptedAt || view.kind !== "letter") return;
+    const timer = window.setTimeout(() => setShowReminderInvitation(true), firstScreen ? 2400 : 600);
+    return () => window.clearTimeout(timer);
+  }, [firstScreen, reminder, reminderPromptedAt, token, view.kind]);
+
   if (locked) return <Locked />;
 
   if (view.kind === "gift" && gift) {
@@ -314,6 +327,28 @@ export function ViewerClient({ token, expiresAt, letters, audio, total, dailyLim
 
   if (view.kind === "settings" && token) {
     const choice = (active: boolean) => `flex h-10 flex-1 items-center justify-center rounded-lg border text-[14px] transition ${active ? "border-gold bg-gold/15 text-gold" : "border-sage/30 text-paper hover:border-gold/60"}`;
+    const reminderSection = <section className="mt-4 rounded-xl border border-sage/25 p-4" aria-labelledby="reminder-heading">
+      <div className="flex items-center gap-4">
+        <div className="min-w-0 flex-1">
+          <h2 id="reminder-heading" className="text-[16px] font-semibold">Nhắc tôi đọc thư</h2>
+          <p className="mt-1 text-[12px] leading-relaxed text-sage">Gửi thông báo trình duyệt lúc 20:00 mỗi ngày.</p>
+        </div>
+        <button
+          type="button"
+          role="switch"
+          aria-checked={Boolean(reminder)}
+          aria-label="Nhắc tôi đọc thư"
+          disabled={savingReminder}
+          onClick={() => void saveReminder(reminder ? null : reminderDraft)}
+          className={`relative h-7 w-12 shrink-0 rounded-full border transition disabled:opacity-50 ${reminder ? "border-gold bg-gold/25" : "border-sage/35 bg-deep/30"}`}
+        >
+          <span className={`absolute top-1 h-[18px] w-[18px] rounded-full transition-all ${reminder ? "left-6 bg-gold" : "left-1 bg-sage"}`} />
+        </button>
+      </div>
+      <p className="mt-4 rounded-lg border border-sage/20 px-3 py-2 text-[13px] text-paper">Nhắc lúc 20:00 mỗi ngày</p>
+      <p className="mt-2 text-[11px] leading-relaxed text-sage/80">Bạn cần bật một lần để trình duyệt xin quyền thông báo. Trên iPhone/iPad, trang cần được thêm vào Màn hình chính.</p>
+      {reminderError ? <p role="alert" className="mt-3 text-[13px] text-rose">{reminderError}</p> : null}
+    </section>;
     return <Shell>
       <div className="flex items-center gap-3">
         <button type="button" onClick={() => go(settingsReturnView)} aria-label="Quay lại lá thư" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-sage/35 text-paper transition hover:border-gold hover:text-gold">
@@ -331,6 +366,8 @@ export function ViewerClient({ token, expiresAt, letters, audio, total, dailyLim
         </div>
         {chosenLimit !== limit ? <button type="button" disabled={savingLimit} onClick={saveLimit} className="mt-3 rounded-lg border border-gold px-4 py-2 text-[14px] text-gold disabled:opacity-50">{savingLimit ? "Đang lưu..." : "Lưu nhịp đọc"}</button> : null}
       </section>
+
+      {reminderSection}
 
       <section className="mt-4 rounded-xl border border-sage/25 p-4" aria-labelledby="speed-heading">
         <h2 id="speed-heading" className="text-[16px] font-semibold">Tốc độ nghe</h2>
@@ -392,29 +429,6 @@ export function ViewerClient({ token, expiresAt, letters, audio, total, dailyLim
           </div>
         </div>
         {experienceError ? <p role="alert" className="mt-3 text-[13px] text-rose">{experienceError}</p> : null}
-      </section>
-
-      <section className="mt-4 rounded-xl border border-sage/25 p-4" aria-labelledby="reminder-heading">
-        <div className="flex items-center gap-4">
-          <div className="min-w-0 flex-1">
-            <h2 id="reminder-heading" className="text-[16px] font-semibold">Nhắc tôi đọc thư</h2>
-            <p className="mt-1 text-[12px] leading-relaxed text-sage">Gửi thông báo trình duyệt mỗi ngày theo giờ Việt Nam.</p>
-          </div>
-          <button
-            type="button"
-            role="switch"
-            aria-checked={Boolean(reminder)}
-            aria-label="Nhắc tôi đọc thư"
-            disabled={savingReminder}
-            onClick={() => void saveReminder(reminder ? null : reminderDraft)}
-            className={`relative h-7 w-12 shrink-0 rounded-full border transition disabled:opacity-50 ${reminder ? "border-gold bg-gold/25" : "border-sage/35 bg-deep/30"}`}
-          >
-            <span className={`absolute top-1 h-[18px] w-[18px] rounded-full transition-all ${reminder ? "left-6 bg-gold" : "left-1 bg-sage"}`} />
-          </button>
-        </div>
-        <p className="mt-4 rounded-lg border border-sage/20 px-3 py-2 text-[13px] text-paper">Nhắc lúc 07:00 mỗi ngày</p>
-        <p className="mt-2 text-[11px] leading-relaxed text-sage/80">Bạn cần bật một lần để trình duyệt xin quyền thông báo. Trên iPhone/iPad, trang cần được thêm vào Màn hình chính.</p>
-        {reminderError ? <p role="alert" className="mt-3 text-[13px] text-rose">{reminderError}</p> : null}
       </section>
 
       <section className="mb-6 mt-4 rounded-xl border border-sage/25 p-4" aria-labelledby="name-heading">
@@ -600,6 +614,22 @@ export function ViewerClient({ token, expiresAt, letters, audio, total, dailyLim
         </div>
       ) : null}
       {!token ?<><TrialPurchase /><SocialFooter /></> : null}
+      {showReminderInvitation ? (
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-ink/55 px-4 pb-5 backdrop-blur-[2px]" role="dialog" aria-modal="true" aria-labelledby="reminder-invitation-title">
+          <div className="w-full max-w-md rounded-2xl border border-gold/25 bg-deep p-5 shadow-2xl">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-gold">Một nhịp nhỏ mỗi ngày</p>
+            <h2 id="reminder-invitation-title" className="mt-2 text-[20px] font-semibold text-paper">Nhắc bạn đọc thư lúc 20:00?</h2>
+            <p className="mt-2 text-[14px] leading-relaxed text-sage">Khoảng Ngẫm sẽ gửi một thông báo nhẹ nếu hôm đó bạn chưa ghé đọc thư.</p>
+            <div className="mt-5 flex gap-2">
+              <button type="button" disabled={savingReminder} onClick={() => void saveReminder("20:00")} className="flex-1 rounded-xl bg-gold px-4 py-2.5 text-[14px] font-semibold text-deep disabled:opacity-50">
+                {savingReminder ? "Đang bật..." : "Bật nhắc"}
+              </button>
+              <button type="button" disabled={savingReminder} onClick={dismissReminderInvitation} className="rounded-xl border border-sage/30 px-4 py-2.5 text-[14px] text-paper disabled:opacity-50">Để sau</button>
+            </div>
+            {reminderError ? <p role="alert" className="mt-3 text-[13px] text-rose">{reminderError}</p> : null}
+          </div>
+        </div>
+      ) : null}
     </ReadingShell>
   );
 }

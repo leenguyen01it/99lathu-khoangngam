@@ -9,7 +9,8 @@ ADD COLUMN "pageSound" BOOLEAN NOT NULL DEFAULT true,
 ADD COLUMN "resumeReading" BOOLEAN NOT NULL DEFAULT true,
 ADD COLUMN "lastViewedN" INTEGER,
 ADD COLUMN "reminderTime" TEXT,
-ADD COLUMN "reminderLastSentDay" TEXT;
+ADD COLUMN "reminderLastSentDay" TEXT,
+ADD COLUMN "reminderPromptedAt" TIMESTAMP(3);
 
 -- Thẻ đã mở trước khi có bộ đếm được tính là đã mở một lá trong ngày đó.
 UPDATE "Card" SET "openedToday" = 1 WHERE "lastOpenedDay" IS NOT NULL;
