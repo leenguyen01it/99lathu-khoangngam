@@ -206,6 +206,14 @@ export function ReadingShell({
           <LetterPaper
             {...letter}
             {...hints}
+            onPrevious={() => {
+              setTapped(true);
+              turnTo(-1);
+            }}
+            onNext={() => {
+              setTapped(true);
+              turnTo(1);
+            }}
             still
             hasAudio={Boolean(audio)}
             readingStyle={readingStyle}
@@ -215,6 +223,7 @@ export function ReadingShell({
         {leaf && turn ? (
           <LetterPaper
             {...leaf}
+            {...(turn === 1 ? hints : {})}
             still
             hasAudio={Boolean(audio)}
             readingStyle={readingStyle}

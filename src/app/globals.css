@@ -526,20 +526,25 @@ body {
   box-shadow: 0 0 0 3px rgb(236 201 138 / 0.7);
 }
 
-/* Chữ của lá thư hiện dần từng câu */
-.sentence {
-  opacity: 0;
-  animation: sentence-in 0.55s ease-out forwards;
+/* Chữ của lá thư thấm dần từ trên xuống như mực loang trên giấy.
+   Mặt nạ cao gấp 2,5 lần khối chữ: phần trên đặc, phần dưới trong suốt, giữa là dải mờ.
+   Kéo mặt nạ từ dưới lên thì phần đặc phủ dần khối chữ, từ đầu thư xuống cuối thư. */
+.ink-reveal {
+  -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent 60%);
+  mask-image: linear-gradient(to bottom, #000 40%, transparent 60%);
+  -webkit-mask-size: 100% 250%;
+  mask-size: 100% 250%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: 0 100%;
+  mask-position: 0 100%;
+  animation: ink-in 1s cubic-bezier(0.3, 0.6, 0.4, 1) forwards;
 }
 
-@keyframes sentence-in {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
+@keyframes ink-in {
   to {
-    opacity: 1;
-    transform: translateY(0);
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
   }
 }
 
@@ -560,8 +565,9 @@ body {
   .book-audio-in {
     animation: none;
   }
-  .sentence {
-    opacity: 1;
+  .ink-reveal {
+    -webkit-mask-image: none;
+    mask-image: none;
     animation: none;
   }
   .word {

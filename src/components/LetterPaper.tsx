@@ -4,8 +4,8 @@ import { useEffect, useRef } from "react";
 import { splitSentences, splitWords } from "@/lib/sentences";
 import type { ReadingStyle } from "@/server/scans";
 
-// Nhịp hiện chữ: mỗi câu cách nhau SENTENCE_STEP giây.
-const SENTENCE_STEP = 0.4;
+// Chữ bắt đầu thấm ra giấy sau khi tờ thư hiện lên được REVEAL_START giây (globals.css: .ink-reveal).
+const REVEAL_START = 0.15;
 
 /**
  * Lớp CSS của một chữ khi đang nghe giọng đọc.
@@ -19,9 +19,39 @@ function wordClass(index: number, active: number | null | undefined, readingStyl
   return index <= active ? "word" : "word word--unread";
 }
 
+/** Nút lật trang ở chân tờ thư. Không có trang để lật thì giữ chỗ trống cho số trang nằm giữa. */
+function PageButton({ label, show, side, onTurn, children }: {
+  label: string;
+  show: boolean;
+  side: "left" | "right";
+  onTurn?: () => void;
+  children: React.ReactNode;
+}) {
+  if (!show) return <span aria-hidden="true" className="h-11 w-11" />;
+  return (
+    <button
+      type="button"
+      aria-label={label}
+      title={label}
+      // Mũi tên nằm sát mép giấy, vùng chạm vẫn đủ 44px lan vào trong
+      className={`inline-flex h-11 w-11 items-center text-deep ${side === "left" ? "justify-start" : "justify-end"}`}
+      onClick={(event) => {
+        event.stopPropagation();
+        onTurn?.();
+      }}
+      onTouchStart={(event) => event.stopPropagation()}
+      onTouchEnd={(event) => event.stopPropagation()}
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        {children}
+      </svg>
+    </button>
+  );
+}
+
 /**
  * Tờ giấy của một lá thư.
- * - `revealDelay` (giây): chữ hiện dần từng câu, bắt đầu sau khoảng trễ đó. Bỏ trống thì hiện ngay.
+ * - `revealDelay` (giây): chữ thấm dần từ trên xuống như mực loang, bắt đầu sau khoảng trễ đó. Bỏ trống thì hiện ngay.
  * - `still`: tờ giấy đứng yên từ đầu, không tự mờ dần hiện ra (dùng khi có bìa sách che phía trên).
  * - `activeWord`: thứ tự chữ đang được giọng đọc đọc tới. null là không nghe, -1 là đang nghe
  *   nhưng chưa tới chữ đầu tiên. Bỏ trống hẳn nếu lá thư không có giọng đọc.
@@ -39,6 +69,8 @@ export function LetterPaper({
   readingStyle = "box",
   hasPrevious = false,
   hasNext = false,
+  onPrevious,
+  onNext,
   className = "",
   onAnimationEnd,
 }: {
@@ -52,16 +84,17 @@ export function LetterPaper({
   activeWord?: number | null;
   hasAudio?: boolean;
   readingStyle?: ReadingStyle;
-  hasPrevious?: boolean; // có trang trước để lật về: hiện mũi tên nhỏ ở góc dưới trái
-  hasNext?: boolean; // có trang sau để lật tới: hiện mũi tên nhỏ cạnh số trang
+  hasPrevious?: boolean; // có trang trước để lật về: hiện nút lật ở góc dưới trái
+  hasNext?: boolean; // có trang sau để lật tới: hiện nút lật ở góc dưới phải
+  onPrevious?: () => void;
+  onNext?: () => void;
   className?: string;
   onAnimationEnd?: () => void;
 }) {
   const reveal = revealDelay !== undefined;
   const karaoke = activeWord !== undefined;
-  // Chỉ tách câu và chữ khi cần: để hiện dần từng câu, hoặc để tô sáng từng chữ theo giọng đọc.
-  const sentences = reveal || karaoke ? splitSentences(text) : null;
-  const signatureDelay = (revealDelay ?? 0) + 0.35 + (sentences?.length ?? 0) * SENTENCE_STEP;
+  // Chỉ tách câu và chữ khi cần tô sáng từng chữ theo giọng đọc.
+  const sentences = karaoke ? splitSentences(text) : null;
   let wordIndex = 0;
   const articleRef = useRef<HTMLElement>(null);
 
@@ -114,49 +147,42 @@ export function LetterPaper({
     >
       <h1 className={`text-[22px] font-bold leading-tight ${hasAudio ? "pr-10" : ""}`}>{title}</h1>
       <div aria-hidden="true" className="mt-1 h-0.5 w-12 rounded-full bg-deep/60" />
-      <p className="mt-3 whitespace-pre-line font-serif text-[18px] leading-[1.75]">
-        {sentences
-          ? sentences.map((sentence, i) => (
-              <span
-                key={i}
-                className={reveal ? "sentence" : undefined}
-                style={
-                  reveal
-                    ? { animationDelay: `${(revealDelay ?? 0) + 0.35 + i * SENTENCE_STEP}s` }
-                    : undefined
-                }
-              >
-                {karaoke
-                  ? splitWords(sentence).map((word) => {
-                      const index = wordIndex++;
-                      return (
-                        <span key={index}>
-                          <span className={wordClass(index, activeWord, readingStyle)}>{word}</span>{" "}
-                        </span>
-                      );
-                    })
-                  : `${sentence} `}
-              </span>
-            ))
-          : text}
-      </p>
-      {signature ? (
-        <p
-          className={`mt-6 text-right font-serif text-[16px] italic text-deep ${reveal ? "sentence" : ""}`}
-          style={reveal ? { animationDelay: `${signatureDelay}s` } : undefined}
-        >
-          {signature}
+      <div
+        className={reveal ? "ink-reveal" : undefined}
+        style={reveal ? { animationDelay: `${(revealDelay ?? 0) + REVEAL_START}s` } : undefined}
+      >
+        <p className="mt-3 whitespace-pre-line font-serif text-[18px] leading-[1.75]">
+          {sentences
+            ? sentences.map((sentence, i) => (
+                <span key={i}>
+                  {splitWords(sentence).map((word) => {
+                    const index = wordIndex++;
+                    return (
+                      <span key={index}>
+                        <span className={wordClass(index, activeWord, readingStyle)}>{word}</span>{" "}
+                      </span>
+                    );
+                  })}
+                </span>
+              ))
+            : text}
         </p>
-      ) : null}
+        {signature ? (
+          <p className="mt-6 text-right font-serif text-[16px] italic text-deep">{signature}</p>
+        ) : null}
+      </div>
       {page !== undefined ? (
-        // Số trang ở góc dưới bên phải, như sách in. Mũi tên nhỏ báo còn trang để lật.
-        <p className="-mb-3 mt-auto flex justify-between pt-8 font-serif text-[14px] text-deep/80">
-          <span>{hasPrevious ? "‹" : ""}</span>
-          <span>
-            {page}
-            {hasNext ? " ›" : ""}
-          </span>
-        </p>
+        // Số trang ở giữa, hai bên là nút lật cho người không quen vuốt.
+        // Nút chặn sự kiện chạm để cuốn sách bên ngoài không lật thêm lần nữa.
+        <nav aria-label="Lật trang" className="-mx-4 -mb-4 mt-auto flex items-center justify-between pt-6 font-serif text-[14px] text-deep/80">
+          <PageButton label="Lá trước" show={hasPrevious} side="left" onTurn={onPrevious}>
+            <path d="m15 18-6-6 6-6" />
+          </PageButton>
+          <span>{page}</span>
+          <PageButton label="Lá tiếp" show={hasNext} side="right" onTurn={onNext}>
+            <path d="m9 6 6 6-6 6" />
+          </PageButton>
+        </nav>
       ) : null}
     </article>
   );
